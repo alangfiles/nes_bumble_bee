@@ -5,7 +5,7 @@
 .export _get_pad_new, _get_frame_count, _set_music_speed
 .export _check_collision, _pal_fade_to, _set_scroll_x, _set_scroll_y, _add_scroll_y, _sub_scroll_y
 .export  _get_ppu_addr, _get_at_addr, _set_data_pointer, _set_mt_pointer, _buffer_4_mt, _buffer_1_mt
-.export _color_emphasis, _xy_split, _gray_line, _seed_rng
+.export _color_emphasis, _xy_split, _gray_line, _seed_rng, _get_ppu_byte
 .export _clear_vram_buffer
 
 .segment "CODE"
@@ -379,7 +379,6 @@ _get_ppu_addr:
 	tax
 	lda TEMP
 	rts
-	
 	
 
 	
@@ -808,5 +807,16 @@ _seed_rng:
 	sta <RAND_SEED
 	rts
 	
+	;int __fastcall__ get_ppu_byte:(char nt, char x, char y);
+_get_ppu_byte:
+    jsr _get_ppu_addr  ; Calculate address in A/X
+    stx $2006          ; Write high byte to PPUADDR
+    sta $2006          ; Write low byte to PPUADDR
+
+    lda $2007          ; First read is a dummy read
+    lda $2007          ; Second read gets actual value
+
+    rts
+
 	
 	

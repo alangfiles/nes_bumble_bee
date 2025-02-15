@@ -47,16 +47,15 @@ unsigned int old_y;
 unsigned char temp;
 unsigned char temp_x;
 unsigned char temp_y;
+unsigned int largeindex;
 
 unsigned char bit_index;
 unsigned char bit_offset;
 unsigned char frame_counter;
 
 #pragma bss-name(push, "BSS")
+#include "tinymap.h"
 
-unsigned char p_map[240];
-unsigned char c_map[240];
-unsigned char c_map2[240]; // not used in this example
 
 struct Base {
 	unsigned char x;
@@ -79,12 +78,9 @@ struct BoxGuy BoxGuy1 = {0x4000,0x3000};
 struct BoxGuy BoxGuy2 = {0x8000,0x3000};
 struct BoxGuy BoxGuy3 = {0xA000,0x3000};
 struct BoxGuy BoxGuy4 = {0xC000,0x3000};
-// the width and height should be 1 less than the dimensions (16x16)
-// ...I shrunk it a bit 14x14 hitbox
-// note, I'm using the top left as the 0,0 on x,y
 
-#define HERO_WIDTH 13
-#define HERO_HEIGHT 13
+#define HERO_WIDTH 7
+#define HERO_HEIGHT 7
 
 
 

@@ -165,4 +165,7 @@ void gray_line(void);
 void seed_rng(void);
 // get from the frame count. You can use a button (start on title screen) to trigger
 
+int __fastcall__ get_ppu_byte(char nt, char x, char y);
+// gets a ppu address from x and y coordinates (in pixels)
+// x is screen pixels 0-255, y is screen pixels 0-239, nt is nametable 0-3
 
