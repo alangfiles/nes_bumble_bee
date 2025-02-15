@@ -35,6 +35,7 @@ void main (void) {
 		p_map[x] = 1;
 	}
 
+	initialize_collision_map();
 	load_room();
 	
 	set_scroll_y(0xff); // shift the bg down 1 pixel
@@ -44,6 +45,7 @@ void main (void) {
 	
 	while (1){
 		// infinite loop
+		frame_counter++;
 		ppu_wait_nmi(); // wait till beginning of the frame
 		
 		//read controllers 1 and 3 into an integer
@@ -173,6 +175,10 @@ void movement(void){
 	Generic.y = GenericBoxGuy.y >> 8;
 	Generic.width = HERO_WIDTH;
 	Generic.height = HERO_HEIGHT;
+	
+	temp_x = (Generic.x +4) >> 3; //get this between 0-30 (+4 to move to middle of the sprite)
+	temp_y = (Generic.y +4) >> 3; //get this between 0-32
+	check_tile_and_collect();
 	
 	if(hero_velocity_x < 0){ // going left
 		if(bg_coll_L() ){ // check collision left
@@ -312,3 +318,39 @@ char bg_collision_sub(void){
 }
 
 
+
+#define MAP_WIDTH 30
+#define MAP_HEIGHT 32
+#define MAP_SIZE ((MAP_WIDTH * MAP_HEIGHT) / 8) // 120 bytes
+
+unsigned char honey_map[MAP_SIZE]; // 960 bits
+
+void initialize_collision_map() {
+    for (index = 0; index < 120; index++) {
+        honey_map[index] = 0xff; // Set all bits to 1
+    }
+}
+
+const unsigned char byte_lookup[32] = {
+	0, 4, 8, 12, 16, 20, 24, 28,
+	32, 36, 40, 44, 48, 52, 56, 60,
+	64, 68, 72, 76, 80, 84, 88, 92,
+	96, 100, 104, 108, 112, 116, 120, 124
+};
+
+const unsigned char blank_tiles[5] = {
+	0x52,	0x53, 0x54, 0x55, 0x56
+};
+
+void check_tile_and_collect(){
+	bit_index = byte_lookup[temp_y] + (temp_x >> 3);
+	bit_offset = temp_x & 7;
+
+	if( (honey_map[bit_index] >> bit_offset) & 1) //tile is 1
+	{
+		honey_map[bit_index] &= ~(1 << bit_offset); // Clear bit to 0
+		//update the player's score
+		//update the tile to be one of the blank tiles:
+		one_vram_buffer(blank_tiles[frame_counter%5], NTADR_A(temp_x,temp_y));
+	}
+}

@@ -48,6 +48,10 @@ unsigned char temp;
 unsigned char temp_x;
 unsigned char temp_y;
 
+unsigned char bit_index;
+unsigned char bit_offset;
+unsigned char frame_counter;
+
 #pragma bss-name(push, "BSS")
 
 unsigned char p_map[240];
@@ -124,10 +128,14 @@ const unsigned char metatiles1[]={
 void load_room(void);
 void draw_sprites(void);
 void movement(void);	
+void check_tile_and_collect(void);
+void initialize_collision_map(void);
+
 char bg_collision_sub(void);
 
 char bg_coll_L(void);
 char bg_coll_R(void);
 char bg_coll_U(void);
 char bg_coll_D(void);
+
 
