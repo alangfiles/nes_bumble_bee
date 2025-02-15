@@ -91,11 +91,14 @@ void main (void) {
 }
 
 
+#include "tinymap.h"
 
-
-void load_room(void){
+void load_room(void){  
 	//this will just load the nam
-	
+	ppu_off();
+	vram_adr(NAMETABLE_A); // set the destination address, the top left of the screen
+	vram_unrle(tinymap);
+	ppu_on_all();
 }
 
 void draw_sprites(void){
@@ -108,7 +111,7 @@ void draw_sprites(void){
 	if(temp_y == 0) temp_y = 1;
 	
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, RoundSpr1);
+	oam_meta_spr(temp_x, temp_y, SmallBee1);
 
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
@@ -116,7 +119,7 @@ void draw_sprites(void){
 	if(temp_y == 0) temp_y = 1;
 	
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, RoundSpr2);
+	oam_meta_spr(temp_x, temp_y, SmallBee2);
 
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
@@ -124,7 +127,7 @@ void draw_sprites(void){
 	if(temp_y == 0) temp_y = 1;
 	
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, RoundSpr3);
+	oam_meta_spr(temp_x, temp_y, SmallBee3);
 
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
@@ -132,7 +135,7 @@ void draw_sprites(void){
 	if(temp_y == 0) temp_y = 1;
 	
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, RoundSpr4);
+	oam_meta_spr(temp_x, temp_y, SmallBee4);
 }
 	
 

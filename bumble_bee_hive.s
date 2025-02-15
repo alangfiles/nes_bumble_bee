@@ -19,15 +19,21 @@
 	.import		_oam_clear
 	.import		_oam_meta_spr
 	.import		_bank_spr
+	.import		_vram_adr
+	.import		_vram_unrle
 	.import		_set_vram_buffer
 	.import		_clear_vram_buffer
 	.import		_set_scroll_y
 	.import		_pad_poll_4score_1_3
 	.import		_pad_poll_4score_2_4
-	.export		_RoundSpr1
-	.export		_RoundSpr2
-	.export		_RoundSpr3
-	.export		_RoundSpr4
+	.export		_Bee1
+	.export		_Bee2
+	.export		_Bee3
+	.export		_Bee4
+	.export		_SmallBee1
+	.export		_SmallBee2
+	.export		_SmallBee3
+	.export		_SmallBee4
 	.export		_doublepad
 	.export		_generic_pad
 	.export		_pad1
@@ -85,6 +91,7 @@
 	.export		_bg_coll_U
 	.export		_bg_coll_D
 	.export		_main
+	.export		_tinymap
 
 .segment	"DATA"
 
@@ -103,83 +110,107 @@ _BoxGuy4:
 
 .segment	"RODATA"
 
-_RoundSpr1:
-	.byte	$FF
-	.byte	$FF
-	.byte	$02
+_Bee1:
 	.byte	$00
-	.byte	$07
-	.byte	$FF
-	.byte	$03
 	.byte	$00
-	.byte	$FF
-	.byte	$07
-	.byte	$12
+	.byte	$10
 	.byte	$00
-	.byte	$07
-	.byte	$07
-	.byte	$13
+	.byte	$08
+	.byte	$00
+	.byte	$11
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$20
+	.byte	$00
+	.byte	$08
+	.byte	$08
+	.byte	$21
 	.byte	$00
 	.byte	$80
-_RoundSpr2:
-	.byte	$FF
-	.byte	$FF
-	.byte	$02
+_Bee2:
+	.byte	$00
+	.byte	$00
+	.byte	$10
 	.byte	$01
-	.byte	$07
-	.byte	$FF
-	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$11
 	.byte	$01
-	.byte	$FF
-	.byte	$07
-	.byte	$12
+	.byte	$00
+	.byte	$08
+	.byte	$20
 	.byte	$01
-	.byte	$07
-	.byte	$07
-	.byte	$13
+	.byte	$08
+	.byte	$08
+	.byte	$21
 	.byte	$01
 	.byte	$80
-_RoundSpr3:
-	.byte	$FF
-	.byte	$FF
+_Bee3:
+	.byte	$00
+	.byte	$00
+	.byte	$10
 	.byte	$02
+	.byte	$08
+	.byte	$00
+	.byte	$11
 	.byte	$02
-	.byte	$07
-	.byte	$FF
-	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$20
 	.byte	$02
-	.byte	$FF
-	.byte	$07
-	.byte	$12
-	.byte	$02
-	.byte	$07
-	.byte	$07
-	.byte	$13
+	.byte	$08
+	.byte	$08
+	.byte	$21
 	.byte	$02
 	.byte	$80
-_RoundSpr4:
-	.byte	$FF
-	.byte	$FF
+_Bee4:
+	.byte	$00
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$11
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$21
+	.byte	$03
+	.byte	$80
+_SmallBee1:
+	.byte	$00
+	.byte	$00
+	.byte	$26
+	.byte	$00
+	.byte	$80
+_SmallBee2:
+	.byte	$00
+	.byte	$00
+	.byte	$26
+	.byte	$01
+	.byte	$80
+_SmallBee3:
+	.byte	$00
+	.byte	$00
+	.byte	$26
 	.byte	$02
-	.byte	$03
-	.byte	$07
-	.byte	$FF
-	.byte	$03
-	.byte	$03
-	.byte	$FF
-	.byte	$07
-	.byte	$12
-	.byte	$03
-	.byte	$07
-	.byte	$07
-	.byte	$13
+	.byte	$80
+_SmallBee4:
+	.byte	$00
+	.byte	$00
+	.byte	$26
 	.byte	$03
 	.byte	$80
 _palette_bg:
 	.byte	$0F
-	.byte	$00
-	.byte	$10
-	.byte	$30
+	.byte	$16
+	.byte	$27
+	.byte	$08
 	.byte	$0F
 	.byte	$07
 	.byte	$17
@@ -234,6 +265,874 @@ _metatiles1:
 	.byte	$06
 	.byte	$08
 	.byte	$07
+	.byte	$00
+_tinymap:
+	.byte	$01
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$52
+	.byte	$56
+	.byte	$53
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$55
+	.byte	$53
+	.byte	$01
+	.byte	$06
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$04
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$04
+	.byte	$55
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$52
+	.byte	$55
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$56
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$04
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$04
+	.byte	$52
+	.byte	$53
+	.byte	$54
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$53
+	.byte	$53
+	.byte	$47
+	.byte	$48
+	.byte	$01
+	.byte	$04
+	.byte	$47
+	.byte	$48
+	.byte	$48
+	.byte	$46
+	.byte	$48
+	.byte	$48
+	.byte	$45
+	.byte	$48
+	.byte	$01
+	.byte	$03
+	.byte	$47
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$55
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$46
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$56
+	.byte	$55
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$52
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$48
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$55
+	.byte	$56
+	.byte	$54
+	.byte	$54
+	.byte	$55
+	.byte	$56
+	.byte	$53
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$01
+	.byte	$03
+	.byte	$53
+	.byte	$48
+	.byte	$56
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$48
+	.byte	$4A
+	.byte	$4B
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$4A
+	.byte	$4B
+	.byte	$54
+	.byte	$46
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$52
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$48
+	.byte	$5A
+	.byte	$5B
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$5A
+	.byte	$5B
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$01
+	.byte	$07
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$48
+	.byte	$55
+	.byte	$55
+	.byte	$52
+	.byte	$55
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$48
+	.byte	$54
+	.byte	$54
+	.byte	$53
+	.byte	$54
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$52
+	.byte	$45
+	.byte	$48
+	.byte	$01
+	.byte	$03
+	.byte	$52
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$44
+	.byte	$48
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$56
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$53
+	.byte	$55
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$01
+	.byte	$02
+	.byte	$52
+	.byte	$55
+	.byte	$01
+	.byte	$02
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$55
+	.byte	$53
+	.byte	$55
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$56
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$52
+	.byte	$54
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$55
+	.byte	$55
+	.byte	$52
+	.byte	$53
+	.byte	$56
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$44
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$56
+	.byte	$55
+	.byte	$56
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$44
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$56
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$56
+	.byte	$54
+	.byte	$53
+	.byte	$55
+	.byte	$55
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$54
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$54
+	.byte	$54
+	.byte	$53
+	.byte	$54
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$08
+	.byte	$48
+	.byte	$01
+	.byte	$04
+	.byte	$56
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$56
+	.byte	$55
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$04
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$56
+	.byte	$52
+	.byte	$53
+	.byte	$55
+	.byte	$55
+	.byte	$52
+	.byte	$54
+	.byte	$4A
+	.byte	$4B
+	.byte	$56
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$04
+	.byte	$56
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$53
+	.byte	$55
+	.byte	$52
+	.byte	$55
+	.byte	$69
+	.byte	$52
+	.byte	$55
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$56
+	.byte	$56
+	.byte	$53
+	.byte	$52
+	.byte	$56
+	.byte	$55
+	.byte	$56
+	.byte	$52
+	.byte	$5A
+	.byte	$5B
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$01
+	.byte	$06
+	.byte	$48
+	.byte	$54
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$55
+	.byte	$55
+	.byte	$53
+	.byte	$56
+	.byte	$56
+	.byte	$55
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$47
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$01
+	.byte	$04
+	.byte	$53
+	.byte	$48
+	.byte	$54
+	.byte	$5A
+	.byte	$5B
+	.byte	$47
+	.byte	$48
+	.byte	$48
+	.byte	$53
+	.byte	$01
+	.byte	$06
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$56
+	.byte	$01
+	.byte	$03
+	.byte	$55
+	.byte	$52
+	.byte	$54
+	.byte	$54
+	.byte	$56
+	.byte	$56
+	.byte	$54
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$05
+	.byte	$55
+	.byte	$48
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$5A
+	.byte	$5B
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$53
+	.byte	$56
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$55
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$53
+	.byte	$01
+	.byte	$07
+	.byte	$48
+	.byte	$52
+	.byte	$55
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$53
+	.byte	$55
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$56
+	.byte	$48
+	.byte	$56
+	.byte	$55
+	.byte	$55
+	.byte	$48
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$04
+	.byte	$52
+	.byte	$53
+	.byte	$48
+	.byte	$01
+	.byte	$02
+	.byte	$56
+	.byte	$48
+	.byte	$56
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$01
+	.byte	$04
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$55
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$52
+	.byte	$55
+	.byte	$56
+	.byte	$55
+	.byte	$55
+	.byte	$46
+	.byte	$55
+	.byte	$55
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$53
+	.byte	$55
+	.byte	$48
+	.byte	$56
+	.byte	$55
+	.byte	$55
+	.byte	$53
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$52
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$07
+	.byte	$48
+	.byte	$54
+	.byte	$48
+	.byte	$01
+	.byte	$06
+	.byte	$52
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$55
+	.byte	$48
+	.byte	$53
+	.byte	$56
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$69
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$4A
+	.byte	$4B
+	.byte	$56
+	.byte	$54
+	.byte	$56
+	.byte	$01
+	.byte	$02
+	.byte	$54
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$54
+	.byte	$53
+	.byte	$56
+	.byte	$54
+	.byte	$55
+	.byte	$54
+	.byte	$53
+	.byte	$48
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$4A
+	.byte	$4B
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$5A
+	.byte	$5B
+	.byte	$48
+	.byte	$47
+	.byte	$48
+	.byte	$01
+	.byte	$0F
+	.byte	$45
+	.byte	$48
+	.byte	$53
+	.byte	$56
+	.byte	$52
+	.byte	$53
+	.byte	$5A
+	.byte	$5B
+	.byte	$53
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$03
+	.byte	$52
+	.byte	$53
+	.byte	$01
+	.byte	$02
+	.byte	$56
+	.byte	$53
+	.byte	$56
+	.byte	$53
+	.byte	$01
+	.byte	$0C
+	.byte	$52
+	.byte	$53
+	.byte	$52
+	.byte	$53
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$56
+	.byte	$52
+	.byte	$52
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$56
+	.byte	$52
+	.byte	$01
+	.byte	$02
+	.byte	$56
+	.byte	$52
+	.byte	$01
+	.byte	$02
+	.byte	$53
+	.byte	$52
+	.byte	$52
+	.byte	$56
+	.byte	$56
+	.byte	$52
+	.byte	$53
+	.byte	$52
+	.byte	$56
+	.byte	$52
+	.byte	$01
+	.byte	$02
+	.byte	$00
+	.byte	$01
+	.byte	$3F
+	.byte	$00
+	.byte	$01
 	.byte	$00
 
 .segment	"BSS"
@@ -334,9 +1233,25 @@ _GenericBoxGuy:
 .segment	"CODE"
 
 ;
-; }
+; ppu_off();
 ;
-	rts
+	jsr     _ppu_off
+;
+; vram_adr(NAMETABLE_A); // set the destination address, the top left of the screen
+;
+	ldx     #$20
+	lda     #$00
+	jsr     _vram_adr
+;
+; vram_unrle(tinymap);
+;
+	lda     #<(_tinymap)
+	ldx     #>(_tinymap)
+	jsr     _vram_unrle
+;
+; ppu_on_all();
+;
+	jmp     _ppu_on_all
 
 .endproc
 
@@ -368,28 +1283,28 @@ _GenericBoxGuy:
 ; if(temp_x == 0) temp_x = 1;
 ;
 	lda     _temp_x
-	bne     L01E2
+	bne     L0560
 	lda     #$01
 	sta     _temp_x
 ;
 ; if(temp_y == 0) temp_y = 1;
 ;
-L01E2:	lda     _temp_y
-	bne     L00EA
+L0560:	lda     _temp_y
+	bne     L0468
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, RoundSpr1);
+; oam_meta_spr(temp_x, temp_y, SmallBee1);
 ;
-L00EA:	jsr     decsp2
+L0468:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_RoundSpr1)
-	ldx     #>(_RoundSpr1)
+	lda     #<(_SmallBee1)
+	ldx     #>(_SmallBee1)
 	jsr     _oam_meta_spr
 ;
 ; temp_x = BoxGuy2.x >> 8;
@@ -405,28 +1320,28 @@ L00EA:	jsr     decsp2
 ; if(temp_x == 0) temp_x = 1;
 ;
 	lda     _temp_x
-	bne     L01E3
+	bne     L0561
 	lda     #$01
 	sta     _temp_x
 ;
 ; if(temp_y == 0) temp_y = 1;
 ;
-L01E3:	lda     _temp_y
-	bne     L00FA
+L0561:	lda     _temp_y
+	bne     L0478
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, RoundSpr2);
+; oam_meta_spr(temp_x, temp_y, SmallBee2);
 ;
-L00FA:	jsr     decsp2
+L0478:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_RoundSpr2)
-	ldx     #>(_RoundSpr2)
+	lda     #<(_SmallBee2)
+	ldx     #>(_SmallBee2)
 	jsr     _oam_meta_spr
 ;
 ; temp_x = BoxGuy3.x >> 8;
@@ -442,28 +1357,28 @@ L00FA:	jsr     decsp2
 ; if(temp_x == 0) temp_x = 1;
 ;
 	lda     _temp_x
-	bne     L01E4
+	bne     L0562
 	lda     #$01
 	sta     _temp_x
 ;
 ; if(temp_y == 0) temp_y = 1;
 ;
-L01E4:	lda     _temp_y
-	bne     L010A
+L0562:	lda     _temp_y
+	bne     L0488
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, RoundSpr3);
+; oam_meta_spr(temp_x, temp_y, SmallBee3);
 ;
-L010A:	jsr     decsp2
+L0488:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_RoundSpr3)
-	ldx     #>(_RoundSpr3)
+	lda     #<(_SmallBee3)
+	ldx     #>(_SmallBee3)
 	jsr     _oam_meta_spr
 ;
 ; temp_x = BoxGuy4.x >> 8;
@@ -479,28 +1394,28 @@ L010A:	jsr     decsp2
 ; if(temp_x == 0) temp_x = 1;
 ;
 	lda     _temp_x
-	bne     L01E5
+	bne     L0563
 	lda     #$01
 	sta     _temp_x
 ;
 ; if(temp_y == 0) temp_y = 1;
 ;
-L01E5:	lda     _temp_y
-	bne     L011A
+L0563:	lda     _temp_y
+	bne     L0498
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, RoundSpr4);
+; oam_meta_spr(temp_x, temp_y, SmallBee4);
 ;
-L011A:	jsr     decsp2
+L0498:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_RoundSpr4)
-	ldx     #>(_RoundSpr4)
+	lda     #<(_SmallBee4)
+	ldx     #>(_SmallBee4)
 	jmp     _oam_meta_spr
 
 .endproc
@@ -527,7 +1442,7 @@ L011A:	jsr     decsp2
 ;
 	lda     _generic_pad
 	and     #$02
-	beq     L01EC
+	beq     L056A
 ;
 ; hero_velocity_x = -SPEED;
 ;
@@ -535,20 +1450,20 @@ L011A:	jsr     decsp2
 ;
 ; else if (generic_pad & PAD_RIGHT){
 ;
-	jmp     L01FA
-L01EC:	lda     _generic_pad
+	jmp     L0578
+L056A:	lda     _generic_pad
 	ldx     #$00
 	and     #$01
-	beq     L01EE
+	beq     L056C
 ;
 ; hero_velocity_x = SPEED;
 ;
 	inx
-L01FA:	lda     #$80
+L0578:	lda     #$80
 ;
 ; hero_velocity_x = 0;
 ;
-L01EE:	sta     _hero_velocity_x
+L056C:	sta     _hero_velocity_x
 	stx     _hero_velocity_x+1
 ;
 ; GenericBoxGuy.x += hero_velocity_x;
@@ -567,7 +1482,7 @@ L01EE:	sta     _hero_velocity_x
 	cmp     #$01
 	lda     _GenericBoxGuy+1
 	sbc     #$F1
-	bcc     L01F1
+	bcc     L056F
 ;
 ; if(old_x >= 0x8000){
 ;
@@ -577,7 +1492,7 @@ L01EE:	sta     _hero_velocity_x
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L01F0
+	bcc     L056E
 ;
 ; GenericBoxGuy.x = 0xf100; // max right
 ;
@@ -585,12 +1500,12 @@ L01EE:	sta     _hero_velocity_x
 ;
 ; GenericBoxGuy.x = 0x0000; // max left
 ;
-L01F0:	sta     _GenericBoxGuy
+L056E:	sta     _GenericBoxGuy
 	stx     _GenericBoxGuy+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L01F1:	lda     _GenericBoxGuy+1
+L056F:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -611,13 +1526,13 @@ L01F1:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_x+1
 	cpx     #$80
-	bcc     L0144
+	bcc     L04C2
 ;
 ; if(bg_coll_L() ){ // check collision left
 ;
 	jsr     _bg_coll_L
 	tax
-	beq     L0150
+	beq     L04CE
 ;
 ; high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_L;
 ;
@@ -627,31 +1542,31 @@ L01F1:	lda     _GenericBoxGuy+1
 ;
 ; else if(hero_velocity_x > 0){ // going right
 ;
-	jmp     L01FB
-L0144:	lda     _hero_velocity_x
+	jmp     L0579
+L04C2:	lda     _hero_velocity_x
 	cmp     #$01
 	lda     _hero_velocity_x+1
 	sbc     #$00
-	bvs     L014F
+	bvs     L04CD
 	eor     #$80
-L014F:	bpl     L0150
+L04CD:	bpl     L04CE
 ;
 ; if(bg_coll_R() ){ // check collision right
 ;
 	jsr     _bg_coll_R
 	tax
-	beq     L0150
+	beq     L04CE
 ;
 ; high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_R;
 ;
 	lda     _GenericBoxGuy+1
 	sec
 	sbc     _eject_R
-L01FB:	sta     _GenericBoxGuy+1
+L0579:	sta     _GenericBoxGuy+1
 ;
 ; old_y = GenericBoxGuy.y;
 ;
-L0150:	lda     _GenericBoxGuy+2+1
+L04CE:	lda     _GenericBoxGuy+2+1
 	sta     _old_y+1
 	lda     _GenericBoxGuy+2
 	sta     _old_y
@@ -660,7 +1575,7 @@ L0150:	lda     _GenericBoxGuy+2+1
 ;
 	lda     _generic_pad
 	and     #$08
-	beq     L01F2
+	beq     L0570
 ;
 ; hero_velocity_y = -SPEED;
 ;
@@ -668,20 +1583,20 @@ L0150:	lda     _GenericBoxGuy+2+1
 ;
 ; else if (generic_pad & PAD_DOWN){
 ;
-	jmp     L01FC
-L01F2:	lda     _generic_pad
+	jmp     L057A
+L0570:	lda     _generic_pad
 	ldx     #$00
 	and     #$04
-	beq     L01F4
+	beq     L0572
 ;
 ; hero_velocity_y = SPEED;
 ;
 	inx
-L01FC:	lda     #$80
+L057A:	lda     #$80
 ;
 ; hero_velocity_y = 0;
 ;
-L01F4:	sta     _hero_velocity_y
+L0572:	sta     _hero_velocity_y
 	stx     _hero_velocity_y+1
 ;
 ; GenericBoxGuy.y += hero_velocity_y;
@@ -700,7 +1615,7 @@ L01F4:	sta     _hero_velocity_y
 	cmp     #$01
 	lda     _GenericBoxGuy+2+1
 	sbc     #$E0
-	bcc     L01F7
+	bcc     L0575
 ;
 ; if(old_y >= 0x8000){
 ;
@@ -710,7 +1625,7 @@ L01F4:	sta     _hero_velocity_y
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L01F6
+	bcc     L0574
 ;
 ; GenericBoxGuy.y = 0xe000; // max down
 ;
@@ -718,12 +1633,12 @@ L01F4:	sta     _hero_velocity_y
 ;
 ; GenericBoxGuy.y = 0x0000; // max up
 ;
-L01F6:	sta     _GenericBoxGuy+2
+L0574:	sta     _GenericBoxGuy+2
 	stx     _GenericBoxGuy+2+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L01F7:	lda     _GenericBoxGuy+1
+L0575:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -735,13 +1650,13 @@ L01F7:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_y+1
 	cpx     #$80
-	bcc     L0173
+	bcc     L04F1
 ;
 ; if(bg_coll_U() ){ // check collision left
 ;
 	jsr     _bg_coll_U
 	tax
-	beq     L017F
+	beq     L04FD
 ;
 ; high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_U;
 ;
@@ -751,31 +1666,31 @@ L01F7:	lda     _GenericBoxGuy+1
 ;
 ; else if(hero_velocity_y > 0){ // going down
 ;
-	jmp     L01FD
-L0173:	lda     _hero_velocity_y
+	jmp     L057B
+L04F1:	lda     _hero_velocity_y
 	cmp     #$01
 	lda     _hero_velocity_y+1
 	sbc     #$00
-	bvs     L017E
+	bvs     L04FC
 	eor     #$80
-L017E:	bpl     L017F
+L04FC:	bpl     L04FD
 ;
 ; if(bg_coll_D() ){ // check collision right
 ;
 	jsr     _bg_coll_D
 	tax
-	beq     L017F
+	beq     L04FD
 ;
 ; high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_D;
 ;
 	lda     _GenericBoxGuy+3
 	sec
 	sbc     _eject_D
-L01FD:	sta     _GenericBoxGuy+3
+L057B:	sta     _GenericBoxGuy+3
 ;
 ; } 
 ;
-L017F:	rts
+L04FD:	rts
 
 .endproc
 
@@ -795,13 +1710,13 @@ L017F:	rts
 	lda     _temp_y
 	cmp     #$F0
 	ldx     #$00
-	bcc     L01FE
+	bcc     L057C
 	txa
 	rts
 ;
 ; coordinates = (temp_x >> 4) + (temp_y & 0xf0);
 ;
-L01FE:	lda     _temp_x
+L057C:	lda     _temp_x
 	lsr     a
 	lsr     a
 	lsr     a
@@ -857,14 +1772,14 @@ L01FE:	lda     _temp_x
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0201
+	beq     L057F
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L0201:	lda     _Generic+1
+L057F:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -879,14 +1794,14 @@ L0201:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0203
+	beq     L0581
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; }
 ;
-L0203:	rts
+L0581:	rts
 
 .endproc
 
@@ -926,14 +1841,14 @@ L0203:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0206
+	beq     L0584
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L0206:	lda     _Generic+1
+L0584:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -948,14 +1863,14 @@ L0206:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0208
+	beq     L0586
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; }
 ;
-L0208:	rts
+L0586:	rts
 
 .endproc
 
@@ -991,14 +1906,14 @@ L0208:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L020A
+	beq     L0588
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L020A:	lda     _Generic
+L0588:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -1013,14 +1928,14 @@ L020A:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L020C
+	beq     L058A
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; }
 ;
-L020C:	rts
+L058A:	rts
 
 .endproc
 
@@ -1060,14 +1975,14 @@ L020C:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L020F
+	beq     L058D
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L020F:	lda     _Generic
+L058D:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -1082,14 +1997,14 @@ L020F:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0211
+	beq     L058F
 	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; }
 ;
-L0211:	rts
+L058F:	rts
 
 .endproc
 
@@ -1137,9 +2052,9 @@ L0211:	rts
 ;
 	lda     #$00
 	sta     _x
-L0212:	lda     _x
+L0590:	lda     _x
 	cmp     #$F0
-	bcs     L0096
+	bcs     L00AA
 ;
 ; p_map[x] = 1;
 ;
@@ -1150,11 +2065,11 @@ L0212:	lda     _x
 ; for(x=0;x<240;x++){
 ;
 	inc     _x
-	jmp     L0212
+	jmp     L0590
 ;
 ; load_room();
 ;
-L0096:	jsr     _load_room
+L00AA:	jsr     _load_room
 ;
 ; set_scroll_y(0xff); // shift the bg down 1 pixel
 ;
@@ -1168,7 +2083,7 @@ L0096:	jsr     _load_room
 ;
 ; ppu_wait_nmi(); // wait till beginning of the frame
 ;
-L00A5:	jsr     _ppu_wait_nmi
+L00B9:	jsr     _ppu_wait_nmi
 ;
 ; doublepad = pad_poll_4score_1_3();
 ;
@@ -1360,7 +2275,7 @@ L00A5:	jsr     _ppu_wait_nmi
 ;
 ; while (1){
 ;
-	jmp     L00A5
+	jmp     L00B9
 
 .endproc
 

@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "bumble_bee_hive.h": "c"
+    "bumble_bee_hive.h": "c",
+    "tinymap.h": "c"
   }
 }

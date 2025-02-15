@@ -2,37 +2,59 @@
 
 // the same metatsprite, but with different palettes
 
-const unsigned char RoundSpr1[]={
-	  0xff,  0xff,0x02,0,
-	  7,  0xff,0x03,0,
-	  0xff,  7,0x12,0,
-	  7,  7,0x13,0,
+const unsigned char Bee1[]={
+	0, 0, 0x10, 0,
+	8, 0, 0x11, 0,
+	0, 8, 0x20, 0,
+	8, 8, 0x21, 0,
 	128
 };
 
-const unsigned char RoundSpr2[]={
-	  0xff,  0xff,0x02,1,
-	  7,  0xff,0x03,1,
-	  0xff,  7,0x12,1,
-	  7,  7,0x13,1,
+const unsigned char Bee2[]={
+	0, 0, 0x10, 1,
+	8, 0, 0x11, 1,
+	0, 8, 0x20, 1,
+	8, 8, 0x21, 1,
 	128
 };
 
-const unsigned char RoundSpr3[]={
-	  0xff,  0xff,0x02,2,
-	  7,  0xff,0x03,2,
-	  0xff,  7,0x12,2,
-	  7,  7,0x13,2,
+const unsigned char Bee3[]={
+	0, 0, 0x10, 2,
+	8, 0, 0x11, 2,
+	0, 8, 0x20, 2,
+	8, 8, 0x21, 2,
 	128
 };
 
-const unsigned char RoundSpr4[]={
-	  0xff,  0xff,0x02,3,
-	  7,  0xff,0x03,3,
-	  0xff,  7,0x12,3,
-	  7,  7,0x13,3,
+const unsigned char Bee4[]={
+	0, 0, 0x10, 3,
+	8, 0, 0x11, 3,
+	0, 8, 0x20, 3,
+	8, 8, 0x21, 3,
 	128
 };
+
+
+const unsigned char SmallBee1[]={
+	0, 0, 0x26, 0,
+	128
+};
+
+const unsigned char SmallBee2[]={
+	0, 0, 0x26, 1,
+	128
+};
+
+const unsigned char SmallBee3[]={
+	0, 0, 0x26, 2,
+	128
+};
+
+const unsigned char SmallBee4[]={
+	0, 0, 0x26, 3,
+	128
+};
+
 
 
 
