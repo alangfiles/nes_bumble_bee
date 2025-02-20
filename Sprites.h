@@ -36,22 +36,22 @@ const unsigned char Bee4[]={
 
 
 const unsigned char SmallBee1[]={
-	0, 0, 0x26, 0,
+	0, 0, 0x27, 0,
 	128
 };
 
 const unsigned char SmallBee2[]={
-	0, 0, 0x26, 1,
+	0, 0, 0x27, 1,
 	128
 };
 
 const unsigned char SmallBee3[]={
-	0, 0, 0x26, 2,
+	0, 0, 0x27, 2,
 	128
 };
 
 const unsigned char SmallBee4[]={
-	0, 0, 0x26, 3,
+	0, 0, 0x27, 3,
 	128
 };
 

@@ -54,7 +54,7 @@ unsigned char bit_offset;
 unsigned char frame_counter;
 
 #pragma bss-name(push, "BSS")
-#include "tinymap.h"
+#include "tinyhoney.h"
 
 
 struct Base {

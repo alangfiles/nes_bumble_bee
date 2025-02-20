@@ -35,11 +35,63 @@
 	 set_scroll_y(0xff); // shift the bg down 1 pixel
 	 
 	 ppu_on_all(); // turn on screen
+	 one_vram_buffer(0x63, NTADR_A(17,1));
+	 one_vram_buffer(0x63, NTADR_A(21,1));
+	 one_vram_buffer(0x63, NTADR_A(22,1));
  
 	 
 	 while (1){
+
+
 		 // infinite loop
 		 frame_counter++;
+
+		//  if(frame_counter % 20 == 0){
+			one_vram_buffer(0x58, NTADR_A(6,1));
+			temp1 = (BoxGuy1.x >> 8 & 0xff) >> 4;
+			one_vram_buffer(0x30 + temp1, NTADR_A(7,1));
+			temp1 = (BoxGuy1.x >> 8 & 0x0f);
+			one_vram_buffer(0x30 + temp1, NTADR_A(8,1));
+
+			one_vram_buffer(0x59, NTADR_A(10,1));
+			temp1 = (BoxGuy1.y >> 8 & 0xff) >> 4;
+			one_vram_buffer(0x30 + temp1, NTADR_A(11,1));
+			temp1 = (BoxGuy1.y >> 8 & 0x0f);
+			one_vram_buffer(0x30 + temp1, NTADR_A(12,1));
+
+
+			one_vram_buffer(0x54, NTADR_A(14,1));
+			 //should be between 0-30
+			temp1 = (BoxGuy1.x >> 8 >> 3 & 0xff) >> 4; 
+			one_vram_buffer(0x30 + temp1, NTADR_A(15,1));
+			temp1 = (BoxGuy1.x >> 8 >> 3 & 0x0f);
+			one_vram_buffer(0x30 + temp1, NTADR_A(16,1));
+
+			
+
+			one_vram_buffer(0x55, NTADR_A(18,1));
+			 //should be between 0-33
+			temp1 = (BoxGuy1.y >> 8 >> 3 & 0xff) >> 4; 
+			one_vram_buffer(0x30 + temp1, NTADR_A(19,1));
+			temp1 = (BoxGuy1.y >> 8 >> 3 & 0x0f);
+			one_vram_buffer(0x30 + temp1, NTADR_A(20,1));
+
+			//tile I'm on:
+			one_vram_buffer(0x57, NTADR_A(22,1));
+			largeindex = (BoxGuy1.y >> 8 >> 3) * 32 + (BoxGuy1.x >> 8 >> 3);
+    
+			temp = tinyhoney[largeindex];
+			 //should be between 0-33
+			temp1 = (temp & 0xff) >> 4; 
+			one_vram_buffer(0x30 + temp1, NTADR_A(23,1));
+			temp1 = (temp & 0x0f);
+			one_vram_buffer(0x30 + temp1, NTADR_A(24,1));
+
+			
+
+			//tile:
+
+		 
 		 ppu_wait_nmi(); // wait till beginning of the frame
 		 
 		 //read controllers 1 and 3 into an integer
@@ -92,7 +144,7 @@
 	 vram_adr(NAMETABLE_A);
 	 for (largeindex = 0; largeindex < 1024; ++largeindex)
 	 {
-		 vram_put(tinymap[largeindex]);
+		 vram_put(tinyhoney[largeindex]);
 		 flush_vram_update2();
 	 }
 	 ppu_on_all();  
@@ -104,7 +156,7 @@
 	 
 	 temp_x = BoxGuy1.x >> 8;
 	 temp_y = BoxGuy1.y >> 8;
-	 if(temp_x == 0) temp_x = 1;
+	 if(temp_x == 0) temp_x = 1;  
 	 if(temp_y == 0) temp_y = 1;
 	 
 	 // draw 1 metasprite
@@ -133,6 +185,9 @@
 	 
 	 // draw 1 metasprite
 	 oam_meta_spr(temp_x, temp_y, SmallBee4);
+
+
+	 
  }
 	 
  
@@ -166,6 +221,7 @@
 	 
 	 Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 	 Generic.y = GenericBoxGuy.y >> 8;
+	 
 	 Generic.width = HERO_WIDTH;
 	 Generic.height = HERO_HEIGHT;
 	 
@@ -306,32 +362,32 @@
 	 if(temp_y >= 0xf0) return 0;
 	 
 	 return 0;
-	//  return tinymap[temp_y * 30 + temp_x];
+	//  return tinyhoney[temp_y * 30 + temp_x];
  }
  
  
  
  const unsigned char pellet_tiles[5] = {
-	 0x62,	0x63, 0x64, 0x65, 0x66
+	 0xc6,	0xc7, 0xc8, 0xc9, 0xca
  };
  
  const unsigned char blank_tiles[5] = {
-	 0x52,	0x53, 0x54, 0x55, 0x56
+	0xb6,	0xb7, 0xb8, 0xb9, 0xba
  };
  
  
  void check_tile_and_collect(){
 	temp_x = Generic.x >> 3; //get this between 0-30
 	temp_y = Generic.y >> 3; //get this between 0-32
-	largeindex = temp_y * 30 + temp_x;
+	largeindex = temp_y * 32 + temp_x;
     
     // Get the tile at the player's position
-	temp = tinymap[largeindex];
+	temp = tinyhoney[largeindex];
 
  
 	for(index = 0; index < 5; index++){
 		if(temp == pellet_tiles[index]){
-			// tinymap[largeindex] = blank_tiles[frame_counter % 5];
+			// tinyhoney[largeindex] = blank_tiles[frame_counter % 5];
 			one_vram_buffer(blank_tiles[frame_counter%5], NTADR_A(temp_x,temp_y));
 			//update player score
 			break;
