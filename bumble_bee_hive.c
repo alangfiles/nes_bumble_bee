@@ -47,7 +47,7 @@
 		 frame_counter++;
 
 		//  if(frame_counter % 20 == 0){
-			one_vram_buffer(0x58, NTADR_A(6,1));
+			one_vram_buffer(0x58, NTADR_A(6,1));  
 			temp1 = (BoxGuy1.x >> 8 & 0xff) >> 4;
 			one_vram_buffer(0x30 + temp1, NTADR_A(7,1));
 			temp1 = (BoxGuy1.x >> 8 & 0x0f);
@@ -78,7 +78,7 @@
 
 			//tile I'm on:
 			one_vram_buffer(0x57, NTADR_A(22,1));
-			largeindex = (BoxGuy1.y >> 8 >> 3) * 32 + (BoxGuy1.x >> 8 >> 3);
+			largeindex = ((BoxGuy1.y >> 8 >> 3) << 5) + (BoxGuy1.x >> 8 >> 3);
     
 			temp = tinyhoney[largeindex];
 			 //should be between 0-33
@@ -223,17 +223,19 @@
 	 Generic.y = GenericBoxGuy.y >> 8;
 	 
 	 Generic.width = HERO_WIDTH;
-	 Generic.height = HERO_HEIGHT;
+	 Generic.height = HERO_HEIGHT;  
 	 
 	
 	 
 	 if(hero_velocity_x < 0){ // going left
 		 if(bg_coll_L() ){ // check collision left
+			// GenericBoxGuy.x = old_x;
 						 high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_L;
 				 }
 	 }
 	 else if(hero_velocity_x > 0){ // going right
 		 if(bg_coll_R() ){ // check collision right
+						// GenericBoxGuy.x = old_x;
 						 high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_R;
 						 
 				 }
@@ -275,12 +277,14 @@
 	 
 	 if(hero_velocity_y < 0){ // going up
 		 if(bg_coll_U() ){ // check collision left
+				// GenericBoxGuy.y = old_y;
 						 high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_U;
 						 
 				 }
 	 }
 	 else if(hero_velocity_y > 0){ // going down
 		 if(bg_coll_D() ){ // check collision right
+			// GenericBoxGuy.y = old_y;
 						 high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_D;
 						 
 				 }
@@ -355,31 +359,43 @@
 		 
 		 return 0;
  }
+
+
+const unsigned char pellet_tiles[5] = {
+	0xc6,	0xc7, 0xc8, 0xc9, 0xca
+};
+
+const unsigned char blank_tiles[5] = {
+ 0xb6,	0xb7, 0xb8, 0xb9, 0xba
+};
  
  
  
  char bg_collision_sub(void){
 	 if(temp_y >= 0xf0) return 0;
+	 //temp_x and temp_y are the coordinates to check the collision
 	 
-	 return 0;
-	//  return tinyhoney[temp_y * 30 + temp_x];
+	 temp = tinyhoney[(temp_y >> 3 << 5) + temp_x >> 3];
+	 //don't collide with pellets, but everything else 
+	 if(temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca){
+		 return 0;
+	 }
+	 else if(temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba){
+		 return 0;
+	 }
+	 else {
+		 return 1; //debug: 0 for no collision
+	 }
  }
  
  
  
- const unsigned char pellet_tiles[5] = {
-	 0xc6,	0xc7, 0xc8, 0xc9, 0xca
- };
- 
- const unsigned char blank_tiles[5] = {
-	0xb6,	0xb7, 0xb8, 0xb9, 0xba
- };
  
  
  void check_tile_and_collect(){
 	temp_x = Generic.x >> 3; //get this between 0-30
 	temp_y = Generic.y >> 3; //get this between 0-32
-	largeindex = temp_y * 32 + temp_x;
+	largeindex = (temp_y << 5) + temp_x;
     
     // Get the tile at the player's position
 	temp = tinyhoney[largeindex];

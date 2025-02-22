@@ -74,7 +74,7 @@ struct BoxGuy {
 
 struct BoxGuy GenericBoxGuy;
 
-struct BoxGuy BoxGuy1 = {0x4000,0x3000};
+struct BoxGuy BoxGuy1 = {0x4000,0x2800};
 struct BoxGuy BoxGuy2 = {0x8000,0x3000};
 struct BoxGuy BoxGuy3 = {0xA000,0x3000};
 struct BoxGuy BoxGuy4 = {0xC000,0x3000};
