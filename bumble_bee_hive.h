@@ -47,6 +47,8 @@ unsigned int old_y;
 unsigned char temp;
 unsigned char temp_x;
 unsigned char temp_y;
+unsigned char temp_x2;
+unsigned char temp_y2;
 unsigned int largeindex;
 
 unsigned char bit_index;
@@ -79,8 +81,8 @@ struct BoxGuy BoxGuy2 = {0x8000,0x3000};
 struct BoxGuy BoxGuy3 = {0xA000,0x3000};
 struct BoxGuy BoxGuy4 = {0xC000,0x3000};
 
-#define HERO_WIDTH 7
-#define HERO_HEIGHT 7
+#define HERO_WIDTH 6
+#define HERO_HEIGHT 6
 
 
 
@@ -128,10 +130,10 @@ void check_tile_and_collect(void);
 void initialize_collision_map(void);
 
 char bg_collision_sub(void);
-
 char bg_coll_L(void);
 char bg_coll_R(void);
 char bg_coll_U(void);
 char bg_coll_D(void);
 
 
+char sprite_collision(void);

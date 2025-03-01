@@ -41,7 +41,7 @@ const unsigned char SmallBee1[]={
 };
 
 const unsigned char SmallBee2[]={
-	0, 0, 0x27, 1,
+	0, 0, 0x1a, 0,
 	128
 };
 
@@ -51,7 +51,7 @@ const unsigned char SmallBee3[]={
 };
 
 const unsigned char SmallBee4[]={
-	0, 0, 0x27, 3,
+	0, 0, 0x1a, 2,
 	128
 };
 
