@@ -166,7 +166,50 @@ void main(void)
 			BoxGuy4.x = GenericBoxGuy.x;
 			BoxGuy4.y = GenericBoxGuy.y;
 		}
-		
+
+
+		//check for player deaths (1 collide with 2, 3 collide with 4)
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = BoxGuy2.x >> 8;
+		temp_y2 = BoxGuy2.y >> 8;
+		if (sprite_collision())
+		{
+			//player 1 dies (friendly fire)
+			BoxGuy1.x = 0x4000;
+			BoxGuy1.y = 0x2800;
+		}
+		temp_x = BoxGuy3.x >> 8;
+		temp_y = BoxGuy3.y >> 8;
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision())
+		{
+			//player 3 dies (friendly fire)
+			BoxGuy3.x = 0xA000;
+			BoxGuy3.y = 0x3000;
+		}
+		//check 1 with 4 and 2 with 3
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision())
+		{
+			//player 1 dies (enemy fire)
+			BoxGuy1.x = 0x4000;
+			BoxGuy1.y = 0x2800;
+		}
+		temp_x = BoxGuy2.x >> 8;
+		temp_y = BoxGuy2.y >> 8;
+		temp_x2 = BoxGuy3.x >> 8;
+		temp_y2 = BoxGuy3.y >> 8;
+		if (sprite_collision())
+		{
+			//player 2 dies (enemy fire)
+			BoxGuy2.x = 0x8000;
+			BoxGuy2.y = 0x3000;
+		}
 
 		draw_sprites();
 	}
