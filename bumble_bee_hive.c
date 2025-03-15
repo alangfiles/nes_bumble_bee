@@ -470,6 +470,8 @@ const unsigned char blank_tiles[5] = {
 
 char bg_collision_sub(void)
 {
+	return 0; //debug: turn off collision
+
 	if (temp_y >= 0xf0)
 		return 0;
 	// temp_x and temp_y are the coordinates to check the collision
@@ -486,7 +488,7 @@ char bg_collision_sub(void)
 	}
 	else
 	{
-		return 1; // debug: 0 for no collision
+		return 1;
 	}
 }
 
