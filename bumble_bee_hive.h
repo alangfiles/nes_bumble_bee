@@ -130,6 +130,8 @@ void check_tile_and_collect(void);
 void initialize_collision_map(void);
 void debug_extras(void);
 void read_controllers(void);
+void seeker_ai(void);
+void chaser_ai(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);

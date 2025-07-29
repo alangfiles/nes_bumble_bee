@@ -15,6 +15,16 @@
 void main(void)
 {
 
+	
+	/*
+	 1. title screen
+	 2. 4 players, can it work with other numbers?
+	   - 1 player (bee) + ais
+	
+
+
+	*/
+
 	ppu_off(); // screen off
 
 	clear_vram_buffer();
@@ -454,8 +464,9 @@ char bg_collision_sub(void)
 
 void check_tile_and_collect()
 {
-	temp_x = Generic.x >> 3; // get this between 0-30
-	temp_y = Generic.y >> 3; // get this between 0-32
+	// the (+4) centers the location
+	temp_x = (Generic.x + 4) >> 3; // get this between 0-30
+	temp_y = (Generic.y + 2) >> 3; // get this between 0-32
 	largeindex = (temp_y << 5) + temp_x;
 
 	// Get the tile at the player's position
@@ -548,4 +559,23 @@ void read_controllers(void){
 
 	//debug just random values
 	// [0b00010000,0b00100000,0b01000000,0b10000000]
+}
+
+void seeker_ai(void){ //ai for the bee
+		/*
+			needs something like A* to search
+			avoid the nearest enemy chaser
+			avoid the friendly chaser
+			move towards nearest dot
+		*/
+
+}
+
+void chaser_ai(void){ //ai for the duck
+	/*
+			needs something like A* to search
+			move towards the nearest enemy seeker
+			avoid the friendly seeker
+		*/
+
 }
