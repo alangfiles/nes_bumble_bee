@@ -90,7 +90,7 @@ enum
 {
 	MODE_TITLE,
 	MODE_GAME,
-	MODE_GAME_OVER
+	MODE_GAMEOVER
 };
 
 
@@ -141,6 +141,11 @@ void chaser_ai(void);
 void game_loop(void);
 void title_loop(void);
 void gameover_loop(void);
+void init_game_loop(void);
+void init_gameover_loop(void);
+void init_title_loop(void);
+void init_system(void);
+
 
 char bg_collision_sub(void);
 char bg_coll_L(void);

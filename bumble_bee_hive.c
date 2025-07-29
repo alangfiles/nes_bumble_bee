@@ -14,7 +14,7 @@
 
 void main(void)
 {
-
+	
 	
 	/*
 	 1. title screen
@@ -24,30 +24,14 @@ void main(void)
 
 
 	*/
-	game_mode = MODE_GAME;   
+	
+	init_system();
+	init_title_loop();
 
-	ppu_off(); // screen off
-
-	clear_vram_buffer();
-
-	// load the palettes
-	pal_bg(palette_bg);
-	pal_spr(palette_sp);
-
-	// use the second set of tiles for sprites
-	// both bg and sprites are set to 0 by default
-	bank_spr(1);
-
-	set_vram_buffer(); // do at least once, sets a pointer to a buffer
-
-	load_room();
-
-	set_scroll_y(0xff); // shift the bg down 1 pixel
-
-	ppu_on_all(); // turn on screen
-	one_vram_buffer(0x63, NTADR_A(17, 1));
-	one_vram_buffer(0x63, NTADR_A(21, 1));
-	one_vram_buffer(0x63, NTADR_A(22, 1));
+	//idk why this code is in here -agf 7/29
+	// one_vram_buffer(0x63, NTADR_A(17, 1));
+	// one_vram_buffer(0x63, NTADR_A(21, 1));
+	// one_vram_buffer(0x63, NTADR_A(22, 1));
 
 	while (1)
 	{
@@ -59,7 +43,7 @@ void main(void)
 		{
 			game_loop();
 		}
-		if (game_mode == MODE_GAME_OVER)
+		if (game_mode == MODE_GAMEOVER)
 		{
 			gameover_loop();
 		}
@@ -598,9 +582,72 @@ void game_loop(void){
 }
 
 void title_loop(void){
+
+	while (1)
+	{
+		ppu_wait_nmi();
+		pad1 = pad_poll(0); // read the first controller
+
+		if (pad1 & PAD_START)
+		{
+			init_game_loop();
+			break;
+		}
+	}
 	
 }
 
 void gameover_loop(void){
+
+}
+
+void init_game_loop(void){
+	game_mode = MODE_GAME;  
+
+	ppu_off(); // screen off 
+	clear_vram_buffer();
+
+	// load the palettes
+	pal_bg(palette_bg);
+	pal_spr(palette_sp);
+
+	load_room();
+
+	set_scroll_y(0xff); // shift the bg down 1 pixel
+
+	ppu_on_all(); // turn on screen
+
+}
+
+void init_title_loop(void){
 	
+	game_mode = MODE_TITLE;   
+	ppu_off(); // screen off
+	// load the title palettes
+	pal_bg(palette_bg);
+	pal_spr(palette_sp);
+	
+	multi_vram_buffer_horz("BRIAN AND ALAN GAMES", 20, NTADR_A(6, 6));
+	multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
+	// draw on screen, probably an unrle eventually for this game
+	// probably lets the players select ai or player.
+	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
+
+	
+
+	ppu_on_all(); // turn on screen
+	
+}
+
+void init_gameover_loop(void){
+	
+}
+
+void init_system(void){
+	ppu_off();
+	clear_vram_buffer();
+	set_vram_buffer();
+	bank_spr(1);
+	set_scroll_y(0xff); //shift the bg down one pixel
+	ppu_on_all(); // turn on screen
 }
