@@ -20,10 +20,11 @@ void main(void)
 	 1. title screen
 	 2. 4 players, can it work with other numbers?
 	   - 1 player (bee) + ais
-	
+	 3. game over screens
 
 
 	*/
+	game_mode = MODE_GAME;   
 
 	ppu_off(); // screen off
 
@@ -50,138 +51,19 @@ void main(void)
 
 	while (1)
 	{
-		// wait till beginning of the frame
-		ppu_wait_nmi();
-
-		// 0. DEBUGGING CODE
-		debug_extras();
-
-		// 1. INCREMENT GLOBAL COUNTERS
-		frame_counter++;
-
-		// 2.  READ CONTROLLER
-		read_controllers();
+		if (game_mode == MODE_TITLE)
+		{
+			title_loop();
+		}
+		if (game_mode == MODE_GAME)
+		{
+			game_loop();
+		}
+		if (game_mode == MODE_GAME_OVER)
+		{
+			gameover_loop();
+		}
 		
-		// 3. PLAYER MOVEMENT
-
-		// Deal with movement for each player
-
-		// setup generics
-		GenericBoxGuy = BoxGuy1;
-		generic_pad = pad1;
-		// call movement for generics
-		movement();
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy3.x >> 8;
-		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision())
-		{
-			//players bounce off each other
-		} else {
-			BoxGuy1.x = GenericBoxGuy.x;
-			BoxGuy1.y = GenericBoxGuy.y;
-		}
-
-		
-		GenericBoxGuy = BoxGuy2;
-		generic_pad = pad2;
-		movement();
-		//player 2 blocks player 4
-		temp_x = BoxGuy2.x >> 8;
-		temp_y = BoxGuy2.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
-		{
-			//players bounce off each other
-		} else {
-			BoxGuy2.x = GenericBoxGuy.x;
-			BoxGuy2.y = GenericBoxGuy.y;
-		}
-
-
-		GenericBoxGuy = BoxGuy3;
-		generic_pad = pad3;
-		movement();
-		//player 1 blocks player 3
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy3.x >> 8;
-		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision())
-		{
-			//players bounce off each other
-		} else {
-			BoxGuy3.x = GenericBoxGuy.x;
-			BoxGuy3.y = GenericBoxGuy.y;
-		}
-
-		GenericBoxGuy = BoxGuy4;
-		generic_pad = pad4;
-		movement();
-		//player 2 blocks player 4
-		temp_x = BoxGuy2.x >> 8;
-		temp_y = BoxGuy2.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
-		{
-			//players bounce off each other
-		} else {
-			BoxGuy4.x = GenericBoxGuy.x;
-			BoxGuy4.y = GenericBoxGuy.y;
-		}
-
-
-		// 4. CHECK COLLISON
-
-		//check for player deaths (1 collide with 2, 3 collide with 4)
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy2.x >> 8;
-		temp_y2 = BoxGuy2.y >> 8;
-		if (sprite_collision())
-		{
-			//player 1 dies (friendly fire)
-			BoxGuy1.x = 0x4000;
-			BoxGuy1.y = 0x2800;
-		}
-		temp_x = BoxGuy3.x >> 8;
-		temp_y = BoxGuy3.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
-		{
-			//player 3 dies (friendly fire)
-			BoxGuy3.x = 0xA000;
-			BoxGuy3.y = 0x3000;
-		}
-		//check 1 with 4 and 2 with 3
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
-		{
-			//player 1 dies (enemy fire)
-			BoxGuy1.x = 0x4000;
-			BoxGuy1.y = 0x2800;
-		}
-		temp_x = BoxGuy2.x >> 8;
-		temp_y = BoxGuy2.y >> 8;
-		temp_x2 = BoxGuy3.x >> 8;
-		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision())
-		{
-			//player 2 dies (enemy fire)
-			BoxGuy2.x = 0x8000;
-			BoxGuy2.y = 0x3000;
-		}
-
-
-		// 5. DRAW SPRITES
-		draw_sprites();
 	}
 }
 
@@ -578,4 +460,147 @@ void chaser_ai(void){ //ai for the duck
 			avoid the friendly seeker
 		*/
 
+}
+
+void game_loop(void){
+	// wait till beginning of the frame
+		ppu_wait_nmi();
+
+		// 0. DEBUGGING CODE
+		debug_extras();
+
+		// 1. INCREMENT GLOBAL COUNTERS
+		frame_counter++;
+
+		// 2.  READ CONTROLLER
+		read_controllers();
+		
+		// 3. PLAYER MOVEMENT
+
+		// Deal with movement for each player
+
+		// setup generics
+		GenericBoxGuy = BoxGuy1;
+		generic_pad = pad1;
+		// call movement for generics
+		movement();
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = BoxGuy3.x >> 8;
+		temp_y2 = BoxGuy3.y >> 8;
+		if (sprite_collision())
+		{
+			//players bounce off each other
+		} else {
+			BoxGuy1.x = GenericBoxGuy.x;
+			BoxGuy1.y = GenericBoxGuy.y;
+		}
+
+		
+		GenericBoxGuy = BoxGuy2;
+		generic_pad = pad2;
+		movement();
+		//player 2 blocks player 4
+		temp_x = BoxGuy2.x >> 8;
+		temp_y = BoxGuy2.y >> 8;
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision())
+		{
+			//players bounce off each other
+		} else {
+			BoxGuy2.x = GenericBoxGuy.x;
+			BoxGuy2.y = GenericBoxGuy.y;
+		}
+
+
+		GenericBoxGuy = BoxGuy3;
+		generic_pad = pad3;
+		movement();
+		//player 1 blocks player 3
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = BoxGuy3.x >> 8;
+		temp_y2 = BoxGuy3.y >> 8;
+		if (sprite_collision())
+		{
+			//players bounce off each other
+		} else {
+			BoxGuy3.x = GenericBoxGuy.x;
+			BoxGuy3.y = GenericBoxGuy.y;
+		}
+
+		GenericBoxGuy = BoxGuy4;
+		generic_pad = pad4;
+		movement();
+		//player 2 blocks player 4
+		temp_x = BoxGuy2.x >> 8;
+		temp_y = BoxGuy2.y >> 8;
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision())
+		{
+			//players bounce off each other
+		} else {
+			BoxGuy4.x = GenericBoxGuy.x;
+			BoxGuy4.y = GenericBoxGuy.y;
+		}
+
+
+		// 4. CHECK COLLISON
+
+		//check for player deaths (1 collide with 2, 3 collide with 4)
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = BoxGuy2.x >> 8;
+		temp_y2 = BoxGuy2.y >> 8;
+		if (sprite_collision())
+		{
+			//player 1 dies (friendly fire)
+			BoxGuy1.x = 0x4000;
+			BoxGuy1.y = 0x2800;
+		}
+		temp_x = BoxGuy3.x >> 8;
+		temp_y = BoxGuy3.y >> 8;
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision())
+		{
+			//player 3 dies (friendly fire)
+			BoxGuy3.x = 0xA000;
+			BoxGuy3.y = 0x3000;
+		}
+		//check 1 with 4 and 2 with 3
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision())
+		{
+			//player 1 dies (enemy fire)
+			BoxGuy1.x = 0x4000;
+			BoxGuy1.y = 0x2800;
+		}
+		temp_x = BoxGuy2.x >> 8;
+		temp_y = BoxGuy2.y >> 8;
+		temp_x2 = BoxGuy3.x >> 8;
+		temp_y2 = BoxGuy3.y >> 8;
+		if (sprite_collision())
+		{
+			//player 2 dies (enemy fire)
+			BoxGuy2.x = 0x8000;
+			BoxGuy2.y = 0x3000;
+		}
+
+
+		// 5. DRAW SPRITES
+		draw_sprites();
+}
+
+void title_loop(void){
+	
+}
+
+void gameover_loop(void){
+	
 }

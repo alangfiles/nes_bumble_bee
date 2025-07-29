@@ -10,6 +10,7 @@ unsigned char pad1;
 unsigned char pad2;
 unsigned char pad3;
 unsigned char pad4;
+unsigned char game_mode;
 
 unsigned char collision;
 unsigned char collision_L;
@@ -85,7 +86,12 @@ struct BoxGuy BoxGuy4 = {0xC000,0x3000};
 #define HERO_HEIGHT 6
 
 
-
+enum
+{
+	MODE_TITLE,
+	MODE_GAME,
+	MODE_GAME_OVER
+};
 
 
 
@@ -132,6 +138,9 @@ void debug_extras(void);
 void read_controllers(void);
 void seeker_ai(void);
 void chaser_ai(void);
+void game_loop(void);
+void title_loop(void);
+void gameover_loop(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);
