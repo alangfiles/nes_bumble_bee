@@ -128,6 +128,8 @@ void draw_sprites(void);
 void movement(void);	
 void check_tile_and_collect(void);
 void initialize_collision_map(void);
+void debug_extras(void);
+void read_controllers(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);

@@ -40,61 +40,19 @@ void main(void)
 
 	while (1)
 	{
+		// wait till beginning of the frame
+		ppu_wait_nmi();
 
-		// infinite loop
+		// 0. DEBUGGING CODE
+		debug_extras();
+
+		// 1. INCREMENT GLOBAL COUNTERS
 		frame_counter++;
 
-		//  if(frame_counter % 20 == 0){
-		one_vram_buffer(0x58, NTADR_A(6, 1));
-		temp1 = (BoxGuy1.x >> 8 & 0xff) >> 4;
-		one_vram_buffer(0x30 + temp1, NTADR_A(7, 1));
-		temp1 = (BoxGuy1.x >> 8 & 0x0f);
-		one_vram_buffer(0x30 + temp1, NTADR_A(8, 1));
-
-		one_vram_buffer(0x59, NTADR_A(10, 1));
-		temp1 = (BoxGuy1.y >> 8 & 0xff) >> 4;
-		one_vram_buffer(0x30 + temp1, NTADR_A(11, 1));
-		temp1 = (BoxGuy1.y >> 8 & 0x0f);
-		one_vram_buffer(0x30 + temp1, NTADR_A(12, 1));
-
-		one_vram_buffer(0x54, NTADR_A(14, 1));
-		// should be between 0-30
-		temp1 = (BoxGuy1.x >> 8 >> 3 & 0xff) >> 4;
-		one_vram_buffer(0x30 + temp1, NTADR_A(15, 1));
-		temp1 = (BoxGuy1.x >> 8 >> 3 & 0x0f);
-		one_vram_buffer(0x30 + temp1, NTADR_A(16, 1));
-
-		one_vram_buffer(0x55, NTADR_A(18, 1));
-		// should be between 0-33
-		temp1 = (BoxGuy1.y >> 8 >> 3 & 0xff) >> 4;
-		one_vram_buffer(0x30 + temp1, NTADR_A(19, 1));
-		temp1 = (BoxGuy1.y >> 8 >> 3 & 0x0f);
-		one_vram_buffer(0x30 + temp1, NTADR_A(20, 1));
-
-		// tile I'm on:
-		one_vram_buffer(0x57, NTADR_A(22, 1));
-		largeindex = ((BoxGuy1.y >> 8 >> 3) << 5) + (BoxGuy1.x >> 8 >> 3);
-
-		temp = tinyhoney[largeindex];
-		// should be between 0-33
-		temp1 = (temp & 0xff) >> 4;
-		one_vram_buffer(0x30 + temp1, NTADR_A(23, 1));
-		temp1 = (temp & 0x0f);
-		one_vram_buffer(0x30 + temp1, NTADR_A(24, 1));
-
-		// tile:
-
-		ppu_wait_nmi(); // wait till beginning of the frame
-
-		// read controllers 1 and 3 into an integer
-		doublepad = pad_poll_4score_1_3();
-		pad1 = high_byte(doublepad); // the high byte is the first controller's input
-		pad3 = low_byte(doublepad);	 // low byte is the third controller's input
-
-		// read controllers 2 and 4 into an integer
-		doublepad = pad_poll_4score_2_4();
-		pad2 = high_byte(doublepad);
-		pad4 = low_byte(doublepad);
+		// 2.  READ CONTROLLER
+		read_controllers();
+		
+		// 3. PLAYER MOVEMENT
 
 		// Deal with movement for each player
 
@@ -103,8 +61,6 @@ void main(void)
 		generic_pad = pad1;
 		// call movement for generics
 		movement();
-		// reassign boxguy1's position based off generic's result
-		//player 1 blocks player 3
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
 		temp_x2 = BoxGuy3.x >> 8;
@@ -168,6 +124,8 @@ void main(void)
 		}
 
 
+		// 4. CHECK COLLISON
+
 		//check for player deaths (1 collide with 2, 3 collide with 4)
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
@@ -211,6 +169,8 @@ void main(void)
 			BoxGuy2.y = 0x3000;
 		}
 
+
+		// 5. DRAW SPRITES
 		draw_sprites();
 	}
 }
@@ -534,4 +494,58 @@ char sprite_collision()
 	{
 		return 0;
 	}
+}
+
+
+void debug_extras(void){
+	one_vram_buffer(0x58, NTADR_A(6, 1));
+	temp1 = (BoxGuy1.x >> 8 & 0xff) >> 4;
+	one_vram_buffer(0x30 + temp1, NTADR_A(7, 1));
+	temp1 = (BoxGuy1.x >> 8 & 0x0f);
+	one_vram_buffer(0x30 + temp1, NTADR_A(8, 1));
+
+	one_vram_buffer(0x59, NTADR_A(10, 1));
+	temp1 = (BoxGuy1.y >> 8 & 0xff) >> 4;
+	one_vram_buffer(0x30 + temp1, NTADR_A(11, 1));
+	temp1 = (BoxGuy1.y >> 8 & 0x0f);
+	one_vram_buffer(0x30 + temp1, NTADR_A(12, 1));
+
+	one_vram_buffer(0x54, NTADR_A(14, 1));
+	temp1 = (BoxGuy1.x >> 8 >> 3 & 0xff) >> 4;
+	one_vram_buffer(0x30 + temp1, NTADR_A(15, 1));
+	temp1 = (BoxGuy1.x >> 8 >> 3 & 0x0f);
+	one_vram_buffer(0x30 + temp1, NTADR_A(16, 1));
+
+	one_vram_buffer(0x55, NTADR_A(18, 1));
+	temp1 = (BoxGuy1.y >> 8 >> 3 & 0xff) >> 4;
+	one_vram_buffer(0x30 + temp1, NTADR_A(19, 1));
+	temp1 = (BoxGuy1.y >> 8 >> 3 & 0x0f);
+	one_vram_buffer(0x30 + temp1, NTADR_A(20, 1));
+
+	// tile I'm on:
+	one_vram_buffer(0x57, NTADR_A(22, 1));
+	largeindex = ((BoxGuy1.y >> 8 >> 3) << 5) + (BoxGuy1.x >> 8 >> 3);
+
+	temp = tinyhoney[largeindex];
+	// should be between 0-33
+	temp1 = (temp & 0xff) >> 4;
+	one_vram_buffer(0x30 + temp1, NTADR_A(23, 1));
+	temp1 = (temp & 0x0f);
+	one_vram_buffer(0x30 + temp1, NTADR_A(24, 1));
+}
+
+void read_controllers(void){
+	// read controllers 1 and 3 into an integer
+	doublepad = pad_poll_4score_1_3();
+	pad1 = high_byte(doublepad); // the high byte is the first controller's input
+	pad3 = low_byte(doublepad);	 // low byte is the third controller's input
+
+	// read controllers 2 and 4 into an integer
+	doublepad = pad_poll_4score_2_4();
+	pad2 = high_byte(doublepad);
+	pad4 = low_byte(doublepad);
+
+
+	//debug just random values
+	// [0b00010000,0b00100000,0b01000000,0b10000000]
 }
