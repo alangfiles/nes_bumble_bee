@@ -422,6 +422,9 @@ void read_controllers(void){
 	pad2 = high_byte(doublepad);
 	pad4 = low_byte(doublepad);
 
+	seeker_ai();
+	chaser_ai();
+
 
 	//debug just random values
 	// [0b00010000,0b00100000,0b01000000,0b10000000]
@@ -429,21 +432,20 @@ void read_controllers(void){
 
 void seeker_ai(void){ //ai for the bee
 		/*
-			needs something like A* to search
-			avoid the nearest enemy chaser
-			avoid the friendly chaser
+			avoid the nearest enemy chaser (player 2)
+			avoid the friendly chaser (player 4)
 			move towards nearest dot
 		*/
-
+		// pad3= PAD_DOWN;
 }
 
 void chaser_ai(void){ //ai for the duck
 	/*
-			needs something like A* to search
 			move towards the nearest enemy seeker
 			avoid the friendly seeker
 		*/
-
+	// pad2 = PAD_LEFT;
+	// pad4 = PAD_LEFT;
 }
 
 void game_loop(void){
@@ -455,6 +457,7 @@ void game_loop(void){
 
 		// 1. INCREMENT GLOBAL COUNTERS
 		frame_counter++;
+		ai_counter++;
 
 		// 2.  READ CONTROLLER
 		read_controllers();
@@ -644,7 +647,7 @@ void init_game_loop(void){
 }
 
 void init_title_loop(void){
-	delay(100);
+	delay(30);
 	game_mode = MODE_TITLE;   
 	ppu_off(); // screen off
 	// load the title palettes
