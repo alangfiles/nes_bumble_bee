@@ -306,13 +306,11 @@ const unsigned char blank_tiles[5] = {
 
 char bg_collision_sub(void)
 {
-	return 0; //debug: turn off collision
-
 	if (temp_y >= 0xf0)
 		return 0;
 	// temp_x and temp_y are the coordinates to check the collision
 
-	temp = tinyhoney[(temp_y >> 3 << 5) + temp_x >> 3];
+	temp = tinyhoney[((temp_y >> 3) << 5) + (temp_x >> 3)];
 	// don't collide with pellets, but everything else
 	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca)
 	{
