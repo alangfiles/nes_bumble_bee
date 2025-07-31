@@ -461,6 +461,8 @@ void game_loop(void){
 		
 		// 3. PLAYER MOVEMENT
 
+		// player 1 is seeker, 2 is chaser
+		// player 3 is seeker, 4 is chaser
 		// Deal with movement for each player
 
 		// setup generics
@@ -472,7 +474,7 @@ void game_loop(void){
 		temp_y = BoxGuy1.y >> 8;
 		temp_x2 = BoxGuy3.x >> 8;
 		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision())
+		if (sprite_collision()) //1 and 3, both seekers
 		{
 			//players bounce off each other
 		} else {
@@ -484,12 +486,12 @@ void game_loop(void){
 		GenericBoxGuy = BoxGuy2;
 		generic_pad = pad2;
 		movement();
-		//player 2 blocks player 4
+		
 		temp_x = BoxGuy2.x >> 8;
 		temp_y = BoxGuy2.y >> 8;
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
+		if (sprite_collision()) //player 2 blocks player 4 (chasers)
 		{
 			//players bounce off each other
 		} else {
@@ -506,7 +508,7 @@ void game_loop(void){
 		temp_y = BoxGuy1.y >> 8;
 		temp_x2 = BoxGuy3.x >> 8;
 		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision())
+		if (sprite_collision()) // 1 blocks 3 (seekers)
 		{
 			//players bounce off each other
 		} else {
@@ -522,7 +524,7 @@ void game_loop(void){
 		temp_y = BoxGuy2.y >> 8;
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
+		if (sprite_collision()) // 2 blocks 4 (seekers)
 		{
 			//players bounce off each other
 		} else {
@@ -541,8 +543,8 @@ void game_loop(void){
 		if (sprite_collision())
 		{
 			//player 1 dies (friendly fire)
-			BoxGuy1.x = 0x4000;
-			BoxGuy1.y = 0x2800;
+			winner = THREEFOUR_WINNER;
+			init_gameover_loop();
 		}
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
@@ -551,8 +553,8 @@ void game_loop(void){
 		if (sprite_collision())
 		{
 			//player 3 dies (friendly fire)
-			BoxGuy3.x = 0xA000;
-			BoxGuy3.y = 0x3000;
+			winner = ONETWO_WINNER;
+			init_gameover_loop();
 		}
 		//check 1 with 4 and 2 with 3
 		temp_x = BoxGuy1.x >> 8;
@@ -562,8 +564,9 @@ void game_loop(void){
 		if (sprite_collision())
 		{
 			//player 1 dies (enemy fire)
-			BoxGuy1.x = 0x4000;
-			BoxGuy1.y = 0x2800;
+			winner = THREEFOUR_WINNER;
+			//todo: add win reason
+			init_gameover_loop();
 		}
 		temp_x = BoxGuy2.x >> 8;
 		temp_y = BoxGuy2.y >> 8;
@@ -572,8 +575,9 @@ void game_loop(void){
 		if (sprite_collision())
 		{
 			//player 2 dies (enemy fire)
-			BoxGuy2.x = 0x8000;
-			BoxGuy2.y = 0x3000;
+			winner = ONETWO_WINNER;
+			//todo: add win reason
+			init_gameover_loop();
 		}
 
 
@@ -599,10 +603,30 @@ void title_loop(void){
 
 void gameover_loop(void){
 
+	while (1)
+	{
+		ppu_wait_nmi();
+		pad1 = pad_poll(0); // read the first controller
+
+		if (pad1 & PAD_START)
+		{
+			init_title_loop();
+			break;
+		}
+	}
 }
 
 void init_game_loop(void){
 	game_mode = MODE_GAME;  
+	//move all players into starting positions:
+	BoxGuy1.x = 0x4000;
+	BoxGuy1.y = 0x2800;
+	BoxGuy2.x = 0x8000;
+	BoxGuy2.y = 0x3000;
+	BoxGuy3.x = 0xA000;
+	BoxGuy3.y = 0x3000;
+	BoxGuy4.x = 0xC000;
+	BoxGuy4.y = 0x3000;
 
 	ppu_off(); // screen off 
 	clear_vram_buffer();
@@ -620,7 +644,7 @@ void init_game_loop(void){
 }
 
 void init_title_loop(void){
-	
+	delay(100);
 	game_mode = MODE_TITLE;   
 	ppu_off(); // screen off
 	// load the title palettes
@@ -633,14 +657,35 @@ void init_title_loop(void){
 	// probably lets the players select ai or player.
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 
-	
-
 	ppu_on_all(); // turn on screen
 	
 }
 
 void init_gameover_loop(void){
+	game_mode = MODE_GAMEOVER;   
+	ppu_off(); // screen off
+	// load the title palettes
+	clear_vram_buffer();
+	pal_bg(palette_bg);
+	pal_spr(palette_sp);
 	
+	
+	multi_vram_buffer_horz("GAME OVER", 9, NTADR_A(11, 8));
+
+	if( winner == ONETWO_WINNER)
+	{
+		multi_vram_buffer_horz("PLAYER 1 AND 2 WIN", 18, NTADR_A(6, 12));
+	}
+	else if (winner == THREEFOUR_WINNER)
+	{
+		multi_vram_buffer_horz("PLAYER 3 AND 4 WIN", 18, NTADR_A(6, 12));
+	}
+	// say who won
+	// draw on screen, probably an unrle eventually for this game
+	// probably lets the players select ai or player.
+	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
+
+	ppu_on_all(); // turn on screen
 }
 
 void init_system(void){

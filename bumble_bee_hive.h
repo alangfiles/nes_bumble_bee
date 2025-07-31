@@ -11,6 +11,7 @@ unsigned char pad2;
 unsigned char pad3;
 unsigned char pad4;
 unsigned char game_mode;
+unsigned char winner;
 
 unsigned char collision;
 unsigned char collision_L;
@@ -91,6 +92,11 @@ enum
 	MODE_TITLE,
 	MODE_GAME,
 	MODE_GAMEOVER
+};
+
+enum{
+	ONETWO_WINNER,
+	THREEFOUR_WINNER
 };
 
 
