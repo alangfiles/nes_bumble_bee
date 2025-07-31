@@ -1329,21 +1329,21 @@ _blank_tiles:
 	.byte	$B8
 	.byte	$B9
 	.byte	$BA
-L0795:
+L078B:
 	.byte	$42,$52,$49,$41,$4E,$20,$41,$4E,$44,$20,$41,$4C,$41,$4E,$20,$47
 	.byte	$41,$4D,$45,$53,$00
-L07D6:
+L07CC:
 	.byte	$50,$4C,$41,$59,$45,$52,$20,$33,$20,$41,$4E,$44,$20,$34,$20,$57
 	.byte	$49,$4E,$00
-L07C9:
+L07BF:
 	.byte	$50,$4C,$41,$59,$45,$52,$20,$31,$20,$41,$4E,$44,$20,$32,$20,$57
 	.byte	$49,$4E,$00
-L07E0:
+L07D6:
 	.byte	$50,$52,$45,$53,$53,$20,$53,$54,$41,$52,$54,$00
-L079F:
+L0795:
 	.byte	$48,$4F,$4E,$45,$59,$20,$48,$45,$49,$53,$54,$00
-L07A9	:=	L07E0+0
-L07BD:
+L079F	:=	L07D6+0
+L07B3:
 	.byte	$47,$41,$4D,$45,$20,$4F,$56,$45,$52,$00
 
 .segment	"BSS"
@@ -1532,7 +1532,7 @@ L04B2:	jmp     _ppu_on_all
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L07F3
+	bne     L07E9
 ;
 ; temp_x = 1;
 ;
@@ -1541,7 +1541,7 @@ L04B2:	jmp     _ppu_on_all
 ;
 ; if (temp_y == 0)
 ;
-L07F3:	lda     _temp_y
+L07E9:	lda     _temp_y
 	bne     L04C9
 ;
 ; temp_y = 1;
@@ -1575,7 +1575,7 @@ L04C9:	jsr     decsp2
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L07F4
+	bne     L07EA
 ;
 ; temp_x = 1;
 ;
@@ -1584,7 +1584,7 @@ L04C9:	jsr     decsp2
 ;
 ; if (temp_y == 0)
 ;
-L07F4:	lda     _temp_y
+L07EA:	lda     _temp_y
 	bne     L04D9
 ;
 ; temp_y = 1;
@@ -1618,7 +1618,7 @@ L04D9:	jsr     decsp2
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L07F5
+	bne     L07EB
 ;
 ; temp_x = 1;
 ;
@@ -1627,7 +1627,7 @@ L04D9:	jsr     decsp2
 ;
 ; if (temp_y == 0)
 ;
-L07F5:	lda     _temp_y
+L07EB:	lda     _temp_y
 	bne     L04E9
 ;
 ; temp_y = 1;
@@ -1661,7 +1661,7 @@ L04E9:	jsr     decsp2
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L07F6
+	bne     L07EC
 ;
 ; temp_x = 1;
 ;
@@ -1670,7 +1670,7 @@ L04E9:	jsr     decsp2
 ;
 ; if (temp_y == 0)
 ;
-L07F6:	lda     _temp_y
+L07EC:	lda     _temp_y
 	bne     L04F9
 ;
 ; temp_y = 1;
@@ -1715,7 +1715,7 @@ L04F9:	jsr     decsp2
 ;
 	lda     _generic_pad
 	and     #$02
-	beq     L07FD
+	beq     L07F3
 ;
 ; hero_velocity_x = -SPEED;
 ;
@@ -1724,11 +1724,11 @@ L04F9:	jsr     decsp2
 ;
 ; else if (generic_pad & PAD_RIGHT)
 ;
-	jmp     L07FF
-L07FD:	lda     _generic_pad
+	jmp     L07F5
+L07F3:	lda     _generic_pad
 	ldx     #$00
 	and     #$01
-	beq     L07FF
+	beq     L07F5
 ;
 ; hero_velocity_x = SPEED;
 ;
@@ -1736,7 +1736,7 @@ L07FD:	lda     _generic_pad
 ;
 ; hero_velocity_x = 0;
 ;
-L07FF:	sta     _hero_velocity_x
+L07F5:	sta     _hero_velocity_x
 	stx     _hero_velocity_x+1
 ;
 ; GenericBoxGuy.x += hero_velocity_x;
@@ -1755,7 +1755,7 @@ L07FF:	sta     _hero_velocity_x
 	cmp     #$01
 	lda     _GenericBoxGuy+1
 	sbc     #$F0
-	bcc     L0802
+	bcc     L07F8
 ;
 ; if (old_x >= 0x8000)
 ;
@@ -1765,7 +1765,7 @@ L07FF:	sta     _hero_velocity_x
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L0801
+	bcc     L07F7
 ;
 ; GenericBoxGuy.x = 0xf000; // max right
 ;
@@ -1773,12 +1773,12 @@ L07FF:	sta     _hero_velocity_x
 ;
 ; GenericBoxGuy.x = 0x0000; // max left
 ;
-L0801:	sta     _GenericBoxGuy
+L07F7:	sta     _GenericBoxGuy
 	stx     _GenericBoxGuy+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L0802:	lda     _GenericBoxGuy+1
+L07F8:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -1804,42 +1804,34 @@ L0802:	lda     _GenericBoxGuy+1
 ; if (bg_coll_L())
 ;
 	jsr     _bg_coll_L
-	tax
-	beq     L052F
-;
-; high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_L;
-;
-	lda     _GenericBoxGuy+1
-	sec
-	sbc     _eject_L
 ;
 ; else if (hero_velocity_x > 0)
 ;
-	jmp     L080B
+	jmp     L0807
 L0523:	lda     _hero_velocity_x
 	cmp     #$01
 	lda     _hero_velocity_x+1
 	sbc     #$00
-	bvs     L052E
+	bvs     L052C
 	eor     #$80
-L052E:	bpl     L052F
+L052C:	bpl     L052D
 ;
 ; if (bg_coll_R())
 ;
 	jsr     _bg_coll_R
-	tax
-	beq     L052F
+L0807:	tax
+	beq     L052D
 ;
-; high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_R;
+; GenericBoxGuy.x = old_x; // revert to old position
 ;
-	lda     _GenericBoxGuy+1
-	sec
-	sbc     _eject_R
-L080B:	sta     _GenericBoxGuy+1
+	lda     _old_x+1
+	sta     _GenericBoxGuy+1
+	lda     _old_x
+	sta     _GenericBoxGuy
 ;
 ; old_y = GenericBoxGuy.y;
 ;
-L052F:	lda     _GenericBoxGuy+2+1
+L052D:	lda     _GenericBoxGuy+2+1
 	sta     _old_y+1
 	lda     _GenericBoxGuy+2
 	sta     _old_y
@@ -1848,7 +1840,7 @@ L052F:	lda     _GenericBoxGuy+2+1
 ;
 	lda     _generic_pad
 	and     #$08
-	beq     L0803
+	beq     L07F9
 ;
 ; hero_velocity_y = -SPEED;
 ;
@@ -1857,11 +1849,11 @@ L052F:	lda     _GenericBoxGuy+2+1
 ;
 ; else if (generic_pad & PAD_DOWN)
 ;
-	jmp     L0805
-L0803:	lda     _generic_pad
+	jmp     L07FB
+L07F9:	lda     _generic_pad
 	ldx     #$00
 	and     #$04
-	beq     L0805
+	beq     L07FB
 ;
 ; hero_velocity_y = SPEED;
 ;
@@ -1869,7 +1861,7 @@ L0803:	lda     _generic_pad
 ;
 ; hero_velocity_y = 0;
 ;
-L0805:	sta     _hero_velocity_y
+L07FB:	sta     _hero_velocity_y
 	stx     _hero_velocity_y+1
 ;
 ; GenericBoxGuy.y += hero_velocity_y;
@@ -1888,7 +1880,7 @@ L0805:	sta     _hero_velocity_y
 	cmp     #$01
 	lda     _GenericBoxGuy+2+1
 	sbc     #$E0
-	bcc     L0808
+	bcc     L07FE
 ;
 ; if (old_y >= 0x8000)
 ;
@@ -1898,7 +1890,7 @@ L0805:	sta     _hero_velocity_y
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L0807
+	bcc     L07FD
 ;
 ; GenericBoxGuy.y = 0xe000; // max down
 ;
@@ -1906,12 +1898,12 @@ L0805:	sta     _hero_velocity_y
 ;
 ; GenericBoxGuy.y = 0x0000; // max up
 ;
-L0807:	sta     _GenericBoxGuy+2
+L07FD:	sta     _GenericBoxGuy+2
 	stx     _GenericBoxGuy+2+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L0808:	lda     _GenericBoxGuy+1
+L07FE:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -1923,47 +1915,39 @@ L0808:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_y+1
 	cpx     #$80
-	bcc     L0552
+	bcc     L054E
 ;
 ; if (bg_coll_U())
 ;
 	jsr     _bg_coll_U
-	tax
-	beq     L055E
-;
-; high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_U;
-;
-	lda     _GenericBoxGuy+3
-	sec
-	sbc     _eject_U
 ;
 ; else if (hero_velocity_y > 0)
 ;
-	jmp     L080C
-L0552:	lda     _hero_velocity_y
+	jmp     L0808
+L054E:	lda     _hero_velocity_y
 	cmp     #$01
 	lda     _hero_velocity_y+1
 	sbc     #$00
-	bvs     L055D
+	bvs     L0557
 	eor     #$80
-L055D:	bpl     L055E
+L0557:	bpl     L0558
 ;
 ; if (bg_coll_D())
 ;
 	jsr     _bg_coll_D
-	tax
-	beq     L055E
+L0808:	tax
+	beq     L0558
 ;
-; high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_D;
+; GenericBoxGuy.y = old_y; // revert to old position
 ;
-	lda     _GenericBoxGuy+3
-	sec
-	sbc     _eject_D
-L080C:	sta     _GenericBoxGuy+3
+	lda     _old_y+1
+	sta     _GenericBoxGuy+2+1
+	lda     _old_y
+	sta     _GenericBoxGuy+2
 ;
 ; check_tile_and_collect();
 ;
-L055E:	jmp     _check_tile_and_collect
+L0558:	jmp     _check_tile_and_collect
 
 .endproc
 
@@ -1984,9 +1968,9 @@ L055E:	jmp     _check_tile_and_collect
 	lda     _Generic
 	clc
 	adc     #$04
-	bcc     L05DA
+	bcc     L05D0
 	inx
-L05DA:	jsr     shrax3
+L05D0:	jsr     shrax3
 	sta     _temp_x
 ;
 ; temp_y = (Generic.y + 2) >> 3; // get this between 0-32
@@ -1995,9 +1979,9 @@ L05DA:	jsr     shrax3
 	lda     _Generic+1
 	clc
 	adc     #$02
-	bcc     L05DE
+	bcc     L05D4
 	inx
-L05DE:	jsr     shrax3
+L05D4:	jsr     shrax3
 	sta     _temp_y
 ;
 ; largeindex = (temp_y << 5) + temp_x;
@@ -2011,9 +1995,9 @@ L05DE:	jsr     shrax3
 	ldx     tmp1
 	clc
 	adc     _temp_x
-	bcc     L080D
+	bcc     L0809
 	inx
-L080D:	sta     _largeindex
+L0809:	sta     _largeindex
 	stx     _largeindex+1
 ;
 ; temp = tinyhoney[largeindex];
@@ -2032,16 +2016,16 @@ L080D:	sta     _largeindex
 ;
 	lda     #$00
 	sta     _index
-L0810:	lda     _index
+L080C:	lda     _index
 	cmp     #$05
-	bcs     L05E6
+	bcs     L05DC
 ;
 ; if (temp == pellet_tiles[index])
 ;
 	ldy     _index
 	lda     _pellet_tiles,y
 	cmp     _temp
-	bne     L05ED
+	bne     L05E3
 ;
 ; one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
 ;
@@ -2075,22 +2059,22 @@ L0810:	lda     _index
 ;
 ; else if (temp == blank_tiles[index])
 ;
-L05ED:	ldy     _index
+L05E3:	ldy     _index
 	lda     _blank_tiles,y
 	cmp     _temp
 ;
 ; break;
 ;
-	beq     L05E6
+	beq     L05DC
 ;
 ; for (index = 0; index < 5; index++)
 ;
 	inc     _index
-	jmp     L0810
+	jmp     L080C
 ;
 ; }
 ;
-L05E6:	rts
+L05DC:	rts
 
 .endproc
 
@@ -2529,7 +2513,7 @@ L05E6:	rts
 ;
 ; } else {
 ;
-	bne     L06DF
+	bne     L06D5
 ;
 ; BoxGuy1.x = GenericBoxGuy.x;
 ;
@@ -2547,7 +2531,7 @@ L05E6:	rts
 ;
 ; GenericBoxGuy = BoxGuy2;
 ;
-L06DF:	lda     _BoxGuy2+3
+L06D5:	lda     _BoxGuy2+3
 	sta     sreg+1
 	lda     _BoxGuy2+2
 	sta     sreg
@@ -2596,7 +2580,7 @@ L06DF:	lda     _BoxGuy2+3
 ;
 ; } else {
 ;
-	bne     L06F3
+	bne     L06E9
 ;
 ; BoxGuy2.x = GenericBoxGuy.x;
 ;
@@ -2614,7 +2598,7 @@ L06DF:	lda     _BoxGuy2+3
 ;
 ; GenericBoxGuy = BoxGuy3;
 ;
-L06F3:	lda     _BoxGuy3+3
+L06E9:	lda     _BoxGuy3+3
 	sta     sreg+1
 	lda     _BoxGuy3+2
 	sta     sreg
@@ -2663,7 +2647,7 @@ L06F3:	lda     _BoxGuy3+3
 ;
 ; } else {
 ;
-	bne     L0707
+	bne     L06FD
 ;
 ; BoxGuy3.x = GenericBoxGuy.x;
 ;
@@ -2681,7 +2665,7 @@ L06F3:	lda     _BoxGuy3+3
 ;
 ; GenericBoxGuy = BoxGuy4;
 ;
-L0707:	lda     _BoxGuy4+3
+L06FD:	lda     _BoxGuy4+3
 	sta     sreg+1
 	lda     _BoxGuy4+2
 	sta     sreg
@@ -2730,7 +2714,7 @@ L0707:	lda     _BoxGuy4+3
 ;
 ; } else {
 ;
-	bne     L071B
+	bne     L0711
 ;
 ; BoxGuy4.x = GenericBoxGuy.x;
 ;
@@ -2748,7 +2732,7 @@ L0707:	lda     _BoxGuy4+3
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L071B:	lda     _BoxGuy1+1
+L0711:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -2770,7 +2754,7 @@ L071B:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L0811
+	beq     L080D
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -2783,7 +2767,7 @@ L071B:	lda     _BoxGuy1+1
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
-L0811:	lda     _BoxGuy3+1
+L080D:	lda     _BoxGuy3+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy3.y >> 8;
@@ -2805,7 +2789,7 @@ L0811:	lda     _BoxGuy3+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L0812
+	beq     L080E
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -2818,7 +2802,7 @@ L0811:	lda     _BoxGuy3+1
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L0812:	lda     _BoxGuy1+1
+L080E:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -2840,7 +2824,7 @@ L0812:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L0813
+	beq     L080F
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -2853,7 +2837,7 @@ L0812:	lda     _BoxGuy1+1
 ;
 ; temp_x = BoxGuy2.x >> 8;
 ;
-L0813:	lda     _BoxGuy2+1
+L080F:	lda     _BoxGuy2+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy2.y >> 8;
@@ -2875,7 +2859,7 @@ L0813:	lda     _BoxGuy2+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L074F
+	beq     L0745
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -2888,7 +2872,7 @@ L0813:	lda     _BoxGuy2+1
 ;
 ; draw_sprites();
 ;
-L074F:	jmp     _draw_sprites
+L0745:	jmp     _draw_sprites
 
 .endproc
 
@@ -2905,7 +2889,7 @@ L074F:	jmp     _draw_sprites
 ;
 ; ppu_wait_nmi();
 ;
-L0756:	jsr     _ppu_wait_nmi
+L074C:	jsr     _ppu_wait_nmi
 ;
 ; pad1 = pad_poll(0); // read the first controller
 ;
@@ -2916,7 +2900,7 @@ L0756:	jsr     _ppu_wait_nmi
 ; if (pad1 & PAD_START)
 ;
 	and     #$10
-	beq     L0756
+	beq     L074C
 ;
 ; init_game_loop();
 ;
@@ -2937,7 +2921,7 @@ L0756:	jsr     _ppu_wait_nmi
 ;
 ; ppu_wait_nmi();
 ;
-L0762:	jsr     _ppu_wait_nmi
+L0758:	jsr     _ppu_wait_nmi
 ;
 ; pad1 = pad_poll(0); // read the first controller
 ;
@@ -2948,7 +2932,7 @@ L0762:	jsr     _ppu_wait_nmi
 ; if (pad1 & PAD_START)
 ;
 	and     #$10
-	beq     L0762
+	beq     L0758
 ;
 ; init_title_loop();
 ;
@@ -3096,11 +3080,11 @@ L0762:	jsr     _ppu_wait_nmi
 ; multi_vram_buffer_horz("GAME OVER", 9, NTADR_A(11, 8));
 ;
 	jsr     decsp3
-	lda     #<(L07BD)
+	lda     #<(L07B3)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07BD)
+	lda     #>(L07B3)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -3112,33 +3096,33 @@ L0762:	jsr     _ppu_wait_nmi
 ; if( winner == ONETWO_WINNER)
 ;
 	lda     _winner
-	bne     L0815
+	bne     L0811
 ;
 ; multi_vram_buffer_horz("PLAYER 1 AND 2 WIN", 18, NTADR_A(6, 12));
 ;
 	jsr     decsp3
-	lda     #<(L07C9)
+	lda     #<(L07BF)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07C9)
+	lda     #>(L07BF)
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L081B
-L0815:	lda     _winner
+	jmp     L0817
+L0811:	lda     _winner
 	cmp     #$01
-	bne     L07D3
+	bne     L07C9
 ;
 ; multi_vram_buffer_horz("PLAYER 3 AND 4 WIN", 18, NTADR_A(6, 12));
 ;
 	jsr     decsp3
-	lda     #<(L07D6)
+	lda     #<(L07CC)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07D6)
-L081B:	sta     (sp),y
+	lda     #>(L07CC)
+L0817:	sta     (sp),y
 	lda     #$12
 	ldy     #$00
 	sta     (sp),y
@@ -3148,12 +3132,12 @@ L081B:	sta     (sp),y
 ;
 ; multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 ;
-L07D3:	jsr     decsp3
-	lda     #<(L07E0)
+L07C9:	jsr     decsp3
+	lda     #<(L07D6)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07E0)
+	lda     #>(L07D6)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -3208,11 +3192,11 @@ L07D3:	jsr     decsp3
 ; multi_vram_buffer_horz("BRIAN AND ALAN GAMES", 20, NTADR_A(6, 6));
 ;
 	jsr     decsp3
-	lda     #<(L0795)
+	lda     #<(L078B)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0795)
+	lda     #>(L078B)
 	sta     (sp),y
 	lda     #$14
 	ldy     #$00
@@ -3224,11 +3208,11 @@ L07D3:	jsr     decsp3
 ; multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
 ;
 	jsr     decsp3
-	lda     #<(L079F)
+	lda     #<(L0795)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L079F)
+	lda     #>(L0795)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -3240,11 +3224,11 @@ L07D3:	jsr     decsp3
 ; multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 ;
 	jsr     decsp3
-	lda     #<(L07A9)
+	lda     #<(L079F)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07A9)
+	lda     #>(L079F)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -3315,7 +3299,7 @@ L07D3:	jsr     decsp3
 	lda     _temp_y
 	cmp     #$F0
 	ldx     #$00
-	bcc     L081C
+	bcc     L0818
 ;
 ; return 0;
 ;
@@ -3324,7 +3308,7 @@ L07D3:	jsr     decsp3
 ;
 ; temp = tinyhoney[((temp_y >> 3) << 5) + (temp_x >> 3)];
 ;
-L081C:	lda     _temp_y
+L0818:	lda     _temp_y
 	lsr     a
 	lsr     a
 	lsr     a
@@ -3354,48 +3338,48 @@ L081C:	lda     _temp_y
 ; if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca)
 ;
 	cmp     #$C6
-	beq     L081D
+	beq     L0819
 	lda     _temp
 	cmp     #$C7
-	beq     L081D
+	beq     L0819
 	cmp     #$C8
-	beq     L081D
+	beq     L0819
 	cmp     #$C9
-	beq     L081D
+	beq     L0819
 	cmp     #$CA
-	bne     L081E
+	bne     L081A
 ;
 ; return 0;
 ;
-L081D:	ldx     #$00
+L0819:	ldx     #$00
 	txa
 	rts
 ;
 ; else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba)
 ;
-L081E:	lda     _temp
+L081A:	lda     _temp
 	cmp     #$B6
-	beq     L081F
+	beq     L081B
 	cmp     #$B7
-	beq     L081F
+	beq     L081B
 	cmp     #$B8
-	beq     L081F
+	beq     L081B
 	cmp     #$B9
-	beq     L081F
+	beq     L081B
 	cmp     #$BA
-	beq     L081F
+	beq     L081B
 	ldx     #$00
-	jmp     L0820
+	jmp     L081C
 ;
 ; return 0;
 ;
-L081F:	ldx     #$00
+L081B:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L0820:	lda     #$01
+L081C:	lda     #$01
 ;
 ; }
 ;
@@ -3419,9 +3403,9 @@ L0820:	lda     #$01
 	lda     _Generic
 	sta     _temp_x
 ;
-; eject_L = temp_x | 0xf0;
+; eject_L = temp_x & 0x07; // distance to next tile boundary
 ;
-	ora     #$F0
+	and     #$07
 	sta     _eject_L
 ;
 ; temp_y = Generic.y + 2;
@@ -3435,7 +3419,7 @@ L0820:	lda     #$01
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0822
+	beq     L081E
 ;
 ; return 1;
 ;
@@ -3445,7 +3429,7 @@ L0820:	lda     #$01
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L0822:	lda     _Generic+1
+L081E:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -3460,7 +3444,7 @@ L0822:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0824
+	beq     L0820
 ;
 ; return 1;
 ;
@@ -3470,7 +3454,7 @@ L0822:	lda     _Generic+1
 ;
 ; }
 ;
-L0824:	rts
+L0820:	rts
 
 .endproc
 
@@ -3492,11 +3476,13 @@ L0824:	rts
 	adc     _Generic+2
 	sta     _temp_x
 ;
-; eject_R = (temp_x + 1) & 0x0f;
+; eject_R = 8 - (temp_x & 0x07); // distance to next tile boundary
 ;
-	clc
-	adc     #$01
-	and     #$0F
+	lda     #$08
+	jsr     pusha0
+	lda     _temp_x
+	and     #$07
+	jsr     tossuba0
 	sta     _eject_R
 ;
 ; temp_y = Generic.y + 2;
@@ -3510,7 +3496,7 @@ L0824:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0827
+	beq     L0823
 ;
 ; return 1;
 ;
@@ -3520,7 +3506,7 @@ L0824:	rts
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L0827:	lda     _Generic+1
+L0823:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -3535,7 +3521,7 @@ L0827:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0829
+	beq     L0825
 ;
 ; return 1;
 ;
@@ -3545,7 +3531,7 @@ L0827:	lda     _Generic+1
 ;
 ; }
 ;
-L0829:	rts
+L0825:	rts
 
 .endproc
 
@@ -3572,16 +3558,16 @@ L0829:	rts
 	lda     _Generic+1
 	sta     _temp_y
 ;
-; eject_U = temp_y | 0xf0;
+; eject_U = temp_y & 0x07; // distance to next tile boundary
 ;
-	ora     #$F0
+	and     #$07
 	sta     _eject_U
 ;
 ; if (bg_collision_sub())
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L082B
+	beq     L0827
 ;
 ; return 1;
 ;
@@ -3591,7 +3577,7 @@ L0829:	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L082B:	lda     _Generic
+L0827:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -3606,7 +3592,7 @@ L082B:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L082D
+	beq     L0829
 ;
 ; return 1;
 ;
@@ -3616,7 +3602,7 @@ L082B:	lda     _Generic
 ;
 ; }
 ;
-L082D:	rts
+L0829:	rts
 
 .endproc
 
@@ -3645,18 +3631,20 @@ L082D:	rts
 	adc     _Generic+3
 	sta     _temp_y
 ;
-; eject_D = (temp_y + 1) & 0x0f;
+; eject_D = 8 - (temp_y & 0x07); // distance to next tile boundary
 ;
-	clc
-	adc     #$01
-	and     #$0F
+	lda     #$08
+	jsr     pusha0
+	lda     _temp_y
+	and     #$07
+	jsr     tossuba0
 	sta     _eject_D
 ;
 ; if (bg_collision_sub())
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0830
+	beq     L082C
 ;
 ; return 1;
 ;
@@ -3666,7 +3654,7 @@ L082D:	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L0830:	lda     _Generic
+L082C:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -3681,7 +3669,7 @@ L0830:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0832
+	beq     L082E
 ;
 ; return 1;
 ;
@@ -3691,7 +3679,7 @@ L0830:	lda     _Generic
 ;
 ; }
 ;
-L0832:	rts
+L082E:	rts
 
 .endproc
 
@@ -3713,24 +3701,24 @@ L0832:	rts
 	lda     _temp_x2
 	clc
 	adc     #$08
-	bcc     L0603
+	bcc     L05F9
 	ldx     #$01
-L0603:	jsr     tosicmp
-	bcs     L0604
+L05F9:	jsr     tosicmp
+	bcs     L05FA
 	ldx     #$00
 	lda     _temp_x
 	clc
 	adc     #$08
-	bcc     L0605
+	bcc     L05FB
 	inx
-L0605:	sec
+L05FB:	sec
 	sbc     _temp_x2
 	sta     tmp1
 	txa
 	sbc     #$00
 	ora     tmp1
-	bcc     L0604
-	beq     L0604
+	bcc     L05FA
+	beq     L05FA
 ;
 ; temp_y < temp_y2 + 8 && temp_y + 8 > temp_y2)
 ;
@@ -3739,31 +3727,31 @@ L0605:	sec
 	lda     _temp_y2
 	clc
 	adc     #$08
-	bcc     L0606
+	bcc     L05FC
 	ldx     #$01
-L0606:	jsr     tosicmp
-	bcs     L0604
+L05FC:	jsr     tosicmp
+	bcs     L05FA
 	ldx     #$00
 	lda     _temp_y
 	clc
 	adc     #$08
-	bcc     L0607
+	bcc     L05FD
 	inx
-L0607:	sec
+L05FD:	sec
 	sbc     _temp_y2
 	sta     tmp1
 	txa
 	sbc     #$00
 	ora     tmp1
-	beq     L0604
-	bcs     L0602
-L0604:	ldx     #$00
+	beq     L05FA
+	bcs     L05F8
+L05FA:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L0602:	ldx     #$00
+L05F8:	ldx     #$00
 	lda     #$01
 	rts
 
@@ -3790,8 +3778,8 @@ L0602:	ldx     #$00
 ;
 ; if (game_mode == MODE_TITLE)
 ;
-L0835:	lda     _game_mode
-	bne     L0836
+L0831:	lda     _game_mode
+	bne     L0832
 ;
 ; title_loop();
 ;
@@ -3799,9 +3787,9 @@ L0835:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME)
 ;
-L0836:	lda     _game_mode
+L0832:	lda     _game_mode
 	cmp     #$01
-	bne     L0837
+	bne     L0833
 ;
 ; game_loop();
 ;
@@ -3809,9 +3797,9 @@ L0836:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAMEOVER)
 ;
-L0837:	lda     _game_mode
+L0833:	lda     _game_mode
 	cmp     #$02
-	bne     L0835
+	bne     L0831
 ;
 ; gameover_loop();
 ;
@@ -3819,7 +3807,7 @@ L0837:	lda     _game_mode
 ;
 ; while (1)
 ;
-	jmp     L0835
+	jmp     L0831
 
 .endproc
 

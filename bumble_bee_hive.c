@@ -152,16 +152,14 @@ void movement(void)
 	{ // going left
 		if (bg_coll_L())
 		{ // check collision left
-			// GenericBoxGuy.x = old_x;
-			high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_L;
+			GenericBoxGuy.x = old_x; // revert to old position
 		}
 	}
 	else if (hero_velocity_x > 0)
 	{ // going right
 		if (bg_coll_R())
 		{ // check collision right
-			// GenericBoxGuy.x = old_x;
-			high_byte(GenericBoxGuy.x) = high_byte(GenericBoxGuy.x) - eject_R;
+			GenericBoxGuy.x = old_x; // revert to old position
 		}
 	}
 	// else 0, skip it
@@ -205,17 +203,15 @@ void movement(void)
 	if (hero_velocity_y < 0)
 	{ // going up
 		if (bg_coll_U())
-		{ // check collision left
-			// GenericBoxGuy.y = old_y;
-			high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_U;
+		{ // check collision up
+			GenericBoxGuy.y = old_y; // revert to old position
 		}
 	}
 	else if (hero_velocity_y > 0)
 	{ // going down
 		if (bg_coll_D())
-		{ // check collision right
-			// GenericBoxGuy.y = old_y;
-			high_byte(GenericBoxGuy.y) = high_byte(GenericBoxGuy.y) - eject_D;
+		{ // check collision down
+			GenericBoxGuy.y = old_y; // revert to old position
 		}
 	}
 	// else 0, skip it
@@ -229,7 +225,7 @@ char bg_coll_L(void)
 	// check 2 points on the left side
 	temp_x = Generic.x;
 
-	eject_L = temp_x | 0xf0;
+	eject_L = temp_x & 0x07; // distance to next tile boundary
 	temp_y = Generic.y + 2;
 	if (bg_collision_sub())
 		return 1;
@@ -247,7 +243,7 @@ char bg_coll_R(void)
 	// check 2 points on the right side
 	temp_x = Generic.x + Generic.width;
 
-	eject_R = (temp_x + 1) & 0x0f;
+	eject_R = 8 - (temp_x & 0x07); // distance to next tile boundary
 	temp_y = Generic.y + 2;
 	if (bg_collision_sub())
 		return 1;
@@ -266,7 +262,7 @@ char bg_coll_U(void)
 	temp_x = Generic.x + 2;
 
 	temp_y = Generic.y;
-	eject_U = temp_y | 0xf0;
+	eject_U = temp_y & 0x07; // distance to next tile boundary
 	if (bg_collision_sub())
 		return 1;
 
@@ -285,7 +281,7 @@ char bg_coll_D(void)
 	temp_x = Generic.x + 2;
 
 	temp_y = Generic.y + Generic.height;
-	eject_D = (temp_y + 1) & 0x0f;
+	eject_D = 8 - (temp_y & 0x07); // distance to next tile boundary
 	if (bg_collision_sub())
 		return 1;
 
