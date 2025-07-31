@@ -322,8 +322,28 @@ char bg_collision_sub(void)
 	}
 }
 
+// Helper function to check if a dot has been consumed
+char is_dot_consumed(unsigned int map_index) {
+	unsigned char byte_index = map_index >> 3; // divide by 8
+	unsigned char bit_index = map_index & 0x07; // modulo 8
+	return (consumed_dots[byte_index] >> bit_index) & 0x01;
+}
+
+// Helper function to mark a dot as consumed
+void mark_dot_consumed(unsigned int map_index) {
+	unsigned char byte_index = map_index >> 3; // divide by 8
+	unsigned char bit_index = map_index & 0x07; // modulo 8
+	consumed_dots[byte_index] |= (0x01 << bit_index);
+}
+
 void check_tile_and_collect()
 {
+	// Only seekers (players 1 and 3) can collect dots
+	if (current_player != 1 && current_player != 3)
+	{
+		return; // Chasers cannot collect dots
+	}
+	
 	// the (+4) centers the location
 	temp_x = (Generic.x + 4) >> 3; // get this between 0-30
 	temp_y = (Generic.y + 2) >> 3; // get this between 0-32
@@ -336,9 +356,19 @@ void check_tile_and_collect()
 	{
 		if (temp == pellet_tiles[index])
 		{
-			// tinyhoney[largeindex] = blank_tiles[frame_counter % 5];
-			one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
-			// update player score
+			// Check if this dot has already been consumed
+			if (!is_dot_consumed(largeindex)) {
+				// Mark this dot as consumed
+				mark_dot_consumed(largeindex);
+				// Update the screen
+				one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
+				// update team score
+				if (current_player == 1) {
+					team1_score++;
+				} else if (current_player == 3) {
+					team2_score++;
+				}
+			}
 			break;
 		}
 		else if (temp == blank_tiles[index])
@@ -369,40 +399,32 @@ char sprite_collision()
 
 
 void debug_extras(void){
-	one_vram_buffer(0x58, NTADR_A(6, 1));
-	temp1 = (BoxGuy1.x >> 8 & 0xff) >> 4;
-	one_vram_buffer(0x30 + temp1, NTADR_A(7, 1));
-	temp1 = (BoxGuy1.x >> 8 & 0x0f);
-	one_vram_buffer(0x30 + temp1, NTADR_A(8, 1));
-
-	one_vram_buffer(0x59, NTADR_A(10, 1));
-	temp1 = (BoxGuy1.y >> 8 & 0xff) >> 4;
-	one_vram_buffer(0x30 + temp1, NTADR_A(11, 1));
-	temp1 = (BoxGuy1.y >> 8 & 0x0f);
-	one_vram_buffer(0x30 + temp1, NTADR_A(12, 1));
-
-	one_vram_buffer(0x54, NTADR_A(14, 1));
-	temp1 = (BoxGuy1.x >> 8 >> 3 & 0xff) >> 4;
-	one_vram_buffer(0x30 + temp1, NTADR_A(15, 1));
-	temp1 = (BoxGuy1.x >> 8 >> 3 & 0x0f);
-	one_vram_buffer(0x30 + temp1, NTADR_A(16, 1));
-
-	one_vram_buffer(0x55, NTADR_A(18, 1));
-	temp1 = (BoxGuy1.y >> 8 >> 3 & 0xff) >> 4;
-	one_vram_buffer(0x30 + temp1, NTADR_A(19, 1));
-	temp1 = (BoxGuy1.y >> 8 >> 3 & 0x0f);
-	one_vram_buffer(0x30 + temp1, NTADR_A(20, 1));
-
-	// tile I'm on:
-	one_vram_buffer(0x57, NTADR_A(22, 1));
-	largeindex = ((BoxGuy1.y >> 8 >> 3) << 5) + (BoxGuy1.x >> 8 >> 3);
-
-	temp = tinyhoney[largeindex];
-	// should be between 0-33
-	temp1 = (temp & 0xff) >> 4;
-	one_vram_buffer(0x30 + temp1, NTADR_A(23, 1));
-	temp1 = (temp & 0x0f);
-	one_vram_buffer(0x30 + temp1, NTADR_A(24, 1));
+	// Display team scores
+	one_vram_buffer(0x54, NTADR_A(6, 1));  // 'T'
+	one_vram_buffer(0x45, NTADR_A(7, 1));  // 'E'
+	one_vram_buffer(0x41, NTADR_A(8, 1));  // 'A'
+	one_vram_buffer(0x4D, NTADR_A(9, 1));  // 'M'
+	one_vram_buffer(0x31, NTADR_A(10, 1)); // '1'
+	one_vram_buffer(0x3A, NTADR_A(11, 1)); // ':'
+	
+	// Display team 1 score (2 digits)
+	temp1 = (team1_score / 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(12, 1));
+	temp1 = (team1_score % 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(13, 1));
+	
+	one_vram_buffer(0x54, NTADR_A(15, 1));  // 'T'
+	one_vram_buffer(0x45, NTADR_A(16, 1));  // 'E'
+	one_vram_buffer(0x41, NTADR_A(17, 1));  // 'A'
+	one_vram_buffer(0x4D, NTADR_A(18, 1));  // 'M'
+	one_vram_buffer(0x32, NTADR_A(19, 1));  // '2'
+	one_vram_buffer(0x3A, NTADR_A(20, 1));  // ':'
+	
+	// Display team 2 score (2 digits)
+	temp1 = (team2_score / 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(21, 1));
+	temp1 = (team2_score % 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(22, 1));
 }
 
 void read_controllers(void){
@@ -462,7 +484,8 @@ void game_loop(void){
 		// player 3 is seeker, 4 is chaser
 		// Deal with movement for each player
 
-		// setup generics
+		// setup generics for player 1 (seeker)
+		current_player = 1;
 		GenericBoxGuy = BoxGuy1;
 		generic_pad = pad1;
 		// call movement for generics
@@ -480,6 +503,8 @@ void game_loop(void){
 		}
 
 		
+		// setup generics for player 2 (chaser)
+		current_player = 2;
 		GenericBoxGuy = BoxGuy2;
 		generic_pad = pad2;
 		movement();
@@ -497,6 +522,8 @@ void game_loop(void){
 		}
 
 
+		// setup generics for player 3 (seeker)
+		current_player = 3;
 		GenericBoxGuy = BoxGuy3;
 		generic_pad = pad3;
 		movement();
@@ -513,6 +540,8 @@ void game_loop(void){
 			BoxGuy3.y = GenericBoxGuy.y;
 		}
 
+		// setup generics for player 4 (chaser)
+		current_player = 4;
 		GenericBoxGuy = BoxGuy4;
 		generic_pad = pad4;
 		movement();
@@ -615,6 +644,13 @@ void gameover_loop(void){
 
 void init_game_loop(void){
 	game_mode = MODE_GAME;  
+	// Initialize scores
+	team1_score = 0;
+	team2_score = 0;
+	// Initialize consumed dots tracking
+	for (index = 0; index < 128; index++) {
+		consumed_dots[index] = 0;
+	}
 	//move all players into starting positions:
 	BoxGuy1.x = 0x4000;
 	BoxGuy1.y = 0x2800;
