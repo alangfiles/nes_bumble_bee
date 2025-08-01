@@ -362,12 +362,26 @@ void check_tile_and_collect()
 				mark_dot_consumed(largeindex);
 				// Update the screen
 				one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
-				// update team score
-				if (current_player == 1) {
-					team1_score++;
-				} else if (current_player == 3) {
-					team2_score++;
-				}
+						// update team score
+		if (current_player == 1) {
+			team1_score++;
+			// Check for win condition
+			if (team1_score >= 100) {
+				winner = ONETWO_WINNER;
+				win_reason = WIN_DOTS;
+				init_gameover_loop();
+				return;
+			}
+		} else if (current_player == 3) {
+			team2_score++;
+			// Check for win condition
+			if (team2_score >= 100) {
+				winner = THREEFOUR_WINNER;
+				win_reason = WIN_DOTS;
+				init_gameover_loop();
+				return;
+			}
+		}
 			}
 			break;
 		}
@@ -489,14 +503,16 @@ void game_loop(void){
 		GenericBoxGuy = BoxGuy1;
 		generic_pad = pad1;
 		// call movement for generics
-		movement();
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
+		movement(); //this assigns old_x and old_y	
+		temp_x = GenericBoxGuy.x >> 8;
+		temp_y = GenericBoxGuy.y >> 8;
 		temp_x2 = BoxGuy3.x >> 8;
 		temp_y2 = BoxGuy3.y >> 8;
 		if (sprite_collision()) //1 and 3, both seekers
 		{
 			//players bounce off each other
+			BoxGuy1.x = old_x;
+			BoxGuy1.y = old_y;
 		} else {
 			BoxGuy1.x = GenericBoxGuy.x;
 			BoxGuy1.y = GenericBoxGuy.y;
@@ -509,13 +525,15 @@ void game_loop(void){
 		generic_pad = pad2;
 		movement();
 		
-		temp_x = BoxGuy2.x >> 8;
-		temp_y = BoxGuy2.y >> 8;
+		temp_x = GenericBoxGuy.x >> 8;
+		temp_y = GenericBoxGuy.y >> 8;
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
 		if (sprite_collision()) //player 2 blocks player 4 (chasers)
 		{
 			//players bounce off each other
+			BoxGuy2.x = old_x;
+			BoxGuy2.y = old_y;
 		} else {
 			BoxGuy2.x = GenericBoxGuy.x;
 			BoxGuy2.y = GenericBoxGuy.y;
@@ -530,11 +548,13 @@ void game_loop(void){
 		//player 1 blocks player 3
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy3.x >> 8;
-		temp_y2 = BoxGuy3.y >> 8;
+		temp_x2 = GenericBoxGuy.x >> 8;
+		temp_y2 = GenericBoxGuy.y >> 8;
 		if (sprite_collision()) // 1 blocks 3 (seekers)
 		{
 			//players bounce off each other
+			BoxGuy3.x = old_x;
+			BoxGuy3.y = old_y;
 		} else {
 			BoxGuy3.x = GenericBoxGuy.x;
 			BoxGuy3.y = GenericBoxGuy.y;
@@ -548,11 +568,13 @@ void game_loop(void){
 		//player 2 blocks player 4
 		temp_x = BoxGuy2.x >> 8;
 		temp_y = BoxGuy2.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
+		temp_x2 = GenericBoxGuy.x >> 8;
+		temp_y2 = GenericBoxGuy.y >> 8;
 		if (sprite_collision()) // 2 blocks 4 (seekers)
 		{
 			//players bounce off each other
+			BoxGuy4.x = old_x;
+			BoxGuy4.y = old_y;
 		} else {
 			BoxGuy4.x = GenericBoxGuy.x;
 			BoxGuy4.y = GenericBoxGuy.y;
@@ -570,6 +592,7 @@ void game_loop(void){
 		{
 			//player 1 dies (friendly fire)
 			winner = THREEFOUR_WINNER;
+			win_reason = WIN_FRIENDLY_FIRE;
 			init_gameover_loop();
 		}
 		temp_x = BoxGuy3.x >> 8;
@@ -580,6 +603,7 @@ void game_loop(void){
 		{
 			//player 3 dies (friendly fire)
 			winner = ONETWO_WINNER;
+			win_reason = WIN_FRIENDLY_FIRE;
 			init_gameover_loop();
 		}
 		//check 1 with 4 and 2 with 3
@@ -591,7 +615,7 @@ void game_loop(void){
 		{
 			//player 1 dies (enemy fire)
 			winner = THREEFOUR_WINNER;
-			//todo: add win reason
+			win_reason = WIN_ENEMY_KILL;
 			init_gameover_loop();
 		}
 		temp_x = BoxGuy2.x >> 8;
@@ -602,7 +626,7 @@ void game_loop(void){
 		{
 			//player 2 dies (enemy fire)
 			winner = ONETWO_WINNER;
-			//todo: add win reason
+			win_reason = WIN_ENEMY_KILL;
 			init_gameover_loop();
 		}
 
@@ -647,6 +671,7 @@ void init_game_loop(void){
 	// Initialize scores
 	team1_score = 0;
 	team2_score = 0;
+	win_reason = WIN_DOTS; // default
 	// Initialize consumed dots tracking
 	for (index = 0; index < 128; index++) {
 		consumed_dots[index] = 0;
@@ -654,12 +679,12 @@ void init_game_loop(void){
 	//move all players into starting positions:
 	BoxGuy1.x = 0x4000;
 	BoxGuy1.y = 0x2800;
-	BoxGuy2.x = 0x8000;
-	BoxGuy2.y = 0x3000;
-	BoxGuy3.x = 0xA000;
-	BoxGuy3.y = 0x3000;
-	BoxGuy4.x = 0xC000;
-	BoxGuy4.y = 0x3000;
+	BoxGuy2.x = 0x7000;
+	BoxGuy2.y = 0x2800;
+	BoxGuy3.x = 0xB000;
+	BoxGuy3.y = 0x2800;
+	BoxGuy4.x = 0x8800;
+	BoxGuy4.y = 0x2800;
 
 	ppu_off(); // screen off 
 	clear_vram_buffer();
@@ -707,11 +732,20 @@ void init_gameover_loop(void){
 
 	if( winner == ONETWO_WINNER)
 	{
-		multi_vram_buffer_horz("PLAYER 1 AND 2 WIN", 18, NTADR_A(6, 12));
+		multi_vram_buffer_horz("TEAM 1 WINS!", 12, NTADR_A(9, 12));
+		
 	}
 	else if (winner == THREEFOUR_WINNER)
 	{
-		multi_vram_buffer_horz("PLAYER 3 AND 4 WIN", 18, NTADR_A(6, 12));
+		multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
+		
+	}
+	if (win_reason == WIN_DOTS) {
+		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 14));
+	} else if (win_reason == WIN_FRIENDLY_FIRE) {
+		multi_vram_buffer_horz("FRIENDLY FIRE KILL", 18, NTADR_A(6, 14));
+	} else if (win_reason == WIN_ENEMY_KILL) {
+		multi_vram_buffer_horz("ENEMY SEEKER KILLED", 19, NTADR_A(5, 14));
 	}
 	// say who won
 	// draw on screen, probably an unrle eventually for this game

@@ -60,6 +60,7 @@ unsigned char ai_counter;
 unsigned char current_player; // tracks which player is currently being processed
 unsigned char team1_score; // score for team 1 (players 1 & 2)
 unsigned char team2_score; // score for team 2 (players 3 & 4)
+unsigned char win_reason; // tracks how the game was won
 
 #pragma bss-name(push, "BSS")
 unsigned char consumed_dots[128]; // tracks which dots have been consumed (8 bits per byte = 1024 bits)
@@ -86,7 +87,7 @@ struct BoxGuy GenericBoxGuy;
 struct BoxGuy BoxGuy1 = {0x4000,0x2800};
 struct BoxGuy BoxGuy2 = {0x8000,0x3000};
 struct BoxGuy BoxGuy3 = {0xA000,0x3000};
-struct BoxGuy BoxGuy4 = {0xC000,0x3000};
+struct BoxGuy BoxGuy4 = {0xC000,0x4000};
 
 #define HERO_WIDTH 6
 #define HERO_HEIGHT 6
@@ -102,6 +103,12 @@ enum
 enum{
 	ONETWO_WINNER,
 	THREEFOUR_WINNER
+};
+
+enum{
+	WIN_DOTS,
+	WIN_FRIENDLY_FIRE,
+	WIN_ENEMY_KILL
 };
 
 
