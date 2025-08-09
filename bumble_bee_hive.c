@@ -47,8 +47,7 @@ void main(void)
 		{
 			gameover_loop();
 		}
-		
-	}
+	} 
 }
 
 void load_room(void)
@@ -413,32 +412,26 @@ char sprite_collision()
 
 
 void debug_extras(void){
-	// Display team scores
-	one_vram_buffer(0x54, NTADR_A(6, 1));  // 'T'
-	one_vram_buffer(0x45, NTADR_A(7, 1));  // 'E'
-	one_vram_buffer(0x41, NTADR_A(8, 1));  // 'A'
-	one_vram_buffer(0x4D, NTADR_A(9, 1));  // 'M'
-	one_vram_buffer(0x31, NTADR_A(10, 1)); // '1'
-	one_vram_buffer(0x3A, NTADR_A(11, 1)); // ':'
-	
 	// Display team 1 score (2 digits)
 	temp1 = (team1_score / 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(12, 1));
+	one_vram_buffer(temp1, NTADR_A(6, 1));
 	temp1 = (team1_score % 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(13, 1));
-	
-	one_vram_buffer(0x54, NTADR_A(15, 1));  // 'T'
-	one_vram_buffer(0x45, NTADR_A(16, 1));  // 'E'
-	one_vram_buffer(0x41, NTADR_A(17, 1));  // 'A'
-	one_vram_buffer(0x4D, NTADR_A(18, 1));  // 'M'
-	one_vram_buffer(0x32, NTADR_A(19, 1));  // '2'
-	one_vram_buffer(0x3A, NTADR_A(20, 1));  // ':'
-	
+	one_vram_buffer(temp1, NTADR_A(7, 1));
+
+
+	//Timer
+	temp1 = (game_timer / 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(15, 1));
+	temp1 = (game_timer % 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(16, 1));
+
+
+
 	// Display team 2 score (2 digits)
 	temp1 = (team2_score / 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(21, 1));
+	one_vram_buffer(temp1, NTADR_A(23, 1));
 	temp1 = (team2_score % 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(22, 1));
+	one_vram_buffer(temp1, NTADR_A(24, 1));
 }
 
 void read_controllers(void){
@@ -487,6 +480,26 @@ void game_loop(void){
 
 		// 1. INCREMENT GLOBAL COUNTERS
 		frame_counter++;
+		game_frame_timer++;
+		if(game_frame_timer % 60 == 0) // every 60 frames
+		{
+			game_frame_timer = 0; // reset the frame timer
+			game_timer--;
+			if (game_timer == 0) {
+				// time's up, check scores
+				if (team1_score > team2_score) {
+					winner = ONETWO_WINNER;
+					win_reason = WIN_TIME_UP;
+				} else if (team2_score > team1_score) {
+					winner = THREEFOUR_WINNER;
+					win_reason = WIN_TIME_UP;
+				} else {
+					winner = TIE_WINNER;
+					win_reason = WIN_TIME_UP;
+				}
+				init_gameover_loop();
+			}
+		}
 		ai_counter++;
 
 		// 2.  READ CONTROLLER
@@ -671,6 +684,7 @@ void init_game_loop(void){
 	// Initialize scores
 	team1_score = 0;
 	team2_score = 0;
+	game_timer = GAME_LENGTH;
 	win_reason = WIN_DOTS; // default
 	// Initialize consumed dots tracking
 	for (index = 0; index < 128; index++) {
@@ -746,12 +760,12 @@ void init_gameover_loop(void){
 		multi_vram_buffer_horz("FRIENDLY FIRE KILL", 18, NTADR_A(6, 14));
 	} else if (win_reason == WIN_ENEMY_KILL) {
 		multi_vram_buffer_horz("ENEMY SEEKER KILLED", 19, NTADR_A(5, 14));
-	}
+	} 
 	// say who won
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
-
+ 
 	ppu_on_all(); // turn on screen
 }
 
@@ -761,5 +775,5 @@ void init_system(void){
 	set_vram_buffer();
 	bank_spr(1);
 	set_scroll_y(0xff); //shift the bg down one pixel
-	ppu_on_all(); // turn on screen
+	ppu_on_all(); // turn on screenxw
 }

@@ -1,5 +1,5 @@
 #define SPEED 0x0A0
-
+#define GAME_LENGTH 40 // 40 seconds
 
 #pragma bss-name(push, "ZEROPAGE")
 
@@ -12,6 +12,8 @@ unsigned char pad3;
 unsigned char pad4;
 unsigned char game_mode;
 unsigned char winner;
+unsigned char game_frame_timer;
+unsigned char game_timer;
 
 unsigned char collision;
 unsigned char collision_L;
@@ -102,13 +104,15 @@ enum
 
 enum{
 	ONETWO_WINNER,
-	THREEFOUR_WINNER
+	THREEFOUR_WINNER,
+	TIE_WINNER
 };
 
 enum{
 	WIN_DOTS,
 	WIN_FRIENDLY_FIRE,
-	WIN_ENEMY_KILL
+	WIN_ENEMY_KILL,
+	WIN_TIME_UP
 };
 
 
