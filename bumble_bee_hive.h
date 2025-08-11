@@ -54,6 +54,7 @@ unsigned char temp_y;
 unsigned char temp_x2;
 unsigned char temp_y2;
 unsigned int largeindex;
+unsigned char song;
 
 unsigned char bit_index;
 unsigned char bit_offset;
@@ -113,6 +114,15 @@ enum{
 	WIN_FRIENDLY_FIRE,
 	WIN_ENEMY_KILL,
 	WIN_TIME_UP
+};
+
+enum{
+	SFX_TEAM1_DOT_COLLECT,
+	SFX_TEAM2_DOT_COLLECT,
+};
+
+enum {
+	SONG_MAIN_SONG
 };
 
 

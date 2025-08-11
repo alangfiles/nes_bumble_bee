@@ -363,6 +363,7 @@ void check_tile_and_collect()
 				one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
 						// update team score
 		if (current_player == 1) {
+			sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 			team1_score++;
 			// Check for win condition
 			if (team1_score >= 100) {
@@ -372,6 +373,7 @@ void check_tile_and_collect()
 				return;
 			}
 		} else if (current_player == 3) {
+			sfx_play(SFX_TEAM2_DOT_COLLECT, 0);
 			team2_score++;
 			// Check for win condition
 			if (team2_score >= 100) {
@@ -713,6 +715,8 @@ void init_game_loop(void){
 
 	ppu_on_all(); // turn on screen
 
+	song = SONG_MAIN_SONG;
+	music_play(song); 
 }
 
 void init_title_loop(void){
@@ -734,6 +738,7 @@ void init_title_loop(void){
 }
 
 void init_gameover_loop(void){
+	music_stop();
 	game_mode = MODE_GAMEOVER;   
 	ppu_off(); // screen off
 	// load the title palettes

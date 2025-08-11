@@ -86,7 +86,7 @@ PPU_CTRL_VAR: 		.res 1
 PPU_CTRL_VAR1: 		.res 1
 PPU_MASK_VAR: 		.res 1
 RAND_SEED: 			.res 2
-FT_TEMP: 			.res 3
+;FT_TEMP: 			.res 3
 
 TEMP: 				.res 11
 SPRID:				.res 1
@@ -260,20 +260,20 @@ detectNTSC:
 	.include "LIB/neslib.s"
 	.include "LIB/nesdoug.s"
 	.include "LIB/nesfourscore.s"
-	.include "MUSIC/famitone2.s"
+	.include "MUSIC/famitone5.s"
 	
 	
 	
 .segment "RODATA"
 
 music_data:
-;	.include "music.s"
+	.include "MUSIC/HoneyHeist.s"
 
 
 
 	.if(FT_SFX_ENABLE)
 sounds_data:
-;	.include "sounds.s"
+	.include "MUSIC/HoneyHeistFX.s"
 	.endif
 
 	
