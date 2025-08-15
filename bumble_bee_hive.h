@@ -67,6 +67,11 @@ unsigned char win_reason; // tracks how the game was won
 
 #pragma bss-name(push, "BSS")
 unsigned char consumed_dots[128]; // tracks which dots have been consumed (8 bits per byte = 1024 bits)
+
+// Title screen variables
+unsigned char start_hold_timer; // Timer for holding start button
+unsigned char start_held; // Whether start is currently held
+
 #include "tinyhoney.h"
 
 
@@ -119,6 +124,13 @@ enum{
 enum{
 	SFX_TEAM1_DOT_COLLECT,
 	SFX_TEAM2_DOT_COLLECT,
+	SFX_TEAM1_WIN,
+	SFX_TEAM2_WIN,
+	SFX_DRAW_GAME,
+	SFX_BLITZ,
+	SFX_POWERUP,
+	SFX_DUCKEATSBEE,
+	SFX_START
 };
 
 enum {
@@ -165,6 +177,7 @@ const unsigned char metatiles1[]={
 // PROTOTYPES
 void load_room(void);
 void draw_sprites(void);
+void draw_title_sprites(void);
 void movement(void);	
 void check_tile_and_collect(void);
 void initialize_collision_map(void);

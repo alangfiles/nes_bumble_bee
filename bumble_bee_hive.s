@@ -34,14 +34,55 @@
 	.import		_flush_vram_update2
 	.import		_pad_poll_4score_1_3
 	.import		_pad_poll_4score_2_4
-	.export		_Bee1
-	.export		_Bee2
-	.export		_Bee3
-	.export		_Bee4
-	.export		_SmallBee1
-	.export		_SmallBee2
-	.export		_SmallBee3
-	.export		_SmallBee4
+	.export		_gamesprites_smallbee1left0_data
+	.export		_gamesprites_smallbee2left0_data
+	.export		_gamesprites_smallbeeleft1_data
+	.export		_gamesprites_smallbeeleft2_data
+	.export		_gamesprites_smallbeeright0_data
+	.export		_gamesprites_smallbeeright1_data
+	.export		_gamesprites_smallbeeright2_data
+	.export		_gamesprites_bigbeeleft0_data
+	.export		_gamesprites_bigbeeleft1_data
+	.export		_gamesprites_bigbeeleft2_data
+	.export		_gamesprites_bigbeeright0_data
+	.export		_gamesprites_bigbeeright1_data
+	.export		_gamesprites_bigbeeright2_data
+	.export		_gamesprites_smallduck1left0_data
+	.export		_gamesprites_smallduck2left0_data
+	.export		_gamesprites_smallduckleft1_data
+	.export		_gamesprites_smallduckleft2_data
+	.export		_gamesprites_smallduckleft0__1_data
+	.export		_gamesprites_smallduckleft1__1_data
+	.export		_gamesprites_smallduckleft2__1_data
+	.export		_gamesprites_big3_data
+	.export		_gamesprites_Big2_data
+	.export		_gamesprites_big1_data
+	.export		_gamesprites_blank_data
+	.export		_gamesprites_blitz0_data
+	.export		_gamesprites_blitz1_data
+	.export		_gamesprites_blitz2_data
+	.export		_gamesprites_blitz3_data
+	.export		_gamesprites_blitz4_data
+	.export		_gamesprites_blitz5_data
+	.export		_gamesprites_blitz6_data
+	.export		_gamesprites_blitz7_data
+	.export		_gamesprites_blitz8_data
+	.export		_gamesprites_blitz9_data
+	.export		_gamesprites_blitz10_data
+	.export		_gamesprites_blitz11_data
+	.export		_gamesprites_blitz12_data
+	.export		_gamesprites_blitz13_data
+	.export		_gamesprites_blitz14_data
+	.export		_gamesprites_blitz15_data
+	.export		_gamesprites_blitz16_data
+	.export		_gamesprites_blitz17_data
+	.export		_gamesprites_blitz18_data
+	.export		_gamesprites_blitz19_data
+	.export		_gamesprites_blitz20_data
+	.export		_gamesprites_blitz21_data
+	.export		_gamesprites_blitz23_data
+	.export		_gamesprites_blitz24_data
+	.export		_gamesprites_blitz25_data
 	.export		_doublepad
 	.export		_generic_pad
 	.export		_pad1
@@ -95,6 +136,8 @@
 	.export		_team2_score
 	.export		_win_reason
 	.export		_consumed_dots
+	.export		_start_hold_timer
+	.export		_start_held
 	.export		_tinyhoney
 	.export		_Generic
 	.export		_GenericBoxGuy
@@ -107,6 +150,7 @@
 	.export		_metatiles1
 	.export		_load_room
 	.export		_draw_sprites
+	.export		_draw_title_sprites
 	.export		_movement
 	.export		_check_tile_and_collect
 	.export		_debug_extras
@@ -149,101 +193,5995 @@ _BoxGuy4:
 
 .segment	"RODATA"
 
-_Bee1:
-	.byte	$00
-	.byte	$00
-	.byte	$10
-	.byte	$00
-	.byte	$08
-	.byte	$00
-	.byte	$11
-	.byte	$00
-	.byte	$00
-	.byte	$08
-	.byte	$20
-	.byte	$00
-	.byte	$08
-	.byte	$08
-	.byte	$21
-	.byte	$00
-	.byte	$80
-_Bee2:
-	.byte	$00
-	.byte	$00
-	.byte	$10
-	.byte	$01
-	.byte	$08
-	.byte	$00
-	.byte	$11
-	.byte	$01
-	.byte	$00
-	.byte	$08
-	.byte	$20
-	.byte	$01
-	.byte	$08
-	.byte	$08
-	.byte	$21
-	.byte	$01
-	.byte	$80
-_Bee3:
-	.byte	$00
-	.byte	$00
-	.byte	$10
-	.byte	$02
-	.byte	$08
-	.byte	$00
-	.byte	$11
-	.byte	$02
-	.byte	$00
-	.byte	$08
-	.byte	$20
-	.byte	$02
-	.byte	$08
-	.byte	$08
-	.byte	$21
-	.byte	$02
-	.byte	$80
-_Bee4:
-	.byte	$00
-	.byte	$00
-	.byte	$10
-	.byte	$03
-	.byte	$08
-	.byte	$00
-	.byte	$11
-	.byte	$03
-	.byte	$00
-	.byte	$08
-	.byte	$20
-	.byte	$03
-	.byte	$08
-	.byte	$08
-	.byte	$21
-	.byte	$03
-	.byte	$80
-_SmallBee1:
+_gamesprites_smallbee1left0_data:
 	.byte	$00
 	.byte	$00
 	.byte	$27
 	.byte	$00
-	.byte	$80
-_SmallBee2:
+	.byte	$08
 	.byte	$00
-	.byte	$00
-	.byte	$1A
+	.byte	$28
 	.byte	$00
 	.byte	$80
-_SmallBee3:
+_gamesprites_smallbee2left0_data:
 	.byte	$00
 	.byte	$00
 	.byte	$27
-	.byte	$02
+	.byte	$01
+	.byte	$08
+	.byte	$00
+	.byte	$28
+	.byte	$01
 	.byte	$80
-_SmallBee4:
+_gamesprites_smallbeeleft1_data:
 	.byte	$00
 	.byte	$00
-	.byte	$1A
-	.byte	$02
+	.byte	$29
+	.byte	$00
+	.byte	$08
+	.byte	$00
+	.byte	$2A
+	.byte	$00
+	.byte	$80
+_gamesprites_smallbeeleft2_data:
+	.byte	$00
+	.byte	$00
+	.byte	$2B
+	.byte	$00
+	.byte	$08
+	.byte	$00
+	.byte	$2C
+	.byte	$00
+	.byte	$80
+_gamesprites_smallbeeright0_data:
+	.byte	$00
+	.byte	$00
+	.byte	$27
+	.byte	$40
+	.byte	$F8
+	.byte	$00
+	.byte	$28
+	.byte	$40
+	.byte	$80
+_gamesprites_smallbeeright1_data:
+	.byte	$00
+	.byte	$00
+	.byte	$29
+	.byte	$40
+	.byte	$F8
+	.byte	$00
+	.byte	$2A
+	.byte	$40
+	.byte	$80
+_gamesprites_smallbeeright2_data:
+	.byte	$00
+	.byte	$00
+	.byte	$2B
+	.byte	$40
+	.byte	$F8
+	.byte	$00
+	.byte	$2C
+	.byte	$40
+	.byte	$80
+_gamesprites_bigbeeleft0_data:
+	.byte	$00
+	.byte	$00
+	.byte	$47
+	.byte	$00
+	.byte	$00
+	.byte	$F8
+	.byte	$37
+	.byte	$00
+	.byte	$08
+	.byte	$00
+	.byte	$48
+	.byte	$00
+	.byte	$08
+	.byte	$F8
+	.byte	$38
+	.byte	$00
+	.byte	$80
+_gamesprites_bigbeeleft1_data:
+	.byte	$00
+	.byte	$00
+	.byte	$49
+	.byte	$00
+	.byte	$00
+	.byte	$F8
+	.byte	$39
+	.byte	$00
+	.byte	$08
+	.byte	$F8
+	.byte	$3A
+	.byte	$00
+	.byte	$08
+	.byte	$00
+	.byte	$4A
+	.byte	$00
+	.byte	$80
+_gamesprites_bigbeeleft2_data:
+	.byte	$00
+	.byte	$00
+	.byte	$4B
+	.byte	$00
+	.byte	$00
+	.byte	$F8
+	.byte	$3B
+	.byte	$00
+	.byte	$08
+	.byte	$F8
+	.byte	$3C
+	.byte	$00
+	.byte	$08
+	.byte	$00
+	.byte	$4C
+	.byte	$00
+	.byte	$80
+_gamesprites_bigbeeright0_data:
+	.byte	$08
+	.byte	$00
+	.byte	$47
+	.byte	$40
+	.byte	$08
+	.byte	$F8
+	.byte	$37
+	.byte	$40
+	.byte	$00
+	.byte	$00
+	.byte	$48
+	.byte	$40
+	.byte	$00
+	.byte	$F8
+	.byte	$38
+	.byte	$40
+	.byte	$80
+_gamesprites_bigbeeright1_data:
+	.byte	$08
+	.byte	$00
+	.byte	$49
+	.byte	$40
+	.byte	$08
+	.byte	$F8
+	.byte	$39
+	.byte	$40
+	.byte	$00
+	.byte	$F8
+	.byte	$3A
+	.byte	$40
+	.byte	$00
+	.byte	$00
+	.byte	$4A
+	.byte	$40
+	.byte	$80
+_gamesprites_bigbeeright2_data:
+	.byte	$08
+	.byte	$00
+	.byte	$4B
+	.byte	$40
+	.byte	$08
+	.byte	$F8
+	.byte	$3B
+	.byte	$40
+	.byte	$00
+	.byte	$F8
+	.byte	$3C
+	.byte	$40
+	.byte	$00
+	.byte	$00
+	.byte	$4C
+	.byte	$40
+	.byte	$80
+_gamesprites_smallduck1left0_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0C
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$1C
+	.byte	$00
+	.byte	$80
+_gamesprites_smallduck2left0_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0C
+	.byte	$01
+	.byte	$00
+	.byte	$08
+	.byte	$1C
+	.byte	$01
+	.byte	$80
+_gamesprites_smallduckleft1_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0D
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$1D
+	.byte	$00
+	.byte	$80
+_gamesprites_smallduckleft2_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0B
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$1C
+	.byte	$40
+	.byte	$80
+_gamesprites_smallduckleft0__1_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0C
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$1C
+	.byte	$00
+	.byte	$80
+_gamesprites_smallduckleft1__1_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0D
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$1D
+	.byte	$00
+	.byte	$80
+_gamesprites_smallduckleft2__1_data:
+	.byte	$00
+	.byte	$00
+	.byte	$0B
+	.byte	$00
+	.byte	$00
+	.byte	$08
+	.byte	$1C
+	.byte	$40
+	.byte	$80
+_gamesprites_big3_data:
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$06
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$06
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$15
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$07
+	.byte	$83
+	.byte	$10
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_Big2_data:
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$06
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$07
+	.byte	$83
+	.byte	$08
+	.byte	$10
+	.byte	$06
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$07
+	.byte	$43
+	.byte	$00
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$08
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_big1_data:
+	.byte	$08
+	.byte	$08
+	.byte	$15
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$08
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blank_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz0_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz1_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$18
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$20
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz2_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$18
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz3_data:
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$08
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$10
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz4_data:
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$00
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$08
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$20
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz5_data:
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$F8
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$18
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz6_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$07
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$15
+	.byte	$43
+	.byte	$F0
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$10
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz7_data:
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$F0
+	.byte	$10
+	.byte	$05
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$08
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz8_data:
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$00
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz9_data:
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F8
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F8
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$80
+_gamesprites_blitz10_data:
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$16
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz11_data:
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$06
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz12_data:
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz13_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz14_data:
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$05
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$20
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz15_data:
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$18
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$17
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz16_data:
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$10
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F0
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$05
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz17_data:
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$08
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$20
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz18_data:
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$20
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$05
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$18
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz19_data:
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$17
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$18
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$16
+	.byte	$C3
+	.byte	$F8
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$10
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$10
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz20_data:
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$10
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$F0
+	.byte	$00
+	.byte	$05
+	.byte	$43
+	.byte	$00
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$08
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$08
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz21_data:
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$08
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$00
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$00
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz23_data:
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$16
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$05
+	.byte	$83
+	.byte	$00
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$07
+	.byte	$C3
+	.byte	$F8
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz24_data:
+	.byte	$F0
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F8
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$F0
+	.byte	$00
+	.byte	$06
+	.byte	$43
+	.byte	$F0
+	.byte	$20
+	.byte	$06
+	.byte	$43
+	.byte	$80
+_gamesprites_blitz25_data:
+	.byte	$F8
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$08
+	.byte	$03
+	.byte	$43
+	.byte	$08
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$20
+	.byte	$03
+	.byte	$43
+	.byte	$10
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F0
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$F8
+	.byte	$03
+	.byte	$03
+	.byte	$F8
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$00
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$10
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$28
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$10
+	.byte	$03
+	.byte	$43
+	.byte	$18
+	.byte	$20
+	.byte	$03
+	.byte	$03
+	.byte	$18
+	.byte	$08
+	.byte	$03
+	.byte	$03
+	.byte	$20
+	.byte	$00
+	.byte	$03
+	.byte	$83
+	.byte	$F0
+	.byte	$08
+	.byte	$16
+	.byte	$83
+	.byte	$F0
+	.byte	$10
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$20
+	.byte	$05
+	.byte	$C3
+	.byte	$F0
+	.byte	$18
+	.byte	$03
+	.byte	$03
+	.byte	$F0
+	.byte	$00
+	.byte	$07
+	.byte	$03
+	.byte	$08
+	.byte	$00
+	.byte	$03
+	.byte	$03
+	.byte	$08
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$10
+	.byte	$00
+	.byte	$03
+	.byte	$43
+	.byte	$20
+	.byte	$20
+	.byte	$03
+	.byte	$C3
+	.byte	$F8
+	.byte	$00
+	.byte	$03
+	.byte	$43
+	.byte	$F8
+	.byte	$20
+	.byte	$03
+	.byte	$43
 	.byte	$80
 _tinyhoney:
 	.byte	$A7
@@ -1342,28 +7280,33 @@ _blank_tiles:
 	.byte	$B8
 	.byte	$B9
 	.byte	$BA
-L07B3:
+L1F25:
+	.byte	$55,$53,$45,$20,$55,$50,$20,$54,$4F,$20,$4D,$4F,$56,$45,$20,$53
+	.byte	$50,$52,$49,$54,$45,$53,$00
+L1F1B:
+	.byte	$48,$4F,$4C,$44,$20,$53,$54,$41,$52,$54,$20,$33,$20,$53,$45,$43
+	.byte	$4F,$4E,$44,$53,$00
+L1F07:
 	.byte	$42,$52,$49,$41,$4E,$20,$41,$4E,$44,$20,$41,$4C,$41,$4E,$20,$47
 	.byte	$41,$4D,$45,$53,$00
-L081B:
+L1F8D:
 	.byte	$45,$4E,$45,$4D,$59,$20,$53,$45,$45,$4B,$45,$52,$20,$4B,$49,$4C
 	.byte	$4C,$45,$44,$00
-L0801:
-	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$31,$30,$30,$20,$44,$4F
-	.byte	$54,$53,$00
-L080E:
+L1F80:
 	.byte	$46,$52,$49,$45,$4E,$44,$4C,$59,$20,$46,$49,$52,$45,$20,$4B,$49
 	.byte	$4C,$4C,$00
-L07F5:
+L1F73:
+	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$31,$30,$30,$20,$44,$4F
+	.byte	$54,$53,$00
+L1F67:
 	.byte	$54,$45,$41,$4D,$20,$32,$20,$57,$49,$4E,$53,$21,$00
-L07E8:
+L1F5A:
 	.byte	$54,$45,$41,$4D,$20,$31,$20,$57,$49,$4E,$53,$21,$00
-L0825:
+L1F97:
 	.byte	$50,$52,$45,$53,$53,$20,$53,$54,$41,$52,$54,$00
-L07BD:
+L1F11:
 	.byte	$48,$4F,$4E,$45,$59,$20,$48,$45,$49,$53,$54,$00
-L07C7	:=	L0825+0
-L07DC:
+L1F4E:
 	.byte	$47,$41,$4D,$45,$20,$4F,$56,$45,$52,$00
 
 .segment	"BSS"
@@ -1476,6 +7419,10 @@ _win_reason:
 .segment	"BSS"
 _consumed_dots:
 	.res	128,$00
+_start_hold_timer:
+	.res	1,$00
+_start_held:
+	.res	1,$00
 _Generic:
 	.res	4,$00
 _GenericBoxGuy:
@@ -1507,9 +7454,9 @@ _GenericBoxGuy:
 	lda     #$00
 	sta     _largeindex
 	sta     _largeindex+1
-L04B2:	ldx     _largeindex+1
+L1B8F:	ldx     _largeindex+1
 	cpx     #$04
-	bcs     L04B3
+	bcs     L1B90
 ;
 ; vram_put(tinyhoney[largeindex]);
 ;
@@ -1530,13 +7477,13 @@ L04B2:	ldx     _largeindex+1
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
 ;
 	inc     _largeindex
-	bne     L04B2
+	bne     L1B8F
 	inc     _largeindex+1
-	jmp     L04B2
+	jmp     L1B8F
 ;
 ; ppu_on_all();
 ;
-L04B3:	jmp     _ppu_on_all
+L1B90:	jmp     _ppu_on_all
 
 .endproc
 
@@ -1568,7 +7515,7 @@ L04B3:	jmp     _ppu_on_all
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L0838
+	bne     L1FAA
 ;
 ; temp_x = 1;
 ;
@@ -1577,25 +7524,25 @@ L04B3:	jmp     _ppu_on_all
 ;
 ; if (temp_y == 0)
 ;
-L0838:	lda     _temp_y
-	bne     L04CA
+L1FAA:	lda     _temp_y
+	bne     L1BA7
 ;
 ; temp_y = 1;
 ;
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, SmallBee1);
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
 ;
-L04CA:	jsr     decsp2
+L1BA7:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_SmallBee1)
-	ldx     #>(_SmallBee1)
+	lda     #<(_gamesprites_smallbee1left0_data)
+	ldx     #>(_gamesprites_smallbee1left0_data)
 	jsr     _oam_meta_spr
 ;
 ; temp_x = BoxGuy2.x >> 8;
@@ -1611,7 +7558,7 @@ L04CA:	jsr     decsp2
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L0839
+	bne     L1FAB
 ;
 ; temp_x = 1;
 ;
@@ -1620,25 +7567,25 @@ L04CA:	jsr     decsp2
 ;
 ; if (temp_y == 0)
 ;
-L0839:	lda     _temp_y
-	bne     L04DA
+L1FAB:	lda     _temp_y
+	bne     L1BB7
 ;
 ; temp_y = 1;
 ;
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, SmallBee2);
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
 ;
-L04DA:	jsr     decsp2
+L1BB7:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_SmallBee2)
-	ldx     #>(_SmallBee2)
+	lda     #<(_gamesprites_smallduck1left0_data)
+	ldx     #>(_gamesprites_smallduck1left0_data)
 	jsr     _oam_meta_spr
 ;
 ; temp_x = BoxGuy3.x >> 8;
@@ -1654,7 +7601,7 @@ L04DA:	jsr     decsp2
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L083A
+	bne     L1FAC
 ;
 ; temp_x = 1;
 ;
@@ -1663,25 +7610,25 @@ L04DA:	jsr     decsp2
 ;
 ; if (temp_y == 0)
 ;
-L083A:	lda     _temp_y
-	bne     L04EA
+L1FAC:	lda     _temp_y
+	bne     L1BC7
 ;
 ; temp_y = 1;
 ;
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, SmallBee3);
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
 ;
-L04EA:	jsr     decsp2
+L1BC7:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_SmallBee3)
-	ldx     #>(_SmallBee3)
+	lda     #<(_gamesprites_smallbee2left0_data)
+	ldx     #>(_gamesprites_smallbee2left0_data)
 	jsr     _oam_meta_spr
 ;
 ; temp_x = BoxGuy4.x >> 8;
@@ -1697,7 +7644,7 @@ L04EA:	jsr     decsp2
 ; if (temp_x == 0)
 ;
 	lda     _temp_x
-	bne     L083B
+	bne     L1FAD
 ;
 ; temp_x = 1;
 ;
@@ -1706,25 +7653,190 @@ L04EA:	jsr     decsp2
 ;
 ; if (temp_y == 0)
 ;
-L083B:	lda     _temp_y
-	bne     L04FA
+L1FAD:	lda     _temp_y
+	bne     L1BD7
 ;
 ; temp_y = 1;
 ;
 	lda     #$01
 	sta     _temp_y
 ;
-; oam_meta_spr(temp_x, temp_y, SmallBee4);
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 ;
-L04FA:	jsr     decsp2
+L1BD7:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
 	lda     _temp_y
 	dey
 	sta     (sp),y
-	lda     #<(_SmallBee4)
-	ldx     #>(_SmallBee4)
+	lda     #<(_gamesprites_smallduck2left0_data)
+	ldx     #>(_gamesprites_smallduck2left0_data)
+	jmp     _oam_meta_spr
+
+.endproc
+
+; ---------------------------------------------------------------
+; void __near__ draw_title_sprites (void)
+; ---------------------------------------------------------------
+
+.segment	"CODE"
+
+.proc	_draw_title_sprites: near
+
+.segment	"CODE"
+
+;
+; oam_clear();
+;
+	jsr     _oam_clear
+;
+; temp_x = BoxGuy1.x >> 8;
+;
+	lda     _BoxGuy1+1
+	sta     _temp_x
+;
+; temp_y = BoxGuy1.y >> 8;
+;
+	lda     _BoxGuy1+3
+	sta     _temp_y
+;
+; if (temp_x == 0) temp_x = 1;
+;
+	lda     _temp_x
+	bne     L1FAE
+	lda     #$01
+	sta     _temp_x
+;
+; if (temp_y == 0) temp_y = 1;
+;
+L1FAE:	lda     _temp_y
+	bne     L1BE9
+	lda     #$01
+	sta     _temp_y
+;
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+;
+L1BE9:	jsr     decsp2
+	lda     _temp_x
+	ldy     #$01
+	sta     (sp),y
+	lda     _temp_y
+	dey
+	sta     (sp),y
+	lda     #<(_gamesprites_smallbee1left0_data)
+	ldx     #>(_gamesprites_smallbee1left0_data)
+	jsr     _oam_meta_spr
+;
+; temp_x = BoxGuy2.x >> 8;
+;
+	lda     _BoxGuy2+1
+	sta     _temp_x
+;
+; temp_y = BoxGuy2.y >> 8;
+;
+	lda     _BoxGuy2+3
+	sta     _temp_y
+;
+; if (temp_x == 0) temp_x = 1;
+;
+	lda     _temp_x
+	bne     L1FAF
+	lda     #$01
+	sta     _temp_x
+;
+; if (temp_y == 0) temp_y = 1;
+;
+L1FAF:	lda     _temp_y
+	bne     L1BF9
+	lda     #$01
+	sta     _temp_y
+;
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+;
+L1BF9:	jsr     decsp2
+	lda     _temp_x
+	ldy     #$01
+	sta     (sp),y
+	lda     _temp_y
+	dey
+	sta     (sp),y
+	lda     #<(_gamesprites_smallduck1left0_data)
+	ldx     #>(_gamesprites_smallduck1left0_data)
+	jsr     _oam_meta_spr
+;
+; temp_x = BoxGuy3.x >> 8;
+;
+	lda     _BoxGuy3+1
+	sta     _temp_x
+;
+; temp_y = BoxGuy3.y >> 8;
+;
+	lda     _BoxGuy3+3
+	sta     _temp_y
+;
+; if (temp_x == 0) temp_x = 1;
+;
+	lda     _temp_x
+	bne     L1FB0
+	lda     #$01
+	sta     _temp_x
+;
+; if (temp_y == 0) temp_y = 1;
+;
+L1FB0:	lda     _temp_y
+	bne     L1C09
+	lda     #$01
+	sta     _temp_y
+;
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+;
+L1C09:	jsr     decsp2
+	lda     _temp_x
+	ldy     #$01
+	sta     (sp),y
+	lda     _temp_y
+	dey
+	sta     (sp),y
+	lda     #<(_gamesprites_smallbee2left0_data)
+	ldx     #>(_gamesprites_smallbee2left0_data)
+	jsr     _oam_meta_spr
+;
+; temp_x = BoxGuy4.x >> 8;
+;
+	lda     _BoxGuy4+1
+	sta     _temp_x
+;
+; temp_y = BoxGuy4.y >> 8;
+;
+	lda     _BoxGuy4+3
+	sta     _temp_y
+;
+; if (temp_x == 0) temp_x = 1;
+;
+	lda     _temp_x
+	bne     L1FB1
+	lda     #$01
+	sta     _temp_x
+;
+; if (temp_y == 0) temp_y = 1;
+;
+L1FB1:	lda     _temp_y
+	bne     L1C19
+	lda     #$01
+	sta     _temp_y
+;
+; oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+;
+L1C19:	jsr     decsp2
+	lda     _temp_x
+	ldy     #$01
+	sta     (sp),y
+	lda     _temp_y
+	dey
+	sta     (sp),y
+	lda     #<(_gamesprites_smallduck2left0_data)
+	ldx     #>(_gamesprites_smallduck2left0_data)
 	jmp     _oam_meta_spr
 
 .endproc
@@ -1751,7 +7863,7 @@ L04FA:	jsr     decsp2
 ;
 	lda     _generic_pad
 	and     #$02
-	beq     L0842
+	beq     L1FB8
 ;
 ; hero_velocity_x = -SPEED;
 ;
@@ -1760,11 +7872,11 @@ L04FA:	jsr     decsp2
 ;
 ; else if (generic_pad & PAD_RIGHT)
 ;
-	jmp     L0844
-L0842:	lda     _generic_pad
+	jmp     L1FBA
+L1FB8:	lda     _generic_pad
 	ldx     #$00
 	and     #$01
-	beq     L0844
+	beq     L1FBA
 ;
 ; hero_velocity_x = SPEED;
 ;
@@ -1772,7 +7884,7 @@ L0842:	lda     _generic_pad
 ;
 ; hero_velocity_x = 0;
 ;
-L0844:	sta     _hero_velocity_x
+L1FBA:	sta     _hero_velocity_x
 	stx     _hero_velocity_x+1
 ;
 ; GenericBoxGuy.x += hero_velocity_x;
@@ -1791,7 +7903,7 @@ L0844:	sta     _hero_velocity_x
 	cmp     #$01
 	lda     _GenericBoxGuy+1
 	sbc     #$F0
-	bcc     L0847
+	bcc     L1FBD
 ;
 ; if (old_x >= 0x8000)
 ;
@@ -1801,7 +7913,7 @@ L0844:	sta     _hero_velocity_x
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L0846
+	bcc     L1FBC
 ;
 ; GenericBoxGuy.x = 0xf000; // max right
 ;
@@ -1809,12 +7921,12 @@ L0844:	sta     _hero_velocity_x
 ;
 ; GenericBoxGuy.x = 0x0000; // max left
 ;
-L0846:	sta     _GenericBoxGuy
+L1FBC:	sta     _GenericBoxGuy
 	stx     _GenericBoxGuy+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L0847:	lda     _GenericBoxGuy+1
+L1FBD:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -1835,7 +7947,7 @@ L0847:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_x+1
 	cpx     #$80
-	bcc     L0524
+	bcc     L1C43
 ;
 ; if (bg_coll_L())
 ;
@@ -1843,20 +7955,20 @@ L0847:	lda     _GenericBoxGuy+1
 ;
 ; else if (hero_velocity_x > 0)
 ;
-	jmp     L0856
-L0524:	lda     _hero_velocity_x
+	jmp     L1FCC
+L1C43:	lda     _hero_velocity_x
 	cmp     #$01
 	lda     _hero_velocity_x+1
 	sbc     #$00
-	bvs     L052D
+	bvs     L1C4C
 	eor     #$80
-L052D:	bpl     L052E
+L1C4C:	bpl     L1C4D
 ;
 ; if (bg_coll_R())
 ;
 	jsr     _bg_coll_R
-L0856:	tax
-	beq     L052E
+L1FCC:	tax
+	beq     L1C4D
 ;
 ; GenericBoxGuy.x = old_x; // revert to old position
 ;
@@ -1867,7 +7979,7 @@ L0856:	tax
 ;
 ; old_y = GenericBoxGuy.y;
 ;
-L052E:	lda     _GenericBoxGuy+2+1
+L1C4D:	lda     _GenericBoxGuy+2+1
 	sta     _old_y+1
 	lda     _GenericBoxGuy+2
 	sta     _old_y
@@ -1876,7 +7988,7 @@ L052E:	lda     _GenericBoxGuy+2+1
 ;
 	lda     _generic_pad
 	and     #$08
-	beq     L0848
+	beq     L1FBE
 ;
 ; hero_velocity_y = -SPEED;
 ;
@@ -1885,11 +7997,11 @@ L052E:	lda     _GenericBoxGuy+2+1
 ;
 ; else if (generic_pad & PAD_DOWN)
 ;
-	jmp     L084A
-L0848:	lda     _generic_pad
+	jmp     L1FC0
+L1FBE:	lda     _generic_pad
 	ldx     #$00
 	and     #$04
-	beq     L084A
+	beq     L1FC0
 ;
 ; hero_velocity_y = SPEED;
 ;
@@ -1897,7 +8009,7 @@ L0848:	lda     _generic_pad
 ;
 ; hero_velocity_y = 0;
 ;
-L084A:	sta     _hero_velocity_y
+L1FC0:	sta     _hero_velocity_y
 	stx     _hero_velocity_y+1
 ;
 ; GenericBoxGuy.y += hero_velocity_y;
@@ -1916,7 +8028,7 @@ L084A:	sta     _hero_velocity_y
 	cmp     #$01
 	lda     _GenericBoxGuy+2+1
 	sbc     #$E0
-	bcc     L084D
+	bcc     L1FC3
 ;
 ; if (old_y >= 0x8000)
 ;
@@ -1926,7 +8038,7 @@ L084A:	sta     _hero_velocity_y
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L084C
+	bcc     L1FC2
 ;
 ; GenericBoxGuy.y = 0xe000; // max down
 ;
@@ -1934,12 +8046,12 @@ L084A:	sta     _hero_velocity_y
 ;
 ; GenericBoxGuy.y = 0x0000; // max up
 ;
-L084C:	sta     _GenericBoxGuy+2
+L1FC2:	sta     _GenericBoxGuy+2
 	stx     _GenericBoxGuy+2+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L084D:	lda     _GenericBoxGuy+1
+L1FC3:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -1951,7 +8063,7 @@ L084D:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_y+1
 	cpx     #$80
-	bcc     L054F
+	bcc     L1C6E
 ;
 ; if (bg_coll_U())
 ;
@@ -1959,20 +8071,20 @@ L084D:	lda     _GenericBoxGuy+1
 ;
 ; else if (hero_velocity_y > 0)
 ;
-	jmp     L0857
-L054F:	lda     _hero_velocity_y
+	jmp     L1FCD
+L1C6E:	lda     _hero_velocity_y
 	cmp     #$01
 	lda     _hero_velocity_y+1
 	sbc     #$00
-	bvs     L0558
+	bvs     L1C77
 	eor     #$80
-L0558:	bpl     L0559
+L1C77:	bpl     L1C78
 ;
 ; if (bg_coll_D())
 ;
 	jsr     _bg_coll_D
-L0857:	tax
-	beq     L0559
+L1FCD:	tax
+	beq     L1C78
 ;
 ; GenericBoxGuy.y = old_y; // revert to old position
 ;
@@ -1983,7 +8095,7 @@ L0857:	tax
 ;
 ; check_tile_and_collect();
 ;
-L0559:	jmp     _check_tile_and_collect
+L1C78:	jmp     _check_tile_and_collect
 
 .endproc
 
@@ -2003,9 +8115,9 @@ L0559:	jmp     _check_tile_and_collect
 	ldx     #$00
 	lda     _current_player
 	cmp     #$01
-	beq     L085D
+	beq     L1FD3
 	cmp     #$03
-	beq     L085D
+	beq     L1FD3
 ;
 ; return; // Chasers cannot collect dots
 ;
@@ -2013,12 +8125,12 @@ L0559:	jmp     _check_tile_and_collect
 ;
 ; temp_x = (Generic.x + 4) >> 3; // get this between 0-30
 ;
-L085D:	lda     _Generic
+L1FD3:	lda     _Generic
 	clc
 	adc     #$04
-	bcc     L05E4
+	bcc     L1D03
 	inx
-L05E4:	jsr     shrax3
+L1D03:	jsr     shrax3
 	sta     _temp_x
 ;
 ; temp_y = (Generic.y + 2) >> 3; // get this between 0-32
@@ -2027,9 +8139,9 @@ L05E4:	jsr     shrax3
 	lda     _Generic+1
 	clc
 	adc     #$02
-	bcc     L05E8
+	bcc     L1D07
 	inx
-L05E8:	jsr     shrax3
+L1D07:	jsr     shrax3
 	sta     _temp_y
 ;
 ; largeindex = (temp_y << 5) + temp_x;
@@ -2043,9 +8155,9 @@ L05E8:	jsr     shrax3
 	ldx     tmp1
 	clc
 	adc     _temp_x
-	bcc     L0858
+	bcc     L1FCE
 	inx
-L0858:	sta     _largeindex
+L1FCE:	sta     _largeindex
 	stx     _largeindex+1
 ;
 ; temp = tinyhoney[largeindex];
@@ -2064,9 +8176,9 @@ L0858:	sta     _largeindex
 ;
 	lda     #$00
 	sta     _index
-L085E:	lda     _index
+L1FD4:	lda     _index
 	cmp     #$05
-	bcc     L0860
+	bcc     L1FD6
 ;
 ; }
 ;
@@ -2074,10 +8186,10 @@ L085E:	lda     _index
 ;
 ; if (temp == pellet_tiles[index])
 ;
-L0860:	ldy     _index
+L1FD6:	ldy     _index
 	lda     _pellet_tiles,y
 	cmp     _temp
-	jne     L05F7
+	jne     L1D16
 ;
 ; if (!is_dot_consumed(largeindex)) {
 ;
@@ -2085,7 +8197,7 @@ L0860:	ldy     _index
 	ldx     _largeindex+1
 	jsr     _is_dot_consumed
 	tax
-	beq     L0861
+	beq     L1FD7
 ;
 ; }
 ;
@@ -2093,7 +8205,7 @@ L0860:	ldy     _index
 ;
 ; mark_dot_consumed(largeindex);
 ;
-L0861:	lda     _largeindex
+L1FD7:	lda     _largeindex
 	ldx     _largeindex+1
 	jsr     _mark_dot_consumed
 ;
@@ -2131,7 +8243,7 @@ L0861:	lda     _largeindex
 ;
 	lda     _current_player
 	cmp     #$01
-	bne     L085F
+	bne     L1FD5
 ;
 ; sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 ;
@@ -2147,7 +8259,7 @@ L0861:	lda     _largeindex
 ;
 	lda     _team1_score
 	cmp     #$64
-	bcc     L061D
+	bcc     L1D3C
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -2164,9 +8276,9 @@ L0861:	lda     _largeindex
 ;
 ; } else if (current_player == 3) {
 ;
-L085F:	lda     _current_player
+L1FD5:	lda     _current_player
 	cmp     #$03
-	bne     L05F0
+	bne     L1D0F
 ;
 ; sfx_play(SFX_TEAM2_DOT_COLLECT, 0);
 ;
@@ -2183,7 +8295,7 @@ L085F:	lda     _current_player
 ;
 	lda     _team2_score
 	cmp     #$64
-	bcc     L05F0
+	bcc     L1D0F
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -2201,26 +8313,26 @@ L085F:	lda     _current_player
 ;
 ; break;
 ;
-L061D:	rts
+L1D3C:	rts
 ;
 ; else if (temp == blank_tiles[index])
 ;
-L05F7:	ldy     _index
+L1D16:	ldy     _index
 	lda     _blank_tiles,y
 	cmp     _temp
 ;
 ; break;
 ;
-	beq     L05F0
+	beq     L1D0F
 ;
 ; for (index = 0; index < 5; index++)
 ;
 	inc     _index
-	jmp     L085E
+	jmp     L1FD4
 ;
 ; }
 ;
-L05F0:	rts
+L1D0F:	rts
 
 .endproc
 
@@ -2460,9 +8572,9 @@ L05F0:	rts
 	lda     #$3C
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L0869
+	bne     L1FDF
 	cmp     #$00
-	bne     L0869
+	bne     L1FDF
 ;
 ; game_frame_timer = 0; // reset the frame timer
 ;
@@ -2474,15 +8586,15 @@ L05F0:	rts
 ;
 ; if (game_timer == 0) {
 ;
-	bne     L0869
+	bne     L1FDF
 ;
 ; if (team1_score > team2_score) {
 ;
 	lda     _team1_score
 	sec
 	sbc     _team2_score
-	bcc     L0867
-	beq     L0867
+	bcc     L1FDD
+	beq     L1FDD
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -2490,12 +8602,12 @@ L05F0:	rts
 ;
 ; } else if (team2_score > team1_score) {
 ;
-	jmp     L086E
-L0867:	lda     _team2_score
+	jmp     L1FE4
+L1FDD:	lda     _team2_score
 	sec
 	sbc     _team1_score
-	bcc     L0868
-	beq     L0868
+	bcc     L1FDE
+	beq     L1FDE
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -2503,12 +8615,12 @@ L0867:	lda     _team2_score
 ;
 ; } else {
 ;
-	jmp     L086E
+	jmp     L1FE4
 ;
 ; winner = TIE_WINNER;
 ;
-L0868:	lda     #$02
-L086E:	sta     _winner
+L1FDE:	lda     #$02
+L1FE4:	sta     _winner
 ;
 ; win_reason = WIN_TIME_UP;
 ;
@@ -2521,7 +8633,7 @@ L086E:	sta     _winner
 ;
 ; ai_counter++;
 ;
-L0869:	inc     _ai_counter
+L1FDF:	inc     _ai_counter
 ;
 ; read_controllers();
 ;
@@ -2580,7 +8692,7 @@ L0869:	inc     _ai_counter
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L06C5
+	beq     L1DE4
 ;
 ; BoxGuy1.x = old_x;
 ;
@@ -2597,11 +8709,11 @@ L0869:	inc     _ai_counter
 ;
 ; } else {
 ;
-	jmp     L0863
+	jmp     L1FD9
 ;
 ; BoxGuy1.x = GenericBoxGuy.x;
 ;
-L06C5:	lda     _GenericBoxGuy+1
+L1DE4:	lda     _GenericBoxGuy+1
 	sta     _BoxGuy1+1
 	lda     _GenericBoxGuy
 	sta     _BoxGuy1
@@ -2611,7 +8723,7 @@ L06C5:	lda     _GenericBoxGuy+1
 	lda     _GenericBoxGuy+2+1
 	sta     _BoxGuy1+2+1
 	lda     _GenericBoxGuy+2
-L0863:	sta     _BoxGuy1+2
+L1FD9:	sta     _BoxGuy1+2
 ;
 ; current_player = 2;
 ;
@@ -2666,7 +8778,7 @@ L0863:	sta     _BoxGuy1+2
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L06DF
+	beq     L1DFE
 ;
 ; BoxGuy2.x = old_x;
 ;
@@ -2683,11 +8795,11 @@ L0863:	sta     _BoxGuy1+2
 ;
 ; } else {
 ;
-	jmp     L0864
+	jmp     L1FDA
 ;
 ; BoxGuy2.x = GenericBoxGuy.x;
 ;
-L06DF:	lda     _GenericBoxGuy+1
+L1DFE:	lda     _GenericBoxGuy+1
 	sta     _BoxGuy2+1
 	lda     _GenericBoxGuy
 	sta     _BoxGuy2
@@ -2697,7 +8809,7 @@ L06DF:	lda     _GenericBoxGuy+1
 	lda     _GenericBoxGuy+2+1
 	sta     _BoxGuy2+2+1
 	lda     _GenericBoxGuy+2
-L0864:	sta     _BoxGuy2+2
+L1FDA:	sta     _BoxGuy2+2
 ;
 ; current_player = 3;
 ;
@@ -2752,7 +8864,7 @@ L0864:	sta     _BoxGuy2+2
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L06F9
+	beq     L1E18
 ;
 ; BoxGuy3.x = old_x;
 ;
@@ -2769,11 +8881,11 @@ L0864:	sta     _BoxGuy2+2
 ;
 ; } else {
 ;
-	jmp     L0865
+	jmp     L1FDB
 ;
 ; BoxGuy3.x = GenericBoxGuy.x;
 ;
-L06F9:	lda     _GenericBoxGuy+1
+L1E18:	lda     _GenericBoxGuy+1
 	sta     _BoxGuy3+1
 	lda     _GenericBoxGuy
 	sta     _BoxGuy3
@@ -2783,7 +8895,7 @@ L06F9:	lda     _GenericBoxGuy+1
 	lda     _GenericBoxGuy+2+1
 	sta     _BoxGuy3+2+1
 	lda     _GenericBoxGuy+2
-L0865:	sta     _BoxGuy3+2
+L1FDB:	sta     _BoxGuy3+2
 ;
 ; current_player = 4;
 ;
@@ -2838,7 +8950,7 @@ L0865:	sta     _BoxGuy3+2
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L0713
+	beq     L1E32
 ;
 ; BoxGuy4.x = old_x;
 ;
@@ -2855,11 +8967,11 @@ L0865:	sta     _BoxGuy3+2
 ;
 ; } else {
 ;
-	jmp     L0866
+	jmp     L1FDC
 ;
 ; BoxGuy4.x = GenericBoxGuy.x;
 ;
-L0713:	lda     _GenericBoxGuy+1
+L1E32:	lda     _GenericBoxGuy+1
 	sta     _BoxGuy4+1
 	lda     _GenericBoxGuy
 	sta     _BoxGuy4
@@ -2869,7 +8981,7 @@ L0713:	lda     _GenericBoxGuy+1
 	lda     _GenericBoxGuy+2+1
 	sta     _BoxGuy4+2+1
 	lda     _GenericBoxGuy+2
-L0866:	sta     _BoxGuy4+2
+L1FDC:	sta     _BoxGuy4+2
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
@@ -2895,7 +9007,7 @@ L0866:	sta     _BoxGuy4+2
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L086A
+	beq     L1FE0
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -2912,7 +9024,7 @@ L0866:	sta     _BoxGuy4+2
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
-L086A:	lda     _BoxGuy3+1
+L1FE0:	lda     _BoxGuy3+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy3.y >> 8;
@@ -2934,7 +9046,7 @@ L086A:	lda     _BoxGuy3+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L086B
+	beq     L1FE1
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -2952,7 +9064,7 @@ L086A:	lda     _BoxGuy3+1
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L086B:	lda     _BoxGuy1+1
+L1FE1:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -2974,7 +9086,7 @@ L086B:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L086C
+	beq     L1FE2
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -2992,7 +9104,7 @@ L086B:	lda     _BoxGuy1+1
 ;
 ; temp_x = BoxGuy2.x >> 8;
 ;
-L086C:	lda     _BoxGuy2+1
+L1FE2:	lda     _BoxGuy2+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy2.y >> 8;
@@ -3014,7 +9126,7 @@ L086C:	lda     _BoxGuy2+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L0753
+	beq     L1E72
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -3032,7 +9144,7 @@ L086C:	lda     _BoxGuy2+1
 ;
 ; draw_sprites();
 ;
-L0753:	jmp     _draw_sprites
+L1E72:	jmp     _draw_sprites
 
 .endproc
 
@@ -3049,22 +9161,179 @@ L0753:	jmp     _draw_sprites
 ;
 ; ppu_wait_nmi();
 ;
-L075C:	jsr     _ppu_wait_nmi
+L1E7B:	jsr     _ppu_wait_nmi
 ;
-; pad1 = pad_poll(0); // read the first controller
+; pad1 = pad_poll(0);
 ;
 	lda     #$00
 	jsr     _pad_poll
 	sta     _pad1
 ;
-; if (pad1 & PAD_START)
+; pad2 = pad_poll(1);
 ;
+	lda     #$01
+	jsr     _pad_poll
+	sta     _pad2
+;
+; pad3 = pad_poll(2);
+;
+	lda     #$02
+	jsr     _pad_poll
+	sta     _pad3
+;
+; pad4 = pad_poll(3);
+;
+	lda     #$03
+	jsr     _pad_poll
+	sta     _pad4
+;
+; if (pad1 & PAD_UP) {
+;
+	lda     _pad1
+	and     #$08
+	beq     L1FE5
+;
+; if ((BoxGuy1.y >> 8) > 160) { // Limit how high they can go
+;
+	lda     _BoxGuy1+3
+	cmp     #$A1
+	bcc     L1FE5
+;
+; BoxGuy1.y -= 0x0400; // Move up 4 pixels (0x0400 = 1024 sub-pixels)
+;
+	lda     _BoxGuy1+2
+	sec
+	sbc     #$00
+	sta     _BoxGuy1+2
+	lda     _BoxGuy1+2+1
+	sbc     #$04
+	sta     _BoxGuy1+2+1
+;
+; if (pad2 & PAD_UP) {
+;
+L1FE5:	lda     _pad2
+	and     #$08
+	beq     L1FE6
+;
+; if ((BoxGuy2.y >> 8) > 160) {
+;
+	lda     _BoxGuy2+3
+	cmp     #$A1
+	bcc     L1FE6
+;
+; BoxGuy2.y -= 0x0400;
+;
+	lda     _BoxGuy2+2
+	sec
+	sbc     #$00
+	sta     _BoxGuy2+2
+	lda     _BoxGuy2+2+1
+	sbc     #$04
+	sta     _BoxGuy2+2+1
+;
+; if (pad3 & PAD_UP) {
+;
+L1FE6:	lda     _pad3
+	and     #$08
+	beq     L1FE7
+;
+; if ((BoxGuy3.y >> 8) > 160) {
+;
+	lda     _BoxGuy3+3
+	cmp     #$A1
+	bcc     L1FE7
+;
+; BoxGuy3.y -= 0x0400;
+;
+	lda     _BoxGuy3+2
+	sec
+	sbc     #$00
+	sta     _BoxGuy3+2
+	lda     _BoxGuy3+2+1
+	sbc     #$04
+	sta     _BoxGuy3+2+1
+;
+; if (pad4 & PAD_UP) {
+;
+L1FE7:	lda     _pad4
+	and     #$08
+	beq     L1FE8
+;
+; if ((BoxGuy4.y >> 8) > 160) {
+;
+	lda     _BoxGuy4+3
+	cmp     #$A1
+	bcc     L1FE8
+;
+; BoxGuy4.y -= 0x0400;
+;
+	lda     _BoxGuy4+2
+	sec
+	sbc     #$00
+	sta     _BoxGuy4+2
+	lda     _BoxGuy4+2+1
+	sbc     #$04
+	sta     _BoxGuy4+2+1
+;
+; if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START) {
+;
+L1FE8:	lda     _pad1
 	and     #$10
-	beq     L075C
+	bne     L1FE9
+	lda     _pad2
+	and     #$10
+	bne     L1FE9
+	lda     _pad3
+	and     #$10
+	bne     L1FE9
+	lda     _pad4
+	and     #$10
+	beq     L1FEC
+;
+; if (!start_held) {
+;
+L1FE9:	lda     _start_held
+	bne     L1FEA
+;
+; start_held = 1;
+;
+	lda     #$01
+	sta     _start_held
+;
+; start_hold_timer = 0;
+;
+	lda     #$00
+	sta     _start_hold_timer
+;
+; start_hold_timer++;
+;
+L1FEA:	inc     _start_hold_timer
+;
+; if (start_hold_timer >= 180) {
+;
+	lda     _start_hold_timer
+	cmp     #$B4
+	bcc     L1EB5
 ;
 ; init_game_loop();
 ;
 	jmp     _init_game_loop
+;
+; start_held = 0;
+;
+L1FEC:	sta     _start_held
+;
+; start_hold_timer = 0;
+;
+	sta     _start_hold_timer
+;
+; draw_title_sprites();
+;
+L1EB5:	jsr     _draw_title_sprites
+;
+; while (1)
+;
+	jmp     L1E7B
 
 .endproc
 
@@ -3081,7 +9350,7 @@ L075C:	jsr     _ppu_wait_nmi
 ;
 ; ppu_wait_nmi();
 ;
-L0768:	jsr     _ppu_wait_nmi
+L1EBC:	jsr     _ppu_wait_nmi
 ;
 ; pad1 = pad_poll(0); // read the first controller
 ;
@@ -3092,7 +9361,7 @@ L0768:	jsr     _ppu_wait_nmi
 ; if (pad1 & PAD_START)
 ;
 	and     #$10
-	beq     L0768
+	beq     L1EBC
 ;
 ; init_title_loop();
 ;
@@ -3138,9 +9407,9 @@ L0768:	jsr     _ppu_wait_nmi
 ; for (index = 0; index < 128; index++) {
 ;
 	sta     _index
-L086F:	lda     _index
+L1FED:	lda     _index
 	cmp     #$80
-	bcs     L077F
+	bcs     L1ED3
 ;
 ; consumed_dots[index] = 0;
 ;
@@ -3151,11 +9420,11 @@ L086F:	lda     _index
 ; for (index = 0; index < 128; index++) {
 ;
 	inc     _index
-	jmp     L086F
+	jmp     L1FED
 ;
 ; BoxGuy1.x = 0x4000;
 ;
-L077F:	ldx     #$40
+L1ED3:	ldx     #$40
 	lda     #$00
 	sta     _BoxGuy1
 	stx     _BoxGuy1+1
@@ -3290,11 +9559,11 @@ L077F:	ldx     #$40
 ; multi_vram_buffer_horz("GAME OVER", 9, NTADR_A(11, 8));
 ;
 	jsr     decsp3
-	lda     #<(L07DC)
+	lda     #<(L1F4E)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07DC)
+	lda     #>(L1F4E)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -3306,33 +9575,33 @@ L077F:	ldx     #$40
 ; if( winner == ONETWO_WINNER)
 ;
 	lda     _winner
-	bne     L0872
+	bne     L1FF0
 ;
 ; multi_vram_buffer_horz("TEAM 1 WINS!", 12, NTADR_A(9, 12));
 ;
 	jsr     decsp3
-	lda     #<(L07E8)
+	lda     #<(L1F5A)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07E8)
+	lda     #>(L1F5A)
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L087B
-L0872:	lda     _winner
+	jmp     L1FF9
+L1FF0:	lda     _winner
 	cmp     #$01
-	bne     L0873
+	bne     L1FF1
 ;
 ; multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
 ;
 	jsr     decsp3
-	lda     #<(L07F5)
+	lda     #<(L1F67)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07F5)
-L087B:	sta     (sp),y
+	lda     #>(L1F67)
+L1FF9:	sta     (sp),y
 	lda     #$0C
 	ldy     #$00
 	sta     (sp),y
@@ -3342,17 +9611,17 @@ L087B:	sta     (sp),y
 ;
 ; if (win_reason == WIN_DOTS) {
 ;
-L0873:	lda     _win_reason
-	bne     L0874
+L1FF1:	lda     _win_reason
+	bne     L1FF2
 ;
 ; multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 14));
 ;
 	jsr     decsp3
-	lda     #<(L0801)
+	lda     #<(L1F73)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0801)
+	lda     #>(L1F73)
 	sta     (sp),y
 	lda     #$12
 	ldy     #$00
@@ -3362,19 +9631,19 @@ L0873:	lda     _win_reason
 ;
 ; } else if (win_reason == WIN_FRIENDLY_FIRE) {
 ;
-	jmp     L0871
-L0874:	lda     _win_reason
+	jmp     L1FEF
+L1FF2:	lda     _win_reason
 	cmp     #$01
-	bne     L0875
+	bne     L1FF3
 ;
 ; multi_vram_buffer_horz("FRIENDLY FIRE KILL", 18, NTADR_A(6, 14));
 ;
 	jsr     decsp3
-	lda     #<(L080E)
+	lda     #<(L1F80)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L080E)
+	lda     #>(L1F80)
 	sta     (sp),y
 	lda     #$12
 	ldy     #$00
@@ -3384,35 +9653,35 @@ L0874:	lda     _win_reason
 ;
 ; } else if (win_reason == WIN_ENEMY_KILL) {
 ;
-	jmp     L0871
-L0875:	lda     _win_reason
+	jmp     L1FEF
+L1FF3:	lda     _win_reason
 	cmp     #$02
-	bne     L0818
+	bne     L1F8A
 ;
 ; multi_vram_buffer_horz("ENEMY SEEKER KILLED", 19, NTADR_A(5, 14));
 ;
 	jsr     decsp3
-	lda     #<(L081B)
+	lda     #<(L1F8D)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L081B)
+	lda     #>(L1F8D)
 	sta     (sp),y
 	lda     #$13
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$21
 	lda     #$C5
-L0871:	jsr     _multi_vram_buffer_horz
+L1FEF:	jsr     _multi_vram_buffer_horz
 ;
 ; multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 ;
-L0818:	jsr     decsp3
-	lda     #<(L0825)
+L1F8A:	jsr     decsp3
+	lda     #<(L1F97)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L0825)
+	lda     #>(L1F97)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -3467,11 +9736,11 @@ L0818:	jsr     decsp3
 ; multi_vram_buffer_horz("BRIAN AND ALAN GAMES", 20, NTADR_A(6, 6));
 ;
 	jsr     decsp3
-	lda     #<(L07B3)
+	lda     #<(L1F07)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07B3)
+	lda     #>(L1F07)
 	sta     (sp),y
 	lda     #$14
 	ldy     #$00
@@ -3483,11 +9752,11 @@ L0818:	jsr     decsp3
 ; multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
 ;
 	jsr     decsp3
-	lda     #<(L07BD)
+	lda     #<(L1F11)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07BD)
+	lda     #>(L1F11)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -3496,21 +9765,94 @@ L0818:	jsr     decsp3
 	lda     #$0A
 	jsr     _multi_vram_buffer_horz
 ;
-; multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
+; multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 24));
 ;
 	jsr     decsp3
-	lda     #<(L07C7)
+	lda     #<(L1F1B)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L07C7)
+	lda     #>(L1F1B)
 	sta     (sp),y
-	lda     #$0B
+	lda     #$14
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$23
-	lda     #$0A
+	lda     #$08
 	jsr     _multi_vram_buffer_horz
+;
+; multi_vram_buffer_horz("USE UP TO MOVE SPRITES", 20, NTADR_A(7, 26));
+;
+	jsr     decsp3
+	lda     #<(L1F25)
+	ldy     #$01
+	sta     (sp),y
+	iny
+	lda     #>(L1F25)
+	sta     (sp),y
+	lda     #$14
+	ldy     #$00
+	sta     (sp),y
+	ldx     #$23
+	lda     #$47
+	jsr     _multi_vram_buffer_horz
+;
+; BoxGuy1.x = 0x2800; // x = 40 (0x28)
+;
+	ldx     #$28
+	lda     #$00
+	sta     _BoxGuy1
+	stx     _BoxGuy1+1
+;
+; BoxGuy1.y = 0xC800; // y = 200 (0xC8)
+;
+	ldx     #$C8
+	sta     _BoxGuy1+2
+	stx     _BoxGuy1+2+1
+;
+; BoxGuy2.x = 0x7800; // x = 120 (0x78)
+;
+	ldx     #$78
+	sta     _BoxGuy2
+	stx     _BoxGuy2+1
+;
+; BoxGuy2.y = 0xC800; // y = 200 (0xC8)
+;
+	ldx     #$C8
+	sta     _BoxGuy2+2
+	stx     _BoxGuy2+2+1
+;
+; BoxGuy3.x = 0xC800; // x = 200 (0xC8)
+;
+	sta     _BoxGuy3
+	stx     _BoxGuy3+1
+;
+; BoxGuy3.y = 0xC800; // y = 200 (0xC8)
+;
+	sta     _BoxGuy3+2
+	stx     _BoxGuy3+2+1
+;
+; BoxGuy4.x = 0x1801; // x = 280 (0x118)
+;
+	ldx     #$18
+	lda     #$01
+	sta     _BoxGuy4
+	stx     _BoxGuy4+1
+;
+; BoxGuy4.y = 0xC800; // y = 200 (0xC8)
+;
+	ldx     #$C8
+	lda     #$00
+	sta     _BoxGuy4+2
+	stx     _BoxGuy4+2+1
+;
+; start_hold_timer = 0;
+;
+	sta     _start_hold_timer
+;
+; start_held = 0;
+;
+	sta     _start_held
 ;
 ; ppu_on_all(); // turn on screen
 ;
@@ -3574,7 +9916,7 @@ L0818:	jsr     decsp3
 	lda     _temp_y
 	cmp     #$F0
 	ldx     #$00
-	bcc     L087C
+	bcc     L1FFA
 ;
 ; return 0;
 ;
@@ -3583,7 +9925,7 @@ L0818:	jsr     decsp3
 ;
 ; temp = tinyhoney[((temp_y >> 3) << 5) + (temp_x >> 3)];
 ;
-L087C:	lda     _temp_y
+L1FFA:	lda     _temp_y
 	lsr     a
 	lsr     a
 	lsr     a
@@ -3613,48 +9955,48 @@ L087C:	lda     _temp_y
 ; if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca)
 ;
 	cmp     #$C6
-	beq     L087D
+	beq     L1FFB
 	lda     _temp
 	cmp     #$C7
-	beq     L087D
+	beq     L1FFB
 	cmp     #$C8
-	beq     L087D
+	beq     L1FFB
 	cmp     #$C9
-	beq     L087D
+	beq     L1FFB
 	cmp     #$CA
-	bne     L087E
+	bne     L1FFC
 ;
 ; return 0;
 ;
-L087D:	ldx     #$00
+L1FFB:	ldx     #$00
 	txa
 	rts
 ;
 ; else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba)
 ;
-L087E:	lda     _temp
+L1FFC:	lda     _temp
 	cmp     #$B6
-	beq     L087F
+	beq     L1FFD
 	cmp     #$B7
-	beq     L087F
+	beq     L1FFD
 	cmp     #$B8
-	beq     L087F
+	beq     L1FFD
 	cmp     #$B9
-	beq     L087F
+	beq     L1FFD
 	cmp     #$BA
-	beq     L087F
+	beq     L1FFD
 	ldx     #$00
-	jmp     L0880
+	jmp     L1FFE
 ;
 ; return 0;
 ;
-L087F:	ldx     #$00
+L1FFD:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L0880:	lda     #$01
+L1FFE:	lda     #$01
 ;
 ; }
 ;
@@ -3694,7 +10036,7 @@ L0880:	lda     #$01
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0882
+	beq     L2000
 ;
 ; return 1;
 ;
@@ -3704,7 +10046,7 @@ L0880:	lda     #$01
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L0882:	lda     _Generic+1
+L2000:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -3719,7 +10061,7 @@ L0882:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0884
+	beq     L2002
 ;
 ; return 1;
 ;
@@ -3729,7 +10071,7 @@ L0882:	lda     _Generic+1
 ;
 ; }
 ;
-L0884:	rts
+L2002:	rts
 
 .endproc
 
@@ -3771,7 +10113,7 @@ L0884:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0887
+	beq     L2005
 ;
 ; return 1;
 ;
@@ -3781,7 +10123,7 @@ L0884:	rts
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L0887:	lda     _Generic+1
+L2005:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -3796,7 +10138,7 @@ L0887:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0889
+	beq     L2007
 ;
 ; return 1;
 ;
@@ -3806,7 +10148,7 @@ L0887:	lda     _Generic+1
 ;
 ; }
 ;
-L0889:	rts
+L2007:	rts
 
 .endproc
 
@@ -3842,7 +10184,7 @@ L0889:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L088B
+	beq     L2009
 ;
 ; return 1;
 ;
@@ -3852,7 +10194,7 @@ L0889:	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L088B:	lda     _Generic
+L2009:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -3867,7 +10209,7 @@ L088B:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L088D
+	beq     L200B
 ;
 ; return 1;
 ;
@@ -3877,7 +10219,7 @@ L088B:	lda     _Generic
 ;
 ; }
 ;
-L088D:	rts
+L200B:	rts
 
 .endproc
 
@@ -3919,7 +10261,7 @@ L088D:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0890
+	beq     L200E
 ;
 ; return 1;
 ;
@@ -3929,7 +10271,7 @@ L088D:	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L0890:	lda     _Generic
+L200E:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -3944,7 +10286,7 @@ L0890:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L0892
+	beq     L2010
 ;
 ; return 1;
 ;
@@ -3954,7 +10296,7 @@ L0890:	lda     _Generic
 ;
 ; }
 ;
-L0892:	rts
+L2010:	rts
 
 .endproc
 
@@ -3976,24 +10318,24 @@ L0892:	rts
 	lda     _temp_x2
 	clc
 	adc     #$08
-	bcc     L062D
+	bcc     L1D4C
 	ldx     #$01
-L062D:	jsr     tosicmp
-	bcs     L062E
+L1D4C:	jsr     tosicmp
+	bcs     L1D4D
 	ldx     #$00
 	lda     _temp_x
 	clc
 	adc     #$08
-	bcc     L062F
+	bcc     L1D4E
 	inx
-L062F:	sec
+L1D4E:	sec
 	sbc     _temp_x2
 	sta     tmp1
 	txa
 	sbc     #$00
 	ora     tmp1
-	bcc     L062E
-	beq     L062E
+	bcc     L1D4D
+	beq     L1D4D
 ;
 ; temp_y < temp_y2 + 8 && temp_y + 8 > temp_y2)
 ;
@@ -4002,31 +10344,31 @@ L062F:	sec
 	lda     _temp_y2
 	clc
 	adc     #$08
-	bcc     L0630
+	bcc     L1D4F
 	ldx     #$01
-L0630:	jsr     tosicmp
-	bcs     L062E
+L1D4F:	jsr     tosicmp
+	bcs     L1D4D
 	ldx     #$00
 	lda     _temp_y
 	clc
 	adc     #$08
-	bcc     L0631
+	bcc     L1D50
 	inx
-L0631:	sec
+L1D50:	sec
 	sbc     _temp_y2
 	sta     tmp1
 	txa
 	sbc     #$00
 	ora     tmp1
-	beq     L062E
-	bcs     L062C
-L062E:	ldx     #$00
+	beq     L1D4D
+	bcs     L1D4B
+L1D4D:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L062C:	ldx     #$00
+L1D4B:	ldx     #$00
 	lda     #$01
 	rts
 
@@ -4053,8 +10395,8 @@ L062C:	ldx     #$00
 ;
 ; if (game_mode == MODE_TITLE)
 ;
-L0895:	lda     _game_mode
-	bne     L0896
+L2013:	lda     _game_mode
+	bne     L2014
 ;
 ; title_loop();
 ;
@@ -4062,9 +10404,9 @@ L0895:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME)
 ;
-L0896:	lda     _game_mode
+L2014:	lda     _game_mode
 	cmp     #$01
-	bne     L0897
+	bne     L2015
 ;
 ; game_loop();
 ;
@@ -4072,9 +10414,9 @@ L0896:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAMEOVER)
 ;
-L0897:	lda     _game_mode
+L2015:	lda     _game_mode
 	cmp     #$02
-	bne     L0895
+	bne     L2013
 ;
 ; gameover_loop();
 ;
@@ -4082,7 +10424,7 @@ L0897:	lda     _game_mode
 ;
 ; while (1)
 ;
-	jmp     L0895
+	jmp     L2013
 
 .endproc
 
@@ -4129,9 +10471,9 @@ L0897:	lda     _game_mode
 	lda     (sp),y
 	tay
 	lda     ptr1
-L0898:	lsr     a
+L2016:	lsr     a
 	dey
-	bpl     L0898
+	bpl     L2016
 	rol     a
 	and     #$01
 	ldx     #$00
@@ -4181,9 +10523,9 @@ L0898:	lsr     a
 	ldy     #$01
 	clc
 	adc     (sp),y
-	bcc     L05D9
+	bcc     L1CF8
 	inx
-L05D9:	jsr     pushax
+L1CF8:	jsr     pushax
 	sta     ptr1
 	stx     ptr1+1
 	ldy     #$00
@@ -4193,9 +10535,9 @@ L05D9:	jsr     pushax
 	lda     (sp),y
 	tay
 	lda     #$01
-L0899:	asl     a
+L2017:	asl     a
 	dey
-	bpl     L0899
+	bpl     L2017
 	ror     a
 	ora     ptr1
 	ldy     #$00

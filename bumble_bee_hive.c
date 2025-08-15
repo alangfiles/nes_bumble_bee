@@ -76,7 +76,7 @@ void draw_sprites(void)
 		temp_y = 1;
 
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, SmallBee1);
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
 
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
@@ -86,7 +86,7 @@ void draw_sprites(void)
 		temp_y = 1;
 
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, SmallBee2);
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
 
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
@@ -96,7 +96,7 @@ void draw_sprites(void)
 		temp_y = 1;
 
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, SmallBee3);
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
 
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
@@ -106,7 +106,40 @@ void draw_sprites(void)
 		temp_y = 1;
 
 	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, SmallBee4);
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+}
+
+void draw_title_sprites(void){
+	// clear all sprites from sprite buffer
+	oam_clear();
+
+	// Draw Player 1 (bee) at left side
+	temp_x = BoxGuy1.x >> 8;
+	temp_y = BoxGuy1.y >> 8;
+	if (temp_x == 0) temp_x = 1;
+	if (temp_y == 0) temp_y = 1;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+	
+	// Draw Player 2 (duck) at left-center
+	temp_x = BoxGuy2.x >> 8;
+	temp_y = BoxGuy2.y >> 8;
+	if (temp_x == 0) temp_x = 1;
+	if (temp_y == 0) temp_y = 1;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+	
+	// Draw Player 3 (bee) at right-center
+	temp_x = BoxGuy3.x >> 8;
+	temp_y = BoxGuy3.y >> 8;
+	if (temp_x == 0) temp_x = 1;
+	if (temp_y == 0) temp_y = 1;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+	
+	// Draw Player 4 (duck) at right side
+	temp_x = BoxGuy4.x >> 8;
+	temp_y = BoxGuy4.y >> 8;
+	if (temp_x == 0) temp_x = 1;
+	if (temp_y == 0) temp_y = 1;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 }
 
 void movement(void)
@@ -651,19 +684,59 @@ void game_loop(void){
 }
 
 void title_loop(void){
-
 	while (1)
 	{
 		ppu_wait_nmi();
-		pad1 = pad_poll(0); // read the first controller
-
-		if (pad1 & PAD_START)
-		{
-			init_game_loop();
-			break;
+		
+		// Read all controllers for title screen
+		pad1 = pad_poll(0);
+		pad2 = pad_poll(1);
+		pad3 = pad_poll(2);
+		pad4 = pad_poll(3);
+		
+		// Handle up movement for each player
+		if (pad1 & PAD_UP) {
+			if ((BoxGuy1.y >> 8) > 160) { // Limit how high they can go
+				BoxGuy1.y -= 0x0400; // Move up 4 pixels (0x0400 = 1024 sub-pixels)
+			}
 		}
+		if (pad2 & PAD_UP) {
+			if ((BoxGuy2.y >> 8) > 160) {
+				BoxGuy2.y -= 0x0400;
+			}
+		}
+		if (pad3 & PAD_UP) {
+			if ((BoxGuy3.y >> 8) > 160) {
+				BoxGuy3.y -= 0x0400;
+			}
+		}
+		if (pad4 & PAD_UP) {
+			if ((BoxGuy4.y >> 8) > 160) {
+				BoxGuy4.y -= 0x0400;
+			}
+		}
+		
+		// Handle start button hold logic
+		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START) {
+			if (!start_held) {
+				start_held = 1;
+				start_hold_timer = 0;
+			}
+			start_hold_timer++;
+			
+			// Check if start has been held for 3 seconds (180 frames at 60fps)
+			if (start_hold_timer >= 180) {
+				init_game_loop();
+				break;
+			}
+		} else {
+			start_held = 0;
+			start_hold_timer = 0;
+		}
+		
+		// Draw the title screen sprites
+		draw_title_sprites();
 	}
-	
 }
 
 void gameover_loop(void){
@@ -731,7 +804,25 @@ void init_title_loop(void){
 	multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
-	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
+	multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 24));
+	multi_vram_buffer_horz("USE UP TO MOVE SPRITES", 20, NTADR_A(7, 26));
+
+	// Initialize title screen sprites at bottom of screen
+	BoxGuy1.x = 0x2800; // x = 40 (0x28)
+	BoxGuy1.y = 0xC800; // y = 200 (0xC8)
+	
+	BoxGuy2.x = 0x7800; // x = 120 (0x78)
+	BoxGuy2.y = 0xC800; // y = 200 (0xC8)
+	
+	BoxGuy3.x = 0xC800; // x = 200 (0xC8)
+	BoxGuy3.y = 0xC800; // y = 200 (0xC8)
+	
+	BoxGuy4.x = 0x1801; // x = 280 (0x118)
+	BoxGuy4.y = 0xC800; // y = 200 (0xC8)
+	
+	// Initialize start button variables
+	start_hold_timer = 0;
+	start_held = 0;
 
 	ppu_on_all(); // turn on screen
 	
