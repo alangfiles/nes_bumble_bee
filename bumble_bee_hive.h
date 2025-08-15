@@ -1,5 +1,7 @@
 #define SPEED 0x0A0
-#define GAME_LENGTH 40 // 40 seconds
+#define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
+#define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
+#define TIMER_TICK_FREQUENCY ((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
 
 #pragma bss-name(push, "ZEROPAGE")
 

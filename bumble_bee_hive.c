@@ -516,7 +516,7 @@ void game_loop(void){
 		// 1. INCREMENT GLOBAL COUNTERS
 		frame_counter++;
 		game_frame_timer++;
-		if(game_frame_timer % 60 == 0) // every 60 frames
+		if(game_frame_timer >= TIMER_TICK_FREQUENCY) // Tick down every ~24.24 frames (40s/99)
 		{
 			game_frame_timer = 0; // reset the frame timer
 			game_timer--;
