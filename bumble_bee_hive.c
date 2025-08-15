@@ -428,6 +428,7 @@ void check_tile_and_collect()
 			team1_score++;
 			// Check for win condition
 			if (team1_score >= 100) {
+				sfx_play(SFX_TEAM1_WIN, 0);
 				winner = ONETWO_WINNER;
 				win_reason = WIN_DOTS;
 				init_gameover_loop();
@@ -438,6 +439,7 @@ void check_tile_and_collect()
 			team2_score++;
 			// Check for win condition
 			if (team2_score >= 100) {
+				sfx_play(SFX_TEAM2_WIN, 0);
 				winner = THREEFOUR_WINNER;
 				win_reason = WIN_DOTS;
 				init_gameover_loop();
@@ -553,12 +555,15 @@ void game_loop(void){
 				if (team1_score > team2_score) {
 					winner = ONETWO_WINNER;
 					win_reason = WIN_TIME_UP;
+					sfx_play(SFX_TEAM1_WIN, 0);
 				} else if (team2_score > team1_score) {
 					winner = THREEFOUR_WINNER;
 					win_reason = WIN_TIME_UP;
+					sfx_play(SFX_TEAM2_WIN, 0);
 				} else {
 					winner = TIE_WINNER;
 					win_reason = WIN_TIME_UP;
+					sfx_play(SFX_DRAW_GAME, 0);
 				}
 				init_gameover_loop();
 			}
@@ -677,7 +682,8 @@ void game_loop(void){
 		temp_y2 = BoxGuy4.y >> 8;
 		if (sprite_collision())
 		{
-			//player 3 dies (friendly fire)
+			//player 3 dies (enemy fire)
+			sfx_play(SFX_DUCKEATSBEE, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_FRIENDLY_FIRE;
 			init_gameover_loop();
@@ -690,6 +696,7 @@ void game_loop(void){
 		if (sprite_collision())
 		{
 			//player 1 dies (enemy fire)
+			sfx_play(SFX_DUCKEATSBEE, 0);
 			winner = THREEFOUR_WINNER;
 			win_reason = WIN_ENEMY_KILL;
 			init_gameover_loop();
@@ -753,7 +760,7 @@ void title_loop(void){
 			start_hold_timer++;
 			
 			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 180) {
+			if (start_hold_timer >= 30) {
 				init_options_loop();
 				break;
 			}
@@ -845,7 +852,8 @@ void options_loop(void){
 			start_hold_timer++;
 			
 			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 180) {
+			if (start_hold_timer >= 30) {
+				sfx_play(SFX_START, 0);
 				init_game_loop();
 				break;
 			}
