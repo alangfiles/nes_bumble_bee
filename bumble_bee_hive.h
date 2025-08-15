@@ -1,7 +1,11 @@
-#define SPEED 0x0A0
 #define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
-#define TIMER_TICK_FREQUENCY ((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
+#define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
+
+// Speed options
+#define SPEED_SLOW 0x060
+#define SPEED_REGULAR 0x0A0
+#define SPEED_FAST 0x0E0
 
 #pragma bss-name(push, "ZEROPAGE")
 
@@ -16,6 +20,7 @@ unsigned char game_mode;
 unsigned char winner;
 unsigned char game_frame_timer;
 unsigned char game_timer;
+unsigned char speed_option; // 0=slow, 1=regular, 2=fast
 
 unsigned char collision;
 unsigned char collision_L;
@@ -106,6 +111,7 @@ struct BoxGuy BoxGuy4 = {0xC000,0x4000};
 enum
 {
 	MODE_TITLE,
+	MODE_OPTIONS,
 	MODE_GAME,
 	MODE_GAMEOVER
 };
@@ -189,8 +195,10 @@ void seeker_ai(void);
 void chaser_ai(void);
 void game_loop(void);
 void title_loop(void);
+void options_loop(void);
 void gameover_loop(void);
 void init_game_loop(void);
+void init_options_loop(void);
 void init_gameover_loop(void);
 void init_title_loop(void);
 void init_system(void);

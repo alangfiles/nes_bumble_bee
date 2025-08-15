@@ -39,6 +39,10 @@ void main(void)
 		{
 			title_loop();
 		}
+		if (game_mode == MODE_OPTIONS)
+		{
+			options_loop();
+		}
 		if (game_mode == MODE_GAME)
 		{
 			game_loop();
@@ -149,11 +153,23 @@ void movement(void)
 
 	if (generic_pad & PAD_LEFT)
 	{
-		hero_velocity_x = -SPEED;
+		if (speed_option == 0) {
+			hero_velocity_x = -SPEED_SLOW;
+		} else if (speed_option == 1) {
+			hero_velocity_x = -SPEED_REGULAR;
+		} else {
+			hero_velocity_x = -SPEED_FAST;
+		}
 	}
 	else if (generic_pad & PAD_RIGHT)
 	{
-		hero_velocity_x = SPEED;
+		if (speed_option == 0) {
+			hero_velocity_x = SPEED_SLOW;
+		} else if (speed_option == 1) {
+			hero_velocity_x = SPEED_REGULAR;
+		} else {
+			hero_velocity_x = SPEED_FAST;
+		}
 	}
 	else
 	{ // nothing pressed
@@ -201,11 +217,23 @@ void movement(void)
 
 	if (generic_pad & PAD_UP)
 	{
-		hero_velocity_y = -SPEED;
+		if (speed_option == 0) {
+			hero_velocity_y = -SPEED_SLOW;
+		} else if (speed_option == 1) {
+			hero_velocity_y = -SPEED_REGULAR;
+		} else {
+			hero_velocity_y = -SPEED_FAST;
+		}
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
-		hero_velocity_y = SPEED;
+		if (speed_option == 0) {
+			hero_velocity_y = SPEED_SLOW;
+		} else if (speed_option == 1) {
+			hero_velocity_y = SPEED_REGULAR;
+		} else {
+			hero_velocity_y = SPEED_FAST;
+		}
 	}
 	else
 	{ // nothing pressed
@@ -726,7 +754,7 @@ void title_loop(void){
 			
 			// Check if start has been held for 3 seconds (180 frames at 60fps)
 			if (start_hold_timer >= 180) {
-				init_game_loop();
+				init_options_loop();
 				break;
 			}
 		} else {
@@ -736,6 +764,95 @@ void title_loop(void){
 		
 		// Draw the title screen sprites
 		draw_title_sprites();
+	}
+}
+
+void options_loop(void){
+	while (1)
+	{
+		ppu_wait_nmi();
+		
+		// Read all controllers for options screen
+		pad1 = pad_poll(0);
+		pad2 = pad_poll(1);
+		pad3 = pad_poll(2);
+		pad4 = pad_poll(3);
+		
+		// Handle speed selection with left/right
+		if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT) {
+			if (speed_option > 0) {
+				speed_option--;
+				// Redraw the speed text
+				ppu_off();
+				clear_vram_buffer();
+				pal_bg(palette_bg);
+				pal_spr(palette_sp);
+				
+				multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
+				multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
+				
+				if (speed_option == 0) {
+					multi_vram_buffer_horz("SLOW", 4, NTADR_A(12, 12));
+				} else if (speed_option == 1) {
+					multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+				} else {
+					multi_vram_buffer_horz("FAST", 4, NTADR_A(12, 12));
+				}
+				
+				multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
+				multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
+				multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
+				
+				ppu_on_all();
+			}
+		}
+		
+		if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT) {
+			if (speed_option < 2) {
+				speed_option++;
+				// Redraw the speed text
+				ppu_off();
+				clear_vram_buffer();
+				pal_bg(palette_bg);
+				pal_spr(palette_sp);
+				
+				multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
+				multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
+				
+				if (speed_option == 0) {
+					multi_vram_buffer_horz("SLOW", 4, NTADR_A(12, 12));
+				} else if (speed_option == 1) {
+					multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+				} else {
+					multi_vram_buffer_horz("FAST", 4, NTADR_A(12, 12));
+				}
+				
+				multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
+				multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
+				multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
+				
+				ppu_on_all();
+			}
+		}
+		
+		// Handle start button hold logic
+		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START) {
+			if (!start_held) {
+				start_held = 1;
+				start_hold_timer = 0;
+			}
+			start_held = 1;
+			start_hold_timer++;
+			
+			// Check if start has been held for 3 seconds (180 frames at 60fps)
+			if (start_hold_timer >= 180) {
+				init_game_loop();
+				break;
+			}
+		} else {
+			start_held = 0;
+			start_hold_timer = 0;
+		}
 	}
 }
 
@@ -805,7 +922,7 @@ void init_title_loop(void){
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
 	multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 24));
-	multi_vram_buffer_horz("USE UP TO MOVE SPRITES", 20, NTADR_A(7, 26));
+	multi_vram_buffer_horz("TO GO TO OPTIONS", 16, NTADR_A(9, 26));
 
 	// Initialize title screen sprites at bottom of screen
 	BoxGuy1.x = 0x2800; // x = 40 (0x28)
@@ -826,6 +943,37 @@ void init_title_loop(void){
 
 	ppu_on_all(); // turn on screen
 	
+}
+
+void init_options_loop(void){
+	delay(30);
+	game_mode = MODE_OPTIONS;   
+	ppu_off(); // screen off
+	// load the title palettes
+	pal_bg(palette_bg);
+	pal_spr(palette_sp);
+	
+	multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
+	multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
+	
+	// Show current speed selection
+	if (speed_option == 0) {
+		multi_vram_buffer_horz("SLOW", 4, NTADR_A(12, 12));
+	} else if (speed_option == 1) {
+		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+	} else {
+		multi_vram_buffer_horz("FAST", 4, NTADR_A(12, 12));
+	}
+	
+	multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
+	multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
+	multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
+	
+	// Initialize start button variables for options
+	start_hold_timer = 0;
+	start_held = 0;
+
+	ppu_on_all(); // turn on screen
 }
 
 void init_gameover_loop(void){
@@ -871,5 +1019,9 @@ void init_system(void){
 	set_vram_buffer();
 	bank_spr(1);
 	set_scroll_y(0xff); //shift the bg down one pixel
+	
+	// Initialize default speed option (regular speed)
+	speed_option = 1;
+	
 	ppu_on_all(); // turn on screenxw
 }
