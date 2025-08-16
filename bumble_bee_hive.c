@@ -972,6 +972,7 @@ void init_options_loop(void){
 }
 
 void init_gameover_loop(void){
+	clear_background();
 	music_stop();
 	game_mode = MODE_GAMEOVER;   
 	ppu_off(); // screen off
