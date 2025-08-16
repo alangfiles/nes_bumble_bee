@@ -21,6 +21,7 @@ unsigned char winner;
 unsigned char game_frame_timer;
 unsigned char game_timer;
 unsigned char speed_option; // 0=slow, 1=regular, 2=fast
+unsigned char force_redraw; 
 
 unsigned char collision;
 unsigned char collision_L;
@@ -34,6 +35,7 @@ unsigned char temp3;
 unsigned char temp4;
 unsigned int temp5;
 unsigned int temp6;
+unsigned int tempint;
 unsigned char eject_L; // from the left
 unsigned char eject_R; // remember these from the collision sub routine
 unsigned char eject_D; // from below
@@ -202,6 +204,7 @@ void init_options_loop(void);
 void init_gameover_loop(void);
 void init_title_loop(void);
 void init_system(void);
+void clear_background(void);
 
 
 char bg_collision_sub(void);

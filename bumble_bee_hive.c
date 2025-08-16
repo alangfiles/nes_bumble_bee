@@ -778,69 +778,54 @@ void options_loop(void){
 	while (1)
 	{
 		ppu_wait_nmi();
+		frame_counter++;
 		
 		// Read all controllers for options screen
-		pad1 = pad_poll(0);
-		pad2 = pad_poll(1);
-		pad3 = pad_poll(2);
-		pad4 = pad_poll(3);
+		read_controllers();
+		
 		
 		// Handle speed selection with left/right
 		if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT) {
 			if (speed_option > 0) {
 				speed_option--;
-				// Redraw the speed text
-				ppu_off();
-				clear_vram_buffer();
-				pal_bg(palette_bg);
-				pal_spr(palette_sp);
-				
-				multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
-				multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
-				
-				if (speed_option == 0) {
-					multi_vram_buffer_horz("SLOW", 4, NTADR_A(12, 12));
-				} else if (speed_option == 1) {
-					multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-				} else {
-					multi_vram_buffer_horz("FAST", 4, NTADR_A(12, 12));
-				}
-				
-				multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
-				multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
-				multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
-				
-				ppu_on_all();
+				force_redraw=1;
 			}
 		}
 		
 		if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT) {
 			if (speed_option < 2) {
 				speed_option++;
-				// Redraw the speed text
-				ppu_off();
-				clear_vram_buffer();
-				pal_bg(palette_bg);
-				pal_spr(palette_sp);
-				
-				multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
-				multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
-				
-				if (speed_option == 0) {
-					multi_vram_buffer_horz("SLOW", 4, NTADR_A(12, 12));
-				} else if (speed_option == 1) {
-					multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-				} else {
-					multi_vram_buffer_horz("FAST", 4, NTADR_A(12, 12));
-				}
-				
-				multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
-				multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
-				multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
-				
-				ppu_on_all();
+				force_redraw=1;
 			}
 		}
+
+		if(force_redraw){
+			force_redraw=0;
+			// Redraw the speed text
+			ppu_off();
+			clear_vram_buffer();
+			pal_bg(palette_bg);
+			pal_spr(palette_sp);
+			
+			multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
+			multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
+			
+			if (speed_option == 0) {
+				multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
+			} else if (speed_option == 1) {
+				multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+			} else {
+				multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
+			}
+			
+			multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
+			multi_vram_buffer_horz("HOLD START 1 SECOND", 19, NTADR_A(8, 20));
+			multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
+			
+			ppu_on_all();
+		}
+
+		
 		
 		// Handle start button hold logic
 		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START) {
@@ -880,6 +865,7 @@ void gameover_loop(void){
 }
 
 void init_game_loop(void){
+	clear_background();
 	game_mode = MODE_GAME;  
 	// Initialize scores
 	team1_score = 0;
@@ -929,7 +915,7 @@ void init_title_loop(void){
 	multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
-	multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 24));
+	multi_vram_buffer_horz("HOLD START 1 SECOND", 19, NTADR_A(8, 24));
 	multi_vram_buffer_horz("TO GO TO OPTIONS", 16, NTADR_A(9, 26));
 
 	// Initialize title screen sprites at bottom of screen
@@ -954,9 +940,10 @@ void init_title_loop(void){
 }
 
 void init_options_loop(void){
-	delay(30);
+	clear_background();
 	game_mode = MODE_OPTIONS;   
 	ppu_off(); // screen off
+	
 	// load the title palettes
 	pal_bg(palette_bg);
 	pal_spr(palette_sp);
@@ -966,11 +953,11 @@ void init_options_loop(void){
 	
 	// Show current speed selection
 	if (speed_option == 0) {
-		multi_vram_buffer_horz("SLOW", 4, NTADR_A(12, 12));
+		multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
 	} else if (speed_option == 1) {
 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
 	} else {
-		multi_vram_buffer_horz("FAST", 4, NTADR_A(12, 12));
+		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
 	}
 	
 	multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
@@ -1032,4 +1019,17 @@ void init_system(void){
 	speed_option = 1;
 	
 	ppu_on_all(); // turn on screenxw
+}
+
+void clear_background(void)
+{
+	ppu_off(); // screen off 
+	// draw all 0x00 into the bg
+	vram_adr(NAMETABLE_A);
+	for (tempint = 0; tempint < 1024; ++tempint)
+	{
+		vram_put(0x00);
+		flush_vram_update2();
+	}
+	ppu_on_all(); // turn on screen
 }
