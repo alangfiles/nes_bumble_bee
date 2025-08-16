@@ -12,6 +12,10 @@
 // GLOBAL VARIABLES
 unsigned int doublepad;
 unsigned char generic_pad;
+unsigned char prev_pad1;
+unsigned char prev_pad2;
+unsigned char prev_pad3;
+unsigned char prev_pad4;
 unsigned char pad1;
 unsigned char pad2;
 unsigned char pad3;

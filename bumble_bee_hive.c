@@ -14,24 +14,23 @@
 
 void main(void)
 {
-	
-	
+
 	/*
 	 1. title screen
 	 2. 4 players, can it work with other numbers?
-	   - 1 player (bee) + ais
+		 - 1 player (bee) + ais
 	 3. game over screens
 
 
 	*/
-	
+
 	init_system();
 	init_title_loop();
 
-	//idk why this code is in here -agf 7/29
-	// one_vram_buffer(0x63, NTADR_A(17, 1));
-	// one_vram_buffer(0x63, NTADR_A(21, 1));
-	// one_vram_buffer(0x63, NTADR_A(22, 1));
+	// idk why this code is in here -agf 7/29
+	//  one_vram_buffer(0x63, NTADR_A(17, 1));
+	//  one_vram_buffer(0x63, NTADR_A(21, 1));
+	//  one_vram_buffer(0x63, NTADR_A(22, 1));
 
 	while (1)
 	{
@@ -51,7 +50,7 @@ void main(void)
 		{
 			gameover_loop();
 		}
-	} 
+	}
 }
 
 void load_room(void)
@@ -113,36 +112,45 @@ void draw_sprites(void)
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 }
 
-void draw_title_sprites(void){
+void draw_title_sprites(void)
+{
 	// clear all sprites from sprite buffer
 	oam_clear();
 
 	// Draw Player 1 (bee) at left side
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
-	if (temp_x == 0) temp_x = 1;
-	if (temp_y == 0) temp_y = 1;
+	if (temp_x == 0)
+		temp_x = 1;
+	if (temp_y == 0)
+		temp_y = 1;
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
-	
+
 	// Draw Player 2 (duck) at left-center
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
-	if (temp_x == 0) temp_x = 1;
-	if (temp_y == 0) temp_y = 1;
+	if (temp_x == 0)
+		temp_x = 1;
+	if (temp_y == 0)
+		temp_y = 1;
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
-	
+
 	// Draw Player 3 (bee) at right-center
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
-	if (temp_x == 0) temp_x = 1;
-	if (temp_y == 0) temp_y = 1;
+	if (temp_x == 0)
+		temp_x = 1;
+	if (temp_y == 0)
+		temp_y = 1;
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-	
+
 	// Draw Player 4 (duck) at right side
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
-	if (temp_x == 0) temp_x = 1;
-	if (temp_y == 0) temp_y = 1;
+	if (temp_x == 0)
+		temp_x = 1;
+	if (temp_y == 0)
+		temp_y = 1;
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 }
 
@@ -153,23 +161,11 @@ void movement(void)
 
 	if (generic_pad & PAD_LEFT)
 	{
-		if (speed_option == 0) {
-			hero_velocity_x = -SPEED_SLOW;
-		} else if (speed_option == 1) {
-			hero_velocity_x = -SPEED_REGULAR;
-		} else {
-			hero_velocity_x = -SPEED_FAST;
-		}
+		hero_velocity_x = -speed_option;
 	}
 	else if (generic_pad & PAD_RIGHT)
 	{
-		if (speed_option == 0) {
-			hero_velocity_x = SPEED_SLOW;
-		} else if (speed_option == 1) {
-			hero_velocity_x = SPEED_REGULAR;
-		} else {
-			hero_velocity_x = SPEED_FAST;
-		}
+		hero_velocity_x = speed_option;
 	}
 	else
 	{ // nothing pressed
@@ -199,14 +195,14 @@ void movement(void)
 	if (hero_velocity_x < 0)
 	{ // going left
 		if (bg_coll_L())
-		{ // check collision left
+		{													 // check collision left
 			GenericBoxGuy.x = old_x; // revert to old position
 		}
 	}
 	else if (hero_velocity_x > 0)
 	{ // going right
 		if (bg_coll_R())
-		{ // check collision right
+		{													 // check collision right
 			GenericBoxGuy.x = old_x; // revert to old position
 		}
 	}
@@ -217,23 +213,11 @@ void movement(void)
 
 	if (generic_pad & PAD_UP)
 	{
-		if (speed_option == 0) {
-			hero_velocity_y = -SPEED_SLOW;
-		} else if (speed_option == 1) {
-			hero_velocity_y = -SPEED_REGULAR;
-		} else {
-			hero_velocity_y = -SPEED_FAST;
-		}
+		hero_velocity_y = -speed_option;
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
-		if (speed_option == 0) {
-			hero_velocity_y = SPEED_SLOW;
-		} else if (speed_option == 1) {
-			hero_velocity_y = SPEED_REGULAR;
-		} else {
-			hero_velocity_y = SPEED_FAST;
-		}
+		hero_velocity_y = speed_option;
 	}
 	else
 	{ // nothing pressed
@@ -263,14 +247,14 @@ void movement(void)
 	if (hero_velocity_y < 0)
 	{ // going up
 		if (bg_coll_U())
-		{ // check collision up
+		{													 // check collision up
 			GenericBoxGuy.y = old_y; // revert to old position
 		}
 	}
 	else if (hero_velocity_y > 0)
 	{ // going down
 		if (bg_coll_D())
-		{ // check collision down
+		{													 // check collision down
 			GenericBoxGuy.y = old_y; // revert to old position
 		}
 	}
@@ -383,15 +367,17 @@ char bg_collision_sub(void)
 }
 
 // Helper function to check if a dot has been consumed
-char is_dot_consumed(unsigned int map_index) {
-	unsigned char byte_index = map_index >> 3; // divide by 8
+char is_dot_consumed(unsigned int map_index)
+{
+	unsigned char byte_index = map_index >> 3;	// divide by 8
 	unsigned char bit_index = map_index & 0x07; // modulo 8
 	return (consumed_dots[byte_index] >> bit_index) & 0x01;
 }
 
 // Helper function to mark a dot as consumed
-void mark_dot_consumed(unsigned int map_index) {
-	unsigned char byte_index = map_index >> 3; // divide by 8
+void mark_dot_consumed(unsigned int map_index)
+{
+	unsigned char byte_index = map_index >> 3;	// divide by 8
 	unsigned char bit_index = map_index & 0x07; // modulo 8
 	consumed_dots[byte_index] |= (0x01 << bit_index);
 }
@@ -403,7 +389,7 @@ void check_tile_and_collect()
 	{
 		return; // Chasers cannot collect dots
 	}
-	
+
 	// the (+4) centers the location
 	temp_x = (Generic.x + 4) >> 3; // get this between 0-30
 	temp_y = (Generic.y + 2) >> 3; // get this between 0-32
@@ -417,35 +403,41 @@ void check_tile_and_collect()
 		if (temp == pellet_tiles[index])
 		{
 			// Check if this dot has already been consumed
-			if (!is_dot_consumed(largeindex)) {
+			if (!is_dot_consumed(largeindex))
+			{
 				// Mark this dot as consumed
 				mark_dot_consumed(largeindex);
 				// Update the screen
 				one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
-						// update team score
-		if (current_player == 1) {
-			sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
-			team1_score++;
-			// Check for win condition
-			if (team1_score >= 100) {
-				sfx_play(SFX_TEAM1_WIN, 0);
-				winner = ONETWO_WINNER;
-				win_reason = WIN_DOTS;
-				init_gameover_loop();
-				return;
-			}
-		} else if (current_player == 3) {
-			sfx_play(SFX_TEAM2_DOT_COLLECT, 0);
-			team2_score++;
-			// Check for win condition
-			if (team2_score >= 100) {
-				sfx_play(SFX_TEAM2_WIN, 0);
-				winner = THREEFOUR_WINNER;
-				win_reason = WIN_DOTS;
-				init_gameover_loop();
-				return;
-			}
-		}
+				// update team score
+				if (current_player == 1)
+				{
+					sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+					team1_score++;
+					// Check for win condition
+					if (team1_score >= 100)
+					{
+						sfx_play(SFX_TEAM1_WIN, 0);
+						winner = ONETWO_WINNER;
+						win_reason = WIN_DOTS;
+						init_gameover_loop();
+						return;
+					}
+				}
+				else if (current_player == 3)
+				{
+					sfx_play(SFX_TEAM2_DOT_COLLECT, 0);
+					team2_score++;
+					// Check for win condition
+					if (team2_score >= 100)
+					{
+						sfx_play(SFX_TEAM2_WIN, 0);
+						winner = THREEFOUR_WINNER;
+						win_reason = WIN_DOTS;
+						init_gameover_loop();
+						return;
+					}
+				}
 			}
 			break;
 		}
@@ -475,22 +467,19 @@ char sprite_collision()
 	}
 }
 
-
-void debug_extras(void){
+void debug_extras(void)
+{
 	// Display team 1 score (2 digits)
 	temp1 = (team1_score / 10) + 0x30;
 	one_vram_buffer(temp1, NTADR_A(6, 1));
 	temp1 = (team1_score % 10) + 0x30;
 	one_vram_buffer(temp1, NTADR_A(7, 1));
 
-
-	//Timer
+	// Timer
 	temp1 = (game_timer / 10) + 0x30;
 	one_vram_buffer(temp1, NTADR_A(15, 1));
 	temp1 = (game_timer % 10) + 0x30;
 	one_vram_buffer(temp1, NTADR_A(16, 1));
-
-
 
 	// Display team 2 score (2 digits)
 	temp1 = (team2_score / 10) + 0x30;
@@ -499,7 +488,8 @@ void debug_extras(void){
 	one_vram_buffer(temp1, NTADR_A(24, 1));
 }
 
-void read_controllers(void){
+void read_controllers(void)
+{
 	// read controllers 1 and 3 into an integer
 	doublepad = pad_poll_4score_1_3();
 	pad1 = high_byte(doublepad); // the high byte is the first controller's input
@@ -513,21 +503,22 @@ void read_controllers(void){
 	seeker_ai();
 	chaser_ai();
 
-
-	//debug just random values
-	// [0b00010000,0b00100000,0b01000000,0b10000000]
+	// debug just random values
+	//  [0b00010000,0b00100000,0b01000000,0b10000000]
 }
 
-void seeker_ai(void){ //ai for the bee
-		/*
-			avoid the nearest enemy chaser (player 2)
-			avoid the friendly chaser (player 4)
-			move towards nearest dot
-		*/
-		// pad3= PAD_DOWN;
+void seeker_ai(void)
+{ // ai for the bee
+	/*
+		avoid the nearest enemy chaser (player 2)
+		avoid the friendly chaser (player 4)
+		move towards nearest dot
+	*/
+	// pad3= PAD_DOWN;
 }
 
-void chaser_ai(void){ //ai for the duck
+void chaser_ai(void)
+{ // ai for the duck
 	/*
 			move towards the nearest enemy seeker
 			avoid the friendly seeker
@@ -536,320 +527,377 @@ void chaser_ai(void){ //ai for the duck
 	// pad4 = PAD_LEFT;
 }
 
-void game_loop(void){
+void game_loop(void)
+{
 	// wait till beginning of the frame
-		ppu_wait_nmi();
+	ppu_wait_nmi();
 
-		// 0. DEBUGGING CODE
-		debug_extras();
+	// 0. DEBUGGING CODE
+	debug_extras();
 
-		// 1. INCREMENT GLOBAL COUNTERS
-		frame_counter++;
-		game_frame_timer++;
-		if(game_frame_timer >= TIMER_TICK_FREQUENCY) // Tick down every ~24.24 frames (40s/99)
+	// 1. INCREMENT GLOBAL COUNTERS
+	frame_counter++;
+	game_frame_timer++;
+	if (game_frame_timer >= TIMER_TICK_FREQUENCY) // Tick down every ~24.24 frames (40s/99)
+	{
+		game_frame_timer = 0; // reset the frame timer
+		game_timer--;
+		if (game_timer == 0)
 		{
-			game_frame_timer = 0; // reset the frame timer
-			game_timer--;
-			if (game_timer == 0) {
-				// time's up, check scores
-				if (team1_score > team2_score) {
-					winner = ONETWO_WINNER;
-					win_reason = WIN_TIME_UP;
-					sfx_play(SFX_TEAM1_WIN, 0);
-				} else if (team2_score > team1_score) {
-					winner = THREEFOUR_WINNER;
-					win_reason = WIN_TIME_UP;
-					sfx_play(SFX_TEAM2_WIN, 0);
-				} else {
-					winner = TIE_WINNER;
-					win_reason = WIN_TIME_UP;
-					sfx_play(SFX_DRAW_GAME, 0);
-				}
-				init_gameover_loop();
+			// time's up, check scores
+			if (team1_score > team2_score)
+			{
+				winner = ONETWO_WINNER;
+				win_reason = WIN_TIME_UP;
+				sfx_play(SFX_TEAM1_WIN, 0);
 			}
-		}
-		ai_counter++;
-
-		// 2.  READ CONTROLLER
-		read_controllers();
-		
-		// 3. PLAYER MOVEMENT
-
-		// player 1 is seeker, 2 is chaser
-		// player 3 is seeker, 4 is chaser
-		// Deal with movement for each player
-
-		// setup generics for player 1 (seeker)
-		current_player = 1;
-		GenericBoxGuy = BoxGuy1;
-		generic_pad = pad1;
-		// call movement for generics
-		movement(); //this assigns old_x and old_y	
-		temp_x = GenericBoxGuy.x >> 8;
-		temp_y = GenericBoxGuy.y >> 8;
-		temp_x2 = BoxGuy3.x >> 8;
-		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision()) //1 and 3, both seekers
-		{
-			//players bounce off each other
-			BoxGuy1.x = old_x;
-			BoxGuy1.y = old_y;
-		} else {
-			BoxGuy1.x = GenericBoxGuy.x;
-			BoxGuy1.y = GenericBoxGuy.y;
-		}
-
-		
-		// setup generics for player 2 (chaser)
-		current_player = 2;
-		GenericBoxGuy = BoxGuy2;
-		generic_pad = pad2;
-		movement();
-		
-		temp_x = GenericBoxGuy.x >> 8;
-		temp_y = GenericBoxGuy.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision()) //player 2 blocks player 4 (chasers)
-		{
-			//players bounce off each other
-			BoxGuy2.x = old_x;
-			BoxGuy2.y = old_y;
-		} else {
-			BoxGuy2.x = GenericBoxGuy.x;
-			BoxGuy2.y = GenericBoxGuy.y;
-		}
-
-
-		// setup generics for player 3 (seeker)
-		current_player = 3;
-		GenericBoxGuy = BoxGuy3;
-		generic_pad = pad3;
-		movement();
-		//player 1 blocks player 3
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = GenericBoxGuy.x >> 8;
-		temp_y2 = GenericBoxGuy.y >> 8;
-		if (sprite_collision()) // 1 blocks 3 (seekers)
-		{
-			//players bounce off each other
-			BoxGuy3.x = old_x;
-			BoxGuy3.y = old_y;
-		} else {
-			BoxGuy3.x = GenericBoxGuy.x;
-			BoxGuy3.y = GenericBoxGuy.y;
-		}
-
-		// setup generics for player 4 (chaser)
-		current_player = 4;
-		GenericBoxGuy = BoxGuy4;
-		generic_pad = pad4;
-		movement();
-		//player 2 blocks player 4
-		temp_x = BoxGuy2.x >> 8;
-		temp_y = BoxGuy2.y >> 8;
-		temp_x2 = GenericBoxGuy.x >> 8;
-		temp_y2 = GenericBoxGuy.y >> 8;
-		if (sprite_collision()) // 2 blocks 4 (seekers)
-		{
-			//players bounce off each other
-			BoxGuy4.x = old_x;
-			BoxGuy4.y = old_y;
-		} else {
-			BoxGuy4.x = GenericBoxGuy.x;
-			BoxGuy4.y = GenericBoxGuy.y;
-		}
-
-
-		// 4. CHECK COLLISON
-
-		//check for player deaths (1 collide with 2, 3 collide with 4)
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy2.x >> 8;
-		temp_y2 = BoxGuy2.y >> 8;
-		if (sprite_collision())
-		{
-			//player 1 dies (friendly fire)
-			winner = THREEFOUR_WINNER;
-			win_reason = WIN_FRIENDLY_FIRE;
+			else if (team2_score > team1_score)
+			{
+				winner = THREEFOUR_WINNER;
+				win_reason = WIN_TIME_UP;
+				sfx_play(SFX_TEAM2_WIN, 0);
+			}
+			else
+			{
+				winner = TIE_WINNER;
+				win_reason = WIN_TIME_UP;
+				sfx_play(SFX_DRAW_GAME, 0);
+			}
 			init_gameover_loop();
 		}
-		temp_x = BoxGuy3.x >> 8;
-		temp_y = BoxGuy3.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
-		{
-			//player 3 dies (enemy fire)
-			sfx_play(SFX_DUCKEATSBEE, 0);
-			winner = ONETWO_WINNER;
-			win_reason = WIN_FRIENDLY_FIRE;
-			init_gameover_loop();
-		}
-		//check 1 with 4 and 2 with 3
-		temp_x = BoxGuy1.x >> 8;
-		temp_y = BoxGuy1.y >> 8;
-		temp_x2 = BoxGuy4.x >> 8;
-		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision())
-		{
-			//player 1 dies (enemy fire)
-			sfx_play(SFX_DUCKEATSBEE, 0);
-			winner = THREEFOUR_WINNER;
-			win_reason = WIN_ENEMY_KILL;
-			init_gameover_loop();
-		}
-		temp_x = BoxGuy2.x >> 8;
-		temp_y = BoxGuy2.y >> 8;
-		temp_x2 = BoxGuy3.x >> 8;
-		temp_y2 = BoxGuy3.y >> 8;
-		if (sprite_collision())
-		{
-			//player 2 dies (enemy fire)
-			winner = ONETWO_WINNER;
-			win_reason = WIN_ENEMY_KILL;
-			init_gameover_loop();
-		}
+	}
+	ai_counter++;
 
+	// 2.  READ CONTROLLER
+	read_controllers();
 
-		// 5. DRAW SPRITES
-		draw_sprites();
+	// 3. PLAYER MOVEMENT
+
+	// player 1 is seeker, 2 is chaser
+	// player 3 is seeker, 4 is chaser
+	// Deal with movement for each player
+
+	// setup generics for player 1 (seeker)
+	current_player = 1;
+	GenericBoxGuy = BoxGuy1;
+	generic_pad = pad1;
+	// call movement for generics
+	movement(); // this assigns old_x and old_y
+	temp_x = GenericBoxGuy.x >> 8;
+	temp_y = GenericBoxGuy.y >> 8;
+	temp_x2 = BoxGuy3.x >> 8;
+	temp_y2 = BoxGuy3.y >> 8;
+	if (sprite_collision()) // 1 and 3, both seekers
+	{
+		// players bounce off each other
+		BoxGuy1.x = old_x;
+		BoxGuy1.y = old_y;
+	}
+	else
+	{
+		BoxGuy1.x = GenericBoxGuy.x;
+		BoxGuy1.y = GenericBoxGuy.y;
+	}
+
+	// setup generics for player 2 (chaser)
+	current_player = 2;
+	GenericBoxGuy = BoxGuy2;
+	generic_pad = pad2;
+	movement();
+
+	temp_x = GenericBoxGuy.x >> 8;
+	temp_y = GenericBoxGuy.y >> 8;
+	temp_x2 = BoxGuy4.x >> 8;
+	temp_y2 = BoxGuy4.y >> 8;
+	if (sprite_collision()) // player 2 blocks player 4 (chasers)
+	{
+		// players bounce off each other
+		BoxGuy2.x = old_x;
+		BoxGuy2.y = old_y;
+	}
+	else
+	{
+		BoxGuy2.x = GenericBoxGuy.x;
+		BoxGuy2.y = GenericBoxGuy.y;
+	}
+
+	// setup generics for player 3 (seeker)
+	current_player = 3;
+	GenericBoxGuy = BoxGuy3;
+	generic_pad = pad3;
+	movement();
+	// player 1 blocks player 3
+	temp_x = BoxGuy1.x >> 8;
+	temp_y = BoxGuy1.y >> 8;
+	temp_x2 = GenericBoxGuy.x >> 8;
+	temp_y2 = GenericBoxGuy.y >> 8;
+	if (sprite_collision()) // 1 blocks 3 (seekers)
+	{
+		// players bounce off each other
+		BoxGuy3.x = old_x;
+		BoxGuy3.y = old_y;
+	}
+	else
+	{
+		BoxGuy3.x = GenericBoxGuy.x;
+		BoxGuy3.y = GenericBoxGuy.y;
+	}
+
+	// setup generics for player 4 (chaser)
+	current_player = 4;
+	GenericBoxGuy = BoxGuy4;
+	generic_pad = pad4;
+	movement();
+	// player 2 blocks player 4
+	temp_x = BoxGuy2.x >> 8;
+	temp_y = BoxGuy2.y >> 8;
+	temp_x2 = GenericBoxGuy.x >> 8;
+	temp_y2 = GenericBoxGuy.y >> 8;
+	if (sprite_collision()) // 2 blocks 4 (seekers)
+	{
+		// players bounce off each other
+		BoxGuy4.x = old_x;
+		BoxGuy4.y = old_y;
+	}
+	else
+	{
+		BoxGuy4.x = GenericBoxGuy.x;
+		BoxGuy4.y = GenericBoxGuy.y;
+	}
+
+	// 4. CHECK COLLISON
+
+	// check for player deaths (1 collide with 2, 3 collide with 4)
+	temp_x = BoxGuy1.x >> 8;
+	temp_y = BoxGuy1.y >> 8;
+	temp_x2 = BoxGuy2.x >> 8;
+	temp_y2 = BoxGuy2.y >> 8;
+	if (sprite_collision())
+	{
+		// player 1 dies (friendly fire)
+		winner = THREEFOUR_WINNER;
+		win_reason = WIN_FRIENDLY_FIRE;
+		init_gameover_loop();
+	}
+	temp_x = BoxGuy3.x >> 8;
+	temp_y = BoxGuy3.y >> 8;
+	temp_x2 = BoxGuy4.x >> 8;
+	temp_y2 = BoxGuy4.y >> 8;
+	if (sprite_collision())
+	{
+		// player 3 dies (enemy fire)
+		sfx_play(SFX_DUCKEATSBEE, 0);
+		winner = ONETWO_WINNER;
+		win_reason = WIN_FRIENDLY_FIRE;
+		init_gameover_loop();
+	}
+	// check 1 with 4 and 2 with 3
+	temp_x = BoxGuy1.x >> 8;
+	temp_y = BoxGuy1.y >> 8;
+	temp_x2 = BoxGuy4.x >> 8;
+	temp_y2 = BoxGuy4.y >> 8;
+	if (sprite_collision())
+	{
+		// player 1 dies (enemy fire)
+		sfx_play(SFX_DUCKEATSBEE, 0);
+		winner = THREEFOUR_WINNER;
+		win_reason = WIN_ENEMY_KILL;
+		init_gameover_loop();
+	}
+	temp_x = BoxGuy2.x >> 8;
+	temp_y = BoxGuy2.y >> 8;
+	temp_x2 = BoxGuy3.x >> 8;
+	temp_y2 = BoxGuy3.y >> 8;
+	if (sprite_collision())
+	{
+		// player 2 dies (enemy fire)
+		winner = ONETWO_WINNER;
+		win_reason = WIN_ENEMY_KILL;
+		init_gameover_loop();
+	}
+
+	// 5. DRAW SPRITES
+	draw_sprites();
 }
 
-void title_loop(void){
+void title_loop(void)
+{
 	while (1)
 	{
 		ppu_wait_nmi();
-		
+
 		// Read all controllers for title screen
 		pad1 = pad_poll(0);
 		pad2 = pad_poll(1);
 		pad3 = pad_poll(2);
 		pad4 = pad_poll(3);
-		
+
 		// Handle up movement for each player
-		if (pad1 & PAD_UP) {
-			if ((BoxGuy1.y >> 8) > 160) { // Limit how high they can go
+		if (pad1 & PAD_UP)
+		{
+			if ((BoxGuy1.y >> 8) > 160)
+			{											 // Limit how high they can go
 				BoxGuy1.y -= 0x0400; // Move up 4 pixels (0x0400 = 1024 sub-pixels)
 			}
 		}
-		if (pad2 & PAD_UP) {
-			if ((BoxGuy2.y >> 8) > 160) {
+		if (pad2 & PAD_UP)
+		{
+			if ((BoxGuy2.y >> 8) > 160)
+			{
 				BoxGuy2.y -= 0x0400;
 			}
 		}
-		if (pad3 & PAD_UP) {
-			if ((BoxGuy3.y >> 8) > 160) {
+		if (pad3 & PAD_UP)
+		{
+			if ((BoxGuy3.y >> 8) > 160)
+			{
 				BoxGuy3.y -= 0x0400;
 			}
 		}
-		if (pad4 & PAD_UP) {
-			if ((BoxGuy4.y >> 8) > 160) {
+		if (pad4 & PAD_UP)
+		{
+			if ((BoxGuy4.y >> 8) > 160)
+			{
 				BoxGuy4.y -= 0x0400;
 			}
 		}
-		
+
 		// Handle start button hold logic
-		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START) {
-			if (!start_held) {
+		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
+		{
+			if (!start_held)
+			{
 				start_held = 1;
 				start_hold_timer = 0;
 			}
 			start_hold_timer++;
-			
+
 			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 30) {
+			if (start_hold_timer >= 30)
+			{
 				init_options_loop();
 				break;
 			}
-		} else {
+		}
+		else
+		{
 			start_held = 0;
 			start_hold_timer = 0;
 		}
-		
+
 		// Draw the title screen sprites
 		draw_title_sprites();
 	}
 }
 
-void options_loop(void){
+void options_loop(void)
+{
 	while (1)
 	{
 		ppu_wait_nmi();
 		frame_counter++;
-		
+
 		// Read all controllers for options screen
 		read_controllers();
-		
-		
-		// Handle speed selection with left/right
-		if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT) {
-			if (speed_option > 0) {
-				speed_option--;
-				force_redraw=1;
+
+		if (pad1 != prev_pad1 || pad2 != prev_pad2 || pad3 != prev_pad3 || pad4 != prev_pad4)
+		{
+
+			// Handle speed selection with left/right
+			if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT)
+			{
+				if (speed_option == SPEED_FAST)
+				{
+					speed_option = SPEED_REGULAR;
+					force_redraw = 1;
+				} else if (speed_option == SPEED_REGULAR)
+				{
+					speed_option = SPEED_SLOW;
+					force_redraw = 1;
+				}
 			}
-		}
-		
-		if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT) {
-			if (speed_option < 2) {
-				speed_option++;
-				force_redraw=1;
+
+			if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT)
+			{
+				if (speed_option == SPEED_SLOW)
+				{
+					speed_option = SPEED_REGULAR;
+					force_redraw = 1;
+				}
+				else if (speed_option == SPEED_REGULAR)
+				{
+					speed_option = SPEED_FAST;
+					force_redraw = 1;
+				}
 			}
 		}
 
-		if(force_redraw){
-			force_redraw=0;
+		if (force_redraw)
+		{
+			force_redraw = 0;
 			// Redraw the speed text
 			ppu_off();
 			clear_vram_buffer();
 			pal_bg(palette_bg);
 			pal_spr(palette_sp);
-			
+
 			multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
 			multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
-			
-			if (speed_option == 0) {
+
+			if (speed_option == SPEED_SLOW)
+			{
 				multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
-			} else if (speed_option == 1) {
+			}
+			else if (speed_option == SPEED_REGULAR)
+			{
 				multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-			} else {
+			}
+			else
+			{
 				multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
 			}
-			
+
 			multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
 			multi_vram_buffer_horz("HOLD START 1 SECOND", 19, NTADR_A(8, 20));
 			multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
-			
+
 			ppu_on_all();
 		}
 
-		
-		
 		// Handle start button hold logic
-		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START) {
-			if (!start_held) {
+		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
+		{
+			if (!start_held)
+			{
 				start_held = 1;
 				start_hold_timer = 0;
 			}
 			start_held = 1;
 			start_hold_timer++;
-			
+
 			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 30) {
+			if (start_hold_timer >= 30)
+			{
 				sfx_play(SFX_START, 0);
 				init_game_loop();
 				break;
 			}
-		} else {
+		}
+		else
+		{
 			start_held = 0;
 			start_hold_timer = 0;
 		}
 	}
+
+	prev_pad1 = pad1;
+	prev_pad2 = pad2;
+	prev_pad3 = pad3;
+	prev_pad4 = pad4;
 }
 
-void gameover_loop(void){
+void gameover_loop(void)
+{
 
 	while (1)
 	{
@@ -864,19 +912,21 @@ void gameover_loop(void){
 	}
 }
 
-void init_game_loop(void){
+void init_game_loop(void)
+{
 	clear_background();
-	game_mode = MODE_GAME;  
+	game_mode = MODE_GAME;
 	// Initialize scores
 	team1_score = 0;
 	team2_score = 0;
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_DOTS; // default
 	// Initialize consumed dots tracking
-	for (index = 0; index < 128; index++) {
+	for (index = 0; index < 128; index++)
+	{
 		consumed_dots[index] = 0;
 	}
-	//move all players into starting positions:
+	// move all players into starting positions:
 	BoxGuy1.x = 0x4000;
 	BoxGuy1.y = 0x2800;
 	BoxGuy2.x = 0x7000;
@@ -886,7 +936,7 @@ void init_game_loop(void){
 	BoxGuy4.x = 0x8800;
 	BoxGuy4.y = 0x2800;
 
-	ppu_off(); // screen off 
+	ppu_off(); // screen off
 	clear_vram_buffer();
 
 	// load the palettes
@@ -900,17 +950,18 @@ void init_game_loop(void){
 	ppu_on_all(); // turn on screen
 
 	song = SONG_MAIN_SONG;
-	music_play(song); 
+	music_play(song);
 }
 
-void init_title_loop(void){
+void init_title_loop(void)
+{
 	delay(30);
-	game_mode = MODE_TITLE;   
+	game_mode = MODE_TITLE;
 	ppu_off(); // screen off
 	// load the title palettes
 	pal_bg(palette_bg);
 	pal_spr(palette_sp);
-	
+
 	multi_vram_buffer_horz("BRIAN AND ALAN GAMES", 20, NTADR_A(6, 6));
 	multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
 	// draw on screen, probably an unrle eventually for this game
@@ -921,49 +972,59 @@ void init_title_loop(void){
 	// Initialize title screen sprites at bottom of screen
 	BoxGuy1.x = 0x2800; // x = 40 (0x28)
 	BoxGuy1.y = 0xC800; // y = 200 (0xC8)
-	
+
 	BoxGuy2.x = 0x7800; // x = 120 (0x78)
 	BoxGuy2.y = 0xC800; // y = 200 (0xC8)
-	
+
 	BoxGuy3.x = 0xC800; // x = 200 (0xC8)
 	BoxGuy3.y = 0xC800; // y = 200 (0xC8)
-	
+
 	BoxGuy4.x = 0x1801; // x = 280 (0x118)
 	BoxGuy4.y = 0xC800; // y = 200 (0xC8)
-	
+
 	// Initialize start button variables
 	start_hold_timer = 0;
 	start_held = 0;
 
 	ppu_on_all(); // turn on screen
-	
 }
 
-void init_options_loop(void){
+void init_options_loop(void)
+{
+	prev_pad1 = 0;
+	prev_pad2 = 0;
+	prev_pad3 = 0;
+	prev_pad4 = 0;
+
 	clear_background();
-	game_mode = MODE_OPTIONS;   
+	game_mode = MODE_OPTIONS;
 	ppu_off(); // screen off
-	
+
 	// load the title palettes
 	pal_bg(palette_bg);
 	pal_spr(palette_sp);
-	
+
 	multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
 	multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
-	
+
 	// Show current speed selection
-	if (speed_option == 0) {
+	if (speed_option == SPEED_SLOW)
+	{
 		multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
-	} else if (speed_option == 1) {
+	}
+	else if (speed_option == SPEED_REGULAR)
+	{
 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-	} else {
+	}
+	else
+	{
 		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
 	}
-	
+
 	multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
 	multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
 	multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
-	
+
 	// Initialize start button variables for options
 	start_hold_timer = 0;
 	start_held = 0;
@@ -971,60 +1032,64 @@ void init_options_loop(void){
 	ppu_on_all(); // turn on screen
 }
 
-void init_gameover_loop(void){
+void init_gameover_loop(void)
+{
 	clear_background();
 	music_stop();
-	game_mode = MODE_GAMEOVER;   
+	game_mode = MODE_GAMEOVER;
 	ppu_off(); // screen off
 	// load the title palettes
 	clear_vram_buffer();
 	pal_bg(palette_bg);
 	pal_spr(palette_sp);
-	
-	
+
 	multi_vram_buffer_horz("GAME OVER", 9, NTADR_A(11, 8));
 
-	if( winner == ONETWO_WINNER)
+	if (winner == ONETWO_WINNER)
 	{
 		multi_vram_buffer_horz("TEAM 1 WINS!", 12, NTADR_A(9, 12));
-		
 	}
 	else if (winner == THREEFOUR_WINNER)
 	{
 		multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
-		
 	}
-	if (win_reason == WIN_DOTS) {
+	if (win_reason == WIN_DOTS)
+	{
 		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 14));
-	} else if (win_reason == WIN_FRIENDLY_FIRE) {
+	}
+	else if (win_reason == WIN_FRIENDLY_FIRE)
+	{
 		multi_vram_buffer_horz("FRIENDLY FIRE KILL", 18, NTADR_A(6, 14));
-	} else if (win_reason == WIN_ENEMY_KILL) {
+	}
+	else if (win_reason == WIN_ENEMY_KILL)
+	{
 		multi_vram_buffer_horz("ENEMY SEEKER KILLED", 19, NTADR_A(5, 14));
-	} 
+	}
 	// say who won
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
- 
+
 	ppu_on_all(); // turn on screen
 }
 
-void init_system(void){
+void init_system(void)
+{
 	ppu_off();
 	clear_vram_buffer();
 	set_vram_buffer();
 	bank_spr(1);
-	set_scroll_y(0xff); //shift the bg down one pixel
-	
+	set_scroll_y(0xff); // shift the bg down one pixel
+
 	// Initialize default speed option (regular speed)
-	speed_option = 1;
-	
+	speed_option = SPEED_REGULAR;
+
 	ppu_on_all(); // turn on screenxw
 }
 
 void clear_background(void)
 {
-	ppu_off(); // screen off 
+	ppu_off(); // screen off
 	// draw all 0x00 into the bg
 	vram_adr(NAMETABLE_A);
 	for (tempint = 0; tempint < 1024; ++tempint)
