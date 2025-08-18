@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "bumble_bee_hive.h": "c",
-    "tinymap.h": "c"
+    "tinymap.h": "c",
+    "combmapwoflowers.h": "c",
+    "settings.h": "c"
   }
 }

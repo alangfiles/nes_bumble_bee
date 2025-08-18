@@ -60,7 +60,16 @@ void load_room(void)
 	vram_adr(NAMETABLE_A);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		vram_put(tinyhoney[largeindex]);
+		if(game_mode == MODE_TITLE){
+			vram_put(title[largeindex]);
+		} else if (game_mode == MODE_OPTIONS){
+			vram_put(settings[largeindex]);
+		} else if (game_mode == MODE_GAME){
+			vram_put(combmapwoflowers[largeindex]);
+		} else if (game_mode == MODE_GAMEOVER){
+			vram_put(combmapwoflowers[largeindex]);
+		}
+		
 		flush_vram_update2();
 	}
 	ppu_on_all();
@@ -350,7 +359,7 @@ char bg_collision_sub(void)
 		return 0;
 	// temp_x and temp_y are the coordinates to check the collision
 
-	temp = tinyhoney[((temp_y >> 3) << 5) + (temp_x >> 3)];
+	temp = combmapwoflowers[((temp_y >> 3) << 5) + (temp_x >> 3)];
 	// don't collide with pellets, but everything else
 	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca)
 	{
@@ -396,7 +405,7 @@ void check_tile_and_collect()
 	largeindex = (temp_y << 5) + temp_x;
 
 	// Get the tile at the player's position
-	temp = tinyhoney[largeindex];
+	temp = combmapwoflowers[largeindex];
 
 	for (index = 0; index < 5; index++)
 	{
@@ -500,8 +509,8 @@ void read_controllers(void)
 	pad2 = high_byte(doublepad);
 	pad4 = low_byte(doublepad);
 
-	seeker_ai();
-	chaser_ai();
+	// seeker_ai();
+	// chaser_ai();
 
 	// debug just random values
 	//  [0b00010000,0b00100000,0b01000000,0b10000000]
@@ -727,10 +736,7 @@ void title_loop(void)
 		ppu_wait_nmi();
 
 		// Read all controllers for title screen
-		pad1 = pad_poll(0);
-		pad2 = pad_poll(1);
-		pad3 = pad_poll(2);
-		pad4 = pad_poll(3);
+		read_controllers();
 
 		// Handle up movement for each player
 		if (pad1 & PAD_UP)
@@ -773,7 +779,7 @@ void title_loop(void)
 			start_hold_timer++;
 
 			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 30)
+			if (start_hold_timer >= 3)
 			{
 				init_options_loop();
 				break;
@@ -808,7 +814,7 @@ void options_loop(void)
 			{
 				if (speed_option == SPEED_FAST)
 				{
-					speed_option = SPEED_REGULAR;
+					speed_option = SPEED_REGULAR;  
 					force_redraw = 1;
 				} else if (speed_option == SPEED_REGULAR)
 				{
@@ -838,8 +844,6 @@ void options_loop(void)
 			// Redraw the speed text
 			ppu_off();
 			clear_vram_buffer();
-			pal_bg(palette_bg);
-			pal_spr(palette_sp);
 
 			multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
 			multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
@@ -940,7 +944,7 @@ void init_game_loop(void)
 	clear_vram_buffer();
 
 	// load the palettes
-	pal_bg(palette_bg);
+	pal_bg(palette_bg_combmap);
 	pal_spr(palette_sp);
 
 	load_room();
@@ -959,15 +963,10 @@ void init_title_loop(void)
 	game_mode = MODE_TITLE;
 	ppu_off(); // screen off
 	// load the title palettes
-	pal_bg(palette_bg);
+	pal_bg(palette_title_bg);
 	pal_spr(palette_sp);
 
-	multi_vram_buffer_horz("BRIAN AND ALAN GAMES", 20, NTADR_A(6, 6));
-	multi_vram_buffer_horz("HONEY HEIST", 11, NTADR_A(10, 8));
-	// draw on screen, probably an unrle eventually for this game
-	// probably lets the players select ai or player.
-	multi_vram_buffer_horz("HOLD START 1 SECOND", 19, NTADR_A(8, 24));
-	multi_vram_buffer_horz("TO GO TO OPTIONS", 16, NTADR_A(9, 26));
+	load_room(); //loads the title screen;
 
 	// Initialize title screen sprites at bottom of screen
 	BoxGuy1.x = 0x2800; // x = 40 (0x28)
@@ -1000,8 +999,10 @@ void init_options_loop(void)
 	game_mode = MODE_OPTIONS;
 	ppu_off(); // screen off
 
+	load_room(); // loads the options screen
+
 	// load the title palettes
-	pal_bg(palette_bg);
+	pal_bg(palette_options_bg);
 	pal_spr(palette_sp);
 
 	multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
@@ -1040,7 +1041,7 @@ void init_gameover_loop(void)
 	ppu_off(); // screen off
 	// load the title palettes
 	clear_vram_buffer();
-	pal_bg(palette_bg);
+	pal_bg(palette_bg_combmap);
 	pal_spr(palette_sp);
 
 	multi_vram_buffer_horz("GAME OVER", 9, NTADR_A(11, 8));
