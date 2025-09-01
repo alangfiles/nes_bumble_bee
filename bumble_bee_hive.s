@@ -9315,11 +9315,11 @@ _palette_bg:
 _palette_sp:
 	.byte	$0F
 	.byte	$07
-	.byte	$28
+	.byte	$26
 	.byte	$38
 	.byte	$0F
 	.byte	$07
-	.byte	$0A
+	.byte	$2C
 	.byte	$38
 	.byte	$0F
 	.byte	$07
@@ -11898,7 +11898,7 @@ L2835:	ldx     #$40
 	sta     _BoxGuy2
 	stx     _BoxGuy2+1
 ;
-; BoxGuy2.y = 0x2800;
+; BoxGuy2.y = 0x2800; 
 ;
 	ldx     #$28
 	sta     _BoxGuy2+2
@@ -11916,7 +11916,7 @@ L2835:	ldx     #$40
 	sta     _BoxGuy3+2
 	stx     _BoxGuy3+2+1
 ;
-; BoxGuy4.x = 0x8800;
+; BoxGuy4.x = 0x8800; 
 ;
 	ldx     #$88
 	sta     _BoxGuy4

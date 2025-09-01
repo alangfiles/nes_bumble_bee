@@ -17,8 +17,8 @@ void main(void)
 
 	/*
 	 TODO before CORGS:
-	 * win count
-	 * fix colors
+	 * win count [x]
+	 * fix colors 
 	 * power up pellet
 	 * game over screen
 	 * character placements
@@ -1003,10 +1003,10 @@ void init_game_loop(void)
 	BoxGuy1.x = 0x4000;
 	BoxGuy1.y = 0x2800;
 	BoxGuy2.x = 0x7000;
-	BoxGuy2.y = 0x2800;
+	BoxGuy2.y = 0x2800; 
 	BoxGuy3.x = 0xB000;
 	BoxGuy3.y = 0x2800;
-	BoxGuy4.x = 0x8800;
+	BoxGuy4.x = 0x8800; 
 	BoxGuy4.y = 0x2800;
 
 	ppu_off(); // screen off
