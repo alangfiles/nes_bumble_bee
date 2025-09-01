@@ -855,30 +855,34 @@ void options_loop(void)
 		// 	}
 		// }
 
-		if (force_redraw)
-		{
-			force_redraw = 0;
-			// Redraw the speed text
-			ppu_off();
-			clear_vram_buffer();
+		// if (force_redraw)
+		// {
+		// 	force_redraw = 0;
+		// 	// Redraw the speed text
+		// 	ppu_off();
+		// 	clear_vram_buffer();
 
-			multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
+		// 	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
 
-			if (speed_option == SPEED_SLOW)
-			{
-				multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
-			}
-			else if (speed_option == SPEED_REGULAR)
-			{
-				multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-			}
-			else
-			{
-				multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
-			}
+		// 	if (speed_option == SPEED_SLOW)
+		// 	{
+		// 		multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
+		// 	}
+		// 	else if (speed_option == SPEED_REGULAR)
+		// 	{
+		// 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+		// 	}
+		// 	else
+		// 	{
+		// 		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
+		// 	}
 
-			ppu_on_all();
-		}
+		// 	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
+
+		// 	multi_vram_buffer_horz("MUSIC:", 5, NTADR_A(8, 16));
+
+		// 	ppu_on_all();
+		// }
 
 		// Handle start button hold logic
 		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
@@ -939,18 +943,18 @@ void start_round(void){
 
 	ppu_wait_nmi();
 	oam_clear();
-	oam_meta_spr(120, 100, gamesprites_big3_data);
+	oam_meta_spr(116, 100, gamesprites_big3_data);
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 	ppu_wait_nmi();
 	delay(40);
 	oam_clear();
 	ppu_wait_nmi();
-	oam_meta_spr(120, 100, gamesprites_big2_data);
+	oam_meta_spr(116, 100, gamesprites_big2_data);
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 	delay(40);
 	oam_clear();
 	ppu_wait_nmi();
-	oam_meta_spr(120, 100, gamesprites_big1_data);
+	oam_meta_spr(116, 100, gamesprites_big1_data);
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 	delay(40);
 	oam_clear();
@@ -1043,6 +1047,16 @@ void init_options_loop(void)
 		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
 	}
 
+	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
+
+	//options
+	multi_vram_buffer_horz("HIVE", 4, NTADR_A(11, 16));
+
+	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
+	
+	//options
+	multi_vram_buffer_horz("FRENZY", 6, NTADR_A(11, 20));
+
 
 	// Initialize start button variables for options
 	start_hold_timer = 0;
@@ -1085,24 +1099,11 @@ void init_roundover(void){
 	{
 		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(5, 13));
 	}
-
-	// Check if either team has reached 3 wins
-	if (team1_wins >= 3)
-	{
-		// Team 1 wins the match
-		// sfx_play(SFX_TEAM1_MATCH_WIN, 0);
-		init_gameover_loop();
-	}
-	else if (team2_wins >= 3)
-	{
-		// Team 2 wins the match
-		// sfx_play(SFX_TEAM2_MATCH_WIN, 0);
-		init_gameover_loop();
-	}
 }
 
 void init_gameover_loop(void)
 {
+	oam_clear();
 	clear_background();
 	music_stop();
 	game_mode = MODE_GAMEOVER;
@@ -1124,6 +1125,7 @@ void init_gameover_loop(void)
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 
 	ppu_on_all(); // turn on screen
+	delay(10);
 }
 
 void init_system(void)
@@ -1161,6 +1163,20 @@ void roundover_loop(void){
 
 		if (pad1 & PAD_START)
 		{
+			// Check if either team has reached 3 wins
+			if (team1_wins >= 3)
+			{
+				// Team 1 wins the match
+				// sfx_play(SFX_TEAM1_MATCH_WIN, 0);
+				init_gameover_loop();
+			}
+			else if (team2_wins >= 3)
+			{
+				// Team 2 wins the match
+				// sfx_play(SFX_TEAM2_MATCH_WIN, 0);
+				init_gameover_loop();
+			}
+
 			start_round();
 			break;
 		}
