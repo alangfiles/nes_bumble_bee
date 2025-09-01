@@ -978,7 +978,7 @@ void start_round(void){
 	team1_score=0;
 	team2_score=0;
 	game_timer = GAME_LENGTH;
-
+	win_reason = WIN_DOTS; // default
 	
 
 	ppu_wait_nmi();
@@ -986,20 +986,22 @@ void start_round(void){
 	oam_meta_spr(120, 100, gamesprites_big3_data);
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 	ppu_wait_nmi();
-	delay(20);
+	delay(40);
 	oam_clear();
 	ppu_wait_nmi();
 	oam_meta_spr(120, 100, gamesprites_big2_data);
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
-	delay(20);
+	delay(40);
 	oam_clear();
 	ppu_wait_nmi();
 	oam_meta_spr(120, 100, gamesprites_big1_data);
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
-	delay(20);
+	delay(40);
 	oam_clear();
 	ppu_wait_nmi();
 	sfx_play(SFX_START, 0);
+	delay(10);
+	ppu_wait_nmi();
 
 	game_mode = MODE_GAME;
 	song = SONG_MAIN_SONG;
@@ -1014,44 +1016,13 @@ void init_game_loop(void)
 	
 	game_mode = MODE_GAME;
 	// Initialize scores
-	team1_score = 0;
-	team2_score = 0;
-	game_timer = GAME_LENGTH;
-	win_reason = WIN_DOTS; // default
-	// Initialize consumed dots tracking
-	for (index = 0; index < 128; index++)
-	{
-		consumed_dots[index] = 0;
-	}
-	// move all players into starting positions:
-	BoxGuy1.x = 0x4000;
-	BoxGuy1.y = 0x2800;
-	BoxGuy2.x = 0x7000;
-	BoxGuy2.y = 0x2800; 
-	BoxGuy3.x = 0xB000;
-	BoxGuy3.y = 0x2800;
-	BoxGuy4.x = 0x8800; 
-	BoxGuy4.y = 0x2800;
-
-	ppu_off(); // screen off
-	clear_vram_buffer();
-
+	team1_wins = 0;
+	team2_wins = 0;
 	// load the palettes
 	pal_bg(palette_bg_combmap);
 	pal_spr(palette_sp);
 
-	load_room();
-	team1_wins = 0;
-	team2_wins = 0;
-	update_hud();
-
-	set_scroll_y(0xff); // shift the bg down 1 pixel
-
-	ppu_on_all(); // turn on screen
-
-	song = SONG_MAIN_SONG;
-	music_play(song);
-	//
+	start_round();
 }
 
 void init_title_loop(void)
