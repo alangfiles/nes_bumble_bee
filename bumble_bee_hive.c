@@ -71,6 +71,9 @@ void main(void)
 		{
 			gameover_loop();
 		}
+		if(game_mode== MODE_ROUNDOVER){
+			roundover_loop();
+		}
 	}
 }
 
@@ -85,9 +88,7 @@ void load_room(void)
 			vram_put(title[largeindex]);
 		} else if (game_mode == MODE_OPTIONS){
 			vram_put(settings[largeindex]);
-		} else if (game_mode == MODE_GAME){
-			vram_put(combmapwoflowers[largeindex]);
-		} else if (game_mode == MODE_GAMEOVER){
+		} else{
 			vram_put(combmapwoflowers[largeindex]);
 		}
 		
@@ -147,23 +148,35 @@ void draw_sprites(void)
 void update_hud(void){
 	if(team1_wins > 0){
 		one_vram_buffer(0xc8, NTADR_A(13, 1)); //full
-	} 
+	}else {
+		one_vram_buffer(0xb7, NTADR_A(13, 1)); //empty
+	}
 	if(team1_wins > 1){
 		one_vram_buffer(0xc9, NTADR_A(12, 1)); //full
-	} 
+	} else {
+		one_vram_buffer(0xb8, NTADR_A(12, 1)); //empty
+	}
 	if(team1_wins > 2){
 		one_vram_buffer(0xca, NTADR_A(11, 1)); //full
-	} 
+	} else {
+		one_vram_buffer(0xb9, NTADR_A(11, 1)); //empty
+	}
 	
 
 	if(team2_wins > 0){
 		one_vram_buffer(0xc8, NTADR_A(18, 1)); //full
+	} else {
+		one_vram_buffer(0xb7, NTADR_A(18, 1)); //empty
 	}
 	if(team2_wins > 1){
 		one_vram_buffer(0xc9, NTADR_A(19, 1)); //full
+	} else {
+		one_vram_buffer(0xb8, NTADR_A(19, 1)); //empty
 	}
 	if(team2_wins > 2){
 		one_vram_buffer(0xca, NTADR_A(20, 1	)); //full
+	} else {
+		one_vram_buffer(0xb9, NTADR_A(20, 1)); //empty
 	}
 	
 }
@@ -476,7 +489,7 @@ void check_tile_and_collect()
 						sfx_play(SFX_TEAM1_WIN, 0);
 						winner = ONETWO_WINNER;
 						win_reason = WIN_DOTS;
-						init_gameover_loop();
+						init_roundover();
 						return;
 					}
 				}
@@ -490,7 +503,7 @@ void check_tile_and_collect()
 						sfx_play(SFX_TEAM2_WIN, 0);
 						winner = THREEFOUR_WINNER;
 						win_reason = WIN_DOTS;
-						init_gameover_loop();
+						init_roundover();
 						return;
 					}
 				}
@@ -620,7 +633,7 @@ void game_loop(void)
 				win_reason = WIN_TIME_UP;
 				sfx_play(SFX_DRAW_GAME, 0);
 			}
-			init_gameover_loop();
+			init_roundover();
 		}
 	}
 	ai_counter++;
@@ -734,7 +747,7 @@ void game_loop(void)
 		// player 1 dies (friendly fire)
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE;
-		init_gameover_loop();
+		init_roundover();
 	}
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
@@ -746,7 +759,7 @@ void game_loop(void)
 		sfx_play(SFX_DUCKEATSBEE, 0);
 		winner = ONETWO_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE;
-		init_gameover_loop();
+		init_roundover();
 	}
 	// check 1 with 4 and 2 with 3
 	temp_x = BoxGuy1.x >> 8;
@@ -759,7 +772,7 @@ void game_loop(void)
 		sfx_play(SFX_DUCKEATSBEE, 0);
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_ENEMY_KILL;
-		init_gameover_loop();
+		init_roundover();
 	}
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
@@ -770,7 +783,7 @@ void game_loop(void)
 		// player 2 dies (enemy fire)
 		winner = ONETWO_WINNER;
 		win_reason = WIN_ENEMY_KILL;
-		init_gameover_loop();
+		init_roundover();
 	}
 
 	// 5. DRAW SPRITES
@@ -854,37 +867,37 @@ void options_loop(void)
 		// Read all controllers for options screen
 		read_controllers();
 
-		if (pad1 != prev_pad1 || pad2 != prev_pad2 || pad3 != prev_pad3 || pad4 != prev_pad4)
-		{
+		// if (pad1 != prev_pad1 || pad2 != prev_pad2 || pad3 != prev_pad3 || pad4 != prev_pad4)
+		// {
 
-			// Handle speed selection with left/right
-			if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT)
-			{
-				if (speed_option == SPEED_FAST)
-				{
-					speed_option = SPEED_REGULAR;  
-					force_redraw = 1;
-				} else if (speed_option == SPEED_REGULAR)
-				{
-					speed_option = SPEED_SLOW;
-					force_redraw = 1;
-				}
-			}
+		// 	// Handle speed selection with left/right
+		// 	if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT)
+		// 	{
+		// 		if (speed_option == SPEED_FAST)
+		// 		{
+		// 			speed_option = SPEED_REGULAR;  
+		// 			force_redraw = 1;
+		// 		} else if (speed_option == SPEED_REGULAR)
+		// 		{
+		// 			speed_option = SPEED_SLOW;
+		// 			force_redraw = 1;
+		// 		}
+		// 	}
 
-			if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT)
-			{
-				if (speed_option == SPEED_SLOW)
-				{
-					speed_option = SPEED_REGULAR;
-					force_redraw = 1;
-				}
-				else if (speed_option == SPEED_REGULAR)
-				{
-					speed_option = SPEED_FAST;
-					force_redraw = 1;
-				}
-			}
-		}
+		// 	if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT)
+		// 	{
+		// 		if (speed_option == SPEED_SLOW)
+		// 		{
+		// 			speed_option = SPEED_REGULAR;
+		// 			force_redraw = 1;
+		// 		}
+		// 		else if (speed_option == SPEED_REGULAR)
+		// 		{
+		// 			speed_option = SPEED_FAST;
+		// 			force_redraw = 1;
+		// 		}
+		// 	}
+		// }
 
 		if (force_redraw)
 		{
@@ -914,27 +927,11 @@ void options_loop(void)
 		// Handle start button hold logic
 		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
 		{
-			if (!start_held)
-			{
-				start_held = 1;
-				start_hold_timer = 0;
-			}
-			start_held = 1;
-			start_hold_timer++;
-
-			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 30)
-			{
-				sfx_play(SFX_START, 0);
-				init_game_loop();
-				break;
-			}
+			sfx_play(SFX_START, 0);
+			init_game_loop();
+			break;
 		}
-		else
-		{
-			start_held = 0;
-			start_hold_timer = 0;
-		}
+		
 	}
 
 	prev_pad1 = pad1;
@@ -957,6 +954,34 @@ void gameover_loop(void)
 			break;
 		}
 	}
+}
+
+void start_round(void){
+
+	load_room();
+	update_hud();
+	// clear score counts
+
+	for (index = 0; index < 128; index++)
+	{
+		consumed_dots[index] = 0;
+	}
+	// move all players into starting positions:
+	BoxGuy1.x = 0x4000;
+	BoxGuy1.y = 0x2800;
+	BoxGuy2.x = 0x7000;
+	BoxGuy2.y = 0x2800;
+	BoxGuy3.x = 0xB000;
+	BoxGuy3.y = 0x2800;
+	BoxGuy4.x = 0x8800;
+	BoxGuy4.y = 0x2800;
+	team1_score=0;
+	team2_score=0;
+	game_timer = GAME_LENGTH;
+
+	song = SONG_MAIN_SONG;
+	music_play(song);
+	game_mode = MODE_GAME;
 }
 
 void init_game_loop(void)
@@ -992,16 +1017,9 @@ void init_game_loop(void)
 	pal_spr(palette_sp);
 
 	load_room();
-	// clear score counts
 	team1_wins = 0;
 	team2_wins = 0;
-	one_vram_buffer(0xb7, NTADR_A(13, 1)); //empty
-	one_vram_buffer(0xb8, NTADR_A(12, 1)); //empty
-	one_vram_buffer(0xb8, NTADR_A(11, 1)); //empty
-
-	one_vram_buffer(0xb7, NTADR_A(18, 1)); //empty
-	one_vram_buffer(0xb8, NTADR_A(19, 1)); //empty
-	one_vram_buffer(0xb9, NTADR_A(20, 1)); //empty
+	update_hud();
 
 	set_scroll_y(0xff); // shift the bg down 1 pixel
 
@@ -1082,18 +1100,19 @@ void init_options_loop(void)
 	ppu_on_all(); // turn on screen
 }
 
-void init_gameover_loop(void)
-{
-	clear_background();
+void init_roundover(void){
+	// increment the win count for the winning team
+	game_mode = MODE_ROUNDOVER;
 	music_stop();
-	game_mode = MODE_GAMEOVER;
-	ppu_off(); // screen off
-	// load the title palettes
-	clear_vram_buffer();
-	pal_bg(palette_bg_combmap);
-	pal_spr(palette_sp);
-
-	multi_vram_buffer_horz("GAME OVER", 9, NTADR_A(11, 8));
+	if (winner == ONETWO_WINNER)
+	{
+		team1_wins++;
+	}
+	else if (winner == THREEFOUR_WINNER)
+	{
+		team2_wins++;
+	}
+	update_hud();
 
 	if (winner == ONETWO_WINNER)
 	{
@@ -1105,17 +1124,50 @@ void init_gameover_loop(void)
 	}
 	if (win_reason == WIN_DOTS)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 14));
+		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 13));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE)
 	{
-		multi_vram_buffer_horz("FRIENDLY FIRE KILL", 18, NTADR_A(6, 14));
+		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 13));
 	}
 	else if (win_reason == WIN_ENEMY_KILL)
 	{
-		multi_vram_buffer_horz("ENEMY SEEKER KILLED", 19, NTADR_A(5, 14));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(5, 13));
 	}
+
+	// Check if either team has reached 3 wins
+	if (team1_wins >= 3)
+	{
+		// Team 1 wins the match
+		// sfx_play(SFX_TEAM1_MATCH_WIN, 0);
+		init_gameover_loop();
+	}
+	else if (team2_wins >= 3)
+	{
+		// Team 2 wins the match
+		// sfx_play(SFX_TEAM2_MATCH_WIN, 0);
+		init_gameover_loop();
+	}
+}
+
+void init_gameover_loop(void)
+{
+	clear_background();
+	music_stop();
+	game_mode = MODE_GAMEOVER;
+	ppu_off(); // screen off
+	// load the title palettes
+	clear_vram_buffer();
+	pal_bg(palette_bg_combmap);
+	pal_spr(palette_sp);
+
+	
 	// say who won
+	if(team1_wins >= 3){
+		multi_vram_buffer_horz("TEAM 1 WINS THE MATCH!", 21, NTADR_A(4, 12));
+	} else if(team2_wins >= 3){
+		multi_vram_buffer_horz("TEAM 2 WINS THE MATCH!", 21, NTADR_A(4, 12));
+	} 
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
@@ -1148,4 +1200,18 @@ void clear_background(void)
 		flush_vram_update2();
 	}
 	ppu_on_all(); // turn on screen
+}
+
+void roundover_loop(void){
+	while (1)
+	{
+		ppu_wait_nmi();
+		pad1 = pad_poll(0); // read the first controller
+
+		if (pad1 & PAD_START)
+		{
+			start_round();
+			break;
+		}
+	}
 }

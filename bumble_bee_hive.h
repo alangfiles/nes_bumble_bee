@@ -125,7 +125,8 @@ enum
 	MODE_TITLE,
 	MODE_OPTIONS,
 	MODE_GAME,
-	MODE_GAMEOVER
+	MODE_GAMEOVER,
+	MODE_ROUNDOVER
 };
 
 enum{
@@ -232,6 +233,9 @@ void init_title_loop(void);
 void init_system(void);
 void clear_background(void);
 void update_hud(void);
+void init_roundover(void);
+void start_round(void);
+void roundover_loop(void);
 
 
 char bg_collision_sub(void);
