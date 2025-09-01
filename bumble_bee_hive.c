@@ -1169,13 +1169,15 @@ void roundover_loop(void){
 				// Team 1 wins the match
 				// sfx_play(SFX_TEAM1_MATCH_WIN, 0);
 				init_gameover_loop();
+				break;
 			}
 			else if (team2_wins >= 3)
 			{
 				// Team 2 wins the match
 				// sfx_play(SFX_TEAM2_MATCH_WIN, 0);
 				init_gameover_loop();
-			}
+				break;
+			} 
 
 			start_round();
 			break;

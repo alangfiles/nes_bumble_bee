@@ -7702,20 +7702,22 @@ L15D1:	jsr     _ppu_wait_nmi
 	lda     _team1_wins
 	cmp     #$03
 ;
+; init_gameover_loop();
+;
+	jcs     _init_gameover_loop
+;
 ; else if (team2_wins >= 3)
 ;
-	bcs     L165A
 	lda     _team2_wins
 	cmp     #$03
-	bcc     L15DF
 ;
 ; init_gameover_loop();
 ;
-L165A:	jsr     _init_gameover_loop
+	jcs     _init_gameover_loop
 ;
 ; start_round();
 ;
-L15DF:	jmp     _start_round
+	jmp     _start_round
 
 .endproc
 
