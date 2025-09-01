@@ -1,5 +1,14 @@
-const unsigned char gamesprites_smallbee1left0_data[]={
+const unsigned char gamesprites_win[]={
+	  0,  0,0x51,0,
+	0x80
+};
 
+const unsigned char gamesprites_empty[]={
+	  0,  0,0x52,0,
+	0x80
+};
+
+const unsigned char gamesprites_smallbee1left0_data[]={
 	  0,  0,0x27,0,
 	  8,  0,0x28,0,
 	0x80

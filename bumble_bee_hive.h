@@ -76,6 +76,8 @@ unsigned char ai_counter;
 unsigned char current_player; // tracks which player is currently being processed
 unsigned char team1_score; // score for team 1 (players 1 & 2)
 unsigned char team2_score; // score for team 2 (players 3 & 4)
+unsigned char team1_wins;
+unsigned char team2_wins;
 unsigned char win_reason; // tracks how the game was won
 
 #pragma bss-name(push, "BSS")
@@ -229,6 +231,7 @@ void init_gameover_loop(void);
 void init_title_loop(void);
 void init_system(void);
 void clear_background(void);
+void update_hud(void);
 
 
 char bg_collision_sub(void);

@@ -140,9 +140,31 @@ void draw_sprites(void)
 
 	// draw 1 metasprite
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+	
+	
 }
 
-void draw_hud_sprites(void){
+void update_hud(void){
+	if(team1_wins > 0){
+		one_vram_buffer(0xc8, NTADR_A(13, 1)); //full
+	} 
+	if(team1_wins > 1){
+		one_vram_buffer(0xc9, NTADR_A(12, 1)); //full
+	} 
+	if(team1_wins > 2){
+		one_vram_buffer(0xca, NTADR_A(11, 1)); //full
+	} 
+	
+
+	if(team2_wins > 0){
+		one_vram_buffer(0xc8, NTADR_A(18, 1)); //full
+	}
+	if(team2_wins > 1){
+		one_vram_buffer(0xc9, NTADR_A(19, 1)); //full
+	}
+	if(team2_wins > 2){
+		one_vram_buffer(0xca, NTADR_A(20, 1	)); //full
+	}
 	
 }
 
@@ -568,6 +590,7 @@ void game_loop(void)
 
 	// 0. DEBUGGING CODE
 	debug_extras();
+	 // this should just move to the chr stuff
 
 	// 1. INCREMENT GLOBAL COUNTERS
 	frame_counter++;
@@ -939,6 +962,7 @@ void gameover_loop(void)
 void init_game_loop(void)
 {
 	clear_background();
+	
 	game_mode = MODE_GAME;
 	// Initialize scores
 	team1_score = 0;
@@ -968,6 +992,16 @@ void init_game_loop(void)
 	pal_spr(palette_sp);
 
 	load_room();
+	// clear score counts
+	team1_wins = 0;
+	team2_wins = 0;
+	one_vram_buffer(0xb7, NTADR_A(13, 1)); //empty
+	one_vram_buffer(0xb8, NTADR_A(12, 1)); //empty
+	one_vram_buffer(0xb8, NTADR_A(11, 1)); //empty
+
+	one_vram_buffer(0xb7, NTADR_A(18, 1)); //empty
+	one_vram_buffer(0xb8, NTADR_A(19, 1)); //empty
+	one_vram_buffer(0xb9, NTADR_A(20, 1)); //empty
 
 	set_scroll_y(0xff); // shift the bg down 1 pixel
 
@@ -975,6 +1009,7 @@ void init_game_loop(void)
 
 	song = SONG_MAIN_SONG;
 	music_play(song);
+	//
 }
 
 void init_title_loop(void)
