@@ -18,7 +18,7 @@ void main(void)
 	/*
 	 TODO before CORGS:
 	 * win count [x]
-	 * fix colors 
+	 * fix colors [x]
 	 * power up pellet
 	 * game over screen
 	 * character placements
@@ -979,9 +979,33 @@ void start_round(void){
 	team2_score=0;
 	game_timer = GAME_LENGTH;
 
+	
+
+	ppu_wait_nmi();
+	oam_clear();
+	oam_meta_spr(120, 100, gamesprites_big3_data);
+	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+	ppu_wait_nmi();
+	delay(20);
+	oam_clear();
+	ppu_wait_nmi();
+	oam_meta_spr(120, 100, gamesprites_big2_data);
+	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+	delay(20);
+	oam_clear();
+	ppu_wait_nmi();
+	oam_meta_spr(120, 100, gamesprites_big1_data);
+	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+	delay(20);
+	oam_clear();
+	ppu_wait_nmi();
+	sfx_play(SFX_START, 0);
+
+	game_mode = MODE_GAME;
 	song = SONG_MAIN_SONG;
 	music_play(song);
-	game_mode = MODE_GAME;
+
+
 }
 
 void init_game_loop(void)
