@@ -214,7 +214,6 @@ const unsigned char metatiles1[]={
 // PROTOTYPES
 void load_room(void);
 void draw_sprites(void);
-void draw_title_sprites(void);
 void movement(void);	
 void check_tile_and_collect(void);
 void initialize_collision_map(void);

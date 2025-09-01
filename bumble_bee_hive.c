@@ -20,7 +20,7 @@ void main(void)
 	 * win count [x]
 	 * fix colors [x]
 	 * power up pellet
-	 * game over screen
+	 * game over screen [x]
 	 * character placements
 	 * settings screen / pad_new?
 	 * New maps, new music
@@ -179,48 +179,6 @@ void update_hud(void){
 		one_vram_buffer(0xb9, NTADR_A(20, 1)); //empty
 	}
 	
-}
-
-void draw_title_sprites(void)
-{
-	// clear all sprites from sprite buffer
-	oam_clear();
-
-	// Draw Player 1 (bee) at left side
-	temp_x = BoxGuy1.x >> 8;
-	temp_y = BoxGuy1.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
-
-	// Draw Player 2 (duck) at left-center
-	temp_x = BoxGuy2.x >> 8;
-	temp_y = BoxGuy2.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
-
-	// Draw Player 3 (bee) at right-center
-	temp_x = BoxGuy3.x >> 8;
-	temp_y = BoxGuy3.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-
-	// Draw Player 4 (duck) at right side
-	temp_x = BoxGuy4.x >> 8;
-	temp_y = BoxGuy4.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 }
 
 void movement(void)
@@ -852,8 +810,6 @@ void title_loop(void)
 			start_hold_timer = 0;
 		}
 
-		// Draw the title screen sprites
-		draw_title_sprites();
 	}
 }
 
