@@ -16,12 +16,33 @@ void main(void)
 {
 
 	/*
-	 1. title screen
-	 2. 4 players, can it work with other numbers?
-		 - 1 player (bee) + ais
-	 3. game over screens
+	 TODO before CORGS:
+	 * win count
+	 * fix colors
+	 * power up pellet
+	 * game over screen
+	 * character placements
+	 * settings screen / pad_new?
+	 * New maps, new music
+	 * turbo button?
+	*/
 
+	/*
+	Ideas:
+	turbo for duck, half second with 7 second recharge?
+	bee turbo uses up honey?
+	duck can eat through 1 wall?
 
+	random placement but symmetrical
+
+	win count / medals
+	timer for game (40 seconds?)
+	ready, fight! logo. (or 3,2,1 blitz )
+
+	character sprites are a little too big hitboxes?
+	Big dots worth more points 
+	Power up to swap places with your partner. 
+	
 	*/
 
 	init_system();
@@ -845,8 +866,7 @@ void options_loop(void)
 			ppu_off();
 			clear_vram_buffer();
 
-			multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
-			multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
+			multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
 
 			if (speed_option == SPEED_SLOW)
 			{
@@ -860,10 +880,6 @@ void options_loop(void)
 			{
 				multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
 			}
-
-			multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
-			multi_vram_buffer_horz("HOLD START 1 SECOND", 19, NTADR_A(8, 20));
-			multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
 
 			ppu_on_all();
 		}
@@ -981,15 +997,13 @@ void init_title_loop(void)
 	BoxGuy4.x = 0x1801; // x = 280 (0x118)
 	BoxGuy4.y = 0xC800; // y = 200 (0xC8)
 
-	// Initialize start button variables
-	start_hold_timer = 0;
-	start_held = 0;
 
 	ppu_on_all(); // turn on screen
 }
 
 void init_options_loop(void)
 {
+	delay(30);
 	prev_pad1 = 0;
 	prev_pad2 = 0;
 	prev_pad3 = 0;
@@ -1005,8 +1019,7 @@ void init_options_loop(void)
 	pal_bg(palette_options_bg);
 	pal_spr(palette_sp);
 
-	multi_vram_buffer_horz("OPTIONS", 7, NTADR_A(12, 6));
-	multi_vram_buffer_horz("CHARACTER SPEED:", 16, NTADR_A(8, 10));
+	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
 
 	// Show current speed selection
 	if (speed_option == SPEED_SLOW)
@@ -1022,9 +1035,6 @@ void init_options_loop(void)
 		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
 	}
 
-	multi_vram_buffer_horz("USE LEFT/RIGHT TO CHANGE", 22, NTADR_A(5, 16));
-	multi_vram_buffer_horz("HOLD START 3 SECONDS", 20, NTADR_A(8, 20));
-	multi_vram_buffer_horz("TO START GAME", 13, NTADR_A(10, 22));
 
 	// Initialize start button variables for options
 	start_hold_timer = 0;
