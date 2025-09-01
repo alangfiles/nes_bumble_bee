@@ -142,6 +142,10 @@ void draw_sprites(void)
 	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 }
 
+void draw_hud_sprites(void){
+	
+}
+
 void draw_title_sprites(void)
 {
 	// clear all sprites from sprite buffer
