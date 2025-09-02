@@ -161,6 +161,67 @@ const unsigned char gamesprites_bigbeeright2_data[]={
 
 };
 
+// Bigbee sprites for player 3 (palette 1)
+const unsigned char gamesprites_bigbee2left0_data[]={
+
+	  0,  0,0x47,1,
+	  0,- 8,0x37,1,
+	  8,  0,0x48,1,
+	  8,- 8,0x38,1,
+	0x80
+
+};
+
+const unsigned char gamesprites_bigbee2left1_data[]={
+
+	  0,  0,0x49,1,
+	  0,- 8,0x39,1,
+	  8,- 8,0x3a,1,
+	  8,  0,0x4a,1,
+	0x80
+
+};
+
+const unsigned char gamesprites_bigbee2left2_data[]={
+
+	  0,  0,0x4b,1,
+	  0,- 8,0x3b,1,
+	  8,- 8,0x3c,1,
+	  8,  0,0x4c,1,
+	0x80
+
+};
+
+const unsigned char gamesprites_bigbee2right0_data[]={
+
+	  8,  0,0x47,1|OAM_FLIP_H,
+	  8,- 8,0x37,1|OAM_FLIP_H,
+	  0,  0,0x48,1|OAM_FLIP_H,
+	  0,- 8,0x38,1|OAM_FLIP_H,
+	0x80
+
+};
+
+const unsigned char gamesprites_bigbee2right1_data[]={
+
+	  8,  0,0x49,1|OAM_FLIP_H,
+	  8,- 8,0x39,1|OAM_FLIP_H,
+	  0,- 8,0x3a,1|OAM_FLIP_H,
+	  0,  0,0x4a,1|OAM_FLIP_H,
+	0x80
+
+};
+
+const unsigned char gamesprites_bigbee2right2_data[]={
+
+	  8,  0,0x4b,1|OAM_FLIP_H,
+	  8,- 8,0x3b,1|OAM_FLIP_H,
+	  0,- 8,0x3c,1|OAM_FLIP_H,
+	  0,  0,0x4c,1|OAM_FLIP_H,
+	0x80
+
+};
+
 const unsigned char gamesprites_smallduck1left0_data[]={
 
 	  0,  0,0x0c,0,

@@ -157,25 +157,50 @@ void draw_player_1(void)
 		anim_frame_1 = (anim_frame_1 + 1) % 3;
 	}
 	
-	// Choose sprite based on direction and animation frame
-	if (BoxGuy1.direction == DIR_LEFT) {
-		switch(anim_frame_1) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
-		}
-	} else if (BoxGuy1.direction == DIR_RIGHT) {
-		switch(anim_frame_1) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data); break;
+	// Check if player is in bigbee form
+	if (bee1_bigbee_timer > 0) {
+		// Draw bigbee sprites
+		if (BoxGuy1.direction == DIR_LEFT) {
+			switch(anim_frame_1) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft2_data); break;
+			}
+		} else if (BoxGuy1.direction == DIR_RIGHT) {
+			switch(anim_frame_1) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright2_data); break;
+			}
+		} else {
+			// Default to left-facing sprite for UP/DOWN/NONE
+			switch(anim_frame_1) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft2_data); break;
+			}
 		}
 	} else {
-		// Default to left-facing sprite for UP/DOWN/NONE
-		switch(anim_frame_1) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+		// Draw normal small bee sprites
+		if (BoxGuy1.direction == DIR_LEFT) {
+			switch(anim_frame_1) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+			}
+		} else if (BoxGuy1.direction == DIR_RIGHT) {
+			switch(anim_frame_1) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data); break;
+			}
+		} else {
+			// Default to left-facing sprite for UP/DOWN/NONE
+			switch(anim_frame_1) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+			}
 		}
 	}
 }
@@ -194,6 +219,7 @@ void draw_player_2(void)
 	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
 	if (BoxGuy2.direction == DIR_LEFT) {
 		switch(anim_frame_2) { 
+			
 			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data); break;
 			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
 			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
@@ -225,25 +251,50 @@ void draw_player_3(void)
 		anim_frame_3 = (anim_frame_3 + 1) % 3;
 	}
 	
-	// Choose sprite based on direction and animation frame
-	if (BoxGuy3.direction == DIR_LEFT) {
-		switch(anim_frame_3) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
-		}
-	} else if (BoxGuy3.direction == DIR_RIGHT) {
-		switch(anim_frame_3) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right2_data); break;
+	// Check if player is in bigbee form
+	if (bee3_bigbee_timer > 0) {
+		// Draw bigbee sprites (using palette 1 for player 3)
+		if (BoxGuy3.direction == DIR_LEFT) {
+			switch(anim_frame_3) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left2_data); break;
+			}
+		} else if (BoxGuy3.direction == DIR_RIGHT) {
+			switch(anim_frame_3) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right2_data); break;
+			}
+		} else {
+			// Default to left-facing sprite for UP/DOWN/NONE
+			switch(anim_frame_3) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left2_data); break;
+			}
 		}
 	} else {
-		// Default to left-facing sprite for UP/DOWN/NONE
-		switch(anim_frame_3) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+		// Draw normal small bee sprites
+		if (BoxGuy3.direction == DIR_LEFT) {
+			switch(anim_frame_3) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+			}
+		} else if (BoxGuy3.direction == DIR_RIGHT) {
+			switch(anim_frame_3) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right2_data); break;
+			}
+		} else {
+			// Default to left-facing sprite for UP/DOWN/NONE
+			switch(anim_frame_3) {
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
+				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
+				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+			}
 		}
 	}
 }
@@ -411,8 +462,7 @@ void movement(void)
 
 	Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 	Generic.y = GenericBoxGuy.y >> 8;
-	//	Generic.width = HERO_WIDTH; // already is this
-	//	Generic.height = HERO_HEIGHT;
+	// Collision box size already set above for X movement
 
 	if (hero_velocity_y < 0)
 	{ // going up
@@ -637,6 +687,19 @@ char sprite_collision()
 	}
 }
 
+// Check if a player collides with a powerup
+char check_powerup_collision(unsigned char player_x, unsigned char player_y, unsigned char powerup_x, unsigned char powerup_y)
+{
+	// Powerup is 16x16 pixels, player is 8x8 pixels
+	// Check if player's center is within powerup bounds
+	if (player_x + 4 >= powerup_x && player_x + 4 < powerup_x + 16 &&
+			player_y + 4 >= powerup_y && player_y + 4 < powerup_y + 16)
+	{
+		return 1;
+	}
+	return 0;
+}
+
 void debug_extras(void)
 {
 	// Display team 1 score (2 digits)
@@ -741,6 +804,14 @@ void game_loop(void)
 	
 	// Update sprite rotation every frame
 	sprite_rotation++;
+	
+	// Update bigbee transformation timers
+	if (bee1_bigbee_timer > 0 && game_frame_timer == 1) {
+		bee1_bigbee_timer--;
+	}
+	if (bee3_bigbee_timer > 0 && game_frame_timer == 1) { //game timer
+		bee3_bigbee_timer--;
+	}
 
 	// 2.  READ CONTROLLER
 	read_controllers();
@@ -857,7 +928,70 @@ void game_loop(void)
 		BoxGuy4.y = GenericBoxGuy.y;
 	}
 
-	// 4. CHECK COLLISON
+	// 4. CHECK POWERUP COLLISIONS
+	
+	// Check if bee players (1 and 3) collide with powerups
+	if (bee1_bigbee_timer == 0) { // Only check if not already transformed
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		
+		// Check powerup1 (top-left)
+		if (powerup1 == 1 && check_powerup_collision(temp_x, temp_y, 16, 32)) {
+			powerup1 = 0; // Remove powerup
+			bee1_bigbee_timer = POWERUP_TIMER;  // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+		// Check powerup2 (top-right)
+		if (powerup2 == 1 && check_powerup_collision(temp_x, temp_y, 226, 32)) {
+			powerup2 = 0; // Remove powerup
+			bee1_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+		// Check powerup3 (bottom-left)
+		if (powerup3 == 1 && check_powerup_collision(temp_x, temp_y, 16, 208)) {
+			powerup3 = 0; // Remove powerup
+			bee1_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+		// Check powerup4 (bottom-right)
+		if (powerup4 == 1 && check_powerup_collision(temp_x, temp_y, 226, 208)) {
+			powerup4 = 0; // Remove powerup
+			bee1_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+	}
+	
+	if (bee3_bigbee_timer == 0) { // Only check if not already transformed
+		temp_x = BoxGuy3.x >> 8;
+		temp_y = BoxGuy3.y >> 8;
+		
+		// Check powerup1 (top-left)
+		if (powerup1 == 1 && check_powerup_collision(temp_x, temp_y, 16, 32)) {
+			powerup1 = 0; // Remove powerup
+			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+		// Check powerup2 (top-right)
+		if (powerup2 == 1 && check_powerup_collision(temp_x, temp_y, 226, 32)) {
+			powerup2 = 0; // Remove powerup
+			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+		// Check powerup3 (bottom-left)
+		if (powerup3 == 1 && check_powerup_collision(temp_x, temp_y, 16, 208)) {
+			powerup3 = 0; // Remove powerup
+			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+		// Check powerup4 (bottom-right)
+		if (powerup4 == 1 && check_powerup_collision(temp_x, temp_y, 226, 208)) {
+			powerup4 = 0; // Remove powerup
+			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
+			sfx_play(SFX_POWERUP, 0);
+		}
+	}
+
+	// 5. CHECK COLLISON
 
 	// check for player deaths (1 collide with 2, 3 collide with 4)
 	temp_x = BoxGuy1.x >> 8;
@@ -1112,6 +1246,10 @@ void start_round(void){
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_DOTS; // default
 	
+	// Reset bigbee transformation timers
+	bee1_bigbee_timer = 0;
+	bee3_bigbee_timer = 0;
+	
 
 	ppu_wait_nmi();
 	oam_clear();
@@ -1323,6 +1461,10 @@ void init_system(void)
 	anim_frame_2 = 0;
 	anim_frame_3 = 0;
 	anim_frame_4 = 0;
+	
+	// Initialize bigbee transformation timers
+	bee1_bigbee_timer = 0;
+	bee3_bigbee_timer = 0;
 
 	ppu_on_all(); // turn on screenxw
 }

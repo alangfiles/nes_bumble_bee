@@ -7,6 +7,8 @@
 #define SPEED_REGULAR 0x0A0
 #define SPEED_FAST 0x0E0
 
+#define POWERUP_TIMER 12
+
 #pragma bss-name(push, "ZEROPAGE")
 
 // GLOBAL VARIABLES
@@ -91,6 +93,10 @@ unsigned char powerup1;
 unsigned char powerup2;
 unsigned char powerup3;
 unsigned char powerup4;
+
+// Bigbee transformation variables
+unsigned char bee1_bigbee_timer; // Timer for player 1 bigbee transformation (0 = not transformed)
+unsigned char bee3_bigbee_timer; // Timer for player 3 bigbee transformation (0 = not transformed)
 
 unsigned char sprite_rotation; // tracks which order to draw sprites in
 
@@ -271,3 +277,4 @@ char bg_coll_D(void);
 
 
 char sprite_collision(void);
+char check_powerup_collision(unsigned char player_x, unsigned char player_y, unsigned char powerup_x, unsigned char powerup_y);
