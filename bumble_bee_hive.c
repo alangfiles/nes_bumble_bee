@@ -118,93 +118,61 @@ void draw_sprites(void)
 	// This prevents sprites from always being drawn in the same order
 	switch(sprite_rotation & 0x03) { // Use only bottom 2 bits for 4 different orders
 		case 0: // Original order: 1, 2, 3, 4
-			// BoxGuy1
-			temp_x = BoxGuy1.x >> 8;
-			temp_y = BoxGuy1.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
-			
-			// BoxGuy2
-			temp_x = BoxGuy2.x >> 8;
-			temp_y = BoxGuy2.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
-			
-			// BoxGuy3
-			temp_x = BoxGuy3.x >> 8;
-			temp_y = BoxGuy3.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-			
-			// BoxGuy4
-			temp_x = BoxGuy4.x >> 8;
-			temp_y = BoxGuy4.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			draw_player_1();
+			draw_player_2();
+			draw_player_3();
+			draw_player_4();
 			break;
 			
 		case 1: // Order: 2, 1, 4, 3
-			// BoxGuy2
-			temp_x = BoxGuy2.x >> 8;
-			temp_y = BoxGuy2.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
-			
-			// BoxGuy1
-			temp_x = BoxGuy1.x >> 8;
-			temp_y = BoxGuy1.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
-			
-			// BoxGuy4
-			temp_x = BoxGuy4.x >> 8;
-			temp_y = BoxGuy4.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
-			
-			// BoxGuy3
-			temp_x = BoxGuy3.x >> 8;
-			temp_y = BoxGuy3.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+			draw_player_2();
+			draw_player_1();
+			draw_player_4();
+			draw_player_3();
 			break;
 			
 		case 2: // Order: 3, 4, 1, 2
-			// BoxGuy3
-			temp_x = BoxGuy3.x >> 8;
-			temp_y = BoxGuy3.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-			
-			// BoxGuy4
-			temp_x = BoxGuy4.x >> 8;
-			temp_y = BoxGuy4.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
-			
-			// BoxGuy1
-			temp_x = BoxGuy1.x >> 8;
-			temp_y = BoxGuy1.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
-			
-			// BoxGuy2
-			temp_x = BoxGuy2.x >> 8;
-			temp_y = BoxGuy2.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+			draw_player_3();
+			draw_player_4();
+			draw_player_1();
+			draw_player_2();
 			break;
 			
 		case 3: // Order: 4, 3, 2, 1
-			// BoxGuy4
-			temp_x = BoxGuy4.x >> 8;
-			temp_y = BoxGuy4.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
-			
-			// BoxGuy3
-			temp_x = BoxGuy3.x >> 8;
-			temp_y = BoxGuy3.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-			
-			// BoxGuy2
-			temp_x = BoxGuy2.x >> 8;
-			temp_y = BoxGuy2.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
-			
-			// BoxGuy1
-			temp_x = BoxGuy1.x >> 8;
-			temp_y = BoxGuy1.y >> 8;
-			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+			draw_player_4();
+			draw_player_3();
+			draw_player_2();
+			draw_player_1();
 			break;
 	}
+}
+
+void draw_player_1(void)
+{
+	temp_x = BoxGuy1.x >> 8;
+	temp_y = BoxGuy1.y >> 8;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+}
+
+void draw_player_2(void)
+{
+	temp_x = BoxGuy2.x >> 8;
+	temp_y = BoxGuy2.y >> 8;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+}
+
+void draw_player_3(void)
+{
+	temp_x = BoxGuy3.x >> 8;
+	temp_y = BoxGuy3.y >> 8;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+}
+
+void draw_player_4(void)
+{
+	temp_x = BoxGuy4.x >> 8;
+	temp_y = BoxGuy4.y >> 8;
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
 }
 
 void update_hud(void){
@@ -251,14 +219,17 @@ void movement(void)
 	if (generic_pad & PAD_LEFT)
 	{
 		hero_velocity_x = -speed_option;
+		GenericBoxGuy.direction = DIR_LEFT;
 	}
 	else if (generic_pad & PAD_RIGHT)
 	{
 		hero_velocity_x = speed_option;
+		GenericBoxGuy.direction = DIR_RIGHT;
 	}
 	else
 	{ // nothing pressed
 		hero_velocity_x = 0;
+		// Don't change direction here - let Y movement override if needed
 	}
 
 	GenericBoxGuy.x += hero_velocity_x;
@@ -303,14 +274,20 @@ void movement(void)
 	if (generic_pad & PAD_UP)
 	{
 		hero_velocity_y = -speed_option;
+		GenericBoxGuy.direction = DIR_UP;
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
 		hero_velocity_y = speed_option;
+		GenericBoxGuy.direction = DIR_DOWN;
 	}
 	else
 	{ // nothing pressed
 		hero_velocity_y = 0;
+		// If no movement input at all, set direction to NONE
+		if (!(generic_pad & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN))) {
+			GenericBoxGuy.direction = DIR_NONE;
+		}
 	}
 
 	GenericBoxGuy.y += hero_velocity_y;
@@ -994,12 +971,16 @@ void start_round(void){
 	// move all players into starting positions:
 	BoxGuy1.x = 0x4000;
 	BoxGuy1.y = 0x2800;
+	BoxGuy1.direction = DIR_NONE;
 	BoxGuy2.x = 0x7000;
 	BoxGuy2.y = 0x2800;
+	BoxGuy2.direction = DIR_NONE;
 	BoxGuy3.x = 0xB000;
 	BoxGuy3.y = 0x2800;
+	BoxGuy3.direction = DIR_NONE;
 	BoxGuy4.x = 0x8800;
 	BoxGuy4.y = 0x2800;
+	BoxGuy4.direction = DIR_NONE;
 	team1_score=0;
 	team2_score=0;
 	powerup1 =1;
@@ -1068,15 +1049,19 @@ void init_title_loop(void)
 	// Initialize title screen sprites at bottom of screen
 	BoxGuy1.x = 0x2800; // x = 40 (0x28)
 	BoxGuy1.y = 0xC800; // y = 200 (0xC8)
+	BoxGuy1.direction = DIR_NONE;
 
 	BoxGuy2.x = 0x7800; // x = 120 (0x78)
 	BoxGuy2.y = 0xC800; // y = 200 (0xC8)
+	BoxGuy2.direction = DIR_NONE;
 
 	BoxGuy3.x = 0xC800; // x = 200 (0xC8)
 	BoxGuy3.y = 0xC800; // y = 200 (0xC8)
+	BoxGuy3.direction = DIR_NONE;
 
 	BoxGuy4.x = 0x1801; // x = 280 (0x118)
 	BoxGuy4.y = 0xC800; // y = 200 (0xC8)
+	BoxGuy4.direction = DIR_NONE;
 
 
 	ppu_on_all(); // turn on screen

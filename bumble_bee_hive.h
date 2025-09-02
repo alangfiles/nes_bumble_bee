@@ -47,6 +47,13 @@ unsigned char eject_U; // from up
 #define LEFT 0
 #define RIGHT 1
 
+// Direction constants
+#define DIR_UP 0
+#define DIR_DOWN 1
+#define DIR_LEFT 2
+#define DIR_RIGHT 3
+#define DIR_NONE 4
+
 int address;
 unsigned char x; // room loader code
 unsigned char y;
@@ -114,6 +121,7 @@ struct Base Generic;
 struct BoxGuy {
 	unsigned int x;
 	unsigned int y;
+	unsigned char direction;
 };
 
 struct BoxGuy GenericBoxGuy;
@@ -221,6 +229,10 @@ const unsigned char metatiles1[]={
 // PROTOTYPES
 void load_room(void);
 void draw_sprites(void);
+void draw_player_1(void);
+void draw_player_2(void);
+void draw_player_3(void);
+void draw_player_4(void);
 void movement(void);	
 void check_tile_and_collect(void);
 void initialize_collision_map(void);
