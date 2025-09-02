@@ -102,9 +102,8 @@ void draw_sprites(void)
 	// clear all sprites from sprite buffer
 	oam_clear();
 
+	//too many on a line potential, need to rotate through them.
 
-	//too many on a line potential, need to roate through them.
-	
 	//draw powerups
 	if(powerup1 == 1)
 		oam_meta_spr(16, 32, gamesprites_powerup_data);
@@ -115,50 +114,97 @@ void draw_sprites(void)
 	if(powerup4 == 1)
 		oam_meta_spr(226, 208, gamesprites_powerup_data);
 
-
-	//drag players:
-
-	temp_x = BoxGuy1.x >> 8;
-	temp_y = BoxGuy1.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-
-	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
-
-	temp_x = BoxGuy2.x >> 8;
-	temp_y = BoxGuy2.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-
-	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
-
-	temp_x = BoxGuy3.x >> 8;
-	temp_y = BoxGuy3.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-
-	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-
-	temp_x = BoxGuy4.x >> 8;
-	temp_y = BoxGuy4.y >> 8;
-	if (temp_x == 0)
-		temp_x = 1;
-	if (temp_y == 0)
-		temp_y = 1;
-
-	// draw 1 metasprite
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
-	
-	
+	// Cycle through different drawing orders based on sprite_rotation
+	// This prevents sprites from always being drawn in the same order
+	switch(sprite_rotation & 0x03) { // Use only bottom 2 bits for 4 different orders
+		case 0: // Original order: 1, 2, 3, 4
+			// BoxGuy1
+			temp_x = BoxGuy1.x >> 8;
+			temp_y = BoxGuy1.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+			
+			// BoxGuy2
+			temp_x = BoxGuy2.x >> 8;
+			temp_y = BoxGuy2.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+			
+			// BoxGuy3
+			temp_x = BoxGuy3.x >> 8;
+			temp_y = BoxGuy3.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+			
+			// BoxGuy4
+			temp_x = BoxGuy4.x >> 8;
+			temp_y = BoxGuy4.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			break;
+			
+		case 1: // Order: 2, 1, 4, 3
+			// BoxGuy2
+			temp_x = BoxGuy2.x >> 8;
+			temp_y = BoxGuy2.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+			
+			// BoxGuy1
+			temp_x = BoxGuy1.x >> 8;
+			temp_y = BoxGuy1.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+			
+			// BoxGuy4
+			temp_x = BoxGuy4.x >> 8;
+			temp_y = BoxGuy4.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			
+			// BoxGuy3
+			temp_x = BoxGuy3.x >> 8;
+			temp_y = BoxGuy3.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+			break;
+			
+		case 2: // Order: 3, 4, 1, 2
+			// BoxGuy3
+			temp_x = BoxGuy3.x >> 8;
+			temp_y = BoxGuy3.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+			
+			// BoxGuy4
+			temp_x = BoxGuy4.x >> 8;
+			temp_y = BoxGuy4.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			
+			// BoxGuy1
+			temp_x = BoxGuy1.x >> 8;
+			temp_y = BoxGuy1.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+			
+			// BoxGuy2
+			temp_x = BoxGuy2.x >> 8;
+			temp_y = BoxGuy2.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+			break;
+			
+		case 3: // Order: 4, 3, 2, 1
+			// BoxGuy4
+			temp_x = BoxGuy4.x >> 8;
+			temp_y = BoxGuy4.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			
+			// BoxGuy3
+			temp_x = BoxGuy3.x >> 8;
+			temp_y = BoxGuy3.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+			
+			// BoxGuy2
+			temp_x = BoxGuy2.x >> 8;
+			temp_y = BoxGuy2.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+			
+			// BoxGuy1
+			temp_x = BoxGuy1.x >> 8;
+			temp_y = BoxGuy1.y >> 8;
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+			break;
+	}
 }
 
 void update_hud(void){
@@ -611,6 +657,9 @@ void game_loop(void)
 		}
 	}
 	ai_counter++;
+	
+	// Update sprite rotation every frame
+	sprite_rotation++;
 
 	// 2.  READ CONTROLLER
 	read_controllers();
@@ -1158,6 +1207,9 @@ void init_system(void)
 
 	// Initialize default speed option (regular speed)
 	speed_option = SPEED_REGULAR;
+	
+	// Initialize sprite rotation
+	sprite_rotation = 0;
 
 	ppu_on_all(); // turn on screenxw
 }

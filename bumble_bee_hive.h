@@ -85,6 +85,8 @@ unsigned char powerup2;
 unsigned char powerup3;
 unsigned char powerup4;
 
+unsigned char sprite_rotation; // tracks which order to draw sprites in
+
 #pragma bss-name(push, "BSS")
 unsigned char consumed_dots[128]; // tracks which dots have been consumed (8 bits per byte = 1024 bits)
 
