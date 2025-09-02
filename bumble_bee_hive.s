@@ -4254,16 +4254,16 @@ _title:
 	.byte	$32
 	.byte	$35
 	.byte	$B6
-	.byte	$41
-	.byte	$4C
+	.byte	$42
+	.byte	$52
+	.byte	$49
 	.byte	$41
 	.byte	$4E
 	.byte	$B6
 	.byte	$3C
 	.byte	$B6
-	.byte	$42
-	.byte	$52
-	.byte	$49
+	.byte	$41
+	.byte	$4C
 	.byte	$41
 	.byte	$4E
 	.byte	$B6
@@ -5340,7 +5340,7 @@ L17DB:	lda     _BoxGuy2+4
 	cmp     #$02
 	bne     L17DC
 ;
-; switch(anim_frame_2) {
+; switch(anim_frame_2) { 
 ;
 	lda     _anim_frame_2
 ;

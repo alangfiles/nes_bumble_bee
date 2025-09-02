@@ -193,7 +193,7 @@ void draw_player_2(void)
 	// Choose sprite based on direction and animation frame
 	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
 	if (BoxGuy2.direction == DIR_LEFT) {
-		switch(anim_frame_2) {
+		switch(anim_frame_2) { 
 			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data); break;
 			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
 			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
@@ -380,7 +380,7 @@ void movement(void)
 	old_y = GenericBoxGuy.y;
 
 	if (generic_pad & PAD_UP)
-	{
+	{ 
 		hero_velocity_y = -speed_option;
 		// GenericBoxGuy.direction = DIR_UP; //entually we'll set up and down but not now.
 	}
