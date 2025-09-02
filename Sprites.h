@@ -29,10 +29,26 @@ const unsigned char gamesprites_smallbeeleft1_data[]={
 
 };
 
+const unsigned char gamesprites_smallbee2left1_data[]={
+
+	  0,  0,0x29,1,
+	  8,  0,0x2a,1,
+	0x80
+
+};
+
 const unsigned char gamesprites_smallbeeleft2_data[]={
 
 	  0,  0,0x2b,0,
 	  8,  0,0x2c,0,
+	0x80
+
+};
+
+const unsigned char gamesprites_smallbee2left2_data[]={
+
+	  0,  0,0x2b,1,
+	  8,  0,0x2c,1,
 	0x80
 
 };
@@ -57,6 +73,30 @@ const unsigned char gamesprites_smallbeeright2_data[]={
 
 	  0,  0,0x2b,0|OAM_FLIP_H,
 	- 8,  0,0x2c,0|OAM_FLIP_H,
+	0x80
+
+};
+
+const unsigned char gamesprites_smallbee2right0_data[]={
+
+	  0,  0,0x27,1|OAM_FLIP_H,
+	- 8,  0,0x28,1|OAM_FLIP_H,
+	0x80
+
+};
+
+const unsigned char gamesprites_smallbee2right1_data[]={
+
+	  0,  0,0x29,1|OAM_FLIP_H,
+	- 8,  0,0x2a,1|OAM_FLIP_H,
+	0x80
+
+};
+
+const unsigned char gamesprites_smallbee2right2_data[]={
+
+	  0,  0,0x2b,1|OAM_FLIP_H,
+	- 8,  0,0x2c,1|OAM_FLIP_H,
 	0x80
 
 };
@@ -128,13 +168,6 @@ const unsigned char gamesprites_smallduck1left0_data[]={
 	0x80
 };
 
-const unsigned char gamesprites_smallduck2left0_data[]={
-
-	  0,  0,0x0c,1,
-	  0,  8,0x1c,1,
-	0x80
-};
-
 const unsigned char gamesprites_smallduckleft1_data[]={
 
 	  0,  0,0x0d,0,
@@ -151,29 +184,84 @@ const unsigned char gamesprites_smallduckleft2_data[]={
 
 };
 
-const unsigned char gamesprites_smallduckleft0__1_data[]={
+const unsigned char gamesprites_smallduck2left0_data[]={
 
-	  0,  0,0x0c,0,
-	  0,  8,0x1c,0,
+	  0,  0,0x0c,1,
+	  0,  8,0x1c,1,
+	0x80
+};
+
+
+
+const unsigned char gamesprites_smallduck2left1_data[]={
+
+	  0,  0,0x0d,1,
+	  0,  8,0x1d,1,
 	0x80
 
 };
 
-const unsigned char gamesprites_smallduckleft1__1_data[]={
 
-	  0,  0,0x0d,0,
+const unsigned char gamesprites_smallduck2left2_data[]={
+
+	  0,  0,0x0b,1,
+	  0,  8,0x1c,1|OAM_FLIP_H,
+	0x80
+
+};
+
+const unsigned char gamesprites_smallduck1right0_data[]={
+
+	  0,  0,0x0c,0|OAM_FLIP_H,
+	  0,  8,0x1c,0,
+	0x80
+};
+
+const unsigned char gamesprites_smallduckright1_data[]={
+
+	  0,  0,0x0d,0|OAM_FLIP_H,
 	  0,  8,0x1d,0,
 	0x80
 
 };
 
-const unsigned char gamesprites_smallduckleft2__1_data[]={
+const unsigned char gamesprites_smallduckright2_data[]={
 
-	  0,  0,0x0b,0,
+	  0,  0,0x0b,0|OAM_FLIP_H,
 	  0,  8,0x1c,0|OAM_FLIP_H,
 	0x80
 
 };
+
+const unsigned char gamesprites_smallduck2right0_data[]={
+
+	  0,  0,0x0c,1|OAM_FLIP_H,
+	  0,  8,0x1c,1,
+	0x80
+};
+
+
+
+const unsigned char gamesprites_smallduck2right1_data[]={
+
+	  0,  0,0x0d,1|OAM_FLIP_H,
+	  0,  8,0x1d,1,
+	0x80
+
+};
+
+
+const unsigned char gamesprites_smallduck2right2_data[]={
+
+	  0,  0,0x0b,1|OAM_FLIP_H,
+	  0,  8,0x1c,1|OAM_FLIP_H,
+	0x80
+
+};
+
+
+
+
 
 const unsigned char gamesprites_powerup_data[]={
 

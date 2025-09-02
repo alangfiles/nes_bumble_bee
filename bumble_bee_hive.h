@@ -94,6 +94,12 @@ unsigned char powerup4;
 
 unsigned char sprite_rotation; // tracks which order to draw sprites in
 
+// Animation frame tracking (cycles every 10 frames)
+unsigned char anim_frame_1; // animation frame for player 1
+unsigned char anim_frame_2; // animation frame for player 2
+unsigned char anim_frame_3; // animation frame for player 3
+unsigned char anim_frame_4; // animation frame for player 4
+
 #pragma bss-name(push, "BSS")
 unsigned char consumed_dots[128]; // tracks which dots have been consumed (8 bits per byte = 1024 bits)
 

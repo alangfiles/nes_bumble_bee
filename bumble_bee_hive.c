@@ -151,28 +151,136 @@ void draw_player_1(void)
 {
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data);
+	
+	// Update animation frame every 10 frames
+	if ((frame_counter % 10) == 0) {
+		anim_frame_1 = (anim_frame_1 + 1) % 3;
+	}
+	
+	// Choose sprite based on direction and animation frame
+	if (BoxGuy1.direction == DIR_LEFT) {
+		switch(anim_frame_1) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+		}
+	} else if (BoxGuy1.direction == DIR_RIGHT) {
+		switch(anim_frame_1) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data); break;
+		}
+	} else {
+		// Default to left-facing sprite for UP/DOWN/NONE
+		switch(anim_frame_1) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+		}
+	}
 }
 
 void draw_player_2(void)
 {
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data);
+	
+	// Update animation frame every 10 frames
+	if ((frame_counter % 10) == 0) {
+		anim_frame_2 = (anim_frame_2 + 1) % 3;
+	}
+	
+	// Choose sprite based on direction and animation frame
+	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
+	if (BoxGuy2.direction == DIR_LEFT) {
+		switch(anim_frame_2) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
+		}
+	} else if (BoxGuy2.direction == DIR_RIGHT) {
+		// Use left-facing sprites with horizontal flip for right direction
+		switch(anim_frame_2) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1right0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright2_data); break;
+		}
+	} else {
+		// Default to left-facing sprite for UP/DOWN/NONE
+		switch(anim_frame_2) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
+		}
+	}
 }
 
 void draw_player_3(void)
 {
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+	
+	// Update animation frame every 10 frames
+	if ((frame_counter % 10) == 0) {
+		anim_frame_3 = (anim_frame_3 + 1) % 3;
+	}
+	
+	// Choose sprite based on direction and animation frame
+	if (BoxGuy3.direction == DIR_LEFT) {
+		switch(anim_frame_3) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+		}
+	} else if (BoxGuy3.direction == DIR_RIGHT) {
+		switch(anim_frame_3) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right2_data); break;
+		}
+	} else {
+		// Default to left-facing sprite for UP/DOWN/NONE
+		switch(anim_frame_3) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+		}
+	}
 }
 
 void draw_player_4(void)
 {
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+	
+	// Update animation frame every 10 frames
+	if ((frame_counter % 10) == 0) {
+		anim_frame_4 = (anim_frame_4 + 1) % 3;
+	}
+	
+	// Choose sprite based on direction and animation frame
+	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
+	if (BoxGuy4.direction == DIR_LEFT) {
+		switch(anim_frame_4) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left2_data); break;
+		}
+	} else if (BoxGuy4.direction == DIR_RIGHT) {
+		// Use left-facing sprites with horizontal flip for right direction
+		switch(anim_frame_4) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right2_data); break;
+		}
+	} else {
+		// Default to left-facing sprite for UP/DOWN/NONE
+		switch(anim_frame_4) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left2_data); break;
+		}
+	}
 }
 
 void update_hud(void){
@@ -284,10 +392,6 @@ void movement(void)
 	else
 	{ // nothing pressed
 		hero_velocity_y = 0;
-		// If no movement input at all, set direction to NONE
-		if (!(generic_pad & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN))) {
-			GenericBoxGuy.direction = DIR_NONE;
-		}
 	}
 
 	GenericBoxGuy.y += hero_velocity_y;
@@ -653,6 +757,7 @@ void game_loop(void)
 	generic_pad = pad1;
 	// call movement for generics
 	movement(); // this assigns old_x and old_y
+	BoxGuy1.direction = GenericBoxGuy.direction; // keep direction updated for animation
 	temp_x = GenericBoxGuy.x >> 8;
 	temp_y = GenericBoxGuy.y >> 8;
 	temp_x2 = BoxGuy3.x >> 8;
@@ -674,6 +779,7 @@ void game_loop(void)
 	GenericBoxGuy = BoxGuy2;
 	generic_pad = pad2;
 	movement();
+	BoxGuy2.direction = GenericBoxGuy.direction; // keep direction updated for animation
 
 	temp_x = GenericBoxGuy.x >> 8;
 	temp_y = GenericBoxGuy.y >> 8;
@@ -697,6 +803,7 @@ void game_loop(void)
 	generic_pad = pad3;
 	movement();
 	// player 1 blocks player 3
+	BoxGuy3.direction = GenericBoxGuy.direction; // keep direction updated for animation
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
 	temp_x2 = GenericBoxGuy.x >> 8;
@@ -718,6 +825,7 @@ void game_loop(void)
 	GenericBoxGuy = BoxGuy4;
 	generic_pad = pad4;
 	movement();
+	BoxGuy4.direction = GenericBoxGuy.direction; // keep direction updated for animation
 	// player 2 blocks player 4
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
@@ -1195,6 +1303,12 @@ void init_system(void)
 	
 	// Initialize sprite rotation
 	sprite_rotation = 0;
+	
+	// Initialize animation frames
+	anim_frame_1 = 0;
+	anim_frame_2 = 0;
+	anim_frame_3 = 0;
+	anim_frame_4 = 0;
 
 	ppu_on_all(); // turn on screenxw
 }
