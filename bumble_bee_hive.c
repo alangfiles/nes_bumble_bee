@@ -185,8 +185,8 @@ void draw_player_2(void)
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
 	
-	// Update animation frame every 10 frames
-	if ((frame_counter % 10) == 0) {
+	// Update animation frame every 10 frames, but only if player is moving
+	if ((frame_counter % 10) == 0 && BoxGuy2.moving) {
 		anim_frame_2 = (anim_frame_2 + 1) % 3;
 	}
 	
@@ -253,8 +253,8 @@ void draw_player_4(void)
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
 	
-	// Update animation frame every 10 frames
-	if ((frame_counter % 10) == 0) {
+	// Update animation frame every 10 frames, but only if player is moving
+	if ((frame_counter % 10) == 0 && BoxGuy4.moving) {
 		anim_frame_4 = (anim_frame_4 + 1) % 3;
 	}
 	
@@ -382,12 +382,12 @@ void movement(void)
 	if (generic_pad & PAD_UP)
 	{
 		hero_velocity_y = -speed_option;
-		GenericBoxGuy.direction = DIR_UP;
+		// GenericBoxGuy.direction = DIR_UP; //entually we'll set up and down but not now.
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
 		hero_velocity_y = speed_option;
-		GenericBoxGuy.direction = DIR_DOWN;
+		// GenericBoxGuy.direction = DIR_DOWN;
 	}
 	else
 	{ // nothing pressed
@@ -780,6 +780,13 @@ void game_loop(void)
 	generic_pad = pad2;
 	movement();
 	BoxGuy2.direction = GenericBoxGuy.direction; // keep direction updated for animation
+	
+	// For ducks, set direction to NONE if no input is pressed
+	if (!(pad2 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN))) {
+		BoxGuy2.moving = 0;
+	} else {
+		BoxGuy2.moving = 1;
+	}
 
 	temp_x = GenericBoxGuy.x >> 8;
 	temp_y = GenericBoxGuy.y >> 8;
@@ -826,6 +833,13 @@ void game_loop(void)
 	generic_pad = pad4;
 	movement();
 	BoxGuy4.direction = GenericBoxGuy.direction; // keep direction updated for animation
+	
+	// For ducks, set direction to NONE if no input is pressed
+	if (!(pad4 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN))) {
+		BoxGuy4.moving = 0;
+	} else {
+		BoxGuy4.moving = 1;
+	}
 	// player 2 blocks player 4
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;

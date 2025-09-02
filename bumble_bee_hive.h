@@ -128,6 +128,7 @@ struct BoxGuy {
 	unsigned int x;
 	unsigned int y;
 	unsigned char direction;
+	unsigned char moving;
 };
 
 struct BoxGuy GenericBoxGuy;
