@@ -175,6 +175,15 @@ const unsigned char gamesprites_smallduckleft2__1_data[]={
 
 };
 
+const unsigned char gamesprites_powerup_data[]={
+
+	  0,  0,0x10,0,
+		8,  0,0x11,0,
+		0,  8,0x20,0,
+		8,  8,0x21,0,
+	0x80
+};
+
 const unsigned char gamesprites_big3_data[]={
 
 	  0,  0,0x05,3,

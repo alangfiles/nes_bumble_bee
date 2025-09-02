@@ -102,6 +102,22 @@ void draw_sprites(void)
 	// clear all sprites from sprite buffer
 	oam_clear();
 
+
+	//too many on a line potential, need to roate through them.
+	
+	//draw powerups
+	if(powerup1 == 1)
+		oam_meta_spr(16, 32, gamesprites_powerup_data);
+	if(powerup2 == 1)
+		oam_meta_spr(226, 32, gamesprites_powerup_data);
+	if(powerup3 == 1)
+		oam_meta_spr(16, 208, gamesprites_powerup_data);
+	if(powerup4 == 1)
+		oam_meta_spr(226, 208, gamesprites_powerup_data);
+
+
+	//drag players:
+
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
 	if (temp_x == 0)
@@ -937,6 +953,10 @@ void start_round(void){
 	BoxGuy4.y = 0x2800;
 	team1_score=0;
 	team2_score=0;
+	powerup1 =1;
+	powerup2 =1;
+	powerup3 =1;
+	powerup4 =1;
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_DOTS; // default
 	

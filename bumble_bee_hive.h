@@ -80,6 +80,11 @@ unsigned char team1_wins;
 unsigned char team2_wins;
 unsigned char win_reason; // tracks how the game was won
 
+unsigned char powerup1;
+unsigned char powerup2;
+unsigned char powerup3;
+unsigned char powerup4;
+
 #pragma bss-name(push, "BSS")
 unsigned char consumed_dots[128]; // tracks which dots have been consumed (8 bits per byte = 1024 bits)
 
