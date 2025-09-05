@@ -12,6 +12,26 @@
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
 
+// Starting positions for bees (players 1 and 3)
+const unsigned int bee_start_positions[5][2][2] = {
+    // Format: {{P1_x, P1_y}, {P3_x, P3_y}}
+    {{0x4000, 0x2800}, {0xB000, 0x2800}}, // Position 1 - Left and Right
+    {{0x4000, 0x1800}, {0xB000, 0x1800}}, // Position 2 - Top Left and Right
+    {{0x4000, 0x3800}, {0xB000, 0x3800}}, // Position 3 - Bottom Left and Right
+    {{0x6000, 0x2800}, {0x9000, 0x2800}}, // Position 4 - Center Left and Right
+    {{0x7800, 0x2800}, {0x7800, 0x2800}}  // Position 5 - Both Center
+};
+
+// Starting positions for ducks (players 2 and 4)
+const unsigned int duck_start_positions[5][2][2] = {
+    // Format: {{P2_x, P2_y}, {P4_x, P4_y}}
+    {{0x7000, 0x2800}, {0x8800, 0x2800}}, // Position 1 - Center spread
+    {{0x7800, 0x1800}, {0x7800, 0x3800}}, // Position 2 - Center vertical
+    {{0x5800, 0x2800}, {0x9800, 0x2800}}, // Position 3 - Wide spread
+    {{0x7800, 0x2000}, {0x7800, 0x3000}}, // Position 4 - Close vertical
+    {{0x6800, 0x2800}, {0x8800, 0x2800}}  // Position 5 - Close horizontal
+};
+
 void main(void)
 {
 
@@ -19,9 +39,9 @@ void main(void)
 	 TODO before CORGS:
 	 * win count [x]
 	 * fix colors [x]
-	 * power up pellet
+	 * power up pellet [x]
 	 * game over screen [x]
-	 * character placements
+	 * character placements 
 	 * settings screen / pad_new?
 	 * New maps, new music
 	 * turbo button?
@@ -993,6 +1013,61 @@ void game_loop(void)
 
 	// 5. CHECK COLLISON
 
+
+	// 5. CHECK BIGBEE EATING DUCKS
+	
+	// Check if bigbee player 1 eats any duck
+	if (bee1_bigbee_timer > 0) {
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		
+		// Check if bigbee player 1 eats friendly duck (player 2) - LOSE
+		temp_x2 = BoxGuy2.x >> 8;
+		temp_y2 = BoxGuy2.y >> 8;
+		if (sprite_collision()) {
+			winner = THREEFOUR_WINNER;
+			win_reason = WIN_BIGBEE_EAT_DUCK;
+			init_roundover();
+			return;
+		}
+		
+		// Check if bigbee player 1 eats enemy duck (player 4) - WIN
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision()) {
+			winner = ONETWO_WINNER;
+			win_reason = WIN_BIGBEE_EAT_DUCK;
+			init_roundover();
+			return;
+		}
+	}
+	
+	// Check if bigbee player 3 eats any duck
+	if (bee3_bigbee_timer > 0) {
+		temp_x = BoxGuy3.x >> 8;
+		temp_y = BoxGuy3.y >> 8;
+		
+		// Check if bigbee player 3 eats friendly duck (player 4) - LOSE
+		temp_x2 = BoxGuy4.x >> 8;
+		temp_y2 = BoxGuy4.y >> 8;
+		if (sprite_collision()) {
+			winner = ONETWO_WINNER;
+			win_reason = WIN_BIGBEE_EAT_DUCK;
+			init_roundover();
+			return;
+		}
+		
+		// Check if bigbee player 3 eats enemy duck (player 2) - WIN
+		temp_x2 = BoxGuy2.x >> 8;
+		temp_y2 = BoxGuy2.y >> 8;
+		if (sprite_collision()) {
+			winner = THREEFOUR_WINNER;
+			win_reason = WIN_BIGBEE_EAT_DUCK;
+			init_roundover();
+			return;
+		}
+	}
+
 	// check for player deaths (1 collide with 2, 3 collide with 4)
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
@@ -1004,6 +1079,7 @@ void game_loop(void)
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE;
 		init_roundover();
+		return;
 	}
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
@@ -1016,6 +1092,7 @@ void game_loop(void)
 		winner = ONETWO_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE;
 		init_roundover();
+		return;
 	}
 	// check 1 with 4 and 2 with 3
 	temp_x = BoxGuy1.x >> 8;
@@ -1029,6 +1106,7 @@ void game_loop(void)
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_ENEMY_KILL;
 		init_roundover();
+		return;
 	}
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
@@ -1040,9 +1118,11 @@ void game_loop(void)
 		winner = ONETWO_WINNER;
 		win_reason = WIN_ENEMY_KILL;
 		init_roundover();
+		return;
 	}
 
-	// 5. DRAW SPRITES
+
+	// 6. DRAW SPRITES
 	draw_sprites();
 }
 
@@ -1412,6 +1492,10 @@ void init_roundover(void){
 	else if (win_reason == WIN_ENEMY_KILL)
 	{
 		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(5, 13));
+	}
+	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
+	{
+		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 13));
 	}
 }
 

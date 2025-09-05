@@ -1,13 +1,12 @@
 #define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
+#define POWERUP_TIMER 20 // Powerup duration in game seconds
 
 // Speed options
 #define SPEED_SLOW 0x060
 #define SPEED_REGULAR 0x0A0
 #define SPEED_FAST 0x0E0
-
-#define POWERUP_TIMER 12
 
 #pragma bss-name(push, "ZEROPAGE")
 
@@ -167,7 +166,8 @@ enum{
 	WIN_DOTS,
 	WIN_FRIENDLY_FIRE,
 	WIN_ENEMY_KILL,
-	WIN_TIME_UP
+	WIN_TIME_UP,
+	WIN_BIGBEE_EAT_DUCK
 };
 
 enum{
