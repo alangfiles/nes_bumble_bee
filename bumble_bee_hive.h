@@ -8,6 +8,12 @@
 #define SPEED_REGULAR 0x0A0
 #define SPEED_FAST 0x0E0
 
+#define START_POS_DEFAULT 0
+#define START_POS_WIDE 1
+#define START_POS_CLOSE 2
+#define START_POS_CORNERS 3
+#define START_POS_MIDDLE 4
+
 #pragma bss-name(push, "ZEROPAGE")
 
 // GLOBAL VARIABLES
@@ -27,6 +33,8 @@ unsigned char game_frame_timer;
 unsigned char game_timer;
 signed int speed_option; 
 unsigned char force_redraw; 
+
+unsigned char map_positions;
 
 unsigned char collision;
 unsigned char collision_L;

@@ -41,7 +41,11 @@ void main(void)
 	 * fix colors [x]
 	 * power up pellet [x]
 	 * game over screen [x]
+	 * fix sounds on win
 	 * character placements 
+	 * skip options screen?
+	 * 
+	 * 
 	 * settings screen / pad_new?
 	 * New maps, new music
 	 * turbo button?
@@ -1304,19 +1308,39 @@ void start_round(void){
 	{
 		consumed_dots[index] = 0;
 	}
-	// move all players into starting positions:
-	BoxGuy1.x = 0x4000;
-	BoxGuy1.y = 0x2800;
-	BoxGuy1.direction = DIR_NONE;
-	BoxGuy2.x = 0x7000;
-	BoxGuy2.y = 0x2800;
-	BoxGuy2.direction = DIR_NONE;
-	BoxGuy3.x = 0xB000;
-	BoxGuy3.y = 0x2800;
-	BoxGuy3.direction = DIR_NONE;
-	BoxGuy4.x = 0x8800;
-	BoxGuy4.y = 0x2800;
-	BoxGuy4.direction = DIR_NONE;
+	// move all players into starting positions based on configuration:
+	map_positions = (frame_counter) % 5;
+
+	if (map_positions == START_POS_WIDE) {
+	    BoxGuy1.x = 0x3800; BoxGuy1.y = 0xA800;
+	    BoxGuy2.x = 0x5000; BoxGuy2.y = 0x2800;
+	    BoxGuy3.x = 0xC000; BoxGuy3.y = 0xA800;
+	    BoxGuy4.x = 0xA000; BoxGuy4.y = 0x2800;
+	} else if (map_positions == START_POS_CLOSE) {
+	    BoxGuy1.x = 0x5800; BoxGuy1.y = 0x3800;
+	    BoxGuy2.x = 0x7000; BoxGuy2.y = 0x3000;
+	    BoxGuy3.x = 0xA000; BoxGuy3.y = 0x3800;
+	    BoxGuy4.x = 0x8800; BoxGuy4.y = 0x3000;
+	} else if (map_positions == START_POS_CORNERS) {
+	    BoxGuy1.x = 0x2800; BoxGuy1.y = 0x2000;
+	    BoxGuy2.x = 0x2800; BoxGuy2.y = 0xd800;
+	    BoxGuy3.x = 0xD800; BoxGuy3.y = 0x2000;
+	    BoxGuy4.x = 0xD800; BoxGuy4.y = 0xD800;
+	} else if (map_positions == START_POS_MIDDLE) {
+	    BoxGuy1.x = 0x7800; BoxGuy1.y = 0x8000;
+	    BoxGuy2.x = 0x7800; BoxGuy2.y = 0x2800;
+	    BoxGuy3.x = 0x8000; BoxGuy3.y = 0x8000;
+	    BoxGuy4.x = 0x8000; BoxGuy4.y = 0x2800;
+			BoxGuy3.direction = DIR_RIGHT;
+			BoxGuy4.direction = DIR_RIGHT;
+	} else {  // START_POS_DEFAULT
+	    BoxGuy1.x = 0x4800; BoxGuy1.y = 0x4000;
+	    BoxGuy2.x = 0x7000; BoxGuy2.y = 0x2800;
+	    BoxGuy3.x = 0xB000; BoxGuy3.y = 0x4000;
+	    BoxGuy4.x = 0x8800; BoxGuy4.y = 0x2800;
+			BoxGuy4.direction = DIR_RIGHT;
+			BoxGuy1.direction = DIR_RIGHT;
+	}
 	team1_score=0;
 	team2_score=0;
 	powerup1 =1;
@@ -1409,6 +1433,11 @@ void init_title_loop(void)
 
 void init_options_loop(void)
 {
+	//DEBUG
+	init_game_loop();
+	return;
+
+	//real code
 	delay(30);
 	prev_pad1 = 0;
 	prev_pad2 = 0;
