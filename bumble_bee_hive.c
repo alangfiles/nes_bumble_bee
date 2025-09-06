@@ -1009,6 +1009,7 @@ void game_loop(void)
 		temp_x2 = BoxGuy2.x >> 8;
 		temp_y2 = BoxGuy2.y >> 8;
 		if (sprite_collision()) {
+			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
 			win_reason = WIN_BIGBEE_EAT_DUCK;
 			init_roundover();
@@ -1019,6 +1020,7 @@ void game_loop(void)
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
 		if (sprite_collision()) {
+			sfx_play(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_BIGBEE_EAT_DUCK;
 			init_roundover();
@@ -1035,6 +1037,7 @@ void game_loop(void)
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
 		if (sprite_collision()) {
+			sfx_play(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_BIGBEE_EAT_DUCK;
 			init_roundover();
@@ -1045,6 +1048,7 @@ void game_loop(void)
 		temp_x2 = BoxGuy2.x >> 8;
 		temp_y2 = BoxGuy2.y >> 8;
 		if (sprite_collision()) {
+			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
 			win_reason = WIN_BIGBEE_EAT_DUCK;
 			init_roundover();
@@ -1060,6 +1064,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 1 dies (friendly fire)
+		sfx_play(SFX_TEAM2_WIN, 0);
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE;
 		init_roundover();
@@ -1072,7 +1077,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 3 dies (enemy fire)
-		sfx_play(SFX_DUCKEATSBEE, 0);
+		sfx_play(SFX_TEAM1_WIN, 0);
 		winner = ONETWO_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE;
 		init_roundover();
@@ -1086,7 +1091,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 1 dies (enemy fire)
-		sfx_play(SFX_DUCKEATSBEE, 0);
+		sfx_play(SFX_TEAM2_WIN, 0);
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_ENEMY_KILL;
 		init_roundover();
@@ -1099,6 +1104,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 2 dies (enemy fire)
+		sfx_play(SFX_TEAM1_WIN, 0);
 		winner = ONETWO_WINNER;
 		win_reason = WIN_ENEMY_KILL;
 		init_roundover();
@@ -1500,7 +1506,7 @@ void init_roundover(void){
 	}
 	else if (win_reason == WIN_ENEMY_KILL)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(5, 13));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 13));
 	}
 	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
 	{
