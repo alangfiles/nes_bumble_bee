@@ -12,26 +12,6 @@
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
 
-// Starting positions for bees (players 1 and 3)
-const unsigned int bee_start_positions[5][2][2] = {
-    // Format: {{P1_x, P1_y}, {P3_x, P3_y}}
-    {{0x4000, 0x2800}, {0xB000, 0x2800}}, // Position 1 - Left and Right
-    {{0x4000, 0x1800}, {0xB000, 0x1800}}, // Position 2 - Top Left and Right
-    {{0x4000, 0x3800}, {0xB000, 0x3800}}, // Position 3 - Bottom Left and Right
-    {{0x6000, 0x2800}, {0x9000, 0x2800}}, // Position 4 - Center Left and Right
-    {{0x7800, 0x2800}, {0x7800, 0x2800}}  // Position 5 - Both Center
-};
-
-// Starting positions for ducks (players 2 and 4)
-const unsigned int duck_start_positions[5][2][2] = {
-    // Format: {{P2_x, P2_y}, {P4_x, P4_y}}
-    {{0x7000, 0x2800}, {0x8800, 0x2800}}, // Position 1 - Center spread
-    {{0x7800, 0x1800}, {0x7800, 0x3800}}, // Position 2 - Center vertical
-    {{0x5800, 0x2800}, {0x9800, 0x2800}}, // Position 3 - Wide spread
-    {{0x7800, 0x2000}, {0x7800, 0x3000}}, // Position 4 - Close vertical
-    {{0x6800, 0x2800}, {0x8800, 0x2800}}  // Position 5 - Close horizontal
-};
-
 void main(void)
 {
 
@@ -42,8 +22,8 @@ void main(void)
 	 * power up pellet [x]
 	 * game over screen [x]
 	 * fix sounds on win
-	 * character placements 
-	 * skip options screen?
+	 * character placements [x]
+	 * skip options screen? [x] //dune in debug
 	 * 
 	 * 
 	 * settings screen / pad_new?
@@ -1309,7 +1289,7 @@ void start_round(void){
 		consumed_dots[index] = 0;
 	}
 	// move all players into starting positions based on configuration:
-	map_positions = (frame_counter) % 5;
+	map_positions = (frame_counter) % 5; //this could be round based.
 
 	if (map_positions == START_POS_WIDE) {
 	    BoxGuy1.x = 0x3800; BoxGuy1.y = 0xA800;
