@@ -21,7 +21,7 @@ void main(void)
 	 * fix colors [x]
 	 * power up pellet [x]
 	 * game over screen [x]
-	 * fix sounds on win
+	 * fix sounds on win [x]
 	 * character placements [x]
 	 * skip options screen? [x] //dune in debug
 	 * 
@@ -163,6 +163,13 @@ void draw_player_1(void)
 	
 	// Check if player is in bigbee form
 	if (bee1_bigbee_timer > 0) {
+
+		if(bee1_bigbee_timer < 5){
+			// Flicker effect when bigbee is about to expire
+			if ((frame_counter % 4) < 2) {
+				return; // Skip drawing this frame
+			}
+		}
 		// Draw bigbee sprites
 		if (BoxGuy1.direction == DIR_LEFT) {
 			switch(anim_frame_1) {
@@ -257,6 +264,14 @@ void draw_player_3(void)
 	
 	// Check if player is in bigbee form
 	if (bee3_bigbee_timer > 0) {
+
+		if(bee3_bigbee_timer < 5){
+			// Flicker effect when bigbee is about to expire
+			if ((frame_counter % 4) < 2) {
+				return; // Skip drawing this frame
+			}
+		}
+
 		// Draw bigbee sprites (using palette 1 for player 3)
 		if (BoxGuy3.direction == DIR_LEFT) {
 			switch(anim_frame_3) {
@@ -1496,6 +1511,8 @@ void init_roundover(void){
 	{
 		multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
 	}
+
+
 	if (win_reason == WIN_DOTS)
 	{
 		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 13));
@@ -1511,7 +1528,10 @@ void init_roundover(void){
 	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
 	{
 		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 13));
+	} else {
+		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 13));
 	}
+	
 }
 
 void init_gameover_loop(void)
