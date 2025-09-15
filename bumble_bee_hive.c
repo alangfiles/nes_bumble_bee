@@ -1135,6 +1135,7 @@ void title_loop(void)
 {
 	while (1)
 	{
+		frame_counter++;
 		ppu_wait_nmi();
 
 		// Read all controllers for title screen
@@ -1435,8 +1436,8 @@ void init_title_loop(void)
 void init_options_loop(void)
 {
 	//DEBUG
-	init_game_loop();
-	return;
+	// init_game_loop();
+	// return;
 
 	//real code
 	delay(30);
