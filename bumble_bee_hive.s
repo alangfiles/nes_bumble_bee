@@ -363,218 +363,218 @@ _gamesprites_smallbee2right2_data:
 	.byte	$41
 	.byte	$80
 _gamesprites_bigbeeleft0_data:
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$47
 	.byte	$00
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$37
 	.byte	$00
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$48
 	.byte	$00
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$38
 	.byte	$00
 	.byte	$80
 _gamesprites_bigbeeleft1_data:
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$49
 	.byte	$00
-	.byte	$00
-	.byte	$F8
+	.byte	$02
+	.byte	$FA
 	.byte	$39
 	.byte	$00
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$3A
 	.byte	$00
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$4A
 	.byte	$00
 	.byte	$80
 _gamesprites_bigbeeleft2_data:
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$4B
 	.byte	$00
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$3B
 	.byte	$00
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$3C
 	.byte	$00
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$4C
 	.byte	$00
 	.byte	$80
 _gamesprites_bigbeeright0_data:
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$47
 	.byte	$40
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$37
 	.byte	$40
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$48
 	.byte	$40
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$38
 	.byte	$40
 	.byte	$80
 _gamesprites_bigbeeright1_data:
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$49
 	.byte	$40
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$39
 	.byte	$40
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$3A
 	.byte	$40
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$4A
 	.byte	$40
 	.byte	$80
 _gamesprites_bigbeeright2_data:
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$4B
 	.byte	$40
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$3B
 	.byte	$40
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$3C
 	.byte	$40
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$4C
 	.byte	$40
 	.byte	$80
 _gamesprites_bigbee2left0_data:
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$47
 	.byte	$01
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$37
 	.byte	$01
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$48
 	.byte	$01
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$38
 	.byte	$01
 	.byte	$80
 _gamesprites_bigbee2left1_data:
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$49
 	.byte	$01
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$39
 	.byte	$01
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$3A
 	.byte	$01
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$4A
 	.byte	$01
 	.byte	$80
 _gamesprites_bigbee2left2_data:
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$4B
 	.byte	$01
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$3B
 	.byte	$01
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$3C
 	.byte	$01
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$4C
 	.byte	$01
 	.byte	$80
 _gamesprites_bigbee2right0_data:
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$47
 	.byte	$41
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$37
 	.byte	$41
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$48
 	.byte	$41
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$38
 	.byte	$41
 	.byte	$80
 _gamesprites_bigbee2right1_data:
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$49
 	.byte	$41
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$39
 	.byte	$41
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$3A
 	.byte	$41
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$4A
 	.byte	$41
 	.byte	$80
 _gamesprites_bigbee2right2_data:
-	.byte	$08
-	.byte	$00
+	.byte	$06
+	.byte	$FE
 	.byte	$4B
 	.byte	$41
-	.byte	$08
-	.byte	$F8
+	.byte	$06
+	.byte	$FA
 	.byte	$3B
 	.byte	$41
-	.byte	$00
-	.byte	$F8
+	.byte	$FE
+	.byte	$FA
 	.byte	$3C
 	.byte	$41
-	.byte	$00
-	.byte	$00
+	.byte	$FE
+	.byte	$FE
 	.byte	$4C
 	.byte	$41
 	.byte	$80
@@ -582,121 +582,121 @@ _gamesprites_smallduck1left0_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0C
-	.byte	$00
+	.byte	$02
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$00
+	.byte	$02
 	.byte	$80
 _gamesprites_smallduckleft1_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0D
-	.byte	$00
+	.byte	$02
 	.byte	$00
 	.byte	$08
 	.byte	$1D
-	.byte	$00
+	.byte	$02
 	.byte	$80
 _gamesprites_smallduckleft2_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0B
-	.byte	$00
+	.byte	$02
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$40
+	.byte	$42
 	.byte	$80
 _gamesprites_smallduck2left0_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0C
-	.byte	$01
+	.byte	$03
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$01
+	.byte	$03
 	.byte	$80
 _gamesprites_smallduck2left1_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0D
-	.byte	$01
+	.byte	$03
 	.byte	$00
 	.byte	$08
 	.byte	$1D
-	.byte	$01
+	.byte	$03
 	.byte	$80
 _gamesprites_smallduck2left2_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0B
-	.byte	$01
+	.byte	$03
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$41
+	.byte	$43
 	.byte	$80
 _gamesprites_smallduck1right0_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0C
-	.byte	$40
+	.byte	$42
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$00
+	.byte	$02
 	.byte	$80
 _gamesprites_smallduckright1_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0D
-	.byte	$40
+	.byte	$42
 	.byte	$00
 	.byte	$08
 	.byte	$1D
-	.byte	$00
+	.byte	$02
 	.byte	$80
 _gamesprites_smallduckright2_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0B
-	.byte	$40
+	.byte	$42
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$40
+	.byte	$42
 	.byte	$80
 _gamesprites_smallduck2right0_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0C
-	.byte	$41
+	.byte	$43
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$01
+	.byte	$03
 	.byte	$80
 _gamesprites_smallduck2right1_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0D
-	.byte	$41
+	.byte	$43
 	.byte	$00
 	.byte	$08
 	.byte	$1D
-	.byte	$01
+	.byte	$03
 	.byte	$80
 _gamesprites_smallduck2right2_data:
 	.byte	$00
 	.byte	$00
 	.byte	$0B
-	.byte	$41
+	.byte	$43
 	.byte	$00
 	.byte	$08
 	.byte	$1C
-	.byte	$41
+	.byte	$43
 	.byte	$80
 _gamesprites_powerup_data:
 	.byte	$00
@@ -4602,21 +4602,21 @@ _palette_bg:
 	.byte	$30
 _palette_sp:
 	.byte	$0F
-	.byte	$07
+	.byte	$17
 	.byte	$26
 	.byte	$38
 	.byte	$0F
-	.byte	$07
+	.byte	$0C
 	.byte	$2C
 	.byte	$38
 	.byte	$0F
-	.byte	$07
+	.byte	$17
 	.byte	$20
-	.byte	$38
+	.byte	$26
 	.byte	$0F
-	.byte	$07
-	.byte	$14
-	.byte	$38
+	.byte	$0C
+	.byte	$20
+	.byte	$2C
 _palette_title_bg:
 	.byte	$0F
 	.byte	$30
@@ -8762,7 +8762,7 @@ L17EC:	jsr     _ppu_wait_nmi
 ;
 	sta     _prev_pad4
 ;
-; clear_background();
+; clear_background();  
 ;
 	jsr     _clear_background
 ;
@@ -10325,7 +10325,7 @@ L1AE3:	rts
 .segment	"CODE"
 
 ;
-; temp_x = Generic.x + Generic.width;
+; temp_x = Generic.x + Generic.width; 
 ;
 	lda     _Generic
 	clc

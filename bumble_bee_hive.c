@@ -524,7 +524,7 @@ char bg_coll_L(void)
 char bg_coll_R(void)
 {
 	// check 2 points on the right side
-	temp_x = Generic.x + Generic.width;
+	temp_x = Generic.x + Generic.width; 
 
 	eject_R = 8 - (temp_x & 0x07); // distance to next tile boundary
 	temp_y = Generic.y + 2;
@@ -1446,7 +1446,7 @@ void init_options_loop(void)
 	prev_pad3 = 0;
 	prev_pad4 = 0;
 
-	clear_background();
+	clear_background();  
 	game_mode = MODE_OPTIONS;
 	ppu_off(); // screen off
 
