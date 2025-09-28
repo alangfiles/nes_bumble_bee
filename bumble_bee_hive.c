@@ -411,9 +411,28 @@ void movement(void)
     }
 	}
 
+	if(ducks_go_faster_over_time){
+		if (current_player == 2 || current_player == 4) {
+    	current_speed = speed_option;
+			if(game_timer > 80) {
+				current_speed -= DUCK_SPEED_LOW;
+			} else if (game_timer > 20) {
+				current_speed = speed_option; //no nothing here
+			} else if (game_timer > 10) {
+				current_speed += DUCK_SPEED_HIGH;
+			} else if (game_timer > 0) {
+				current_speed += DUCK_SPEED_MAX;
+			}
+		} else {
+			current_speed = speed_option; // bees stay the same
+		} 
+	} else {
+		current_speed = speed_option; // feature disabled, all normal speed
+	}
+
 	if (generic_pad & PAD_LEFT)
 	{
-		hero_velocity_x = -speed_option;
+		hero_velocity_x = -current_speed;
 		if(use_turbo == 1){
 			hero_velocity_x -= SPEED_TURBO_BOOST; // add turbo boost
 			use_turbo = 0; // reset turbo flag
@@ -422,7 +441,7 @@ void movement(void)
 	}
 	else if (generic_pad & PAD_RIGHT)
 	{
-		hero_velocity_x = speed_option;
+		hero_velocity_x = current_speed;
 		if(use_turbo == 1){
 			hero_velocity_x += SPEED_TURBO_BOOST; // add turbo boost
 			use_turbo = 0; // reset turbo flag
@@ -476,7 +495,7 @@ void movement(void)
 
 	if (generic_pad & PAD_UP)
 	{ 
-		hero_velocity_y = -speed_option;
+		hero_velocity_y = -current_speed;
 		if(use_turbo == 1){
 			hero_velocity_y -= SPEED_TURBO_BOOST; // add turbo boost
 			use_turbo = 0; // reset turbo flag
@@ -485,7 +504,7 @@ void movement(void)
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
-		hero_velocity_y = speed_option;
+		hero_velocity_y = current_speed;
 		if(use_turbo == 1){
 			hero_velocity_y += SPEED_TURBO_BOOST; // add turbo boost
 			use_turbo = 0; // reset turbo flag
@@ -1246,27 +1265,27 @@ void options_loop(void)
 		// 	// Handle speed selection with left/right
 		// 	if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT)
 		// 	{
-		// 		if (speed_option == SPEED_FAST)
+		// 		if (current_speed == SPEED_FAST)
 		// 		{
-		// 			speed_option = SPEED_REGULAR;  
+		// 			current_speed = SPEED_REGULAR;  
 		// 			force_redraw = 1;
-		// 		} else if (speed_option == SPEED_REGULAR)
+		// 		} else if (current_speed == SPEED_REGULAR)
 		// 		{
-		// 			speed_option = SPEED_SLOW;
+		// 			current_speed = SPEED_SLOW;
 		// 			force_redraw = 1;
 		// 		}
 		// 	}
 
 		// 	if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT)
 		// 	{
-		// 		if (speed_option == SPEED_SLOW)
+		// 		if (current_speed == SPEED_SLOW)
 		// 		{
-		// 			speed_option = SPEED_REGULAR;
+		// 			current_speed = SPEED_REGULAR;
 		// 			force_redraw = 1;
 		// 		}
-		// 		else if (speed_option == SPEED_REGULAR)
+		// 		else if (current_speed == SPEED_REGULAR)
 		// 		{
-		// 			speed_option = SPEED_FAST;
+		// 			current_speed = SPEED_FAST;
 		// 			force_redraw = 1;
 		// 		}
 		// 	}
@@ -1281,11 +1300,11 @@ void options_loop(void)
 
 		// 	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
 
-		// 	if (speed_option == SPEED_SLOW)
+		// 	if (current_speed == SPEED_SLOW)
 		// 	{
 		// 		multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
 		// 	}
-		// 	else if (speed_option == SPEED_REGULAR)
+		// 	else if (current_speed == SPEED_REGULAR)
 		// 	{
 		// 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
 		// 	}
@@ -1612,6 +1631,7 @@ void init_system(void)
 	// Initialize default speed option (regular speed)
 	speed_option = SPEED_REGULAR;
 	turbo_amount = TURBO_MEDIUM;
+	ducks_go_faster_over_time=1;
 	
 	// Initialize sprite rotation
 	sprite_rotation = 0;

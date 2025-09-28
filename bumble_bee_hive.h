@@ -8,6 +8,11 @@
 #define SPEED_REGULAR 0x0A0
 #define SPEED_FAST 0x0E0
 
+#define DUCK_SPEED_LOW 20
+#define DUCK_SPEED_MED 0
+#define DUCK_SPEED_HIGH 20
+#define DUCK_SPEED_MAX 40
+
 #define SPEED_TURBO_BOOST 0x060
 #define TURBO_LOW 0x40
 #define TURBO_MEDIUM 0x80
@@ -41,9 +46,11 @@ unsigned char winner;
 unsigned char game_frame_timer;
 unsigned char game_timer;
 signed int speed_option; 
+signed int current_speed;
 unsigned char force_redraw; 
 unsigned char use_turbo;
 unsigned char turbo_amount;
+unsigned char ducks_go_faster_over_time;
 
 unsigned char map_positions;
 
