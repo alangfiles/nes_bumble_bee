@@ -394,14 +394,39 @@ void movement(void)
 	// handle x
 	old_x = GenericBoxGuy.x;
 
+	if (generic_pad & PAD_A) {
+    // Check which player and if they have turbo available
+    if ((current_player == 1 && turbo_p1 > 0) ||
+        (current_player == 2 && turbo_p2 > 0) ||
+        (current_player == 3 && turbo_p3 > 0) ||
+        (current_player == 4 && turbo_p4 > 0)) {
+        
+				use_turbo = 1;
+        switch(current_player) {
+            case 1: turbo_p1--; break;
+            case 2: turbo_p2--; break;
+            case 3: turbo_p3--; break;
+            case 4: turbo_p4--; break;
+        }
+    }
+	}
+
 	if (generic_pad & PAD_LEFT)
 	{
 		hero_velocity_x = -speed_option;
+		if(use_turbo == 1){
+			hero_velocity_x -= SPEED_TURBO_BOOST; // add turbo boost
+			use_turbo = 0; // reset turbo flag
+		}
 		GenericBoxGuy.direction = DIR_LEFT;
 	}
 	else if (generic_pad & PAD_RIGHT)
 	{
 		hero_velocity_x = speed_option;
+		if(use_turbo == 1){
+			hero_velocity_x += SPEED_TURBO_BOOST; // add turbo boost
+			use_turbo = 0; // reset turbo flag
+		}
 		GenericBoxGuy.direction = DIR_RIGHT;
 	}
 	else
@@ -452,11 +477,19 @@ void movement(void)
 	if (generic_pad & PAD_UP)
 	{ 
 		hero_velocity_y = -speed_option;
+		if(use_turbo == 1){
+			hero_velocity_y -= SPEED_TURBO_BOOST; // add turbo boost
+			use_turbo = 0; // reset turbo flag
+		}  
 		// GenericBoxGuy.direction = DIR_UP; //entually we'll set up and down but not now.
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
 		hero_velocity_y = speed_option;
+		if(use_turbo == 1){
+			hero_velocity_y += SPEED_TURBO_BOOST; // add turbo boost
+			use_turbo = 0; // reset turbo flag
+		}
 		// GenericBoxGuy.direction = DIR_DOWN;
 	}
 	else
@@ -1065,7 +1098,7 @@ void game_loop(void)
 		if (sprite_collision()) {
 			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
-			win_reason = WIN_BIGBEE_EAT_DUCK;
+		  win_reason = WIN_BIGBEE_EAT_DUCK;
 			init_roundover();
 			return;
 		}
@@ -1352,6 +1385,12 @@ void start_round(void){
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_DOTS; // default
 	
+	// Reset turbo counters for all players
+	turbo_p1 = turbo_amount;
+	turbo_p2 = turbo_amount;
+	turbo_p3 = turbo_amount;
+	turbo_p4 = turbo_amount;
+	
 	// Reset bigbee transformation timers
 	bee1_bigbee_timer = 0;
 	bee3_bigbee_timer = 0;
@@ -1572,6 +1611,7 @@ void init_system(void)
 
 	// Initialize default speed option (regular speed)
 	speed_option = SPEED_REGULAR;
+	turbo_amount = TURBO_MEDIUM;
 	
 	// Initialize sprite rotation
 	sprite_rotation = 0;

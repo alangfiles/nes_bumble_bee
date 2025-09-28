@@ -1,12 +1,17 @@
 #define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
-#define POWERUP_TIMER 20 // Powerup duration in game seconds
+#define POWERUP_TIMER 10 // Powerup duration in game seconds
 
 // Speed options
 #define SPEED_SLOW 0x060
 #define SPEED_REGULAR 0x0A0
 #define SPEED_FAST 0x0E0
+
+#define SPEED_TURBO_BOOST 0x060
+#define TURBO_LOW 0x40
+#define TURBO_MEDIUM 0x80
+#define TURBO_HIGH 0xF0
 
 #define START_POS_DEFAULT 0
 #define START_POS_WIDE 1
@@ -19,6 +24,10 @@
 // GLOBAL VARIABLES
 unsigned int doublepad;
 unsigned char generic_pad;
+unsigned char turbo_p1;  // Turbo counter for player 1
+unsigned char turbo_p2;  // Turbo counter for player 2
+unsigned char turbo_p3;  // Turbo counter for player 3
+unsigned char turbo_p4;  // Turbo counter for player 4
 unsigned char prev_pad1;
 unsigned char prev_pad2;
 unsigned char prev_pad3;
@@ -33,6 +42,8 @@ unsigned char game_frame_timer;
 unsigned char game_timer;
 signed int speed_option; 
 unsigned char force_redraw; 
+unsigned char use_turbo;
+unsigned char turbo_amount;
 
 unsigned char map_positions;
 
