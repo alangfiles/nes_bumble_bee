@@ -433,6 +433,7 @@ void quack_movement(void){
 		Generic.y = quack2.y >> 8;
 		if(bg_coll_D() || bg_coll_L() || bg_coll_R() || bg_coll_U()){
 			quack2.moving = 0;
+			
 		}
 		//check collision with players
 		//check collision with players
@@ -443,24 +444,28 @@ void quack_movement(void){
 		if(sprite_collision()){
 			stun_p1 = STUN_DURATION;
 			quack2.moving = 0;
+			
 		}
 		temp_x = BoxGuy2.x >> 8;
 		temp_y = BoxGuy2.y >> 8;
 		if(sprite_collision()){
 			stun_p2 = STUN_DURATION;
 			quack2.moving = 0;
+			
 		}
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
 		if(sprite_collision()){
 			stun_p3 = STUN_DURATION;
 			quack2.moving = 0;
+			
 		}
 		temp_x = BoxGuy4.x >> 8;
 		temp_y = BoxGuy4.y >> 8;
 		if(sprite_collision()){
 			stun_p4 = STUN_DURATION;
 			quack2.moving = 0;
+			
 		}
 	}
 
@@ -530,6 +535,7 @@ void movement(void)
 			quack2.x = GenericBoxGuy.x;
 			quack2.y = GenericBoxGuy.y;
 			quack2.direction = GenericBoxGuy.direction;
+			quack2_cooldown = QUACK_COOLDOWN;
 			if(quack2.direction == DIR_LEFT){
 				quack2.x -= 0x0800; //move it 1 block to the left;
 			} else if (quack2.direction == DIR_RIGHT){
@@ -539,13 +545,14 @@ void movement(void)
 			} else if (quack2.direction == DIR_DOWN){
 				quack2.y += 0x0800; 
 			} 
-			quack2.moving = 1;
+			quack2.moving = 1; 
     }
 		if (current_player == 4 && quack4.moving == 0) { 
 			quack4.x = GenericBoxGuy.x;
 			quack4.y = GenericBoxGuy.y;
 			quack4.direction = GenericBoxGuy.direction;
 			quack4.moving = 1;
+			quack4_cooldown = QUACK_COOLDOWN;
 			if(quack4.direction == DIR_LEFT){
 				quack4.x -= 0x0800; //move it 1 block to the left;
 			} else if (quack4.direction == DIR_RIGHT){

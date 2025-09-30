@@ -323,7 +323,7 @@ const unsigned char gamesprites_smallduck2right2_data[]={
 
 
 const unsigned char gamesprites_quack[]={
-	  0,  0,0x10,0,
+	  0,  0,0x30,0,
 	0x80
 };
 

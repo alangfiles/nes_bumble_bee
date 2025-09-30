@@ -3,6 +3,7 @@
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
 #define POWERUP_TIMER 10 // Powerup duration in game seconds
 #define STUN_DURATION 3
+#define QUACK_COOLDOWN 10
 
 // Speed options
 #define SPEED_SLOW 0x060
