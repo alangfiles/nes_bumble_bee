@@ -421,13 +421,13 @@ void quack_movement(void){
 	//Move the quacks and disappear if collision with bg
 	if(quack2.moving){
 		if(quack2.direction == DIR_LEFT){
-			quack2.x += speed_option + SPEED_QUACK;
+			quack2.x -= (speed_option + SPEED_QUACK);
 		} else if (quack2.direction == DIR_RIGHT){
-			quack2.x -= speed_option + SPEED_QUACK;
+			quack2.x += (speed_option + SPEED_QUACK);
 		} else if (quack2.direction == DIR_UP){
-			quack2.y -= speed_option + SPEED_QUACK;
+			quack2.y -= (speed_option + SPEED_QUACK);
 		} else if (quack2.direction == DIR_DOWN){
-			quack2.y += speed_option + SPEED_QUACK;
+			quack2.y += (speed_option + SPEED_QUACK);
 		}
 		Generic.x = quack2.x >> 8; // the collision routine needs an 8 bit value
 		Generic.y = quack2.y >> 8;
@@ -468,7 +468,7 @@ void quack_movement(void){
 		if(quack4.direction == DIR_LEFT){
 			quack4.x -= (speed_option + SPEED_QUACK);
 		} else if (quack4.direction == DIR_RIGHT){
-			quack4.x -= (speed_option + SPEED_QUACK);
+			quack4.x += (speed_option + SPEED_QUACK);
 		} else if (quack4.direction == DIR_UP){
 			quack4.y -= (speed_option + SPEED_QUACK);
 		} else if (quack4.direction == DIR_DOWN){
@@ -531,13 +531,13 @@ void movement(void)
 			quack2.y = GenericBoxGuy.y;
 			quack2.direction = GenericBoxGuy.direction;
 			if(quack2.direction == DIR_LEFT){
-				quack2.x += 0x1000; //move it 1 block to the left;
+				quack2.x -= 0x0800; //move it 1 block to the left;
 			} else if (quack2.direction == DIR_RIGHT){
-				quack2.x -= 0x1000; 
+				quack2.x += 0x0800; 
 			} else if (quack2.direction == DIR_UP){
-				quack2.y -= 0x1000; 
+				quack2.y -= 0x0800; 
 			} else if (quack2.direction == DIR_DOWN){
-				quack2.y += 0x1000; 
+				quack2.y += 0x0800; 
 			} 
 			quack2.moving = 1;
     }
@@ -547,13 +547,13 @@ void movement(void)
 			quack4.direction = GenericBoxGuy.direction;
 			quack4.moving = 1;
 			if(quack4.direction == DIR_LEFT){
-				quack4.x += 0x1000; //move it 1 block to the left;
+				quack4.x -= 0x0800; //move it 1 block to the left;
 			} else if (quack4.direction == DIR_RIGHT){
-				quack4.x -= 0x1000; 
+				quack4.x += 0x0800; 
 			} else if (quack4.direction == DIR_UP){
-				quack4.y -= 0x1000; 
+				quack4.y -= 0x0800; 
 			} else if (quack4.direction == DIR_DOWN){
-				quack4.y += 0x1000; 
+				quack4.y += 0x0800; 
 			} 
     }
 	}
