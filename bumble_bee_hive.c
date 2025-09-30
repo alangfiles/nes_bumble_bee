@@ -433,7 +433,6 @@ void quack_movement(void){
 		Generic.y = quack2.y >> 8;
 		if(bg_coll_D() || bg_coll_L() || bg_coll_R() || bg_coll_U()){
 			quack2.moving = 0;
-			
 		}
 		//check collision with players
 		//check collision with players
@@ -442,7 +441,9 @@ void quack_movement(void){
 		temp_x2 = quack2.x >> 8;
 		temp_y2 = quack2.y >> 8;
 		if(sprite_collision()){
-			stun_p1 = STUN_DURATION;
+			if(bee1_bigbee_timer == 0){
+				stun_p1 = STUN_DURATION;
+			}
 			quack2.moving = 0;
 			
 		}
@@ -456,9 +457,10 @@ void quack_movement(void){
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
 		if(sprite_collision()){
-			stun_p3 = STUN_DURATION;
+			if(bee3_bigbee_timer == 0){
+				stun_p3 = STUN_DURATION;
+			}
 			quack2.moving = 0;
-			
 		}
 		temp_x = BoxGuy4.x >> 8;
 		temp_y = BoxGuy4.y >> 8;
@@ -490,7 +492,9 @@ void quack_movement(void){
 		temp_x2 = quack4.x >> 8;
 		temp_y2 = quack4.y >> 8;
 		if(sprite_collision()){
-			stun_p1 = STUN_DURATION;
+			if(bee1_bigbee_timer == 0){
+				stun_p1 = STUN_DURATION;
+			}
 			quack4.moving = 0;
 		}
 		temp_x = BoxGuy2.x >> 8;
@@ -502,7 +506,9 @@ void quack_movement(void){
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
 		if(sprite_collision()){
-			stun_p3 = STUN_DURATION;
+			if(bee3_bigbee_timer == 0){
+				stun_p3 = STUN_DURATION;
+			}
 			quack4.moving = 0;
 		}
 		temp_x = BoxGuy4.x >> 8;
