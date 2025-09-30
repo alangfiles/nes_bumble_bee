@@ -118,6 +118,18 @@ void draw_sprites(void)
 	if(powerup4 == 1)
 		oam_meta_spr(226, 208, gamesprites_powerup_data);
 
+	if(quack2.moving){
+		temp_x = quack2.x >> 8;
+		temp_y = quack2.y >> 8;
+		oam_meta_spr(temp_x, temp_y, gamesprites_quack);
+	}
+
+	if(quack4.moving){
+		temp_x = quack4.x >> 8;
+		temp_y = quack4.y >> 8;
+		oam_meta_spr(temp_x, temp_y, gamesprites_quack);
+	}
+
 	// Cycle through different drawing orders based on sprite_rotation
 	// This prevents sprites from always being drawn in the same order
 	switch(sprite_rotation & 0x03) { // Use only bottom 2 bits for 4 different orders
@@ -155,6 +167,10 @@ void draw_player_1(void)
 {
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
+
+	if(stun_p1 > 0 && frame_counter %2 == 0){
+		return; //flash when stunned
+	}
 	
 	// Update animation frame every 10 frames
 	if ((frame_counter % 10) == 0) {
@@ -220,6 +236,10 @@ void draw_player_2(void)
 {
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
+
+	if(stun_p2 > 0 && frame_counter %2 == 0){
+		return; //flash when stunned
+	}
 	
 	// Update animation frame every 10 frames, but only if player is moving
 	if ((frame_counter % 10) == 0 && BoxGuy2.moving) {
@@ -256,6 +276,10 @@ void draw_player_3(void)
 {
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
+
+	if(stun_p3 > 0 && frame_counter %2 == 0){
+		return; //flash when stunned
+	}
 	
 	// Update animation frame every 10 frames
 	if ((frame_counter % 10) == 0) {
@@ -322,6 +346,10 @@ void draw_player_4(void)
 {
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
+
+	if(stun_p4 > 0 && frame_counter %2 == 0){
+		return; //flash when stunned
+	}
 	
 	// Update animation frame every 10 frames, but only if player is moving
 	if ((frame_counter % 10) == 0 && BoxGuy4.moving) {
@@ -389,11 +417,148 @@ void update_hud(void){
 	
 }
 
+void quack_movement(void){
+	//Move the quacks and disappear if collision with bg
+	if(quack2.moving){
+		if(quack2.direction == DIR_LEFT){
+			quack2.x += speed_option + SPEED_QUACK;
+		} else if (quack2.direction == DIR_RIGHT){
+			quack2.x -= speed_option + SPEED_QUACK;
+		} else if (quack2.direction == DIR_UP){
+			quack2.y -= speed_option + SPEED_QUACK;
+		} else if (quack2.direction == DIR_DOWN){
+			quack2.y += speed_option + SPEED_QUACK;
+		}
+		Generic.x = quack2.x >> 8; // the collision routine needs an 8 bit value
+		Generic.y = quack2.y >> 8;
+		if(bg_coll_D() || bg_coll_L() || bg_coll_R() || bg_coll_U()){
+			quack2.moving = 0;
+		}
+		//check collision with players
+		//check collision with players
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = quack2.x >> 8;
+		temp_y2 = quack2.y >> 8;
+		if(sprite_collision()){
+			stun_p1 = STUN_DURATION;
+			quack2.moving = 0;
+		}
+		temp_x = BoxGuy2.x >> 8;
+		temp_y = BoxGuy2.y >> 8;
+		if(sprite_collision()){
+			stun_p2 = STUN_DURATION;
+			quack2.moving = 0;
+		}
+		temp_x = BoxGuy3.x >> 8;
+		temp_y = BoxGuy3.y >> 8;
+		if(sprite_collision()){
+			stun_p3 = STUN_DURATION;
+			quack2.moving = 0;
+		}
+		temp_x = BoxGuy4.x >> 8;
+		temp_y = BoxGuy4.y >> 8;
+		if(sprite_collision()){
+			stun_p4 = STUN_DURATION;
+			quack2.moving = 0;
+		}
+	}
+
+	if(quack4.moving){
+		if(quack4.direction == DIR_LEFT){
+			quack4.x -= (speed_option + SPEED_QUACK);
+		} else if (quack4.direction == DIR_RIGHT){
+			quack4.x -= (speed_option + SPEED_QUACK);
+		} else if (quack4.direction == DIR_UP){
+			quack4.y -= (speed_option + SPEED_QUACK);
+		} else if (quack4.direction == DIR_DOWN){
+			quack4.y += (speed_option + SPEED_QUACK);
+		}
+		Generic.x = quack4.x >> 8; // the collision routine needs an 8 bit value
+		Generic.y = quack4.y >> 8;
+		if(bg_coll_D() || bg_coll_L() || bg_coll_R() || bg_coll_U()){
+			quack4.moving = 0;
+		}
+		//check collision with players
+		temp_x = BoxGuy1.x >> 8;
+		temp_y = BoxGuy1.y >> 8;
+		temp_x2 = quack4.x >> 8;
+		temp_y2 = quack4.y >> 8;
+		if(sprite_collision()){
+			stun_p1 = STUN_DURATION;
+			quack4.moving = 0;
+		}
+		temp_x = BoxGuy2.x >> 8;
+		temp_y = BoxGuy2.y >> 8;
+		if(sprite_collision()){
+			stun_p2 = STUN_DURATION;
+			quack4.moving = 0;
+		}
+		temp_x = BoxGuy3.x >> 8;
+		temp_y = BoxGuy3.y >> 8;
+		if(sprite_collision()){
+			stun_p3 = STUN_DURATION;
+			quack4.moving = 0;
+		}
+		temp_x = BoxGuy4.x >> 8;
+		temp_y = BoxGuy4.y >> 8;
+		if(sprite_collision()){
+			stun_p4 = STUN_DURATION;
+			quack4.moving = 0;
+		}
+		
+	}
+}
+
 void movement(void)
 {
+	//stunned players can't move
+	 if ((current_player == 1 && stun_p1 > 0) ||
+			 (current_player == 2 && stun_p2 > 0) ||
+	     (current_player == 3 && stun_p3 > 0) ||
+	     (current_player == 4 && stun_p4 > 0)) {
+		 // Player is stunned, skip movement processing
+		 return;
+	 }
+	
 	// handle x
 	old_x = GenericBoxGuy.x;
 
+	//QUACK BUTTON
+	if (generic_pad & PAD_B) { 
+    if (current_player == 2 && quack2.moving == 0) { 
+			quack2.x = GenericBoxGuy.x;
+			quack2.y = GenericBoxGuy.y;
+			quack2.direction = GenericBoxGuy.direction;
+			if(quack2.direction == DIR_LEFT){
+				quack2.x += 0x1000; //move it 1 block to the left;
+			} else if (quack2.direction == DIR_RIGHT){
+				quack2.x -= 0x1000; 
+			} else if (quack2.direction == DIR_UP){
+				quack2.y -= 0x1000; 
+			} else if (quack2.direction == DIR_DOWN){
+				quack2.y += 0x1000; 
+			} 
+			quack2.moving = 1;
+    }
+		if (current_player == 4 && quack4.moving == 0) { 
+			quack4.x = GenericBoxGuy.x;
+			quack4.y = GenericBoxGuy.y;
+			quack4.direction = GenericBoxGuy.direction;
+			quack4.moving = 1;
+			if(quack4.direction == DIR_LEFT){
+				quack4.x += 0x1000; //move it 1 block to the left;
+			} else if (quack4.direction == DIR_RIGHT){
+				quack4.x -= 0x1000; 
+			} else if (quack4.direction == DIR_UP){
+				quack4.y -= 0x1000; 
+			} else if (quack4.direction == DIR_DOWN){
+				quack4.y += 0x1000; 
+			} 
+    }
+	}
+
+	//TURBO BUTTON
 	if (generic_pad & PAD_A) {
     // Check which player and if they have turbo available
     if ((current_player == 1 && turbo_p1 > 0) ||
@@ -410,6 +575,9 @@ void movement(void)
         }
     }
 	}
+
+	
+
 
 	if(ducks_go_faster_over_time){
 		if (current_player == 2 || current_player == 4) {
@@ -500,7 +668,7 @@ void movement(void)
 			hero_velocity_y -= SPEED_TURBO_BOOST; // add turbo boost
 			use_turbo = 0; // reset turbo flag
 		}  
-		// GenericBoxGuy.direction = DIR_UP; //entually we'll set up and down but not now.
+		GenericBoxGuy.direction = DIR_UP; //entually we'll set up and down but not now.
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
@@ -509,7 +677,7 @@ void movement(void)
 			hero_velocity_y += SPEED_TURBO_BOOST; // add turbo boost
 			use_turbo = 0; // reset turbo flag
 		}
-		// GenericBoxGuy.direction = DIR_DOWN;
+		GenericBoxGuy.direction = DIR_DOWN;
 	}
 	else
 	{ // nothing pressed
@@ -841,48 +1009,7 @@ void game_loop(void)
 	 // this should just move to the chr stuff
 
 	// 1. INCREMENT GLOBAL COUNTERS
-	frame_counter++;
-	game_frame_timer++;
-	if (game_frame_timer >= TIMER_TICK_FREQUENCY) // Tick down every ~24.24 frames (40s/99)
-	{
-		game_frame_timer = 0; // reset the frame timer
-		game_timer--;
-		if (game_timer == 0)
-		{
-			// time's up, check scores
-			if (team1_score > team2_score)
-			{
-				winner = ONETWO_WINNER;
-				win_reason = WIN_TIME_UP;
-				sfx_play(SFX_TEAM1_WIN, 0);
-			}
-			else if (team2_score > team1_score)
-			{
-				winner = THREEFOUR_WINNER;
-				win_reason = WIN_TIME_UP;
-				sfx_play(SFX_TEAM2_WIN, 0);
-			}
-			else
-			{
-				winner = TIE_WINNER;
-				win_reason = WIN_TIME_UP;
-				sfx_play(SFX_DRAW_GAME, 0);
-			}
-			init_roundover();
-		}
-	}
-	ai_counter++;
-	
-	// Update sprite rotation every frame
-	sprite_rotation++;
-	
-	// Update bigbee transformation timers
-	if (bee1_bigbee_timer > 0 && game_frame_timer == 1) {
-		bee1_bigbee_timer--;
-	}
-	if (bee3_bigbee_timer > 0 && game_frame_timer == 1) { //game timer
-		bee3_bigbee_timer--;
-	}
+	game_counters();
 
 	// 2.  READ CONTROLLER
 	read_controllers();
@@ -892,6 +1019,9 @@ void game_loop(void)
 	// player 1 is seeker, 2 is chaser
 	// player 3 is seeker, 4 is chaser
 	// Deal with movement for each player
+
+	//move the enemies aka the quacks
+	quack_movement();
 
 	// setup generics for player 1 (seeker)
 	current_player = 1;
@@ -1409,6 +1539,12 @@ void start_round(void){
 	turbo_p2 = turbo_amount;
 	turbo_p3 = turbo_amount;
 	turbo_p4 = turbo_amount;
+
+	// Reset quacks
+	quack2.moving = 0;
+	quack4.moving = 0;
+	quack2_cooldown = 0;
+	quack4_cooldown = 0;
 	
 	// Reset bigbee transformation timers
 	bee1_bigbee_timer = 0;
@@ -1690,4 +1826,75 @@ void roundover_loop(void){
 			break;
 		}
 	}
+}
+
+void game_counters(void){
+	frame_counter++;
+	game_frame_timer++;
+	// Update sprite rotation every frame
+	sprite_rotation++;
+	ai_counter++;
+
+	if (game_frame_timer >= TIMER_TICK_FREQUENCY) // Tick down every ~24.24 frames (40s/99)
+	{
+		game_frame_timer = 0; // reset the frame timer
+		game_timer--;
+
+		//end of round check
+		if (game_timer == 0)
+		{
+			// time's up, check scores
+			if (team1_score > team2_score)
+			{
+				winner = ONETWO_WINNER;
+				win_reason = WIN_TIME_UP;
+				sfx_play(SFX_TEAM1_WIN, 0);
+			}
+			else if (team2_score > team1_score)
+			{
+				winner = THREEFOUR_WINNER;
+				win_reason = WIN_TIME_UP;
+				sfx_play(SFX_TEAM2_WIN, 0);
+			}
+			else
+			{
+				winner = TIE_WINNER;
+				win_reason = WIN_TIME_UP;
+				sfx_play(SFX_DRAW_GAME, 0);
+			}
+			init_roundover();
+		}
+
+		//decrease quack counter on game_tick
+		if (quack2_cooldown > 0) {
+			quack2_cooldown--;
+		}
+		if (quack4_cooldown > 0) {
+			quack4_cooldown--;
+		}
+
+		//decrease stun
+		if(stun_p1 > 0){
+			stun_p1--;
+		}
+		if(stun_p2 > 0){
+			stun_p2--;	
+		}
+		if(stun_p3 > 0){
+			stun_p3--;	
+		}
+		if(stun_p4 > 0){
+			stun_p4--;
+		}
+
+		// Update bigbee transformation timers
+		if (bee1_bigbee_timer > 0 ) {
+			bee1_bigbee_timer--;
+		}
+		if (bee3_bigbee_timer > 0 ) { 
+			bee3_bigbee_timer--;
+		}
+
+	}
+	
 }

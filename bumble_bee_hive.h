@@ -2,11 +2,13 @@
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
 #define POWERUP_TIMER 10 // Powerup duration in game seconds
+#define STUN_DURATION 3
 
 // Speed options
 #define SPEED_SLOW 0x060
 #define SPEED_REGULAR 0x0A0
 #define SPEED_FAST 0x0E0
+#define SPEED_QUACK 0x060 // additional quack speed boost
 
 #define DUCK_SPEED_LOW 20
 #define DUCK_SPEED_MED 0
@@ -90,9 +92,7 @@ unsigned int scroll_x;
 unsigned int scroll_y;
 signed int hero_velocity_x; // signed, low byte is sub-pixel
 signed int hero_velocity_y;
-//unsigned int hero_x;
-//unsigned int hero_y;
-//unsigned char L_R_switch;
+
 unsigned int old_x;
 unsigned int old_y;
 unsigned char temp;
@@ -161,6 +161,19 @@ struct BoxGuy {
 	unsigned char direction;
 	unsigned char moving;
 };
+
+// Quack projectile for each duck (2 and 4)
+struct BoxGuy quack2;
+struct BoxGuy quack4;
+
+unsigned char quack2_cooldown; // Cooldown timer for duck 2's quack
+unsigned char quack4_cooldown; // Cooldown timer for duck 4's qu
+
+// Stun state for each player (frames left stunned)
+ unsigned char stun_p1;
+ unsigned char stun_p2;
+ unsigned char stun_p3;
+ unsigned char stun_p4;
 
 struct BoxGuy GenericBoxGuy;
 
@@ -293,7 +306,8 @@ void update_hud(void);
 void init_roundover(void);
 void start_round(void);
 void roundover_loop(void);
-
+void game_counters(void);
+void quack_movement(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);
