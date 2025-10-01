@@ -126,10 +126,10 @@ void draw_sprites(void)
 		} else if(quack2.direction == DIR_RIGHT){
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
 		} else if(quack2.direction == DIR_DOWN){
-			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackdown_data);
 		} else if(quack2.direction == DIR_UP){
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
-		}
+		} 
 	}
 
 	if(quack4.moving){
@@ -140,7 +140,7 @@ void draw_sprites(void)
 		} else if(quack4.direction == DIR_RIGHT){
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
 		} else if(quack4.direction == DIR_DOWN){
-			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackdown_data);
 		} else if(quack4.direction == DIR_UP){
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
 		}

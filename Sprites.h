@@ -331,28 +331,28 @@ const unsigned char gamesprites_box_data[]={
 
 const unsigned char gamesprites_quackright_data[]={
 
-	  0,- 8,0x0e,0,
+	  0,0,0x0e,0,
 	0x80
 
 };
 
 const unsigned char gamesprites_quackleft_data[]={
 
-	  0,- 8,0x0e,0|OAM_FLIP_H,
+	  0,0,0x0e,0|OAM_FLIP_H,
 	0x80
 
 };
 
 const unsigned char gamesprites_quackup_data[]={
 
-	  0,- 8,0x0f,0,
+	  0,0,0x0f,0,
 	0x80
 
 };
 
 const unsigned char gamesprites_quackdown_data[]={
 
-	  0,- 8,0x0f,0|OAM_FLIP_V,
+	  0,0,0x0f,0|OAM_FLIP_V,
 	0x80
 
 };
