@@ -323,7 +323,7 @@ const unsigned char gamesprites_smallduck2right2_data[]={
 
 const unsigned char gamesprites_box_data[]={
 
-	  0,- 8,0x12,0,
+	  0,0,0x12,0,
 	0x80
 
 };
