@@ -610,6 +610,13 @@ void movement(void)
 	} else {
 		current_speed = speed_option; // feature disabled, all normal speed
 	}
+	
+	if(bee1_bigbee_timer > 0 && current_player == 1){
+			current_speed += SPEED_BIGBEE_BOOST; //big bee boost
+		}
+		if(bee3_bigbee_timer > 0 && current_player == 3){
+			current_speed += SPEED_BIGBEE_BOOST; //big bee boost
+		}
 
 	if (generic_pad & PAD_LEFT)
 	{
