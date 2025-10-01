@@ -121,13 +121,29 @@ void draw_sprites(void)
 	if(quack2.moving){
 		temp_x = quack2.x >> 8;
 		temp_y = quack2.y >> 8;
-		oam_meta_spr(temp_x, temp_y, gamesprites_quack);
+		if(quack2.direction == DIR_LEFT){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackleft_data);
+		} else if(quack2.direction == DIR_RIGHT){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
+		} else if(quack2.direction == DIR_DOWN){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
+		} else if(quack2.direction == DIR_UP){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
+		}
 	}
 
 	if(quack4.moving){
 		temp_x = quack4.x >> 8;
 		temp_y = quack4.y >> 8;
-		oam_meta_spr(temp_x, temp_y, gamesprites_quack);
+		if(quack4.direction == DIR_LEFT){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackleft_data);
+		} else if(quack4.direction == DIR_RIGHT){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
+		} else if(quack4.direction == DIR_DOWN){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
+		} else if(quack4.direction == DIR_UP){
+			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
+		}
 	}
 
 	// Cycle through different drawing orders based on sprite_rotation
