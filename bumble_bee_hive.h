@@ -4,6 +4,7 @@
 #define POWERUP_TIMER 10 // Powerup duration in game seconds
 #define STUN_DURATION 3
 #define QUACK_COOLDOWN 10
+#define HITBOX_DEBUG 0
 
 // Speed options
 #define SPEED_SLOW 0x060
@@ -243,7 +244,7 @@ const unsigned char palette_sp[]={
 0x0f, 0x17, 0x26, 0x38, //transparent, mid red, light red, yellow
 0x0f, 0x0C, 0x2C, 0x38, //transparent, mid blue, light blue, yellow
 0x0f, 0x17, 0x20, 0x26, 
-0x0f, 0x0C, 0x20, 0x2C, 
+0x0f, 0x0C, 0x2C, 0x38, 
 }; 
 
 // Title Palettes: 

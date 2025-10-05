@@ -321,11 +321,21 @@ const unsigned char gamesprites_smallduck2right2_data[]={
 };
 
 
-const unsigned char gamesprites_box_data[]={
-
+const unsigned char gamesprites_box1_data[]={
 	  0,0,0x12,0,
 	0x80
-
+};
+const unsigned char gamesprites_box2_data[]={
+	  0,0,0x12,1,
+	0x80
+};
+const unsigned char gamesprites_box3_data[]={
+	  0,0,0x12,2,
+	0x80
+};
+const unsigned char gamesprites_box4_data[]={
+	  0,0,0x12,3,
+	0x80
 };
 
 

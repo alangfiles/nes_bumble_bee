@@ -184,6 +184,11 @@ void draw_player_1(void)
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
 
+	if(HITBOX_DEBUG){
+		oam_meta_spr(temp_x, temp_y, gamesprites_box1_data);
+		return;
+	}
+
 	if(stun_p1 > 0 && frame_counter %2 == 0){
 		return; //flash when stunned
 	}
@@ -253,6 +258,11 @@ void draw_player_2(void)
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
 
+	if(HITBOX_DEBUG){
+		oam_meta_spr(temp_x, temp_y, gamesprites_box2_data);
+		return;
+	}
+
 	if(stun_p2 > 0 && frame_counter %2 == 0){
 		return; //flash when stunned
 	}
@@ -290,6 +300,11 @@ void draw_player_2(void)
 
 void draw_player_3(void)
 {
+
+	if(HITBOX_DEBUG){
+		oam_meta_spr(temp_x, temp_y, gamesprites_box3_data);
+		return;
+	}
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
 
@@ -362,6 +377,11 @@ void draw_player_4(void)
 {
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
+
+	if(HITBOX_DEBUG){
+		oam_meta_spr(temp_x, temp_y, gamesprites_box4_data);
+		return;
+	}
 
 	if(stun_p4 > 0 && frame_counter %2 == 0){
 		return; //flash when stunned
@@ -1034,7 +1054,7 @@ void chaser_ai(void)
 	// pad2 = PAD_LEFT;
 	// pad4 = PAD_LEFT;
 }
-
+ 
 void game_loop(void)
 {
 	// wait till beginning of the frame
@@ -1626,7 +1646,7 @@ void init_game_loop(void)
 	team2_wins = 0;
 	// load the palettes
 	pal_bg(palette_bg_combmap);
-	pal_spr(palette_sp);
+	pal_spr(palette_sp); 
 
 	start_round();
 }
