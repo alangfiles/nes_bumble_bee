@@ -6841,12 +6841,14 @@ L1573:	lda     _GenericBoxGuy+1
 	and     #$40
 	jeq     L1CB7
 ;
-; if (current_player == 2 && quack2.moving == 0) { 
+; if (current_player == 2 && quack2.moving == 0 && quack2_cooldown == 0) { 
 ;
 	lda     _current_player
 	cmp     #$02
 	jne     L1CB1
 	lda     _quack2+5
+	jne     L1CB1
+	lda     _quack2_cooldown
 	jne     L1CB1
 ;
 ; quack2.x = GenericBoxGuy.x;
@@ -6943,12 +6945,14 @@ L1CEA:	sta     _quack2+2+1
 L1CB0:	lda     #$01
 	sta     _quack2+5
 ;
-; if (current_player == 4 && quack4.moving == 0) { 
+; if (current_player == 4 && quack4.moving == 0 && quack4_cooldown == 0) { 
 ;
 L1CB1:	lda     _current_player
 	cmp     #$04
 	jne     L1CB7
 	lda     _quack4+5
+	jne     L1CB7
+	lda     _quack4_cooldown
 	jne     L1CB7
 ;
 ; quack4.x = GenericBoxGuy.x;

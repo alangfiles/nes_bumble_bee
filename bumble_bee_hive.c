@@ -573,7 +573,7 @@ void movement(void)
 
 	//QUACK BUTTON
 	if (generic_pad & PAD_B) { 
-    if (current_player == 2 && quack2.moving == 0) { 
+	if (current_player == 2 && quack2.moving == 0 && quack2_cooldown == 0) { 
 			quack2.x = GenericBoxGuy.x;
 			quack2.y = GenericBoxGuy.y;
 			quack2.direction = GenericBoxGuy.direction;
@@ -589,7 +589,7 @@ void movement(void)
 			} 
 			quack2.moving = 1; 
     }
-		if (current_player == 4 && quack4.moving == 0) { 
+		if (current_player == 4 && quack4.moving == 0 && quack4_cooldown == 0) { 
 			quack4.x = GenericBoxGuy.x;
 			quack4.y = GenericBoxGuy.y;
 			quack4.direction = GenericBoxGuy.direction;
