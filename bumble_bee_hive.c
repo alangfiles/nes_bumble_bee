@@ -453,6 +453,20 @@ void update_hud(void){
 	
 }
 
+// Fast single-tile collision check for quack projectiles.
+// Returns 1 if the tile at pixel (px,py) is solid (i.e. quack should stop),
+// 0 otherwise. This is cheaper than calling the 4-direction bg_coll_* helpers.
+char quack_tile_solid()
+{
+	if (temp_y2 >= 0xf0) return 0;
+	largeindex = ((temp_y2 >> 3) << 5) + (temp_x2 >> 3);
+	temp = combmapwoflowers[largeindex];
+	// don't collide with pellets or blank tiles
+	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca) return 0;
+	if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba) return 0;
+	return 1;
+}
+
 void quack_movement(void){
 	//Move the quacks and disappear if collision with bg
 	if(quack2.moving){
@@ -465,9 +479,10 @@ void quack_movement(void){
 		} else if (quack2.direction == DIR_DOWN){
 			quack2.y += (speed_option + SPEED_QUACK);
 		}
-		Generic.x = quack2.x >> 8; // the collision routine needs an 8 bit value
-		Generic.y = quack2.y >> 8;
-		if(bg_coll_D() || bg_coll_L() || bg_coll_R() || bg_coll_U()){
+		// single cheap tile check at quack center
+		temp_x2 = quack2.x >> 8;
+		temp_y2 = quack2.y >> 8;
+		if (quack_tile_solid()){
 			quack2.moving = 0;
 		}
 		//check collision with players
@@ -517,9 +532,10 @@ void quack_movement(void){
 		} else if (quack4.direction == DIR_DOWN){
 			quack4.y += (speed_option + SPEED_QUACK);
 		}
-		Generic.x = quack4.x >> 8; // the collision routine needs an 8 bit value
-		Generic.y = quack4.y >> 8;
-		if(bg_coll_D() || bg_coll_L() || bg_coll_R() || bg_coll_U()){
+		// single cheap tile check at quack center
+		temp_x2 = quack4.x >> 8;
+		temp_y2 = quack4.y >> 8;
+		if (quack_tile_solid()){
 			quack4.moving = 0;
 		}
 		//check collision with players
