@@ -1921,6 +1921,13 @@ void init_roundover(void){
 
 	//load new map?
 
+	if(frame_counter % 3 == 0){
+		map_ptr = combmapwoflowers;
+	} else if (frame_counter % 3 == 1){
+		map_ptr = combsnplants;
+	} else {
+		map_ptr = outdoors;
+	}
 	
 }
 
