@@ -114,44 +114,44 @@ void draw_sprites(void)
 	if(powerup1 == 1)
 	{
 		if(map == MAP_COMBS){
-			oam_meta_spr(16, 32, gamesprites_powerup_data);
+			oam_meta_spr(COMBS_FLOWER_X[0], COMBS_FLOWER_Y[0], gamesprites_powerup_data);
 		} else if(map== MAP_VINES){
-			oam_meta_spr(16, 32, gamesprites_powerup_data);
+			oam_meta_spr(VINES_FLOWER_X[0], VINES_FLOWER_Y[0], gamesprites_powerup_data);
 		} else if(map == MAP_OUTDOORS){
-			oam_meta_spr(32, 112, gamesprites_powerup_data);
+			oam_meta_spr(OUTDOORS_FLOWER_X[0], OUTDOORS_FLOWER_Y[0], gamesprites_powerup_data);
 		}
 	}
 		
 	if(powerup2 == 1)
 	{
 		if(map == MAP_COMBS){
-			oam_meta_spr(226, 32, gamesprites_powerup_data);
+			oam_meta_spr(COMBS_FLOWER_X[1], COMBS_FLOWER_Y[1], gamesprites_powerup_data);
 		} else if(map== MAP_VINES){
-			oam_meta_spr(224, 32, gamesprites_powerup_data);
+			oam_meta_spr(VINES_FLOWER_X[1], VINES_FLOWER_Y[1], gamesprites_powerup_data);
 		} else if(map == MAP_OUTDOORS){
-			oam_meta_spr(208, 112, gamesprites_powerup_data);
+			oam_meta_spr(OUTDOORS_FLOWER_X[1], OUTDOORS_FLOWER_Y[1], gamesprites_powerup_data);
 		}
 	}
 		
 	if(powerup3 == 1)
 	{
 		if(map == MAP_COMBS){
-			oam_meta_spr(16, 208, gamesprites_powerup_data);
+			oam_meta_spr(COMBS_FLOWER_X[2], COMBS_FLOWER_Y[2], gamesprites_powerup_data);
 		} else if(map== MAP_VINES){
-			oam_meta_spr(16, 208, gamesprites_powerup_data);
+			oam_meta_spr(VINES_FLOWER_X[2], VINES_FLOWER_Y[2], gamesprites_powerup_data);
 		} else if(map == MAP_OUTDOORS){
-			oam_meta_spr(16, 208, gamesprites_powerup_data);
+			oam_meta_spr(OUTDOORS_FLOWER_X[2], OUTDOORS_FLOWER_Y[2], gamesprites_powerup_data);
 		}
 	}
 		
 	if(powerup4 == 1)
 	{
 		if(map == MAP_COMBS){
-			oam_meta_spr(226, 208, gamesprites_powerup_data);
+			oam_meta_spr(COMBS_FLOWER_X[3], COMBS_FLOWER_Y[3], gamesprites_powerup_data);
 		} else if(map== MAP_VINES){
-			oam_meta_spr(224, 208, gamesprites_powerup_data);
+			oam_meta_spr(VINES_FLOWER_X[3], VINES_FLOWER_Y[3], gamesprites_powerup_data);
 		} else if(map == MAP_OUTDOORS){
-			oam_meta_spr(224, 208, gamesprites_powerup_data);
+			oam_meta_spr(OUTDOORS_FLOWER_X[3], OUTDOORS_FLOWER_Y[3], gamesprites_powerup_data);
 		}
 	}
 		
@@ -611,6 +611,110 @@ void quack_movement(void){
 	}
 }
 
+void check_powerup(void){
+	if (powerup1 == 1){
+
+			if(map==MAP_COMBS){
+				temp_x2 = COMBS_FLOWER_X[0];
+				temp_y2 = COMBS_FLOWER_Y[0];
+			}
+			else if(map==MAP_VINES){
+				temp_x2 = VINES_FLOWER_X[0];
+				temp_y2 = VINES_FLOWER_Y[0];
+			}
+			else if(map==MAP_OUTDOORS){
+				temp_x2 = OUTDOORS_FLOWER_X[0];
+				temp_y2 = OUTDOORS_FLOWER_Y[0];
+			}
+			
+			if(check_powerup_collision()) {
+				powerup1 = 0; // Remove powerup
+				if(temp == 1){
+					bee1_bigbee_timer = POWERUP_TIMER;  
+				} else if (temp == 3) {
+					bee3_bigbee_timer = POWERUP_TIMER;  
+				}
+				sfx_play(SFX_POWERUP, 0);
+			}
+	}
+		// Check powerup2 (top-right)
+		if (powerup2 == 1){
+			if(map==MAP_COMBS){
+				temp_x2 = COMBS_FLOWER_X[1];
+				temp_y2 = COMBS_FLOWER_Y[1];
+			}
+			else if(map==MAP_VINES){
+				temp_x2 = VINES_FLOWER_X[1];
+				temp_y2 = VINES_FLOWER_Y[1];
+			}
+			else if(map==MAP_OUTDOORS){
+				temp_x2 = OUTDOORS_FLOWER_X[1];
+				temp_y2 = OUTDOORS_FLOWER_Y[1];
+			}
+			
+			if(check_powerup_collision()) {
+				powerup2 = 0; // Remove powerup
+				if(temp == 1){
+					bee1_bigbee_timer = POWERUP_TIMER;  
+				} else if (temp == 3) {
+					bee3_bigbee_timer = POWERUP_TIMER;  
+				}
+				sfx_play(SFX_POWERUP, 0);
+			}
+		} 
+		// Check powerup3 (bottom-left)
+		if (powerup3 == 1){
+			if(map==MAP_COMBS){
+				temp_x2 = COMBS_FLOWER_X[2];
+				temp_y2 = COMBS_FLOWER_Y[2];
+			}
+			else if(map==MAP_VINES){
+				temp_x2 = VINES_FLOWER_X[2];
+				temp_y2 = VINES_FLOWER_Y[2];
+			}
+			else if(map==MAP_OUTDOORS){
+				temp_x2 = OUTDOORS_FLOWER_X[2];
+				temp_y2 = OUTDOORS_FLOWER_Y[2];
+			}
+			
+			if(check_powerup_collision()) {
+				powerup3 = 0; // Remove powerup
+				if(temp == 1){
+					bee1_bigbee_timer = POWERUP_TIMER;  
+				} else if (temp == 3) {
+					bee3_bigbee_timer = POWERUP_TIMER;  
+				}
+				sfx_play(SFX_POWERUP, 0);
+			}
+		}
+			
+		// Check powerup4 (bottom-right)
+		if (powerup4 == 1){
+			if(map==MAP_COMBS){
+				temp_x2 = COMBS_FLOWER_X[3];
+				temp_y2 = COMBS_FLOWER_Y[3];
+			}
+			else if(map==MAP_VINES){
+				temp_x2 = VINES_FLOWER_X[3];
+				temp_y2 = VINES_FLOWER_Y[3];
+			}
+			else if(map==MAP_OUTDOORS){
+				temp_x2 = OUTDOORS_FLOWER_X[3];
+				temp_y2 = OUTDOORS_FLOWER_Y[3];
+			}
+			
+			if(check_powerup_collision()) {
+				powerup4 = 0; // Remove powerup
+				if(temp == 1){
+					bee1_bigbee_timer = POWERUP_TIMER;  
+				} else if (temp == 3) {
+					bee3_bigbee_timer = POWERUP_TIMER;  
+				}
+				sfx_play(SFX_POWERUP, 0);
+			}
+		}
+}
+
 void movement(void)
 {
 	//stunned players can't move
@@ -967,7 +1071,7 @@ void check_tile_and_collect()
 	// Get the tile at the player's position
 	temp = map_ptr[largeindex];
 
-	for (index = 0; index < 5; index++)
+	for (index = 0; index < sizeof(pellet_tiles); index++)
 	{
 		if (temp == pellet_tiles[index])
 		{
@@ -1039,12 +1143,12 @@ char sprite_collision()
 }
 
 // Check if a player collides with a powerup
-char check_powerup_collision(unsigned char player_x, unsigned char player_y, unsigned char powerup_x, unsigned char powerup_y)
+char check_powerup_collision()
 {
 	// Powerup is 16x16 pixels, player is 8x8 pixels
 	// Check if player's center is within powerup bounds
-	if (player_x + 4 >= powerup_x && player_x + 4 < powerup_x + 16 &&
-			player_y + 4 >= powerup_y && player_y + 4 < powerup_y + 16)
+	if (temp_x + 4 >= temp_x2 && temp_x + 4 < temp_x2 + 16 &&
+			temp_y + 4 >= temp_y2 && temp_y + 4 < temp_y2 + 16)
 	{
 		return 1;
 	}
@@ -1247,61 +1351,17 @@ void game_loop(void)
 	if (bee1_bigbee_timer == 0) { // Only check if not already transformed
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
+		temp = 1; //which bee are we checking
 		
-		// Check powerup1 (top-left)
-		if (powerup1 == 1 && check_powerup_collision(temp_x, temp_y, 16, 32)) {
-			powerup1 = 0; // Remove powerup
-			bee1_bigbee_timer = POWERUP_TIMER;  // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
-		// Check powerup2 (top-right)
-		if (powerup2 == 1 && check_powerup_collision(temp_x, temp_y, 226, 32)) {
-			powerup2 = 0; // Remove powerup
-			bee1_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
-		// Check powerup3 (bottom-left)
-		if (powerup3 == 1 && check_powerup_collision(temp_x, temp_y, 16, 208)) {
-			powerup3 = 0; // Remove powerup
-			bee1_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
-		// Check powerup4 (bottom-right)
-		if (powerup4 == 1 && check_powerup_collision(temp_x, temp_y, 226, 208)) {
-			powerup4 = 0; // Remove powerup
-			bee1_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
+		check_powerup();
 	}
 	
 	if (bee3_bigbee_timer == 0) { // Only check if not already transformed
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
-		
-		// Check powerup1 (top-left)
-		if (powerup1 == 1 && check_powerup_collision(temp_x, temp_y, 16, 32)) {
-			powerup1 = 0; // Remove powerup
-			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
-		// Check powerup2 (top-right)
-		if (powerup2 == 1 && check_powerup_collision(temp_x, temp_y, 226, 32)) {
-			powerup2 = 0; // Remove powerup
-			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
-		// Check powerup3 (bottom-left)
-		if (powerup3 == 1 && check_powerup_collision(temp_x, temp_y, 16, 208)) {
-			powerup3 = 0; // Remove powerup
-			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
-		// Check powerup4 (bottom-right)
-		if (powerup4 == 1 && check_powerup_collision(temp_x, temp_y, 226, 208)) {
-			powerup4 = 0; // Remove powerup
-			bee3_bigbee_timer = POWERUP_TIMER; // 20 game seconds
-			sfx_play(SFX_POWERUP, 0);
-		}
+		temp = 3;
+
+		check_powerup();
 	}
 
 	// 5. CHECK COLLISON

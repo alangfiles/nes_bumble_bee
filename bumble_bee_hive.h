@@ -193,6 +193,12 @@ struct BoxGuy BoxGuy4 = {0xC000,0x4000};
 #define HERO_WIDTH 6
 #define HERO_HEIGHT 6
 
+const unsigned char COMBS_FLOWER_X[4] = {16, 226, 16, 226};
+const unsigned char COMBS_FLOWER_Y[4] = {32, 32, 208, 208};
+const unsigned char VINES_FLOWER_X[4] = {16, 224, 16, 224};
+const unsigned char VINES_FLOWER_Y[4] = {32, 32, 208, 208};
+const unsigned char OUTDOORS_FLOWER_X[4] = {32, 208, 16, 224};
+const unsigned char OUTDOORS_FLOWER_Y[4] = {112, 112, 208, 208};
 
 enum
 {
@@ -320,4 +326,4 @@ char bg_coll_D(void);
 
 
 char sprite_collision(void);
-char check_powerup_collision(unsigned char player_x, unsigned char player_y, unsigned char powerup_x, unsigned char powerup_y);
+char check_powerup_collision(void);
