@@ -12,6 +12,8 @@
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
 
+
+
 void main(void)
 {
 
@@ -93,9 +95,9 @@ void load_room(void)
 		} else if (game_mode == MODE_OPTIONS){
 			vram_put(settings[largeindex]);
 		} else{
-			vram_put(combmapwoflowers[largeindex]);
+			vram_put(map_ptr[largeindex]);
 		}
-		
+        
 		flush_vram_update2();
 	}
 	ppu_on_all();
@@ -110,13 +112,49 @@ void draw_sprites(void)
 
 	//draw powerups
 	if(powerup1 == 1)
-		oam_meta_spr(16, 32, gamesprites_powerup_data);
+	{
+		if(map == MAP_COMBS){
+			oam_meta_spr(16, 32, gamesprites_powerup_data);
+		} else if(map== MAP_VINES){
+			oam_meta_spr(16, 32, gamesprites_powerup_data);
+		} else if(map == MAP_OUTDOORS){
+			oam_meta_spr(32, 112, gamesprites_powerup_data);
+		}
+	}
+		
 	if(powerup2 == 1)
-		oam_meta_spr(226, 32, gamesprites_powerup_data);
+	{
+		if(map == MAP_COMBS){
+			oam_meta_spr(226, 32, gamesprites_powerup_data);
+		} else if(map== MAP_VINES){
+			oam_meta_spr(224, 32, gamesprites_powerup_data);
+		} else if(map == MAP_OUTDOORS){
+			oam_meta_spr(208, 112, gamesprites_powerup_data);
+		}
+	}
+		
 	if(powerup3 == 1)
-		oam_meta_spr(16, 208, gamesprites_powerup_data);
+	{
+		if(map == MAP_COMBS){
+			oam_meta_spr(16, 208, gamesprites_powerup_data);
+		} else if(map== MAP_VINES){
+			oam_meta_spr(16, 208, gamesprites_powerup_data);
+		} else if(map == MAP_OUTDOORS){
+			oam_meta_spr(16, 208, gamesprites_powerup_data);
+		}
+	}
+		
 	if(powerup4 == 1)
-		oam_meta_spr(226, 208, gamesprites_powerup_data);
+	{
+		if(map == MAP_COMBS){
+			oam_meta_spr(226, 208, gamesprites_powerup_data);
+		} else if(map== MAP_VINES){
+			oam_meta_spr(224, 208, gamesprites_powerup_data);
+		} else if(map == MAP_OUTDOORS){
+			oam_meta_spr(224, 208, gamesprites_powerup_data);
+		}
+	}
+		
 
 	if(quack2.moving){
 		temp_x = quack2.x >> 8;
@@ -460,7 +498,7 @@ char quack_tile_solid()
 {
 	if (temp_y2 >= 0xf0) return 0;
 	largeindex = ((temp_y2 >> 3) << 5) + (temp_x2 >> 3);
-	temp = combmapwoflowers[largeindex];
+	temp = map_ptr[largeindex];
 	// don't collide with pellets or blank tiles
 	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca) return 0;
 	if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba) return 0;
@@ -869,11 +907,11 @@ char bg_coll_D(void)
 	return 0;
 }
 
-const unsigned char pellet_tiles[5] = {
-		0xc6, 0xc7, 0xc8, 0xc9, 0xca};
+const unsigned char pellet_tiles[6] = {
+	0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xa5};
 
-const unsigned char blank_tiles[5] = {
-		0xb6, 0xb7, 0xb8, 0xb9, 0xba};
+const unsigned char blank_tiles[9] = {
+	0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0x00, 0x69, 0x6a, 0x6b};
 
 char bg_collision_sub(void)
 {
@@ -881,13 +919,13 @@ char bg_collision_sub(void)
 		return 0;
 	// temp_x and temp_y are the coordinates to check the collision
 
-	temp = combmapwoflowers[((temp_y >> 3) << 5) + (temp_x >> 3)];
+	temp = map_ptr[((temp_y >> 3) << 5) + (temp_x >> 3)];
 	// don't collide with pellets, but everything else
-	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca)
+	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca || temp == 0xa5)
 	{
 		return 0;
 	}
-	else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba)
+	else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba || temp == 0x00 || temp == 0x69 || temp == 0x6a || temp == 0x6b)
 	{
 		return 0;
 	}
@@ -927,7 +965,7 @@ void check_tile_and_collect()
 	largeindex = (temp_y << 5) + temp_x;
 
 	// Get the tile at the player's position
-	temp = combmapwoflowers[largeindex];
+	temp = map_ptr[largeindex];
 
 	for (index = 0; index < 5; index++)
 	{
@@ -939,7 +977,9 @@ void check_tile_and_collect()
 				// Mark this dot as consumed
 				mark_dot_consumed(largeindex);
 				// Update the screen
-				one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
+				// one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
+				one_vram_buffer(0x00, NTADR_A(temp_x, temp_y)); //TODO: this is just a blank tile, not as fun as the updated backgrounds
+				
 				// update team score
 				if (current_player == 1)
 				{
@@ -1546,7 +1586,7 @@ void gameover_loop(void)
 		ppu_wait_nmi();
 		pad1 = pad_poll(0); // read the first controller
 
-		if (pad1 & PAD_START)
+		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
 		{
 			init_title_loop();
 			break;
@@ -1555,6 +1595,8 @@ void gameover_loop(void)
 }
 
 void start_round(void){
+
+	//TODO: load new map here?
 
 	load_room();
 	update_hud();
@@ -1660,11 +1702,29 @@ void init_game_loop(void)
 	// Initialize scores
 	team1_wins = 0;
 	team2_wins = 0;
+
+	// set default map
+	// map_ptr = combmapwoflowers;
+	// map_ptr = combsnplants;
+	map_ptr = outdoors;
+	map = MAP_OUTDOORS;
+
 	// load the palettes
-	pal_bg(palette_bg_combmap);
+	load_bg_palette();
 	pal_spr(palette_sp); 
 
 	start_round();
+}
+
+void load_bg_palette(void)
+{
+	if(map == MAP_OUTDOORS){
+		pal_bg(palette_outdoors_bg);
+	} else if (map == MAP_COMBS) {
+		pal_bg(palette_combsnplants_bg);
+	} else if (map == MAP_VINES) {
+		pal_bg(palette_vineswoflowers_bg);
+	}
 }
 
 void init_title_loop(void)
@@ -1798,6 +1858,9 @@ void init_roundover(void){
 	} else {
 		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 13));
 	}
+
+	//load new map?
+
 	
 }
 
@@ -1810,7 +1873,7 @@ void init_gameover_loop(void)
 	ppu_off(); // screen off
 	// load the title palettes
 	clear_vram_buffer();
-	pal_bg(palette_bg_combmap);
+	//don't need to load bg pallete
 	pal_spr(palette_sp);
 
 	
@@ -1876,7 +1939,7 @@ void roundover_loop(void){
 		ppu_wait_nmi();
 		pad1 = pad_poll(0); // read the first controller
 
-		if (pad1 & PAD_START)
+		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
 		{
 			// Check if either team has reached 3 wins
 			if (team1_wins >= 3)
