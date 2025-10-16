@@ -145,8 +145,8 @@ unsigned char start_hold_timer; // Timer for holding start button
 unsigned char start_held; // Whether start is currently held
 
 // #include "MAPS/tinyhoney.h"
-#include "MAPS/combmapwoflowers.h"
-#include "MAPS/combsnplants.h"
+#include "MAPS/combs.h"
+#include "MAPS/vines.h"
 #include "MAPS/outdoors.h"
 #include "MAPS/settings.h"
 #include "MAPS/title.h"

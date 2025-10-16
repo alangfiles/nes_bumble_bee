@@ -1922,12 +1922,16 @@ void init_roundover(void){
 	//load new map?
 
 	if(frame_counter % 3 == 0){
-		map_ptr = combmapwoflowers;
+		map_ptr = combs;
+		map = MAP_COMBS;
 	} else if (frame_counter % 3 == 1){
-		map_ptr = combsnplants;
+		map_ptr = vines;
+		map = MAP_VINES;
 	} else {
 		map_ptr = outdoors;
+		map= MAP_OUTDOORS;
 	}
+	load_bg_palette();
 	
 }
 
