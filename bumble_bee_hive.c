@@ -1668,7 +1668,7 @@ void start_round(void){
 			map_ptr = combs;
 			map = MAP_COMBS;
 		} else if (frame_counter % 3 == 1){
-			map_ptr = vines;
+			map_ptr = combs; //todo: fix bug here
 			map = MAP_VINES;
 		} else {
 			map_ptr = outdoors;
@@ -1782,11 +1782,16 @@ void init_game_loop(void)
 	team1_wins = 0;
 	team2_wins = 0;
 
-	// set default map
-	// map_ptr = combmapwoflowers;
-	// map_ptr = combsnplants;
-	map_ptr = outdoors;
-	map = MAP_OUTDOORS;
+	if(settings_map == MAP_COMBS){
+		map_ptr = combs;
+		map = MAP_COMBS;
+	} else if (settings_map == MAP_VINES){
+		map_ptr = vines;
+		map = MAP_VINES;
+	} else if(settings_map == MAP_OUTDOORS){
+		map_ptr = outdoors;
+		map = MAP_OUTDOORS;
+	}
 
 	// load the palettes
 	load_bg_palette();
@@ -1805,7 +1810,7 @@ void load_bg_palette(void)
 		pal_bg(palette_vineswoflowers_bg);
 	}
 }
-
+ 
 void init_title_loop(void)
 {
 	delay(30);
@@ -1977,7 +1982,7 @@ void init_system(void)
 
 	// Initialize default settings
 	settings_speed = GAME_REGULAR;
-	settings_map = MAP_RANDOM;
+	settings_map = MAP_COMBS;
 	settings_song = SONG_HIVE;
 
 	speed_option = SPEED_REGULAR;
