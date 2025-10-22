@@ -1847,11 +1847,11 @@ void update_options_screen(void){
 
 	//draw a character on the options screen:
 	if(current_settings_choice == SETTING_SPEED){
-		oam_meta_spr(64, 64, gamesprites_smallbeeright0_data);
+		oam_meta_spr(64, 96, gamesprites_smallbeeright0_data);
 	} else if (current_settings_choice == SETTING_MAP){
-		oam_meta_spr(64, 104, gamesprites_smallbeeright0_data);
+		oam_meta_spr(64, 140, gamesprites_smallbeeright0_data);
 	} else if (current_settings_choice == SETTING_SONG){
-		oam_meta_spr(64, 144, gamesprites_smallbeeright0_data);
+		oam_meta_spr(64, 176, gamesprites_smallbeeright0_data);
 	}
 
 	//draws the values based on the settings:

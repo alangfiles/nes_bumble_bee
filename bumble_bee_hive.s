@@ -13701,12 +13701,13 @@ L23AF:	rts
 	lda     _current_settings_choice
 	bne     L2710
 ;
-; oam_meta_spr(64, 64, gamesprites_smallbeeright0_data);
+; oam_meta_spr(64, 96, gamesprites_smallbeeright0_data);
 ;
 	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
+	lda     #$60
 ;
 ; } else if (current_settings_choice == SETTING_MAP){
 ;
@@ -13715,13 +13716,13 @@ L2710:	lda     _current_settings_choice
 	cmp     #$01
 	bne     L2711
 ;
-; oam_meta_spr(64, 104, gamesprites_smallbeeright0_data);
+; oam_meta_spr(64, 140, gamesprites_smallbeeright0_data);
 ;
 	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
-	lda     #$68
+	lda     #$8C
 ;
 ; } else if (current_settings_choice == SETTING_SONG){
 ;
@@ -13730,13 +13731,13 @@ L2711:	lda     _current_settings_choice
 	cmp     #$02
 	bne     L23E6
 ;
-; oam_meta_spr(64, 144, gamesprites_smallbeeright0_data);
+; oam_meta_spr(64, 176, gamesprites_smallbeeright0_data);
 ;
 	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
-	lda     #$90
+	lda     #$B0
 L2720:	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright0_data)
