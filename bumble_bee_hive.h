@@ -18,7 +18,7 @@
 #define DUCK_SPEED_MAX 40
 
 #define SPEED_TURBO_BOOST 0x060
-#define SPEED_BIGBEE_BOOST 0x030
+#define SPEED_BIGBEE_BOOST 0x060 //big bee has constant turbo (old value was 0x030)
 #define TURBO_LOW 0x40
 #define TURBO_MEDIUM 0x80
 #define TURBO_HIGH 0xF0

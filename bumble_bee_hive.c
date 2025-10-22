@@ -18,6 +18,13 @@ void main(void)
 {
 
 	/*
+	10.22 todo:
+	[] fix starting positions per map
+	[] add new songs
+	[] handle settings menu
+	*/
+
+	/*
 	 TODO before CORGS:
 	 * win count [x]
 	 * fix colors [x]
@@ -768,9 +775,9 @@ void movement(void)
 	//TURBO BUTTON
 	if (generic_pad & PAD_A) {
     // Check which player and if they have turbo available
-    if ((current_player == 1 && turbo_p1 > 0) ||
+    if ((current_player == 1 && turbo_p1 > 0 && bee1_bigbee_timer == 0) ||
         (current_player == 2 && turbo_p2 > 0) ||
-        (current_player == 3 && turbo_p3 > 0) ||
+        (current_player == 3 && turbo_p3 > 0 && bee3_bigbee_timer == 0) ||
         (current_player == 4 && turbo_p4 > 0)) {
         
 				use_turbo = 1;
