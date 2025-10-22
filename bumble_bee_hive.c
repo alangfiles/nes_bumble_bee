@@ -1565,69 +1565,27 @@ void options_loop(void)
 		ppu_wait_nmi();
 		frame_counter++;
 
+		oam_clear();
+		oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
+
+
 		// Read all controllers for options screen
 		read_controllers();
 
-		// if (pad1 != prev_pad1 || pad2 != prev_pad2 || pad3 != prev_pad3 || pad4 != prev_pad4)
-		// {
+		if(pad1 & PAD_DOWN){
+			if(current_settings_choice < SETTING_SONG){
+				current_settings_choice++;
+				update_options_screen();
+			}
+		}
 
-		// 	// Handle speed selection with left/right
-		// 	if (pad1 & PAD_LEFT || pad2 & PAD_LEFT || pad3 & PAD_LEFT || pad4 & PAD_LEFT)
-		// 	{
-		// 		if (current_speed == SPEED_FAST)
-		// 		{
-		// 			current_speed = SPEED_REGULAR;  
-		// 			force_redraw = 1;
-		// 		} else if (current_speed == SPEED_REGULAR)
-		// 		{
-		// 			current_speed = SPEED_SLOW;
-		// 			force_redraw = 1;
-		// 		}
-		// 	}
+		if(pad1 & PAD_UP){
+			if(current_settings_choice > 0){
+				current_settings_choice--;
+				update_options_screen();
+			}
+		}
 
-		// 	if (pad1 & PAD_RIGHT || pad2 & PAD_RIGHT || pad3 & PAD_RIGHT || pad4 & PAD_RIGHT)
-		// 	{
-		// 		if (current_speed == SPEED_SLOW)
-		// 		{
-		// 			current_speed = SPEED_REGULAR;
-		// 			force_redraw = 1;
-		// 		}
-		// 		else if (current_speed == SPEED_REGULAR)
-		// 		{
-		// 			current_speed = SPEED_FAST;
-		// 			force_redraw = 1;
-		// 		}
-		// 	}
-		// }
-
-		// if (force_redraw)
-		// {
-		// 	force_redraw = 0;
-		// 	// Redraw the speed text
-		// 	ppu_off();
-		// 	clear_vram_buffer();
-
-		// 	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
-
-		// 	if (current_speed == SPEED_SLOW)
-		// 	{
-		// 		multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
-		// 	}
-		// 	else if (current_speed == SPEED_REGULAR)
-		// 	{
-		// 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-		// 	}
-		// 	else
-		// 	{
-		// 		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
-		// 	}
-
-		// 	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
-
-		// 	multi_vram_buffer_horz("MUSIC:", 5, NTADR_A(8, 16));
-
-		// 	ppu_on_all();
-		// }
 
 		// Handle start button hold logic
 		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
@@ -1850,13 +1808,10 @@ void update_options_screen(void){
 	if(current_settings_choice == SETTING_SPEED){
 		temp_y = 96;
 	} else if (current_settings_choice == SETTING_MAP){
-		temp_y = 140;
+		temp_y = 128;
 	} else if (current_settings_choice == SETTING_SONG){
-		temp_y = 176;
+		temp_y = 160;
 	}
-	//animate bee:
-	oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
-
 	//draws the values based on the settings:
 	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
 
