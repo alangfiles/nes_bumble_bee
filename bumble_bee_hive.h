@@ -106,6 +106,10 @@ unsigned char temp_y2;
 unsigned int largeindex;
 unsigned char song;
 
+unsigned char settings_map;
+unsigned char settings_speed;
+unsigned char settings_song;
+
 // pointer to currently active map data (set in init_game_loop)
 const unsigned char *map_ptr;
 
@@ -236,15 +240,21 @@ enum{
 };
 
 enum {
-	SONG_MAIN_SONG
+	SONG_HIVE
 };
 
 enum{
 	MAP_COMBS,
 	MAP_OUTDOORS,
 	MAP_VINES,
+	MAP_RANDOM
 };
 
+enum {
+	GAME_SLOW,
+	GAME_REGULAR,
+	GAME_FAST
+};
 
 
 const unsigned char palette_combsnplants_bg[]={	0x0f,0x30,0x27,0x07,0x0f,0x35,0x26,0x07,0x0f,0x0f,0x30,0x30,0x0f,0x21,0x16,0x30};

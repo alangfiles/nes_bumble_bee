@@ -1656,7 +1656,19 @@ void gameover_loop(void)
 
 void start_round(void){
 
-	//TODO: load new map here?
+	if(settings_map == MAP_RANDOM){
+		if(frame_counter % 3 == 0){
+			map_ptr = combs;
+			map = MAP_COMBS;
+		} else if (frame_counter % 3 == 1){
+			map_ptr = vines;
+			map = MAP_VINES;
+		} else {
+			map_ptr = outdoors;
+			map= MAP_OUTDOORS;
+		}
+		load_bg_palette();
+	}
 
 	load_room();
 	update_hud();
@@ -1748,7 +1760,7 @@ void start_round(void){
 	ppu_wait_nmi();
 
 	game_mode = MODE_GAME;
-	song = SONG_MAIN_SONG;
+	song = SONG_HIVE;
 	music_play(song);
 
 
@@ -1918,20 +1930,6 @@ void init_roundover(void){
 	} else {
 		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 13));
 	}
-
-	//load new map?
-
-	if(frame_counter % 3 == 0){
-		map_ptr = combs;
-		map = MAP_COMBS;
-	} else if (frame_counter % 3 == 1){
-		map_ptr = vines;
-		map = MAP_VINES;
-	} else {
-		map_ptr = outdoors;
-		map= MAP_OUTDOORS;
-	}
-	load_bg_palette();
 	
 }
 
@@ -1970,7 +1968,11 @@ void init_system(void)
 	bank_spr(1);
 	set_scroll_y(0xff); // shift the bg down one pixel
 
-	// Initialize default speed option (regular speed)
+	// Initialize default settings
+	settings_speed = GAME_REGULAR;
+	settings_map = MAP_RANDOM;
+	settings_song = SONG_HIVE;
+
 	speed_option = SPEED_REGULAR;
 	turbo_amount = TURBO_MEDIUM;
 	ducks_go_faster_over_time=1;
