@@ -1843,6 +1843,59 @@ void init_title_loop(void)
 	ppu_on_all(); // turn on screen
 }
 
+void update_options_screen(void){
+
+	//draw a character on the options screen:
+	if(current_settings_choice == SETTING_SPEED){
+		oam_meta_spr(64, 64, gamesprites_smallbeeright0_data);
+	} else if (current_settings_choice == SETTING_MAP){
+		oam_meta_spr(64, 104, gamesprites_smallbeeright0_data);
+	} else if (current_settings_choice == SETTING_SONG){
+		oam_meta_spr(64, 144, gamesprites_smallbeeright0_data);
+	}
+
+	//draws the values based on the settings:
+	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
+
+	// Show current speed selection
+	if (speed_option == SPEED_SLOW)
+	{
+		multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 12));
+	}
+	else if (speed_option == SPEED_REGULAR)
+	{
+		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+	}
+	else
+	{
+		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 12));
+	}
+
+	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
+
+	if(settings_map == MAP_RANDOM){
+		multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 16));
+	} else if (settings_map == MAP_OUTDOORS){
+		multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 16));
+	} else if (settings_map == MAP_COMBS){
+		multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 16));
+	} else if (settings_map == MAP_VINES){
+		multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 16));
+	}
+
+
+	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
+	if(settings_song == SONG_BEE){
+		multi_vram_buffer_horz("BEE ", 5, NTADR_A(11, 20));
+	} else if (settings_song == SONG_LAKE){
+		multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 20));
+	} else if (settings_song == SONG_HONEY){
+		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 20));
+	}
+	
+}
+
+
 void init_options_loop(void)
 {
 	//DEBUG
@@ -1866,32 +1919,7 @@ void init_options_loop(void)
 	pal_bg(palette_options_bg);
 	pal_spr(palette_sp);
 
-	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
-
-	// Show current speed selection
-	if (speed_option == SPEED_SLOW)
-	{
-		multi_vram_buffer_horz("  SLOW ", 7, NTADR_A(11, 12));
-	}
-	else if (speed_option == SPEED_REGULAR)
-	{
-		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
-	}
-	else
-	{
-		multi_vram_buffer_horz("  FAST ", 7, NTADR_A(11, 12));
-	}
-
-	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
-
-	//options
-	multi_vram_buffer_horz("HIVE", 4, NTADR_A(11, 16));
-
-	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
-	
-	//options
-	multi_vram_buffer_horz("FRENZY", 6, NTADR_A(11, 20));
-
+	update_options_screen();
 
 	// Initialize start button variables for options
 	start_hold_timer = 0;

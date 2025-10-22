@@ -106,9 +106,22 @@ unsigned char temp_y2;
 unsigned int largeindex;
 unsigned char song;
 
+unsigned char current_settings_choice;
 unsigned char settings_map;
 unsigned char settings_speed;
 unsigned char settings_song;
+
+enum {
+	SETTING_SPEED,
+	SETTING_MAP,
+	SETTING_SONG
+};
+
+enum {
+	SONG_BEE,
+	SONG_LAKE,
+	SONG_HONEY
+};
 
 // pointer to currently active map data (set in init_game_loop)
 const unsigned char *map_ptr;
@@ -327,6 +340,7 @@ void roundover_loop(void);
 void game_counters(void);
 void quack_movement(void);
 void load_bg_palette(void);
+void update_options_screen(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);
