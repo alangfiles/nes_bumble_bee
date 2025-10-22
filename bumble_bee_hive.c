@@ -1846,13 +1846,16 @@ void init_title_loop(void)
 void update_options_screen(void){
 
 	//draw a character on the options screen:
+	temp_x = 64;
 	if(current_settings_choice == SETTING_SPEED){
-		oam_meta_spr(64, 96, gamesprites_smallbeeright0_data);
+		temp_y = 96;
 	} else if (current_settings_choice == SETTING_MAP){
-		oam_meta_spr(64, 140, gamesprites_smallbeeright0_data);
+		temp_y = 140;
 	} else if (current_settings_choice == SETTING_SONG){
-		oam_meta_spr(64, 176, gamesprites_smallbeeright0_data);
+		temp_y = 176;
 	}
+	//animate bee:
+	oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
 
 	//draws the values based on the settings:
 	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
