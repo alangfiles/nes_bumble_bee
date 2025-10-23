@@ -1515,28 +1515,28 @@ void title_loop(void)
 		read_controllers();
 
 		// Handle up movement for each player
-		if (pad1 & PAD_UP)
+		if (pad1_new & PAD_UP)
 		{
 			if ((BoxGuy1.y >> 8) > 160)
 			{											 // Limit how high they can go
 				BoxGuy1.y -= 0x0400; // Move up 4 pixels (0x0400 = 1024 sub-pixels)
 			}
 		}
-		if (pad2 & PAD_UP)
+		if (pad2_new & PAD_UP)
 		{
 			if ((BoxGuy2.y >> 8) > 160)
 			{
 				BoxGuy2.y -= 0x0400;
 			}
 		}
-		if (pad3 & PAD_UP)
+		if (pad3_new & PAD_UP)
 		{
 			if ((BoxGuy3.y >> 8) > 160)
 			{
 				BoxGuy3.y -= 0x0400;
 			}
 		}
-		if (pad4 & PAD_UP)
+		if (pad4_new & PAD_UP)
 		{
 			if ((BoxGuy4.y >> 8) > 160)
 			{
@@ -1545,26 +1545,11 @@ void title_loop(void)
 		}
 
 		// Handle start button hold logic
-		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
+		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
-			if (!start_held)
-			{
-				start_held = 1;
-				start_hold_timer = 0;
-			}
-			start_hold_timer++;
 
-			// Check if start has been held for 3 seconds (180 frames at 60fps)
-			if (start_hold_timer >= 3)
-			{
-				init_options_loop();
-				break;
-			}
-		}
-		else
-		{
-			start_held = 0;
-			start_hold_timer = 0;
+			init_options_loop();
+			break;
 		}
 
 	}
@@ -1648,7 +1633,7 @@ void options_loop(void)
 
 
 		// Handle start button hold logic
-		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
+		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
 			sfx_play(SFX_START, 0);
 			init_game_loop();
@@ -1671,7 +1656,7 @@ void gameover_loop(void)
 		ppu_wait_nmi();
 		pad1 = pad_poll(0); // read the first controller
 
-		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
+		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
 			init_title_loop();
 			break;
@@ -1929,7 +1914,6 @@ void init_options_loop(void)
 	// return;
 
 	//real code
-	delay(30);
 	prev_pad1 = 0;
 	prev_pad2 = 0;
 	prev_pad3 = 0;
@@ -2051,6 +2035,12 @@ void init_system(void)
 	anim_frame_2 = 0;
 	anim_frame_3 = 0;
 	anim_frame_4 = 0;
+
+	//intialize pads
+	prev_pad1 = 0;
+	prev_pad2 = 0;
+	prev_pad3 = 0;
+	prev_pad4 = 0;
 	
 	// Initialize bigbee transformation timers
 	bee1_bigbee_timer = 0;
@@ -2078,7 +2068,7 @@ void roundover_loop(void){
 		ppu_wait_nmi();
 		pad1 = pad_poll(0); // read the first controller
 
-		if (pad1 & PAD_START || pad2 & PAD_START || pad3 & PAD_START || pad4 & PAD_START)
+		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
 			// Check if either team has reached 3 wins
 			if (team1_wins >= 3)
