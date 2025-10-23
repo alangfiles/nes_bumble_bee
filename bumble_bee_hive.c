@@ -1565,8 +1565,16 @@ void options_loop(void)
 		ppu_wait_nmi();
 		frame_counter++;
 
+		//draw bee:
 		oam_clear();
-		oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
+		if ((frame_counter % 10) == 0) {
+			anim_frame_1 = (anim_frame_1 + 1) % 3;
+		}
+		switch(anim_frame_1) {
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data); break;
+			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data); break;
+			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data); break;
+		}
 
 
 		// Read all controllers for options screen
