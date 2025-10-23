@@ -1195,6 +1195,18 @@ void read_controllers(void)
 	pad2 = high_byte(doublepad);
 	pad4 = low_byte(doublepad);
 
+	// set the new inputs (things that have changed since last frame)
+	pad1_new = pad1 & (pad1 ^ prev_pad1);
+	pad2_new = pad2 & (pad2 ^ prev_pad2);
+	pad3_new = pad3 & (pad3 ^ prev_pad3);
+	pad4_new = pad4 & (pad4 ^ prev_pad4);
+
+	// save the previous state for next frame
+	prev_pad1 = pad1;
+	prev_pad2 = pad2;
+	prev_pad3 = pad3;
+	prev_pad4 = pad4;
+
 	// seeker_ai();
 	// chaser_ai();
 
@@ -1580,19 +1592,59 @@ void options_loop(void)
 		// Read all controllers for options screen
 		read_controllers();
 
-		if(pad1 & PAD_DOWN){
+		if(pad1_new & PAD_DOWN){
 			if(current_settings_choice < SETTING_SONG){
 				current_settings_choice++;
 				update_options_screen();
 			}
 		}
 
-		if(pad1 & PAD_UP){
+		if(pad1_new & PAD_UP){
 			if(current_settings_choice > 0){
 				current_settings_choice--;
 				update_options_screen();
 			}
 		}
+
+		if(pad1_new & PAD_RIGHT){
+			if(current_settings_choice == SETTING_MAP){
+				if(settings_map < MAP_RANDOM){
+					settings_map++;
+				} 
+			}
+			if(current_settings_choice == SETTING_SPEED){
+				if(settings_speed < GAME_FAST){
+					settings_speed++;
+				} 
+			}
+			if(current_settings_choice == SETTING_SONG){
+				if(settings_song < SONG_HONEY){
+					settings_song++;
+				} 
+			}
+			update_options_screen();
+		}
+
+		
+		if(pad1_new & PAD_LEFT){
+			if(current_settings_choice == SETTING_MAP){
+				if(settings_map > 0){
+					settings_map--;
+				} 
+			}
+			if(current_settings_choice == SETTING_SPEED){
+				if(settings_speed > 0){
+					settings_speed--;
+				} 
+			}
+			if(current_settings_choice == SETTING_SONG){
+				if(settings_song > 0){
+					settings_song--;
+				} 
+			}
+			update_options_screen();
+		}
+
 
 
 		// Handle start button hold logic
