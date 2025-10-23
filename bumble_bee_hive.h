@@ -109,6 +109,7 @@ unsigned char temp_x2;
 unsigned char temp_y2;
 unsigned int largeindex;
 unsigned char song;
+unsigned char collision_box_size;
 
 unsigned char current_settings_choice;
 unsigned char settings_map;

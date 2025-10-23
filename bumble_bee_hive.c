@@ -21,7 +21,9 @@ void main(void)
 	10.22 todo:
 	[] fix starting positions per map
 	[] add new songs
-	[] handle settings menu
+	[x] handle settings menu
+	[] character hitboxes? (smaller quack)
+	[] AI for less players
 	*/
 
 	/*
@@ -1138,8 +1140,8 @@ void check_tile_and_collect()
 // Collision detection function for 8x8 sprites
 char sprite_collision()
 {
-	if (temp_x < temp_x2 + 8 && temp_x + 8 > temp_x2 &&
-			temp_y < temp_y2 + 8 && temp_y + 8 > temp_y2)
+	if (temp_x < temp_x2 + collision_box_size && temp_x + collision_box_size > temp_x2 &&
+			temp_y < temp_y2 + collision_box_size && temp_y + collision_box_size > temp_y2)
 	{
 		return 1;
 	}
@@ -1654,7 +1656,7 @@ void gameover_loop(void)
 	while (1)
 	{
 		ppu_wait_nmi();
-		pad1 = pad_poll(0); // read the first controller
+		read_controllers();
 
 		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
@@ -2026,6 +2028,7 @@ void init_system(void)
 	speed_option = SPEED_REGULAR;
 	turbo_amount = TURBO_MEDIUM;
 	ducks_go_faster_over_time=1;
+	collision_box_size=6; //quacks and players are 6x6
 	
 	// Initialize sprite rotation
 	sprite_rotation = 0;
@@ -2066,7 +2069,7 @@ void roundover_loop(void){
 	while (1)
 	{
 		ppu_wait_nmi();
-		pad1 = pad_poll(0); // read the first controller
+		read_controllers();
 
 		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
