@@ -1677,7 +1677,7 @@ void start_round(void){
 			map = MAP_VINES;
 		} else {
 			map_ptr = outdoors;
-			map= MAP_OUTDOORS;
+			map = MAP_OUTDOORS;
 		}
 		load_bg_palette();
 	}
@@ -1690,39 +1690,37 @@ void start_round(void){
 	{
 		consumed_dots[index] = 0;
 	}
-	// move all players into starting positions based on configuration:
-	map_positions = (frame_counter) % 5; //this could be round based.
 
-	if (map_positions == START_POS_WIDE) {
+	if (map == MAP_COMBS) {
 	    BoxGuy1.x = 0x3800; BoxGuy1.y = 0xA800;
 	    BoxGuy2.x = 0x5000; BoxGuy2.y = 0x2800;
 	    BoxGuy3.x = 0xC000; BoxGuy3.y = 0xA800;
 	    BoxGuy4.x = 0xA000; BoxGuy4.y = 0x2800;
-	} else if (map_positions == START_POS_CLOSE) {
-	    BoxGuy1.x = 0x5800; BoxGuy1.y = 0x3800;
-	    BoxGuy2.x = 0x7000; BoxGuy2.y = 0x3000;
-	    BoxGuy3.x = 0xA000; BoxGuy3.y = 0x3800;
-	    BoxGuy4.x = 0x8800; BoxGuy4.y = 0x3000;
-	} else if (map_positions == START_POS_CORNERS) {
+	} else if (map == MAP_VINES) {
+			BoxGuy1.x = 0x6000; BoxGuy1.y = 0xA000;
+	    BoxGuy2.x = 0x4800; BoxGuy2.y = 0x4800;
+	    BoxGuy3.x = 0x9800; BoxGuy3.y = 0xA000;
+	    BoxGuy4.x = 0xB000; BoxGuy4.y = 0x4800;
+	} else if (map == MAP_OUTDOORS) {
 	    BoxGuy1.x = 0x2800; BoxGuy1.y = 0x2000;
 	    BoxGuy2.x = 0x2800; BoxGuy2.y = 0xd800;
 	    BoxGuy3.x = 0xD800; BoxGuy3.y = 0x2000;
 	    BoxGuy4.x = 0xD800; BoxGuy4.y = 0xD800;
-	} else if (map_positions == START_POS_MIDDLE) {
-	    BoxGuy1.x = 0x7800; BoxGuy1.y = 0x8000;
-	    BoxGuy2.x = 0x7800; BoxGuy2.y = 0x2800;
-	    BoxGuy3.x = 0x8000; BoxGuy3.y = 0x8000;
-	    BoxGuy4.x = 0x8000; BoxGuy4.y = 0x2800;
-			BoxGuy3.direction = DIR_RIGHT;
-			BoxGuy4.direction = DIR_RIGHT;
-	} else {  // START_POS_DEFAULT
-	    BoxGuy1.x = 0x4800; BoxGuy1.y = 0x4000;
-	    BoxGuy2.x = 0x7000; BoxGuy2.y = 0x2800;
-	    BoxGuy3.x = 0xB000; BoxGuy3.y = 0x4000;
-	    BoxGuy4.x = 0x8800; BoxGuy4.y = 0x2800;
-			BoxGuy4.direction = DIR_RIGHT;
-			BoxGuy1.direction = DIR_RIGHT;
 	}
+
+	//todo: not removing this yet as these might be useful
+	//  else if (map_positions == START_POS_MIDDLE) {
+	
+	// 		BoxGuy3.direction = DIR_RIGHT;
+	// 		BoxGuy4.direction = DIR_RIGHT;
+	// } else {  // START_POS_DEFAULT
+	//     BoxGuy1.x = 0x4800; BoxGuy1.y = 0x4000;
+	//     BoxGuy2.x = 0x7000; BoxGuy2.y = 0x2800;
+	//     BoxGuy3.x = 0xB000; BoxGuy3.y = 0x4000;
+	//     BoxGuy4.x = 0x8800; BoxGuy4.y = 0x2800;
+	// 		BoxGuy4.direction = DIR_RIGHT;
+	// 		BoxGuy1.direction = DIR_RIGHT;
+	// }
 	team1_score=0;
 	team2_score=0;
 	powerup1 =1;

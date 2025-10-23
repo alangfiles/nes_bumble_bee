@@ -23,12 +23,6 @@
 #define TURBO_MEDIUM 0x80
 #define TURBO_HIGH 0xF0
 
-#define START_POS_DEFAULT 0
-#define START_POS_WIDE 1
-#define START_POS_CLOSE 2
-#define START_POS_CORNERS 3
-#define START_POS_MIDDLE 4
-
 #pragma bss-name(push, "ZEROPAGE")
 
 // GLOBAL VARIABLES
