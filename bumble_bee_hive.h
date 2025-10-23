@@ -263,10 +263,6 @@ enum{
 	SFX_START
 };
 
-enum {
-	SONG_HIVE
-};
-
 enum{
 	MAP_COMBS,
 	MAP_OUTDOORS,

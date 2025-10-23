@@ -22,7 +22,7 @@ void main(void)
 	[] fix starting positions per map
 	[] add new songs
 	[x] handle settings menu
-	[] character hitboxes? (smaller quack)
+	[x] character hitboxes? (smaller quack)
 	[] AI for less players
 	*/
 
@@ -1772,9 +1772,16 @@ void start_round(void){
 	ppu_wait_nmi();
 
 	game_mode = MODE_GAME;
-	song = SONG_HIVE;
-	music_play(song);
 
+	if(settings_song == SONG_BEE)
+		song = SONG_BEE;
+	else if (settings_song == SONG_LAKE)
+		song = SONG_LAKE;
+	else if (settings_song == SONG_HONEY)
+	  song = SONG_HONEY;
+	
+	song = SONG_BEE; //TODO: add more songs then fix this
+	music_play(song);
 
 }
 
@@ -1868,7 +1875,7 @@ void update_options_screen(void){
 		temp_y = 160;
 	}
 	//draws the values based on the settings:
-	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
+	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 10));
 
 	// Show current speed selection
 	if (settings_speed == GAME_SLOW)
@@ -1899,7 +1906,7 @@ void update_options_screen(void){
 
 	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
 	if(settings_song == SONG_BEE){
-		multi_vram_buffer_horz("BEE ", 5, NTADR_A(11, 20));
+		multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 20));
 	} else if (settings_song == SONG_LAKE){
 		multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 20));
 	} else if (settings_song == SONG_HONEY){
