@@ -1779,6 +1779,15 @@ void start_round(void){
 		song = SONG_LAKE;
 	else if (settings_song == SONG_HONEY)
 	  song = SONG_HONEY;
+	else if(settings_song == SONG_RANDOM){
+		if(frame_counter % 3 == 0){
+			song = SONG_BEE;
+		} else if (frame_counter % 3 == 1){
+			song = SONG_LAKE;
+		} else {
+			song = SONG_HONEY;
+		}
+	}
 	
 	song = SONG_BEE; //TODO: add more songs then fix this
 	music_play(song);
@@ -2029,8 +2038,8 @@ void init_system(void)
 
 	// Initialize default settings
 	settings_speed = GAME_REGULAR;
-	settings_map = MAP_COMBS;
-	settings_song = SONG_HIVE;
+	settings_map = MAP_RANDOM;
+	settings_song = SONG_BEE;
 
 	speed_option = SPEED_REGULAR;
 	turbo_amount = TURBO_MEDIUM;

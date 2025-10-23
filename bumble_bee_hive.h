@@ -131,7 +131,8 @@ enum {
 enum {
 	SONG_BEE,
 	SONG_LAKE,
-	SONG_HONEY
+	SONG_HONEY,
+	SONG_RANDOM
 };
 
 // pointer to currently active map data (set in init_game_loop)
