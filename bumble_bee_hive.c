@@ -1706,6 +1706,12 @@ void start_round(void){
 	    BoxGuy2.x = 0x2800; BoxGuy2.y = 0xd800;
 	    BoxGuy3.x = 0xD800; BoxGuy3.y = 0x2000;
 	    BoxGuy4.x = 0xD800; BoxGuy4.y = 0xD800;
+	} else {
+		//this is the corners position
+		BoxGuy1.x = 0x2800; BoxGuy1.y = 0x2000;
+		BoxGuy2.x = 0x2800; BoxGuy2.y = 0xd800;
+		BoxGuy3.x = 0xD800; BoxGuy3.y = 0x2000;
+		BoxGuy4.x = 0xD800; BoxGuy4.y = 0xD800;
 	}
 
 	//todo: not removing this yet as these might be useful
