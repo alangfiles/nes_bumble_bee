@@ -1811,6 +1811,14 @@ void init_game_loop(void)
 		map = MAP_OUTDOORS;
 	}
 
+	if(settings_speed == GAME_SLOW){
+		speed_option = SPEED_SLOW;
+	} else if (settings_speed == GAME_REGULAR){
+		speed_option = SPEED_REGULAR;
+	} else if (settings_speed == GAME_FAST){
+		speed_option = SPEED_FAST;
+	}
+
 	// load the palettes
 	load_bg_palette();
 	pal_spr(palette_sp); 
@@ -1876,15 +1884,15 @@ void update_options_screen(void){
 	multi_vram_buffer_horz("SPEED:", 7, NTADR_A(8, 10));
 
 	// Show current speed selection
-	if (speed_option == SPEED_SLOW)
+	if (settings_speed == GAME_SLOW)
 	{
 		multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 12));
 	}
-	else if (speed_option == SPEED_REGULAR)
+	else if (settings_speed== GAME_REGULAR)
 	{
 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
 	}
-	else
+	else if(settings_speed == GAME_FAST)
 	{
 		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 12));
 	}
