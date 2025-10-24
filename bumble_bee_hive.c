@@ -510,8 +510,14 @@ char quack_tile_solid()
 	largeindex = ((temp_y2 >> 3) << 5) + (temp_x2 >> 3);
 	temp = map_ptr[largeindex];
 	// don't collide with pellets or blank tiles
-	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca) return 0;
-	if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba) return 0;
+	if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca || temp == 0xa5)
+	{
+		return 0;
+	}
+	else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba || temp == 0x00 || temp == 0x69 || temp == 0x6a || temp == 0x6b)
+	{
+		return 0;
+	}
 	return 1;
 }
 
@@ -1741,7 +1747,7 @@ void start_round(void){
 	stun_p1 = 0;
 	stun_p2 = 0;
 	stun_p3 = 0;
-	stun_p4 = 0;
+	
 
 	// Reset quacks
 	quack2.moving = 0;
