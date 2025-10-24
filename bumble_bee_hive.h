@@ -1,7 +1,7 @@
 #define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
-#define POWERUP_TIMER 10 // Powerup duration in game seconds
+#define POWERUP_TIMER 8 // Powerup duration in game seconds
 #define STUN_DURATION 3
 #define QUACK_COOLDOWN 10
 #define HITBOX_DEBUG 0
@@ -18,7 +18,7 @@
 #define DUCK_SPEED_MAX 40
 
 #define SPEED_TURBO_BOOST 0x060
-#define SPEED_BIGBEE_BOOST 0x060 //big bee has constant turbo (old value was 0x030)
+#define SPEED_BIGBEE_BOOST 0x040 //big bee has constant turbo (old value was 0x030)
 #define TURBO_LOW 0x40
 #define TURBO_MEDIUM 0x80
 #define TURBO_HIGH 0xF0

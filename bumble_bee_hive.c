@@ -19,11 +19,12 @@ void main(void)
 
 	/*
 	10.22 todo:
-	[] fix starting positions per map
+	[x] fix starting positions per map
 	[] add new songs
 	[x] handle settings menu
 	[x] character hitboxes? (smaller quack)
 	[] AI for less players
+	[] Quacks don't work outside of combs
 	*/
 
 	/*
@@ -1735,6 +1736,12 @@ void start_round(void){
 	turbo_p2 = turbo_amount;
 	turbo_p3 = turbo_amount;
 	turbo_p4 = turbo_amount;
+
+	//reset stun
+	stun_p1 = 0;
+	stun_p2 = 0;
+	stun_p3 = 0;
+	stun_p4 = 0;
 
 	// Reset quacks
 	quack2.moving = 0;
