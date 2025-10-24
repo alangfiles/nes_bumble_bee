@@ -206,10 +206,10 @@ const unsigned char gamesprites_bigbee2right1_data[]={
 
 const unsigned char gamesprites_bigbee2right2_data[]={
 
-	  8,  0,0x4b,0|OAM_FLIP_H,
-	  8,- 8,0x3b,0|OAM_FLIP_H,
-	  0,- 8,0x6c,0|OAM_FLIP_H,
-	  0,  0,0x4c,0|OAM_FLIP_H,
+	  8,  0,0x4b,2|OAM_FLIP_H,
+	  8,- 8,0x3b,2|OAM_FLIP_H,
+	  0,- 8,0x6c,2|OAM_FLIP_H,
+	  0,  0,0x4c,2|OAM_FLIP_H,
 	0x80
 
 };

@@ -1837,7 +1837,7 @@ void init_game_loop(void)
 		map_ptr = vines;
 		map = MAP_VINES;
 	} else if(settings_map == MAP_OUTDOORS){
-		map_ptr = outdoors;   
+		map_ptr = outdoors;    
 		map = MAP_OUTDOORS;
 	}
 

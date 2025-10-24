@@ -595,19 +595,19 @@ _gamesprites_bigbee2right2_data:
 	.byte	$08
 	.byte	$00
 	.byte	$4B
-	.byte	$40
+	.byte	$42
 	.byte	$08
 	.byte	$F8
 	.byte	$3B
-	.byte	$40
+	.byte	$42
 	.byte	$00
 	.byte	$F8
 	.byte	$6C
-	.byte	$40
+	.byte	$42
 	.byte	$00
 	.byte	$00
 	.byte	$4C
-	.byte	$40
+	.byte	$42
 	.byte	$80
 _gamesprites_smallduckleft0_data:
 	.byte	$00
@@ -11522,7 +11522,7 @@ L2635:	lda     _settings_map
 	cmp     #$01
 	bne     L2636
 ;
-; map_ptr = outdoors;   
+; map_ptr = outdoors;    
 ;
 	lda     #>(_outdoors)
 	sta     _map_ptr+1
