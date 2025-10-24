@@ -518,7 +518,7 @@ char quack_tile_solid()
 	{
 		return 0;
 	}
-	return 1;
+	return 1; 
 }
 
 void quack_movement(void){

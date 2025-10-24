@@ -9157,7 +9157,7 @@ L1EB2:	lda     _GenericBoxGuy+1
 ;
 ; quack2_cooldown = QUACK_COOLDOWN;
 ;
-	lda     #$0A
+	lda     #$05
 	sta     _quack2_cooldown
 ;
 ; if(quack2.direction == DIR_LEFT){
@@ -9266,7 +9266,7 @@ L2699:	lda     _current_player
 ;
 ; quack4_cooldown = QUACK_COOLDOWN;
 ;
-	lda     #$0A
+	lda     #$05
 	sta     _quack4_cooldown
 ;
 ; if(quack4.direction == DIR_LEFT){
@@ -15045,7 +15045,7 @@ L27C2:	ldx     #$00
 	txa
 	rts
 ;
-; return 1;
+; return 1; 
 ;
 L27C3:	lda     #$01
 ;
