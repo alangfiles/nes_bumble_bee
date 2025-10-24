@@ -280,7 +280,7 @@ void draw_player_1(void)
 		// Draw normal small bee sprites
 		if (BoxGuy1.direction == DIR_LEFT) {
 			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data); break;
 				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
 				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
 			}
@@ -293,7 +293,7 @@ void draw_player_1(void)
 		} else {
 			// Default to left-facing sprite for UP/DOWN/NONE
 			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee1left0_data); break;
+				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data); break;
 				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
 				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
 			}
@@ -325,21 +325,21 @@ void draw_player_2(void)
 	if (BoxGuy2.direction == DIR_LEFT) {
 		switch(anim_frame_2) { 
 			
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data); break;
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data); break;
 			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
 			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
 		}
 	} else if (BoxGuy2.direction == DIR_RIGHT) {
 		// Use left-facing sprites with horizontal flip for right direction
 		switch(anim_frame_2) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1right0_data); break;
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright0_data); break;
 			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright1_data); break;
 			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright2_data); break;
 		}
 	} else {
 		// Default to left-facing sprite for UP/DOWN/NONE
 		switch(anim_frame_2) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck1left0_data); break;
+			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data); break;
 			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
 			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
 		}
@@ -1837,7 +1837,7 @@ void init_game_loop(void)
 		map_ptr = vines;
 		map = MAP_VINES;
 	} else if(settings_map == MAP_OUTDOORS){
-		map_ptr = outdoors;
+		map_ptr = outdoors;   
 		map = MAP_OUTDOORS;
 	}
 
@@ -1851,7 +1851,7 @@ void init_game_loop(void)
 
 	// load the palettes
 	load_bg_palette();
-	pal_spr(palette_sp); 
+	pal_spr(palette_sp);    
 
 	start_round();
 }
