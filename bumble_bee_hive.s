@@ -12492,7 +12492,7 @@ L2480:	jsr     _update_hud
 	lda     _win_reason
 	bne     L26B0
 ;
-; multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(5, 2));
+; multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 2));
 ;
 	jsr     decsp3
 	lda     #<(L2487)
@@ -12505,7 +12505,7 @@ L2480:	jsr     _update_hud
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
-	lda     #$45
+	lda     #$46
 	jmp     _multi_vram_buffer_horz
 ;
 ; else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
@@ -12514,7 +12514,7 @@ L26B0:	lda     _win_reason
 	cmp     #$01
 	bne     L26B1
 ;
-; multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 2));
+; multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(7, 2));
 ;
 	jsr     decsp3
 	lda     #<(L2494)
@@ -12527,7 +12527,7 @@ L26B0:	lda     _win_reason
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
-	lda     #$46
+	lda     #$47
 	jmp     _multi_vram_buffer_horz
 ;
 ; else if (win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
@@ -12558,7 +12558,7 @@ L26B2:	lda     _win_reason
 	cmp     #$03
 	bne     L26B3
 ;
-; multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 2));
+; multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(8, 2));
 ;
 	jsr     decsp3
 	lda     #<(L24AE)
@@ -12571,7 +12571,7 @@ L26B2:	lda     _win_reason
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
-	lda     #$47
+	lda     #$48
 	jmp     _multi_vram_buffer_horz
 ;
 ; else if (win_reason == WIN_BIGBEE_EAT_DUCK)
@@ -12580,7 +12580,7 @@ L26B3:	lda     _win_reason
 	cmp     #$05
 	bne     L24B8
 ;
-; multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 2));
+; multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 2));
 ;
 	jsr     decsp3
 	lda     #<(L24BB)
@@ -12593,7 +12593,7 @@ L26B3:	lda     _win_reason
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
-	lda     #$47
+	lda     #$48
 	jmp     _multi_vram_buffer_horz
 ;
 ; multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 2));

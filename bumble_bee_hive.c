@@ -2084,11 +2084,11 @@ void init_roundover(void){
 
 	if (win_reason == WIN_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(5, 2));
+		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 2));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 2));
+		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(7, 2));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 	{
@@ -2096,11 +2096,11 @@ void init_roundover(void){
 	}
 	else if (win_reason == WIN_ENEMY_KILL)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 2));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(8, 2));
 	}
 	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
 	{
-		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 2));
+		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 2));
 	} else {
 		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 2));
 	}
