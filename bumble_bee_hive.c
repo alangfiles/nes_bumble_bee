@@ -26,6 +26,7 @@ void main(void)
 	- tie the speed to the clock
   - flash the screen on 70 honey?
 	- draw 100 honey at end
+	- change turbo to 3 boosts instead of time based?
 	*/
 
 	/*
@@ -891,11 +892,12 @@ void movement(void)
 	}
 	
 	if(bee1_bigbee_timer > 0 && current_player == 1){
-			current_speed += SPEED_BIGBEE_BOOST; //big bee boost
-		}
-		if(bee3_bigbee_timer > 0 && current_player == 3){
-			current_speed += SPEED_BIGBEE_BOOST; //big bee boost
-		}
+			current_speed += (current_speed>>2); //big bee boost
+	}
+	
+	if(bee3_bigbee_timer > 0 && current_player == 3){
+			current_speed += (current_speed>>2); //big bee boost
+	}
 
 	if (generic_pad & PAD_LEFT)
 	{
@@ -1902,6 +1904,13 @@ void init_game_loop(void)
 	team1_wins = 0;
 	team2_wins = 0;
 
+	tick_frequency = TIMER_TICK_FREQUENCY;
+	if(settings_speed == GAME_SLOW){
+		tick_frequency += 8;
+	} else if (settings_speed == GAME_FAST){
+		tick_frequency -= 12;
+	};
+
 	if(settings_map == MAP_COMBS){
 		map_ptr = combs;
 		map = MAP_COMBS;
@@ -2235,7 +2244,7 @@ void game_counters(void){
 	sprite_rotation++;
 	ai_counter++;
 
-	if (game_frame_timer >= TIMER_TICK_FREQUENCY) // Tick down every ~24.24 frames (40s/99)
+	if (game_frame_timer >= tick_frequency) 
 	{
 		game_frame_timer = 0; // reset the frame timer
 		game_timer--;

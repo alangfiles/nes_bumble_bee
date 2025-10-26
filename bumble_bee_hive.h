@@ -1,11 +1,17 @@
 #define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
-#define POWERUP_TIMER 6 // Powerup duration in game seconds
+
+unsigned char tick_frequency;
+
+#define POWERUP_TIMER 12 // Powerup duration in game seconds
+#define BIGBEE_FLICKER_START 4
+
+
 #define STUN_DURATION 3
 #define QUACK_COOLDOWN 5
 #define HITBOX_DEBUG 0
-#define BIGBEE_FLICKER_START 2
+
 
 // Speed options
 #define SPEED_SLOW 0x080
