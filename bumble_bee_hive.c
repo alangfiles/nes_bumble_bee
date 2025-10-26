@@ -1178,7 +1178,7 @@ void check_tile_and_collect()
 					{
 						sfx_play(SFX_TEAM1_WIN, 0);
 						winner = ONETWO_WINNER;
-						win_reason = WIN_DOTS;
+						win_reason = WIN_HONEY_COLLECTED;
 						init_roundover();
 						return;
 					}
@@ -1192,7 +1192,7 @@ void check_tile_and_collect()
 					{
 						sfx_play(SFX_TEAM2_WIN, 0);
 						winner = THREEFOUR_WINNER;
-						win_reason = WIN_DOTS;
+						win_reason = WIN_HONEY_COLLECTED;
 						init_roundover();
 						return;
 					}
@@ -1805,7 +1805,7 @@ void start_round(void){
 	powerup3 =1;
 	powerup4 =1;
 	game_timer = GAME_LENGTH;
-	win_reason = WIN_DOTS; // default
+	win_reason = WIN_HONEY_COLLECTED; // default
 	winner = UNDEFINED_WINNER;
 	
 	// Reset turbo counters for all players
@@ -2082,9 +2082,9 @@ void init_roundover(void){
 	// }
 
 
-	if (win_reason == WIN_DOTS)
+	if (win_reason == WIN_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 2));
+		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(5, 2));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{

@@ -6695,15 +6695,15 @@ L24DC:
 L24E9:
 	.byte	$54,$45,$41,$4D,$20,$32,$20,$57,$49,$4E,$53,$20,$54,$48,$45,$20
 	.byte	$4D,$41,$54,$43,$48,$21,$00
+L2487:
+	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$31,$30,$30,$20,$48,$4F
+	.byte	$4E,$45,$59,$00
 L24A1:
 	.byte	$46,$52,$49,$45,$4E,$44,$4C,$59,$20,$44,$55,$43,$4B,$20,$45,$41
 	.byte	$54,$45,$4E,$00
 L2494:
 	.byte	$46,$52,$49,$45,$4E,$44,$4C,$59,$20,$42,$45,$45,$20,$45,$41,$54
 	.byte	$45,$4E,$00
-L2487:
-	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$31,$30,$30,$20,$44,$4F
-	.byte	$54,$53,$00
 L24BB:
 	.byte	$42,$49,$47,$42,$45,$45,$20,$41,$54,$45,$20,$44,$55,$43,$4B,$21
 	.byte	$00
@@ -6735,8 +6735,7 @@ L243C:
 	.byte	$42,$45,$45,$20,$20,$00
 L2449:
 	.byte	$4C,$41,$4B,$45,$20,$00
-L2456:
-	.byte	$48,$4F,$4E,$45,$59,$00
+L2456	:=	L2487+14
 L23F3:
 	.byte	$4D,$41,$50,$3A,$00
 
@@ -10058,7 +10057,7 @@ L2669:	lda     _largeindex
 	lda     #$01
 	sta     _winner
 ;
-; win_reason = WIN_DOTS;
+; win_reason = WIN_HONEY_COLLECTED;
 ;
 	lda     #$00
 	sta     _win_reason
@@ -10102,7 +10101,7 @@ L2667:	lda     _current_player
 	lda     #$02
 	sta     _winner
 ;
-; win_reason = WIN_DOTS;
+; win_reason = WIN_HONEY_COLLECTED;
 ;
 	lda     #$00
 	sta     _win_reason
@@ -12488,12 +12487,12 @@ L26AF:	lda     _winner
 ;
 L2480:	jsr     _update_hud
 ;
-; if (win_reason == WIN_DOTS)
+; if (win_reason == WIN_HONEY_COLLECTED)
 ;
 	lda     _win_reason
 	bne     L26B0
 ;
-; multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 2));
+; multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(5, 2));
 ;
 	jsr     decsp3
 	lda     #<(L2487)
@@ -12502,11 +12501,11 @@ L2480:	jsr     _update_hud
 	iny
 	lda     #>(L2487)
 	sta     (sp),y
-	lda     #$12
+	lda     #$13
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$20
-	lda     #$46
+	lda     #$45
 	jmp     _multi_vram_buffer_horz
 ;
 ; else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
@@ -12877,7 +12876,7 @@ L26BB:	lda     #$00
 	lda     #$63
 	sta     _game_timer
 ;
-; win_reason = WIN_DOTS; // default
+; win_reason = WIN_HONEY_COLLECTED; // default
 ;
 	lda     #$00
 	sta     _win_reason
