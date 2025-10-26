@@ -13404,7 +13404,7 @@ L26DE:	lda     _team1_wins
 ;
 	inc     _ai_counter
 ;
-; if (game_frame_timer >= tick_frequency) // Tick down every ~24.24 frames (40s/99)
+; if (game_frame_timer >= tick_frequency)
 ;
 	lda     _game_frame_timer
 	cmp     _tick_frequency

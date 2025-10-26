@@ -12,8 +12,6 @@
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
 
-
-
 void main(void)
 {
 
@@ -24,7 +22,7 @@ void main(void)
 	[x] put text under the scoreboard
 	- keep stats and show mvp on match over screen
 	- tie the speed to the clock
-  - flash the screen on 70 honey?
+	- flash the screen on 70 honey?
 	- draw 100 honey at end
 	- change turbo to 3 boosts instead of time based?
 	*/
@@ -48,8 +46,8 @@ void main(void)
 	 * fix sounds on win [x]
 	 * character placements [x]
 	 * skip options screen? [x] //dune in debug
-	 * 
-	 * 
+	 *
+	 *
 	 * settings screen / pad_new?
 	 * New maps, new music
 	 * turbo button?
@@ -68,9 +66,9 @@ void main(void)
 	ready, fight! logo. (or 3,2,1 blitz )
 
 	character sprites are a little too big hitboxes?
-	Big dots worth more points 
-	Power up to swap places with your partner. 
-	
+	Big dots worth more points
+	Power up to swap places with your partner.
+
 	*/
 
 	init_system();
@@ -99,7 +97,8 @@ void main(void)
 		{
 			gameover_loop();
 		}
-		if(game_mode== MODE_ROUNDOVER){
+		if (game_mode == MODE_ROUNDOVER)
+		{
 			roundover_loop();
 		}
 	}
@@ -112,14 +111,19 @@ void load_room(void)
 	vram_adr(NAMETABLE_A);
 	for (largeindex = 0; largeindex < 1024; ++largeindex)
 	{
-		if(game_mode == MODE_TITLE){
+		if (game_mode == MODE_TITLE)
+		{
 			vram_put(title[largeindex]);
-		} else if (game_mode == MODE_OPTIONS){
+		}
+		else if (game_mode == MODE_OPTIONS)
+		{
 			vram_put(settings[largeindex]);
-		} else{
+		}
+		else
+		{
 			vram_put(map_ptr[largeindex]);
 		}
-        
+
 		flush_vram_update2();
 	}
 	ppu_on_all();
@@ -130,112 +134,148 @@ void draw_sprites(void)
 	// clear all sprites from sprite buffer
 	oam_clear();
 
-	//too many on a line potential, need to rotate through them.
+	// too many on a line potential, need to rotate through them.
 
-	//draw powerups
-	if(powerup1 == 1)
+	// draw powerups
+	if (powerup1 == 1)
 	{
-		if(map == MAP_COMBS){
+		if (map == MAP_COMBS)
+		{
 			oam_meta_spr(COMBS_FLOWER_X[0], COMBS_FLOWER_Y[0], gamesprites_powerup_data);
-		} else if(map== MAP_VINES){
+		}
+		else if (map == MAP_VINES)
+		{
 			oam_meta_spr(VINES_FLOWER_X[0], VINES_FLOWER_Y[0], gamesprites_powerup_data);
-		} else if(map == MAP_OUTDOORS){
+		}
+		else if (map == MAP_OUTDOORS)
+		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[0], OUTDOORS_FLOWER_Y[0], gamesprites_powerup_data);
 		}
 	}
-		
-	if(powerup2 == 1)
+
+	if (powerup2 == 1)
 	{
-		if(map == MAP_COMBS){
+		if (map == MAP_COMBS)
+		{
 			oam_meta_spr(COMBS_FLOWER_X[1], COMBS_FLOWER_Y[1], gamesprites_powerup_data);
-		} else if(map== MAP_VINES){
+		}
+		else if (map == MAP_VINES)
+		{
 			oam_meta_spr(VINES_FLOWER_X[1], VINES_FLOWER_Y[1], gamesprites_powerup_data);
-		} else if(map == MAP_OUTDOORS){
+		}
+		else if (map == MAP_OUTDOORS)
+		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[1], OUTDOORS_FLOWER_Y[1], gamesprites_powerup_data);
 		}
 	}
-		
-	if(powerup3 == 1)
+
+	if (powerup3 == 1)
 	{
-		if(map == MAP_COMBS){
+		if (map == MAP_COMBS)
+		{
 			oam_meta_spr(COMBS_FLOWER_X[2], COMBS_FLOWER_Y[2], gamesprites_powerup_data);
-		} else if(map== MAP_VINES){
+		}
+		else if (map == MAP_VINES)
+		{
 			oam_meta_spr(VINES_FLOWER_X[2], VINES_FLOWER_Y[2], gamesprites_powerup_data);
-		} else if(map == MAP_OUTDOORS){
+		}
+		else if (map == MAP_OUTDOORS)
+		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[2], OUTDOORS_FLOWER_Y[2], gamesprites_powerup_data);
 		}
 	}
-		
-	if(powerup4 == 1)
+
+	if (powerup4 == 1)
 	{
-		if(map == MAP_COMBS){
+		if (map == MAP_COMBS)
+		{
 			oam_meta_spr(COMBS_FLOWER_X[3], COMBS_FLOWER_Y[3], gamesprites_powerup_data);
-		} else if(map== MAP_VINES){
+		}
+		else if (map == MAP_VINES)
+		{
 			oam_meta_spr(VINES_FLOWER_X[3], VINES_FLOWER_Y[3], gamesprites_powerup_data);
-		} else if(map == MAP_OUTDOORS){
+		}
+		else if (map == MAP_OUTDOORS)
+		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[3], OUTDOORS_FLOWER_Y[3], gamesprites_powerup_data);
 		}
 	}
-		
 
-	if(quack2.moving){
+	if (quack2.moving)
+	{
 		temp_x = quack2.x >> 8;
 		temp_y = quack2.y >> 8;
-		if(quack2.direction == DIR_LEFT){
+		if (quack2.direction == DIR_LEFT)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackleft_data);
-		} else if(quack2.direction == DIR_RIGHT){
+		}
+		else if (quack2.direction == DIR_RIGHT)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
-		} else if(quack2.direction == DIR_DOWN){
+		}
+		else if (quack2.direction == DIR_DOWN)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackdown_data);
-		} else if(quack2.direction == DIR_UP){
+		}
+		else if (quack2.direction == DIR_UP)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
-		} 
+		}
 	}
 
-	if(quack4.moving){
+	if (quack4.moving)
+	{
 		temp_x = quack4.x >> 8;
 		temp_y = quack4.y >> 8;
-		if(quack4.direction == DIR_LEFT){
+		if (quack4.direction == DIR_LEFT)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackleft_data);
-		} else if(quack4.direction == DIR_RIGHT){
+		}
+		else if (quack4.direction == DIR_RIGHT)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
-		} else if(quack4.direction == DIR_DOWN){
+		}
+		else if (quack4.direction == DIR_DOWN)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackdown_data);
-		} else if(quack4.direction == DIR_UP){
+		}
+		else if (quack4.direction == DIR_UP)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
 		}
 	}
 
 	// Cycle through different drawing orders based on sprite_rotation
 	// This prevents sprites from always being drawn in the same order
-	switch(sprite_rotation & 0x03) { // Use only bottom 2 bits for 4 different orders
-		case 0: // Original order: 1, 2, 3, 4
-			draw_player_1();
-			draw_player_2();
-			draw_player_3();
-			draw_player_4();
-			break;
-			
-		case 1: // Order: 2, 1, 4, 3
-			draw_player_2();
-			draw_player_1();
-			draw_player_4();
-			draw_player_3();
-			break;
-			
-		case 2: // Order: 3, 4, 1, 2
-			draw_player_3();
-			draw_player_4();
-			draw_player_1();
-			draw_player_2();
-			break;
-			
-		case 3: // Order: 4, 3, 2, 1
-			draw_player_4();
-			draw_player_3();
-			draw_player_2();
-			draw_player_1();
-			break;
+	switch (sprite_rotation & 0x03)
+	{				// Use only bottom 2 bits for 4 different orders
+	case 0: // Original order: 1, 2, 3, 4
+		draw_player_1();
+		draw_player_2();
+		draw_player_3();
+		draw_player_4();
+		break;
+
+	case 1: // Order: 2, 1, 4, 3
+		draw_player_2();
+		draw_player_1();
+		draw_player_4();
+		draw_player_3();
+		break;
+
+	case 2: // Order: 3, 4, 1, 2
+		draw_player_3();
+		draw_player_4();
+		draw_player_1();
+		draw_player_2();
+		break;
+
+	case 3: // Order: 4, 3, 2, 1
+		draw_player_4();
+		draw_player_3();
+		draw_player_2();
+		draw_player_1();
+		break;
 	}
 }
 
@@ -244,89 +284,159 @@ void draw_player_1(void)
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
 
-	if(HITBOX_DEBUG){
+	if (HITBOX_DEBUG)
+	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_box1_data);
 		return;
 	}
 
-	//if the game is over and you didn't win, don't animate
-	if(winner == THREEFOUR_WINNER){
-		if(BoxGuy1.direction == DIR_LEFT) {
-			if(bee1_bigbee_timer > 0){
+	// if the game is over and you didn't win, don't animate
+	if (winner == THREEFOUR_WINNER)
+	{
+		if (BoxGuy1.direction == DIR_LEFT)
+		{
+			if (bee1_bigbee_timer > 0)
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data);
-			} else {
+			}
+			else
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data);
-			} 
-		} else { // if (BoxGuy1.direction == DIR_RIGHT)
-			if(bee1_bigbee_timer > 0){
+			}
+		}
+		else
+		{ // if (BoxGuy1.direction == DIR_RIGHT)
+			if (bee1_bigbee_timer > 0)
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data);
-			} else {
+			}
+			else
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
 			}
 		}
 		return;
 	}
 
-	if(stun_p1 > 0 && frame_counter %2 == 0  && winner == UNDEFINED_WINNER){
-		return; //flash when stunned (only if game is still ongoing)
+	if (stun_p1 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	{
+		return; // flash when stunned (only if game is still ongoing)
 	}
-	
+
 	// Update animation frame every 10 frames
-	if ((frame_counter % 10) == 0) {
+	if ((frame_counter % 10) == 0)
+	{
 		anim_frame_1 = (anim_frame_1 + 1) % 3;
 	}
-	
-	// Check if player is in bigbee form
-	if (bee1_bigbee_timer > 0) {
 
-		if(bee1_bigbee_timer < BIGBEE_FLICKER_START){
+	// Check if player is in bigbee form
+	if (bee1_bigbee_timer > 0)
+	{
+
+		if (bee1_bigbee_timer < BIGBEE_FLICKER_START)
+		{
 			// Flicker effect when bigbee is about to expire
-			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER) {
+			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER)
+			{
 				return; // Skip drawing this frame
 			}
 		}
 		// Draw bigbee sprites
-		if (BoxGuy1.direction == DIR_LEFT) {
-			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft2_data); break;
-			}
-		} else if (BoxGuy1.direction == DIR_RIGHT) {
-			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright2_data); break;
-			}
-		} else {
-			// Default to left-facing sprite for UP/DOWN/NONE
-			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft2_data); break;
+		if (BoxGuy1.direction == DIR_LEFT)
+		{
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft2_data);
+				break;
 			}
 		}
-	} else {
+		else if (BoxGuy1.direction == DIR_RIGHT)
+		{
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright2_data);
+				break;
+			}
+		}
+		else
+		{
+			// Default to left-facing sprite for UP/DOWN/NONE
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft2_data);
+				break;
+			}
+		}
+	}
+	else
+	{
 
 		// Draw normal small bee sprites
-		if (BoxGuy1.direction == DIR_LEFT) {
-			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+		if (BoxGuy1.direction == DIR_LEFT)
+		{
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data);
+				break;
 			}
-		} else if (BoxGuy1.direction == DIR_RIGHT) {
-			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data); break;
+		}
+		else if (BoxGuy1.direction == DIR_RIGHT)
+		{
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data);
+				break;
 			}
-		} else {
+		}
+		else
+		{
 			// Default to left-facing sprite for UP/DOWN/NONE
-			switch(anim_frame_1) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data); break;
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft2_data);
+				break;
 			}
 		}
 	}
@@ -337,53 +447,85 @@ void draw_player_2(void)
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
 
-	if(HITBOX_DEBUG){
+	if (HITBOX_DEBUG)
+	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_box2_data);
 		return;
 	}
 
-	//if the other team one, just draw the first frame.
-	if(winner == THREEFOUR_WINNER){
-		if(BoxGuy2.direction == DIR_LEFT) {
+	// if the other team one, just draw the first frame.
+	if (winner == THREEFOUR_WINNER)
+	{
+		if (BoxGuy2.direction == DIR_LEFT)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data);
-		} else{ // if (BoxGuy2.direction == DIR_RIGHT) 
+		}
+		else
+		{ // if (BoxGuy2.direction == DIR_RIGHT)
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright0_data);
 		}
 		return;
 	}
 
-	if(stun_p2 > 0 && frame_counter %2 == 0  && winner == UNDEFINED_WINNER){
-		return; //flash when stunned
+	if (stun_p2 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	{
+		return; // flash when stunned
 	}
-	
+
 	// Update animation frame every 10 frames, but only if player is moving
-	if ((frame_counter % 10) == 0 && BoxGuy2.moving) {
+	if ((frame_counter % 10) == 0 && BoxGuy2.moving)
+	{
 		anim_frame_2 = (anim_frame_2 + 1) % 3;
 	}
-	
 
 	// Choose sprite based on direction and animation frame
 	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
-	if (BoxGuy2.direction == DIR_LEFT) {
-		switch(anim_frame_2) { 
-			
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
+	if (BoxGuy2.direction == DIR_LEFT)
+	{
+		switch (anim_frame_2)
+		{
+
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data);
+			break;
 		}
-	} else if (BoxGuy2.direction == DIR_RIGHT) {
+	}
+	else if (BoxGuy2.direction == DIR_RIGHT)
+	{
 		// Use left-facing sprites with horizontal flip for right direction
-		switch(anim_frame_2) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright2_data); break;
+		switch (anim_frame_2)
+		{
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright2_data);
+			break;
 		}
-	} else {
+	}
+	else
+	{
 		// Default to left-facing sprite for UP/DOWN/NONE
-		switch(anim_frame_2) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data); break;
+		switch (anim_frame_2)
+		{
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft2_data);
+			break;
 		}
 	}
 }
@@ -391,91 +533,161 @@ void draw_player_2(void)
 void draw_player_3(void)
 {
 
-	if(HITBOX_DEBUG){
+	if (HITBOX_DEBUG)
+	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_box3_data);
 		return;
 	}
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
 
-	//if the game is over and you didn't win, don't animate
-	if(winner == ONETWO_WINNER){
-		if(BoxGuy3.direction == DIR_LEFT) {
-			if(bee3_bigbee_timer > 0){
+	// if the game is over and you didn't win, don't animate
+	if (winner == ONETWO_WINNER)
+	{
+		if (BoxGuy3.direction == DIR_LEFT)
+		{
+			if (bee3_bigbee_timer > 0)
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data);
-			} else {
+			}
+			else
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
-			} 
-		} else { // if (BoxGuy3.direction == DIR_RIGHT) 
-			if(bee3_bigbee_timer > 0){
+			}
+		}
+		else
+		{ // if (BoxGuy3.direction == DIR_RIGHT)
+			if (bee3_bigbee_timer > 0)
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data);
-			} else {
+			}
+			else
+			{
 				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data);
 			}
 		}
 		return;
 	}
 
-	if(stun_p3 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
-		return; //flash when stunned
+	if (stun_p3 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	{
+		return; // flash when stunned
 	}
-	
+
 	// Update animation frame every 10 frames
-	if ((frame_counter % 10) == 0) {
+	if ((frame_counter % 10) == 0)
+	{
 		anim_frame_3 = (anim_frame_3 + 1) % 3;
 	}
-	
-	// Check if player is in bigbee form
-	if (bee3_bigbee_timer > 0) {
 
-		if(bee3_bigbee_timer < BIGBEE_FLICKER_START){
+	// Check if player is in bigbee form
+	if (bee3_bigbee_timer > 0)
+	{
+
+		if (bee3_bigbee_timer < BIGBEE_FLICKER_START)
+		{
 			// Flicker effect when bigbee is about to expire
-			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER) {
+			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER)
+			{
 				return; // Skip drawing this frame
 			}
 		}
 
 		// Draw bigbee sprites (using palette 1 for player 3)
-		if (BoxGuy3.direction == DIR_LEFT) {
-			switch(anim_frame_3) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left2_data); break;
-			}
-		} else if (BoxGuy3.direction == DIR_RIGHT) {
-			switch(anim_frame_3) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right2_data); break;
-			}
-		} else {
-			// Default to left-facing sprite for UP/DOWN/NONE
-			switch(anim_frame_3) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left2_data); break;
+		if (BoxGuy3.direction == DIR_LEFT)
+		{
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left2_data);
+				break;
 			}
 		}
-	} else {
-		// Draw normal small bee sprites
-		if (BoxGuy3.direction == DIR_LEFT) {
-			switch(anim_frame_3) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+		else if (BoxGuy3.direction == DIR_RIGHT)
+		{
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right2_data);
+				break;
 			}
-		} else if (BoxGuy3.direction == DIR_RIGHT) {
-			switch(anim_frame_3) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right2_data); break;
-			}
-		} else {
+		}
+		else
+		{
 			// Default to left-facing sprite for UP/DOWN/NONE
-			switch(anim_frame_3) {
-				case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data); break;
-				case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data); break;
-				case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data); break;
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left2_data);
+				break;
+			}
+		}
+	}
+	else
+	{
+		// Draw normal small bee sprites
+		if (BoxGuy3.direction == DIR_LEFT)
+		{
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data);
+				break;
+			}
+		}
+		else if (BoxGuy3.direction == DIR_RIGHT)
+		{
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right2_data);
+				break;
+			}
+		}
+		else
+		{
+			// Default to left-facing sprite for UP/DOWN/NONE
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+				break;
+			case 1:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left1_data);
+				break;
+			case 2:
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left2_data);
+				break;
 			}
 		}
 	}
@@ -486,89 +698,139 @@ void draw_player_4(void)
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
 
-	if(HITBOX_DEBUG){
+	if (HITBOX_DEBUG)
+	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_box4_data);
 		return;
 	}
 
-	//if the other team one, just draw the first frame.
-	if(winner == ONETWO_WINNER){
-		if(BoxGuy4.direction == DIR_LEFT) {
+	// if the other team one, just draw the first frame.
+	if (winner == ONETWO_WINNER)
+	{
+		if (BoxGuy4.direction == DIR_LEFT)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
-		} else{ // if (BoxGuy4.direction == DIR_RIGHT) 
+		}
+		else
+		{ // if (BoxGuy4.direction == DIR_RIGHT)
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right0_data);
 		}
 		return;
 	}
 
-	if(stun_p4 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
-		return; //flash when stunned
+	if (stun_p4 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	{
+		return; // flash when stunned
 	}
-	
+
 	// Update animation frame every 10 frames, but only if player is moving
-	if ((frame_counter % 10) == 0 && BoxGuy4.moving) {
+	if ((frame_counter % 10) == 0 && BoxGuy4.moving)
+	{
 		anim_frame_4 = (anim_frame_4 + 1) % 3;
 	}
-	
+
 	// Choose sprite based on direction and animation frame
 	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
-	if (BoxGuy4.direction == DIR_LEFT) {
-		switch(anim_frame_4) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left2_data); break;
+	if (BoxGuy4.direction == DIR_LEFT)
+	{
+		switch (anim_frame_4)
+		{
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left2_data);
+			break;
 		}
-	} else if (BoxGuy4.direction == DIR_RIGHT) {
+	}
+	else if (BoxGuy4.direction == DIR_RIGHT)
+	{
 		// Use left-facing sprites with horizontal flip for right direction
-		switch(anim_frame_4) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right2_data); break;
+		switch (anim_frame_4)
+		{
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right2_data);
+			break;
 		}
-	} else {
+	}
+	else
+	{
 		// Default to left-facing sprite for UP/DOWN/NONE
-		switch(anim_frame_4) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left2_data); break;
+		switch (anim_frame_4)
+		{
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left2_data);
+			break;
 		}
 	}
 }
 
-void update_hud(void){
-	if(team1_wins > 0){
-		one_vram_buffer(0xc8, NTADR_A(13, 1)); //full
-	}else {
-		one_vram_buffer(0xb7, NTADR_A(13, 1)); //empty
+void update_hud(void)
+{
+	if (team1_wins > 0)
+	{
+		one_vram_buffer(0xc8, NTADR_A(13, 1)); // full
 	}
-	if(team1_wins > 1){
-		one_vram_buffer(0xc9, NTADR_A(12, 1)); //full
-	} else {
-		one_vram_buffer(0xb8, NTADR_A(12, 1)); //empty
+	else
+	{
+		one_vram_buffer(0xb7, NTADR_A(13, 1)); // empty
 	}
-	if(team1_wins > 2){
-		one_vram_buffer(0xca, NTADR_A(11, 1)); //full
-	} else {
-		one_vram_buffer(0xb9, NTADR_A(11, 1)); //empty
+	if (team1_wins > 1)
+	{
+		one_vram_buffer(0xc9, NTADR_A(12, 1)); // full
 	}
-	
+	else
+	{
+		one_vram_buffer(0xb8, NTADR_A(12, 1)); // empty
+	}
+	if (team1_wins > 2)
+	{
+		one_vram_buffer(0xca, NTADR_A(11, 1)); // full
+	}
+	else
+	{
+		one_vram_buffer(0xb9, NTADR_A(11, 1)); // empty
+	}
 
-	if(team2_wins > 0){
-		one_vram_buffer(0xc8, NTADR_A(18, 1)); //full
-	} else {
-		one_vram_buffer(0xb7, NTADR_A(18, 1)); //empty
+	if (team2_wins > 0)
+	{
+		one_vram_buffer(0xc8, NTADR_A(18, 1)); // full
 	}
-	if(team2_wins > 1){
-		one_vram_buffer(0xc9, NTADR_A(19, 1)); //full
-	} else {
-		one_vram_buffer(0xb8, NTADR_A(19, 1)); //empty
+	else
+	{
+		one_vram_buffer(0xb7, NTADR_A(18, 1)); // empty
 	}
-	if(team2_wins > 2){
-		one_vram_buffer(0xca, NTADR_A(20, 1	)); //full
-	} else {
-		one_vram_buffer(0xb9, NTADR_A(20, 1)); //empty
+	if (team2_wins > 1)
+	{
+		one_vram_buffer(0xc9, NTADR_A(19, 1)); // full
 	}
-	
+	else
+	{
+		one_vram_buffer(0xb8, NTADR_A(19, 1)); // empty
+	}
+	if (team2_wins > 2)
+	{
+		one_vram_buffer(0xca, NTADR_A(20, 1)); // full
+	}
+	else
+	{
+		one_vram_buffer(0xb9, NTADR_A(20, 1)); // empty
+	}
 }
 
 // Fast single-tile collision check for quack projectiles.
@@ -576,7 +838,8 @@ void update_hud(void){
 // 0 otherwise. This is cheaper than calling the 4-direction bg_coll_* helpers.
 char quack_tile_solid()
 {
-	if (temp_y2 >= 0xf0) return 0;
+	if (temp_y2 >= 0xf0)
+		return 0;
 	largeindex = ((temp_y2 >> 3) << 5) + (temp_x2 >> 3);
 	temp = map_ptr[largeindex];
 	// don't collide with pellets or blank tiles
@@ -588,332 +851,435 @@ char quack_tile_solid()
 	{
 		return 0;
 	}
-	return 1; 
+	return 1;
 }
 
-void quack_movement(void){
-	//Move the quacks and disappear if collision with bg
-	if(quack2.moving){
-		if(quack2.direction == DIR_LEFT){
+void quack_movement(void)
+{
+	// Move the quacks and disappear if collision with bg
+	if (quack2.moving)
+	{
+		if (quack2.direction == DIR_LEFT)
+		{
 			quack2.x -= (speed_option + SPEED_QUACK);
-		} else if (quack2.direction == DIR_RIGHT){
+		}
+		else if (quack2.direction == DIR_RIGHT)
+		{
 			quack2.x += (speed_option + SPEED_QUACK);
-		} else if (quack2.direction == DIR_UP){
+		}
+		else if (quack2.direction == DIR_UP)
+		{
 			quack2.y -= (speed_option + SPEED_QUACK);
-		} else if (quack2.direction == DIR_DOWN){
+		}
+		else if (quack2.direction == DIR_DOWN)
+		{
 			quack2.y += (speed_option + SPEED_QUACK);
 		}
 		// single cheap tile check at quack center
 		temp_x2 = quack2.x >> 8;
 		temp_y2 = quack2.y >> 8;
-		if (quack_tile_solid()){
+		if (quack_tile_solid())
+		{
 			quack2.moving = 0;
 		}
-		//check collision with players
-		//check collision with players
+		// check collision with players
+		// check collision with players
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
 		temp_x2 = quack2.x >> 8;
 		temp_y2 = quack2.y >> 8;
-		if(sprite_collision()){
-			if(bee1_bigbee_timer == 0){
+		if (sprite_collision())
+		{
+			if (bee1_bigbee_timer == 0)
+			{
 				stun_p1 = STUN_DURATION;
 			}
 			quack2.moving = 0;
-			
 		}
 		temp_x = BoxGuy2.x >> 8;
 		temp_y = BoxGuy2.y >> 8;
-		if(sprite_collision()){
+		if (sprite_collision())
+		{
 			stun_p2 = STUN_DURATION;
 			quack2.moving = 0;
-			
 		}
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
-		if(sprite_collision()){
-			if(bee3_bigbee_timer == 0){
+		if (sprite_collision())
+		{
+			if (bee3_bigbee_timer == 0)
+			{
 				stun_p3 = STUN_DURATION;
 			}
 			quack2.moving = 0;
 		}
 		temp_x = BoxGuy4.x >> 8;
 		temp_y = BoxGuy4.y >> 8;
-		if(sprite_collision()){
+		if (sprite_collision())
+		{
 			stun_p4 = STUN_DURATION;
 			quack2.moving = 0;
-			
 		}
 	}
 
-	if(quack4.moving){
-		if(quack4.direction == DIR_LEFT){
+	if (quack4.moving)
+	{
+		if (quack4.direction == DIR_LEFT)
+		{
 			quack4.x -= (speed_option + SPEED_QUACK);
-		} else if (quack4.direction == DIR_RIGHT){
+		}
+		else if (quack4.direction == DIR_RIGHT)
+		{
 			quack4.x += (speed_option + SPEED_QUACK);
-		} else if (quack4.direction == DIR_UP){
+		}
+		else if (quack4.direction == DIR_UP)
+		{
 			quack4.y -= (speed_option + SPEED_QUACK);
-		} else if (quack4.direction == DIR_DOWN){
+		}
+		else if (quack4.direction == DIR_DOWN)
+		{
 			quack4.y += (speed_option + SPEED_QUACK);
 		}
 		// single cheap tile check at quack center
 		temp_x2 = quack4.x >> 8;
 		temp_y2 = quack4.y >> 8;
-		if (quack_tile_solid()){
+		if (quack_tile_solid())
+		{
 			quack4.moving = 0;
 		}
-		//check collision with players
+		// check collision with players
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
 		temp_x2 = quack4.x >> 8;
 		temp_y2 = quack4.y >> 8;
-		if(sprite_collision()){
-			if(bee1_bigbee_timer == 0){
+		if (sprite_collision())
+		{
+			if (bee1_bigbee_timer == 0)
+			{
 				stun_p1 = STUN_DURATION;
 			}
 			quack4.moving = 0;
 		}
 		temp_x = BoxGuy2.x >> 8;
 		temp_y = BoxGuy2.y >> 8;
-		if(sprite_collision()){
+		if (sprite_collision())
+		{
 			stun_p2 = STUN_DURATION;
 			quack4.moving = 0;
 		}
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
-		if(sprite_collision()){
-			if(bee3_bigbee_timer == 0){
+		if (sprite_collision())
+		{
+			if (bee3_bigbee_timer == 0)
+			{
 				stun_p3 = STUN_DURATION;
 			}
 			quack4.moving = 0;
 		}
 		temp_x = BoxGuy4.x >> 8;
 		temp_y = BoxGuy4.y >> 8;
-		if(sprite_collision()){
+		if (sprite_collision())
+		{
 			stun_p4 = STUN_DURATION;
 			quack4.moving = 0;
 		}
-		
 	}
 }
 
-void check_powerup(void){
-	if (powerup1 == 1){
+void check_powerup(void)
+{
+	if (powerup1 == 1)
+	{
 
-			if(map==MAP_COMBS){
-				temp_x2 = COMBS_FLOWER_X[0];
-				temp_y2 = COMBS_FLOWER_Y[0];
+		if (map == MAP_COMBS)
+		{
+			temp_x2 = COMBS_FLOWER_X[0];
+			temp_y2 = COMBS_FLOWER_Y[0];
+		}
+		else if (map == MAP_VINES)
+		{
+			temp_x2 = VINES_FLOWER_X[0];
+			temp_y2 = VINES_FLOWER_Y[0];
+		}
+		else if (map == MAP_OUTDOORS)
+		{
+			temp_x2 = OUTDOORS_FLOWER_X[0];
+			temp_y2 = OUTDOORS_FLOWER_Y[0];
+		}
+
+		if (check_powerup_collision())
+		{
+			powerup1 = 0; // Remove powerup
+			if (temp == 1)
+			{
+				bee1_bigbee_timer = POWERUP_TIMER;
 			}
-			else if(map==MAP_VINES){
-				temp_x2 = VINES_FLOWER_X[0];
-				temp_y2 = VINES_FLOWER_Y[0];
+			else if (temp == 3)
+			{
+				bee3_bigbee_timer = POWERUP_TIMER;
 			}
-			else if(map==MAP_OUTDOORS){
-				temp_x2 = OUTDOORS_FLOWER_X[0];
-				temp_y2 = OUTDOORS_FLOWER_Y[0];
-			}
-			
-			if(check_powerup_collision()) {
-				powerup1 = 0; // Remove powerup
-				if(temp == 1){
-					bee1_bigbee_timer = POWERUP_TIMER;  
-				} else if (temp == 3) {
-					bee3_bigbee_timer = POWERUP_TIMER;  
-				}
-				sfx_play(SFX_POWERUP, 0);
-			}
+			sfx_play(SFX_POWERUP, 0);
+		}
 	}
-		// Check powerup2 (top-right)
-		if (powerup2 == 1){
-			if(map==MAP_COMBS){
-				temp_x2 = COMBS_FLOWER_X[1];
-				temp_y2 = COMBS_FLOWER_Y[1];
-			}
-			else if(map==MAP_VINES){
-				temp_x2 = VINES_FLOWER_X[1];
-				temp_y2 = VINES_FLOWER_Y[1];
-			}
-			else if(map==MAP_OUTDOORS){
-				temp_x2 = OUTDOORS_FLOWER_X[1];
-				temp_y2 = OUTDOORS_FLOWER_Y[1];
-			}
-			
-			if(check_powerup_collision()) {
-				powerup2 = 0; // Remove powerup
-				if(temp == 1){
-					bee1_bigbee_timer = POWERUP_TIMER;  
-				} else if (temp == 3) {
-					bee3_bigbee_timer = POWERUP_TIMER;  
-				}
-				sfx_play(SFX_POWERUP, 0);
-			}
-		} 
-		// Check powerup3 (bottom-left)
-		if (powerup3 == 1){
-			if(map==MAP_COMBS){
-				temp_x2 = COMBS_FLOWER_X[2];
-				temp_y2 = COMBS_FLOWER_Y[2];
-			}
-			else if(map==MAP_VINES){
-				temp_x2 = VINES_FLOWER_X[2];
-				temp_y2 = VINES_FLOWER_Y[2];
-			}
-			else if(map==MAP_OUTDOORS){
-				temp_x2 = OUTDOORS_FLOWER_X[2];
-				temp_y2 = OUTDOORS_FLOWER_Y[2];
-			}
-			
-			if(check_powerup_collision()) {
-				powerup3 = 0; // Remove powerup
-				if(temp == 1){
-					bee1_bigbee_timer = POWERUP_TIMER;  
-				} else if (temp == 3) {
-					bee3_bigbee_timer = POWERUP_TIMER;  
-				}
-				sfx_play(SFX_POWERUP, 0);
-			}
+	// Check powerup2 (top-right)
+	if (powerup2 == 1)
+	{
+		if (map == MAP_COMBS)
+		{
+			temp_x2 = COMBS_FLOWER_X[1];
+			temp_y2 = COMBS_FLOWER_Y[1];
 		}
-			
-		// Check powerup4 (bottom-right)
-		if (powerup4 == 1){
-			if(map==MAP_COMBS){
-				temp_x2 = COMBS_FLOWER_X[3];
-				temp_y2 = COMBS_FLOWER_Y[3];
-			}
-			else if(map==MAP_VINES){
-				temp_x2 = VINES_FLOWER_X[3];
-				temp_y2 = VINES_FLOWER_Y[3];
-			}
-			else if(map==MAP_OUTDOORS){
-				temp_x2 = OUTDOORS_FLOWER_X[3];
-				temp_y2 = OUTDOORS_FLOWER_Y[3];
-			}
-			
-			if(check_powerup_collision()) {
-				powerup4 = 0; // Remove powerup
-				if(temp == 1){
-					bee1_bigbee_timer = POWERUP_TIMER;  
-				} else if (temp == 3) {
-					bee3_bigbee_timer = POWERUP_TIMER;  
-				}
-				sfx_play(SFX_POWERUP, 0);
-			}
+		else if (map == MAP_VINES)
+		{
+			temp_x2 = VINES_FLOWER_X[1];
+			temp_y2 = VINES_FLOWER_Y[1];
 		}
+		else if (map == MAP_OUTDOORS)
+		{
+			temp_x2 = OUTDOORS_FLOWER_X[1];
+			temp_y2 = OUTDOORS_FLOWER_Y[1];
+		}
+
+		if (check_powerup_collision())
+		{
+			powerup2 = 0; // Remove powerup
+			if (temp == 1)
+			{
+				bee1_bigbee_timer = POWERUP_TIMER;
+			}
+			else if (temp == 3)
+			{
+				bee3_bigbee_timer = POWERUP_TIMER;
+			}
+			sfx_play(SFX_POWERUP, 0);
+		}
+	}
+	// Check powerup3 (bottom-left)
+	if (powerup3 == 1)
+	{
+		if (map == MAP_COMBS)
+		{
+			temp_x2 = COMBS_FLOWER_X[2];
+			temp_y2 = COMBS_FLOWER_Y[2];
+		}
+		else if (map == MAP_VINES)
+		{
+			temp_x2 = VINES_FLOWER_X[2];
+			temp_y2 = VINES_FLOWER_Y[2];
+		}
+		else if (map == MAP_OUTDOORS)
+		{
+			temp_x2 = OUTDOORS_FLOWER_X[2];
+			temp_y2 = OUTDOORS_FLOWER_Y[2];
+		}
+
+		if (check_powerup_collision())
+		{
+			powerup3 = 0; // Remove powerup
+			if (temp == 1)
+			{
+				bee1_bigbee_timer = POWERUP_TIMER;
+			}
+			else if (temp == 3)
+			{
+				bee3_bigbee_timer = POWERUP_TIMER;
+			}
+			sfx_play(SFX_POWERUP, 0);
+		}
+	}
+
+	// Check powerup4 (bottom-right)
+	if (powerup4 == 1)
+	{
+		if (map == MAP_COMBS)
+		{
+			temp_x2 = COMBS_FLOWER_X[3];
+			temp_y2 = COMBS_FLOWER_Y[3];
+		}
+		else if (map == MAP_VINES)
+		{
+			temp_x2 = VINES_FLOWER_X[3];
+			temp_y2 = VINES_FLOWER_Y[3];
+		}
+		else if (map == MAP_OUTDOORS)
+		{
+			temp_x2 = OUTDOORS_FLOWER_X[3];
+			temp_y2 = OUTDOORS_FLOWER_Y[3];
+		}
+
+		if (check_powerup_collision())
+		{
+			powerup4 = 0; // Remove powerup
+			if (temp == 1)
+			{
+				bee1_bigbee_timer = POWERUP_TIMER;
+			}
+			else if (temp == 3)
+			{
+				bee3_bigbee_timer = POWERUP_TIMER;
+			}
+			sfx_play(SFX_POWERUP, 0);
+		}
+	}
 }
 
 void movement(void)
 {
-	//stunned players can't move
-	 if ((current_player == 1 && stun_p1 > 0) ||
-			 (current_player == 2 && stun_p2 > 0) ||
-	     (current_player == 3 && stun_p3 > 0) ||
-	     (current_player == 4 && stun_p4 > 0)) {
-		 // Player is stunned, skip movement processing
-		 return;
-	 }
-	
+	// stunned players can't move
+	if ((current_player == 1 && stun_p1 > 0) ||
+			(current_player == 2 && stun_p2 > 0) ||
+			(current_player == 3 && stun_p3 > 0) ||
+			(current_player == 4 && stun_p4 > 0))
+	{
+		// Player is stunned, skip movement processing
+		return;
+	}
+
 	// handle x
 	old_x = GenericBoxGuy.x;
 
-	//QUACK BUTTON
-	if (generic_pad & PAD_B) { 
-	if (current_player == 2 && quack2.moving == 0 && quack2_cooldown == 0) { 
+	// QUACK BUTTON
+	if (generic_pad & PAD_B)
+	{
+		if (current_player == 2 && quack2.moving == 0 && quack2_cooldown == 0)
+		{
 			quack2.x = GenericBoxGuy.x;
 			quack2.y = GenericBoxGuy.y;
 			quack2.direction = GenericBoxGuy.direction;
 			quack2_cooldown = QUACK_COOLDOWN;
-			if(quack2.direction == DIR_LEFT){
-				quack2.x -= 0x0800; //move it 1 block to the left;
-			} else if (quack2.direction == DIR_RIGHT){
-				quack2.x += 0x0800; 
-			} else if (quack2.direction == DIR_UP){
-				quack2.y -= 0x0800; 
-			} else if (quack2.direction == DIR_DOWN){
-				quack2.y += 0x0800; 
-			} 
-			quack2.moving = 1; 
-    }
-		if (current_player == 4 && quack4.moving == 0 && quack4_cooldown == 0) { 
+			if (quack2.direction == DIR_LEFT)
+			{
+				quack2.x -= 0x0800; // move it 1 block to the left;
+			}
+			else if (quack2.direction == DIR_RIGHT)
+			{
+				quack2.x += 0x0800;
+			}
+			else if (quack2.direction == DIR_UP)
+			{
+				quack2.y -= 0x0800;
+			}
+			else if (quack2.direction == DIR_DOWN)
+			{
+				quack2.y += 0x0800;
+			}
+			quack2.moving = 1;
+		}
+		if (current_player == 4 && quack4.moving == 0 && quack4_cooldown == 0)
+		{
 			quack4.x = GenericBoxGuy.x;
 			quack4.y = GenericBoxGuy.y;
 			quack4.direction = GenericBoxGuy.direction;
 			quack4.moving = 1;
 			quack4_cooldown = QUACK_COOLDOWN;
-			if(quack4.direction == DIR_LEFT){
-				quack4.x -= 0x0800; //move it 1 block to the left;
-			} else if (quack4.direction == DIR_RIGHT){
-				quack4.x += 0x0800; 
-			} else if (quack4.direction == DIR_UP){
-				quack4.y -= 0x0800; 
-			} else if (quack4.direction == DIR_DOWN){
-				quack4.y += 0x0800; 
-			} 
-    }
+			if (quack4.direction == DIR_LEFT)
+			{
+				quack4.x -= 0x0800; // move it 1 block to the left;
+			}
+			else if (quack4.direction == DIR_RIGHT)
+			{
+				quack4.x += 0x0800;
+			}
+			else if (quack4.direction == DIR_UP)
+			{
+				quack4.y -= 0x0800;
+			}
+			else if (quack4.direction == DIR_DOWN)
+			{
+				quack4.y += 0x0800;
+			}
+		}
 	}
 
-	//TURBO BUTTON
-	if (generic_pad & PAD_A) {
-    // Check which player and if they have turbo available
-    if ((current_player == 1 && turbo_p1 > 0 && bee1_bigbee_timer == 0) ||
-        (current_player == 2 && turbo_p2 > 0) ||
-        (current_player == 3 && turbo_p3 > 0 && bee3_bigbee_timer == 0) ||
-        (current_player == 4 && turbo_p4 > 0)) {
-        
-				use_turbo = 1;
-        switch(current_player) {
-            case 1: turbo_p1--; break;
-            case 2: turbo_p2--; break;
-            case 3: turbo_p3--; break;
-            case 4: turbo_p4--; break;
-        }
-    }
+	// TURBO BUTTON
+	if (generic_pad & PAD_A)
+	{
+		// Check which player and if they have turbo available
+		if ((current_player == 1 && turbo_p1 > 0 && bee1_bigbee_timer == 0) ||
+				(current_player == 2 && turbo_p2 > 0) ||
+				(current_player == 3 && turbo_p3 > 0 && bee3_bigbee_timer == 0) ||
+				(current_player == 4 && turbo_p4 > 0))
+		{
+
+			use_turbo = 1;
+			switch (current_player)
+			{
+			case 1:
+				turbo_p1--;
+				break;
+			case 2:
+				turbo_p2--;
+				break;
+			case 3:
+				turbo_p3--;
+				break;
+			case 4:
+				turbo_p4--;
+				break;
+			}
+		}
 	}
 
-	
-
-
-	if(ducks_go_faster_over_time){
-		if (current_player == 2 || current_player == 4) {
-    	current_speed = speed_option;
-			if(game_timer > 80) {
+	if (ducks_go_faster_over_time)
+	{
+		if (current_player == 2 || current_player == 4)
+		{
+			current_speed = speed_option;
+			if (game_timer > 80)
+			{
 				current_speed -= DUCK_SPEED_LOW;
-			} else if (game_timer > 20) {
-				current_speed = speed_option; //no nothing here
-			} else if (game_timer > 10) {
+			}
+			else if (game_timer > 20)
+			{
+				current_speed = speed_option; // no nothing here
+			}
+			else if (game_timer > 10)
+			{
 				current_speed += DUCK_SPEED_HIGH;
-			} else if (game_timer > 0) {
+			}
+			else if (game_timer > 0)
+			{
 				current_speed += DUCK_SPEED_MAX;
 			}
-		} else {
+		}
+		else
+		{
 			current_speed = speed_option; // bees stay the same
-		} 
-	} else {
+		}
+	}
+	else
+	{
 		current_speed = speed_option; // feature disabled, all normal speed
 	}
-	
-	if(bee1_bigbee_timer > 0 && current_player == 1){
-			current_speed += (current_speed>>2); //big bee boost
+
+	if (bee1_bigbee_timer > 0 && current_player == 1)
+	{
+		current_speed += (current_speed >> 2); // big bee boost
 	}
-	
-	if(bee3_bigbee_timer > 0 && current_player == 3){
-			current_speed += (current_speed>>2); //big bee boost
+
+	if (bee3_bigbee_timer > 0 && current_player == 3)
+	{
+		current_speed += (current_speed >> 2); // big bee boost
 	}
 
 	if (generic_pad & PAD_LEFT)
 	{
 		hero_velocity_x = -current_speed;
-		if(use_turbo == 1){
+		if (use_turbo == 1)
+		{
 			hero_velocity_x -= SPEED_TURBO_BOOST; // add turbo boost
-			use_turbo = 0; // reset turbo flag
+			use_turbo = 0;												// reset turbo flag
 		}
 		GenericBoxGuy.direction = DIR_LEFT;
 	}
 	else if (generic_pad & PAD_RIGHT)
 	{
 		hero_velocity_x = current_speed;
-		if(use_turbo == 1){
+		if (use_turbo == 1)
+		{
 			hero_velocity_x += SPEED_TURBO_BOOST; // add turbo boost
-			use_turbo = 0; // reset turbo flag
+			use_turbo = 0;												// reset turbo flag
 		}
 		GenericBoxGuy.direction = DIR_RIGHT;
 	}
@@ -963,20 +1329,22 @@ void movement(void)
 	old_y = GenericBoxGuy.y;
 
 	if (generic_pad & PAD_UP)
-	{ 
+	{
 		hero_velocity_y = -current_speed;
-		if(use_turbo == 1){
+		if (use_turbo == 1)
+		{
 			hero_velocity_y -= SPEED_TURBO_BOOST; // add turbo boost
-			use_turbo = 0; // reset turbo flag
-		}  
-		GenericBoxGuy.direction = DIR_UP; //entually we'll set up and down but not now.
+			use_turbo = 0;												// reset turbo flag
+		}
+		GenericBoxGuy.direction = DIR_UP; // entually we'll set up and down but not now.
 	}
 	else if (generic_pad & PAD_DOWN)
 	{
 		hero_velocity_y = current_speed;
-		if(use_turbo == 1){
+		if (use_turbo == 1)
+		{
 			hero_velocity_y += SPEED_TURBO_BOOST; // add turbo boost
-			use_turbo = 0; // reset turbo flag
+			use_turbo = 0;												// reset turbo flag
 		}
 		GenericBoxGuy.direction = DIR_DOWN;
 	}
@@ -1045,7 +1413,7 @@ char bg_coll_L(void)
 char bg_coll_R(void)
 {
 	// check 2 points on the right side
-	temp_x = Generic.x + Generic.width; 
+	temp_x = Generic.x + Generic.width;
 
 	eject_R = 8 - (temp_x & 0x07); // distance to next tile boundary
 	temp_y = Generic.y + 2;
@@ -1099,10 +1467,10 @@ char bg_coll_D(void)
 }
 
 const unsigned char pellet_tiles[6] = {
-	0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xa5};
+		0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xa5};
 
 const unsigned char blank_tiles[9] = {
-	0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0x00, 0x69, 0x6a, 0x6b};
+		0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0x00, 0x69, 0x6a, 0x6b};
 
 char bg_collision_sub(void)
 {
@@ -1169,8 +1537,8 @@ void check_tile_and_collect()
 				mark_dot_consumed(largeindex);
 				// Update the screen
 				// one_vram_buffer(blank_tiles[frame_counter % 5], NTADR_A(temp_x, temp_y));
-				one_vram_buffer(0x00, NTADR_A(temp_x, temp_y)); //TODO: this is just a blank tile, not as fun as the updated backgrounds
-				
+				one_vram_buffer(0x00, NTADR_A(temp_x, temp_y)); // TODO: this is just a blank tile, not as fun as the updated backgrounds
+
 				// update team score
 				if (current_player == 1)
 				{
@@ -1313,7 +1681,7 @@ void chaser_ai(void)
 	// pad2 = PAD_LEFT;
 	// pad4 = PAD_LEFT;
 }
- 
+
 void game_loop(void)
 {
 	// wait till beginning of the frame
@@ -1321,7 +1689,7 @@ void game_loop(void)
 
 	// 0. DEBUGGING CODE
 	debug_extras();
-	 // this should just move to the chr stuff
+	// this should just move to the chr stuff
 
 	// 1. INCREMENT GLOBAL COUNTERS
 	game_counters();
@@ -1335,7 +1703,7 @@ void game_loop(void)
 	// player 3 is seeker, 4 is chaser
 	// Deal with movement for each player
 
-	//move the enemies aka the quacks
+	// move the enemies aka the quacks
 	quack_movement();
 
 	// setup generics for player 1 (seeker)
@@ -1343,7 +1711,7 @@ void game_loop(void)
 	GenericBoxGuy = BoxGuy1;
 	generic_pad = pad1;
 	// call movement for generics
-	movement(); // this assigns old_x and old_y
+	movement();																	 // this assigns old_x and old_y
 	BoxGuy1.direction = GenericBoxGuy.direction; // keep direction updated for animation
 	temp_x = GenericBoxGuy.x >> 8;
 	temp_y = GenericBoxGuy.y >> 8;
@@ -1367,11 +1735,14 @@ void game_loop(void)
 	generic_pad = pad2;
 	movement();
 	BoxGuy2.direction = GenericBoxGuy.direction; // keep direction updated for animation
-	
+
 	// For ducks, set direction to NONE if no input is pressed
-	if (!(pad2 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN))) {
+	if (!(pad2 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN)))
+	{
 		BoxGuy2.moving = 0;
-	} else {
+	}
+	else
+	{
 		BoxGuy2.moving = 1;
 	}
 
@@ -1420,11 +1791,14 @@ void game_loop(void)
 	generic_pad = pad4;
 	movement();
 	BoxGuy4.direction = GenericBoxGuy.direction; // keep direction updated for animation
-	
+
 	// For ducks, set direction to NONE if no input is pressed
-	if (!(pad4 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN))) {
+	if (!(pad4 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN)))
+	{
 		BoxGuy4.moving = 0;
-	} else {
+	}
+	else
+	{
 		BoxGuy4.moving = 1;
 	}
 	// player 2 blocks player 4
@@ -1445,17 +1819,19 @@ void game_loop(void)
 	}
 
 	// 4. CHECK POWERUP COLLISIONS
-	
+
 	// Check if bee players (1 and 3) collide with powerups
-	if (bee1_bigbee_timer == 0) { // Only check if not already transformed
+	if (bee1_bigbee_timer == 0)
+	{ // Only check if not already transformed
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
-		temp = 1; //which bee are we checking
-		
+		temp = 1; // which bee are we checking
+
 		check_powerup();
 	}
-	
-	if (bee3_bigbee_timer == 0) { // Only check if not already transformed
+
+	if (bee3_bigbee_timer == 0)
+	{ // Only check if not already transformed
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
 		temp = 3;
@@ -1465,29 +1841,31 @@ void game_loop(void)
 
 	// 5. CHECK COLLISON
 
-
 	// 5. CHECK BIGBEE EATING DUCKS
-	
+
 	// Check if bigbee player 1 eats any duck
-	if (bee1_bigbee_timer > 0) {
+	if (bee1_bigbee_timer > 0)
+	{
 		temp_x = BoxGuy1.x >> 8;
 		temp_y = BoxGuy1.y >> 8;
-		
+
 		// Check if bigbee player 1 eats friendly duck (player 2) - LOSE
 		temp_x2 = BoxGuy2.x >> 8;
 		temp_y2 = BoxGuy2.y >> 8;
-		if (sprite_collision()) {
+		if (sprite_collision())
+		{
 			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
 			win_reason = WIN_FRIENDLY_FIRE_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
-		
+
 		// Check if bigbee player 1 eats enemy duck (player 4) - WIN
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision()) {
+		if (sprite_collision())
+		{
 			sfx_play(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_DUCK_EATEN;
@@ -1495,30 +1873,33 @@ void game_loop(void)
 			return;
 		}
 	}
-	
+
 	// Check if bigbee player 3 eats any duck
-	if (bee3_bigbee_timer > 0) {
+	if (bee3_bigbee_timer > 0)
+	{
 		temp_x = BoxGuy3.x >> 8;
 		temp_y = BoxGuy3.y >> 8;
-		
+
 		// Check if bigbee player 3 eats friendly duck (player 4) - LOSE
 		temp_x2 = BoxGuy4.x >> 8;
 		temp_y2 = BoxGuy4.y >> 8;
-		if (sprite_collision()) {
+		if (sprite_collision())
+		{
 			sfx_play(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_FRIENDLY_FIRE_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
-		
+
 		// Check if bigbee player 3 eats enemy duck (player 2) - WIN
 		temp_x2 = BoxGuy2.x >> 8;
 		temp_y2 = BoxGuy2.y >> 8;
-		if (sprite_collision()) {
+		if (sprite_collision())
+		{
 			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
-		  win_reason = WIN_DUCK_EATEN;
+			win_reason = WIN_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
@@ -1579,7 +1960,6 @@ void game_loop(void)
 		return;
 	}
 
-
 	// 6. DRAW SPRITES
 	draw_sprites();
 }
@@ -1631,7 +2011,6 @@ void title_loop(void)
 			init_options_loop();
 			break;
 		}
-
 	}
 }
 
@@ -1642,75 +2021,97 @@ void options_loop(void)
 		ppu_wait_nmi();
 		frame_counter++;
 
-		//draw bee:
+		// draw bee:
 		oam_clear();
-		if ((frame_counter % 10) == 0) {
+		if ((frame_counter % 10) == 0)
+		{
 			anim_frame_1 = (anim_frame_1 + 1) % 3;
 		}
-		switch(anim_frame_1) {
-			case 0: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data); break;
-			case 1: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data); break;
-			case 2: oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data); break;
+		switch (anim_frame_1)
+		{
+		case 0:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
+			break;
+		case 1:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data);
+			break;
+		case 2:
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data);
+			break;
 		}
-
 
 		// Read all controllers for options screen
 		read_controllers();
 
-		if(pad1_new & PAD_DOWN){
-			if(current_settings_choice < SETTING_SONG){
+		if (pad1_new & PAD_DOWN)
+		{
+			if (current_settings_choice < SETTING_SONG)
+			{
 				current_settings_choice++;
 				update_options_screen();
 			}
 		}
 
-		if(pad1_new & PAD_UP){
-			if(current_settings_choice > 0){
+		if (pad1_new & PAD_UP)
+		{
+			if (current_settings_choice > 0)
+			{
 				current_settings_choice--;
 				update_options_screen();
 			}
 		}
 
-		if(pad1_new & PAD_RIGHT){
-			if(current_settings_choice == SETTING_MAP){
-				if(settings_map < MAP_RANDOM){
+		if (pad1_new & PAD_RIGHT)
+		{
+			if (current_settings_choice == SETTING_MAP)
+			{
+				if (settings_map < MAP_RANDOM)
+				{
 					settings_map++;
-				} 
+				}
 			}
-			if(current_settings_choice == SETTING_SPEED){
-				if(settings_speed < GAME_FAST){
+			if (current_settings_choice == SETTING_SPEED)
+			{
+				if (settings_speed < GAME_FAST)
+				{
 					settings_speed++;
-				} 
+				}
 			}
-			if(current_settings_choice == SETTING_SONG){
-				if(settings_song < SONG_HONEY){
+			if (current_settings_choice == SETTING_SONG)
+			{
+				if (settings_song < SONG_HONEY)
+				{
 					settings_song++;
-				} 
+				}
 			}
 			update_options_screen();
 		}
 
-		
-		if(pad1_new & PAD_LEFT){
-			if(current_settings_choice == SETTING_MAP){
-				if(settings_map > 0){
+		if (pad1_new & PAD_LEFT)
+		{
+			if (current_settings_choice == SETTING_MAP)
+			{
+				if (settings_map > 0)
+				{
 					settings_map--;
-				} 
+				}
 			}
-			if(current_settings_choice == SETTING_SPEED){
-				if(settings_speed > 0){
+			if (current_settings_choice == SETTING_SPEED)
+			{
+				if (settings_speed > 0)
+				{
 					settings_speed--;
-				} 
+				}
 			}
-			if(current_settings_choice == SETTING_SONG){
-				if(settings_song > 0){
+			if (current_settings_choice == SETTING_SONG)
+			{
+				if (settings_song > 0)
+				{
 					settings_song--;
-				} 
+				}
 			}
 			update_options_screen();
 		}
-
-
 
 		// Handle start button hold logic
 		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
@@ -1719,7 +2120,6 @@ void options_loop(void)
 			init_game_loop();
 			break;
 		}
-		
 	}
 
 	prev_pad1 = pad1;
@@ -1730,11 +2130,10 @@ void options_loop(void)
 
 void gameover_loop(void)
 {
-	
 
 	while (1)
 	{
-		
+
 		ppu_wait_nmi();
 		read_controllers();
 
@@ -1746,16 +2145,23 @@ void gameover_loop(void)
 	}
 }
 
-void start_round(void){
+void start_round(void)
+{
 
-	if(settings_map == MAP_RANDOM){
-		if(frame_counter % 3 == 0){
+	if (settings_map == MAP_RANDOM)
+	{
+		if (frame_counter % 3 == 0)
+		{
 			map_ptr = combs;
 			map = MAP_COMBS;
-		} else if (frame_counter % 3 == 1){
+		}
+		else if (frame_counter % 3 == 1)
+		{
 			map_ptr = vines;
 			map = MAP_VINES;
-		} else {
+		}
+		else
+		{
 			map_ptr = outdoors;
 			map = MAP_OUTDOORS;
 		}
@@ -1771,26 +2177,43 @@ void start_round(void){
 		consumed_dots[index] = 0;
 	}
 
-	if (map == MAP_COMBS) {
-	    BoxGuy1.x = 0x3800; BoxGuy1.y = 0xA800;
-	    BoxGuy2.x = 0x5000; BoxGuy2.y = 0x2800;
-	    BoxGuy3.x = 0xC000; BoxGuy3.y = 0xA800;
-	    BoxGuy4.x = 0xA000; BoxGuy4.y = 0x2800;
-	} else if (map == MAP_VINES) {
-			BoxGuy1.x = 0x6000; BoxGuy1.y = 0xA000;
-	    BoxGuy2.x = 0x4800; BoxGuy2.y = 0x4800;
-	    BoxGuy3.x = 0x9800; BoxGuy3.y = 0xA000;
-	    BoxGuy4.x = 0xB000; BoxGuy4.y = 0x4800;
-	} else if (map == MAP_OUTDOORS) {
-	    BoxGuy1.x = 0x2800; BoxGuy1.y = 0x2000;
-	    BoxGuy2.x = 0x2800; BoxGuy2.y = 0xd800;
-	    BoxGuy3.x = 0xD800; BoxGuy3.y = 0x2000;
-	    BoxGuy4.x = 0xD800; BoxGuy4.y = 0xD800;
+	if (map == MAP_COMBS)
+	{
+		BoxGuy1.x = 0x3800;
+		BoxGuy1.y = 0xA800;
+		BoxGuy2.x = 0x5000;
+		BoxGuy2.y = 0x2800;
+		BoxGuy3.x = 0xC000;
+		BoxGuy3.y = 0xA800;
+		BoxGuy4.x = 0xA000;
+		BoxGuy4.y = 0x2800;
+	}
+	else if (map == MAP_VINES)
+	{
+		BoxGuy1.x = 0x6000;
+		BoxGuy1.y = 0xA000;
+		BoxGuy2.x = 0x4800;
+		BoxGuy2.y = 0x4800;
+		BoxGuy3.x = 0x9800;
+		BoxGuy3.y = 0xA000;
+		BoxGuy4.x = 0xB000;
+		BoxGuy4.y = 0x4800;
+	}
+	else if (map == MAP_OUTDOORS)
+	{
+		BoxGuy1.x = 0x2800;
+		BoxGuy1.y = 0x2000;
+		BoxGuy2.x = 0x2800;
+		BoxGuy2.y = 0xd800;
+		BoxGuy3.x = 0xD800;
+		BoxGuy3.y = 0x2000;
+		BoxGuy4.x = 0xD800;
+		BoxGuy4.y = 0xD800;
 	}
 
-	//todo: not removing this yet as these might be useful
-	//  else if (map_positions == START_POS_MIDDLE) {
-	
+	// todo: not removing this yet as these might be useful
+	//   else if (map_positions == START_POS_MIDDLE) {
+
 	// 		BoxGuy3.direction = DIR_RIGHT;
 	// 		BoxGuy4.direction = DIR_RIGHT;
 	// } else {  // START_POS_DEFAULT
@@ -1801,38 +2224,36 @@ void start_round(void){
 	// 		BoxGuy4.direction = DIR_RIGHT;
 	// 		BoxGuy1.direction = DIR_RIGHT;
 	// }
-	team1_score=0;
-	team2_score=0;
-	powerup1 =1;
-	powerup2 =1;
-	powerup3 =1;
-	powerup4 =1;
+	team1_score = 0;
+	team2_score = 0;
+	powerup1 = 1;
+	powerup2 = 1;
+	powerup3 = 1;
+	powerup4 = 1;
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_HONEY_COLLECTED; // default
 	winner = UNDEFINED_WINNER;
-	
+
 	// Reset turbo counters for all players
 	turbo_p1 = turbo_amount;
 	turbo_p2 = turbo_amount;
 	turbo_p3 = turbo_amount;
 	turbo_p4 = turbo_amount;
 
-	//reset stun
+	// reset stun
 	stun_p1 = 0;
 	stun_p2 = 0;
 	stun_p3 = 0;
-	
 
 	// Reset quacks
 	quack2.moving = 0;
 	quack4.moving = 0;
 	quack2_cooldown = 0;
 	quack4_cooldown = 0;
-	
+
 	// Reset bigbee transformation timers
 	bee1_bigbee_timer = 0;
 	bee3_bigbee_timer = 0;
-	
 
 	ppu_wait_nmi();
 	oam_clear();
@@ -1874,80 +2295,103 @@ void start_round(void){
 
 	game_mode = MODE_GAME;
 
-	if(settings_song == SONG_BEE)
+	if (settings_song == SONG_BEE)
 		song = SONG_BEE;
 	else if (settings_song == SONG_LAKE)
 		song = SONG_LAKE;
 	else if (settings_song == SONG_HONEY)
-	  song = SONG_HONEY;
-	else if(settings_song == SONG_RANDOM){
-		if(frame_counter % 3 == 0){
+		song = SONG_HONEY;
+	else if (settings_song == SONG_RANDOM)
+	{
+		if (frame_counter % 3 == 0)
+		{
 			song = SONG_BEE;
-		} else if (frame_counter % 3 == 1){
+		}
+		else if (frame_counter % 3 == 1)
+		{
 			song = SONG_LAKE;
-		} else {
+		}
+		else
+		{
 			song = SONG_HONEY;
 		}
 	}
-	
-	song = SONG_BEE; //TODO: add more songs then fix this
-	music_play(song);
 
+	song = SONG_BEE; // TODO: add more songs then fix this
+	music_play(song);
 }
 
 void init_game_loop(void)
 {
 	clear_background();
-	
+
 	game_mode = MODE_GAME;
 	// Initialize scores
 	team1_wins = 0;
 	team2_wins = 0;
 
 	tick_frequency = TIMER_TICK_FREQUENCY;
-	if(settings_speed == GAME_SLOW){
+	if (settings_speed == GAME_SLOW)
+	{
 		tick_frequency += 8;
-	} else if (settings_speed == GAME_FAST){
+	}
+	else if (settings_speed == GAME_FAST)
+	{
 		tick_frequency -= 12;
 	};
 
-	if(settings_map == MAP_COMBS){
+	if (settings_map == MAP_COMBS)
+	{
 		map_ptr = combs;
 		map = MAP_COMBS;
-	} else if (settings_map == MAP_VINES){
+	}
+	else if (settings_map == MAP_VINES)
+	{
 		map_ptr = vines;
 		map = MAP_VINES;
-	} else if(settings_map == MAP_OUTDOORS){
-		map_ptr = outdoors;    
+	}
+	else if (settings_map == MAP_OUTDOORS)
+	{
+		map_ptr = outdoors;
 		map = MAP_OUTDOORS;
 	}
 
-	if(settings_speed == GAME_SLOW){
+	if (settings_speed == GAME_SLOW)
+	{
 		speed_option = SPEED_SLOW;
-	} else if (settings_speed == GAME_REGULAR){
+	}
+	else if (settings_speed == GAME_REGULAR)
+	{
 		speed_option = SPEED_REGULAR;
-	} else if (settings_speed == GAME_FAST){
+	}
+	else if (settings_speed == GAME_FAST)
+	{
 		speed_option = SPEED_FAST;
 	}
 
 	// load the palettes
 	load_bg_palette();
-	pal_spr(palette_sp);    
+	pal_spr(palette_sp);
 
 	start_round();
 }
 
 void load_bg_palette(void)
 {
-	if(map == MAP_OUTDOORS){
+	if (map == MAP_OUTDOORS)
+	{
 		pal_bg(palette_outdoors_bg);
-	} else if (map == MAP_COMBS) {
+	}
+	else if (map == MAP_COMBS)
+	{
 		pal_bg(palette_combsnplants_bg);
-	} else if (map == MAP_VINES) {
+	}
+	else if (map == MAP_VINES)
+	{
 		pal_bg(palette_vineswoflowers_bg);
 	}
 }
- 
+
 void init_title_loop(void)
 {
 	delay(30);
@@ -1957,7 +2401,7 @@ void init_title_loop(void)
 	pal_bg(palette_title_bg);
 	pal_spr(palette_sp);
 
-	load_room(); //loads the title screen;
+	load_room(); // loads the title screen;
 
 	// Initialize title screen sprites at bottom of screen
 	BoxGuy1.x = 0x2800; // x = 40 (0x28)
@@ -1976,22 +2420,27 @@ void init_title_loop(void)
 	BoxGuy4.y = 0xC800; // y = 200 (0xC8)
 	BoxGuy4.direction = DIR_NONE;
 
-
 	ppu_on_all(); // turn on screen
 }
 
-void update_options_screen(void){
+void update_options_screen(void)
+{
 
-	//draw a character on the options screen:
+	// draw a character on the options screen:
 	temp_x = 64;
-	if(current_settings_choice == SETTING_SPEED){
+	if (current_settings_choice == SETTING_SPEED)
+	{
 		temp_y = 96;
-	} else if (current_settings_choice == SETTING_MAP){
+	}
+	else if (current_settings_choice == SETTING_MAP)
+	{
 		temp_y = 128;
-	} else if (current_settings_choice == SETTING_SONG){
+	}
+	else if (current_settings_choice == SETTING_SONG)
+	{
 		temp_y = 160;
 	}
-	//draws the values based on the settings:
+	// draws the values based on the settings:
 	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 10));
 
 	// Show current speed selection
@@ -1999,53 +2448,62 @@ void update_options_screen(void){
 	{
 		multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 12));
 	}
-	else if (settings_speed== GAME_REGULAR)
+	else if (settings_speed == GAME_REGULAR)
 	{
 		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
 	}
-	else if(settings_speed == GAME_FAST)
+	else if (settings_speed == GAME_FAST)
 	{
 		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 12));
 	}
 
 	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
 
-	if(settings_map == MAP_RANDOM){
+	if (settings_map == MAP_RANDOM)
+	{
 		multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 16));
-	} else if (settings_map == MAP_OUTDOORS){
+	}
+	else if (settings_map == MAP_OUTDOORS)
+	{
 		multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 16));
-	} else if (settings_map == MAP_COMBS){
+	}
+	else if (settings_map == MAP_COMBS)
+	{
 		multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 16));
-	} else if (settings_map == MAP_VINES){
+	}
+	else if (settings_map == MAP_VINES)
+	{
 		multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 16));
 	}
 
-
 	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
-	if(settings_song == SONG_BEE){
+	if (settings_song == SONG_BEE)
+	{
 		multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 20));
-	} else if (settings_song == SONG_LAKE){
+	}
+	else if (settings_song == SONG_LAKE)
+	{
 		multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 20));
-	} else if (settings_song == SONG_HONEY){
+	}
+	else if (settings_song == SONG_HONEY)
+	{
 		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 20));
 	}
-	
 }
-
 
 void init_options_loop(void)
 {
-	//DEBUG
-	// init_game_loop();
-	// return;
+	// DEBUG
+	//  init_game_loop();
+	//  return;
 
-	//real code
+	// real code
 	prev_pad1 = 0;
 	prev_pad2 = 0;
 	prev_pad3 = 0;
 	prev_pad4 = 0;
 
-	clear_background();  
+	clear_background();
 	game_mode = MODE_OPTIONS;
 	ppu_off(); // screen off
 
@@ -2064,11 +2522,12 @@ void init_options_loop(void)
 	ppu_on_all(); // turn on screen
 }
 
-void init_roundover(void){
+void init_roundover(void)
+{
 	// increment the win count for the winning team
 	// let's draw that last frame:
 
-	debug_extras(); //draws the timer at 0
+	debug_extras(); // draws the timer at 0
 
 	game_mode = MODE_ROUNDOVER;
 	music_stop();
@@ -2091,7 +2550,6 @@ void init_roundover(void){
 	// 	multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
 	// }
 
-
 	if (win_reason == WIN_HONEY_COLLECTED)
 	{
 		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 3));
@@ -2111,14 +2569,15 @@ void init_roundover(void){
 	else if (win_reason == WIN_DUCK_EATEN)
 	{
 		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 3));
-	} else if(win_reason == WIN_MOST_HONEY_COLLECTED)
+	}
+	else if (win_reason == WIN_MOST_HONEY_COLLECTED)
 	{
 		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(5, 3));
 	}
-	else{
+	else
+	{
 		multi_vram_buffer_horz("DRAW GAME!", 8, NTADR_A(11, 3));
 	}
-	
 }
 
 void init_gameover_loop(void)
@@ -2130,16 +2589,18 @@ void init_gameover_loop(void)
 	ppu_off(); // screen off
 	// load the title palettes
 	clear_vram_buffer();
-	//don't need to load bg pallete
+	// don't need to load bg pallete
 	pal_spr(palette_sp);
 
-	
 	// say who won
-	if(team1_wins >= 3){
+	if (team1_wins >= 3)
+	{
 		multi_vram_buffer_horz("TEAM 1 WINS THE MATCH!", 21, NTADR_A(4, 12));
-	} else if(team2_wins >= 3){
+	}
+	else if (team2_wins >= 3)
+	{
 		multi_vram_buffer_horz("TEAM 2 WINS THE MATCH!", 21, NTADR_A(4, 12));
-	} 
+	}
 	// draw on screen, probably an unrle eventually for this game
 	// probably lets the players select ai or player.
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
@@ -2163,24 +2624,24 @@ void init_system(void)
 
 	speed_option = SPEED_REGULAR;
 	turbo_amount = TURBO_MEDIUM;
-	ducks_go_faster_over_time=1;
-	collision_box_size=6; //quacks and players are 6x6
-	
+	ducks_go_faster_over_time = 1;
+	collision_box_size = 6; // quacks and players are 6x6
+
 	// Initialize sprite rotation
 	sprite_rotation = 0;
-	
+
 	// Initialize animation frames
 	anim_frame_1 = 0;
 	anim_frame_2 = 0;
 	anim_frame_3 = 0;
 	anim_frame_4 = 0;
 
-	//intialize pads
+	// intialize pads
 	prev_pad1 = 0;
 	prev_pad2 = 0;
 	prev_pad3 = 0;
 	prev_pad4 = 0;
-	
+
 	// Initialize bigbee transformation timers
 	bee1_bigbee_timer = 0;
 	bee3_bigbee_timer = 0;
@@ -2201,14 +2662,15 @@ void clear_background(void)
 	ppu_on_all(); // turn on screen
 }
 
-void roundover_loop(void){
+void roundover_loop(void)
+{
 
 	while (1)
 	{
 		++frame_counter;
-		//draw the sprites
+		// draw the sprites
 		draw_sprites();
-		//update to only draw the winners as animated
+		// update to only draw the winners as animated
 
 		ppu_wait_nmi();
 		read_controllers();
@@ -2229,7 +2691,7 @@ void roundover_loop(void){
 				// sfx_play(SFX_TEAM2_MATCH_WIN, 0);
 				init_gameover_loop();
 				break;
-			} 
+			}
 
 			start_round();
 			break;
@@ -2237,19 +2699,20 @@ void roundover_loop(void){
 	}
 }
 
-void game_counters(void){
+void game_counters(void)
+{
 	frame_counter++;
 	game_frame_timer++;
 	// Update sprite rotation every frame
 	sprite_rotation++;
 	ai_counter++;
 
-	if (game_frame_timer >= tick_frequency) 
+	if (game_frame_timer >= tick_frequency)
 	{
 		game_frame_timer = 0; // reset the frame timer
 		game_timer--;
 
-		//end of round check
+		// end of round check
 		if (game_timer == 0)
 		{
 			// time's up, check scores
@@ -2274,36 +2737,42 @@ void game_counters(void){
 			init_roundover();
 		}
 
-		//decrease quack counter on game_tick
-		if (quack2_cooldown > 0) {
+		// decrease quack counter on game_tick
+		if (quack2_cooldown > 0)
+		{
 			quack2_cooldown--;
 		}
-		if (quack4_cooldown > 0) {
+		if (quack4_cooldown > 0)
+		{
 			quack4_cooldown--;
 		}
 
-		//decrease stun
-		if(stun_p1 > 0){
+		// decrease stun
+		if (stun_p1 > 0)
+		{
 			stun_p1--;
 		}
-		if(stun_p2 > 0){
-			stun_p2--;	
+		if (stun_p2 > 0)
+		{
+			stun_p2--;
 		}
-		if(stun_p3 > 0){
-			stun_p3--;	
+		if (stun_p3 > 0)
+		{
+			stun_p3--;
 		}
-		if(stun_p4 > 0){
+		if (stun_p4 > 0)
+		{
 			stun_p4--;
 		}
 
 		// Update bigbee transformation timers
-		if (bee1_bigbee_timer > 0 ) {
+		if (bee1_bigbee_timer > 0)
+		{
 			bee1_bigbee_timer--;
 		}
-		if (bee3_bigbee_timer > 0 ) { 
+		if (bee3_bigbee_timer > 0)
+		{
 			bee3_bigbee_timer--;
 		}
-
 	}
-	
 }
