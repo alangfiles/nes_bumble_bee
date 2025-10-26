@@ -19,12 +19,13 @@ void main(void)
 
 	/*
 	10.24 feedback:
-	- draw last frame of the game
+	[x] draw last frame of the game
+	[x] animate the winning team on the round over
+	[x] put text under the scoreboard
 	- keep stats and show mvp on match over screen
-	- animate the winning team on the round over
-	- put text under the scoreboard
 	- tie the speed to the clock
   - flash the screen on 70 honey?
+	- draw 100 honey at end
 	*/
 
 	/*
@@ -34,7 +35,7 @@ void main(void)
 	[x] handle settings menu
 	[x] character hitboxes? (smaller quack)
 	[] AI for less players
-	[] Quacks don't work outside of combs
+	[x] Quacks don't work outside of combs
 	*/
 
 	/*
@@ -1487,7 +1488,7 @@ void game_loop(void)
 		if (sprite_collision()) {
 			sfx_play(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
-			win_reason = WIN_BIGBEE_EAT_DUCK;
+			win_reason = WIN_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
@@ -1515,7 +1516,7 @@ void game_loop(void)
 		if (sprite_collision()) {
 			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
-		  win_reason = WIN_BIGBEE_EAT_DUCK;
+		  win_reason = WIN_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
@@ -1558,7 +1559,7 @@ void game_loop(void)
 		// player 1 dies (enemy fire)
 		sfx_play(SFX_TEAM2_WIN, 0);
 		winner = THREEFOUR_WINNER;
-		win_reason = WIN_ENEMY_KILL;
+		win_reason = WIN_BEE_EATEN;
 		init_roundover();
 		return;
 	}
@@ -1571,7 +1572,7 @@ void game_loop(void)
 		// player 2 dies (enemy fire)
 		sfx_play(SFX_TEAM1_WIN, 0);
 		winner = ONETWO_WINNER;
-		win_reason = WIN_ENEMY_KILL;
+		win_reason = WIN_BEE_EATEN;
 		init_roundover();
 		return;
 	}
@@ -2084,25 +2085,29 @@ void init_roundover(void){
 
 	if (win_reason == WIN_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 2));
+		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 3));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(7, 2));
+		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(7, 3));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("FRIENDLY DUCK EATEN", 19, NTADR_A(6, 2));
+		multi_vram_buffer_horz("FRIENDLY DUCK EATEN", 19, NTADR_A(6, 3));
 	}
-	else if (win_reason == WIN_ENEMY_KILL)
+	else if (win_reason == WIN_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(8, 2));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(8, 3));
 	}
-	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
+	else if (win_reason == WIN_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 2));
-	} else {
-		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 2));
+		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 3));
+	} else if(win_reason == WIN_MOST_HONEY_COLLECTED)
+	{
+		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(5, 3));
+	}
+	else{
+		multi_vram_buffer_horz("DRAW GAME!", 8, NTADR_A(11, 3));
 	}
 	
 }
@@ -2242,13 +2247,13 @@ void game_counters(void){
 			if (team1_score > team2_score)
 			{
 				winner = ONETWO_WINNER;
-				win_reason = WIN_TIME_UP;
+				win_reason = WIN_MOST_HONEY_COLLECTED;
 				sfx_play(SFX_TEAM1_WIN, 0);
 			}
 			else if (team2_score > team1_score)
 			{
 				winner = THREEFOUR_WINNER;
-				win_reason = WIN_TIME_UP;
+				win_reason = WIN_MOST_HONEY_COLLECTED;
 				sfx_play(SFX_TEAM2_WIN, 0);
 			}
 			else
