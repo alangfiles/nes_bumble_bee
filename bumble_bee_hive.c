@@ -247,7 +247,25 @@ void draw_player_1(void)
 		return;
 	}
 
-	if(stun_p1 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
+	//if the game is over and you didn't win, don't animate
+	if(winner == THREEFOUR_WINNER){
+		if(BoxGuy1.direction == DIR_LEFT) {
+			if(bee1_bigbee_timer > 0){
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeleft0_data);
+			} else {
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data);
+			} 
+		} else if (BoxGuy1.direction == DIR_RIGHT) {
+			if(bee1_bigbee_timer > 0){
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data);
+			} else {
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
+			}
+		}
+		return;
+	}
+
+	if(stun_p1 > 0 && frame_counter %2 == 0  && winner == UNDEFINED_WINNER){
 		return; //flash when stunned (only if game is still ongoing)
 	}
 	
@@ -287,6 +305,7 @@ void draw_player_1(void)
 			}
 		}
 	} else {
+
 		// Draw normal small bee sprites
 		if (BoxGuy1.direction == DIR_LEFT) {
 			switch(anim_frame_1) {
@@ -321,7 +340,17 @@ void draw_player_2(void)
 		return;
 	}
 
-	if(stun_p2 > 0 && frame_counter %2 == 0){
+	//if the other team one, just draw the first frame.
+	if(winner == THREEFOUR_WINNER){
+		if(BoxGuy2.direction == DIR_LEFT) {
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data);
+		} else if (BoxGuy2.direction == DIR_RIGHT) {
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright0_data);
+		}
+		return;
+	}
+
+	if(stun_p2 > 0 && frame_counter %2 == 0  && winner == UNDEFINED_WINNER){
 		return; //flash when stunned
 	}
 	
@@ -330,6 +359,7 @@ void draw_player_2(void)
 		anim_frame_2 = (anim_frame_2 + 1) % 3;
 	}
 	
+
 	// Choose sprite based on direction and animation frame
 	// Note: Duck sprites have limited right-facing variants, so we'll use left-facing for most cases
 	if (BoxGuy2.direction == DIR_LEFT) {
@@ -365,6 +395,24 @@ void draw_player_3(void)
 	}
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
+
+	//if the game is over and you didn't win, don't animate
+	if(winner == ONETWO_WINNER){
+		if(BoxGuy3.direction == DIR_LEFT) {
+			if(bee3_bigbee_timer > 0){
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2left0_data);
+			} else {
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
+			} 
+		} else if (BoxGuy3.direction == DIR_RIGHT) {
+			if(bee3_bigbee_timer > 0){
+				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data);
+			} else {
+				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2right0_data);
+			}
+		}
+		return;
+	}
 
 	if(stun_p3 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
 		return; //flash when stunned
@@ -441,7 +489,17 @@ void draw_player_4(void)
 		return;
 	}
 
-	if(stun_p4 > 0 && frame_counter %2 == 0){
+	//if the other team one, just draw the first frame.
+	if(winner == ONETWO_WINNER){
+		if(BoxGuy4.direction == DIR_LEFT) {
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
+		} else if (BoxGuy4.direction == DIR_RIGHT) {
+			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right0_data);
+		}
+		return;
+	}
+
+	if(stun_p4 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
 		return; //flash when stunned
 	}
 	
