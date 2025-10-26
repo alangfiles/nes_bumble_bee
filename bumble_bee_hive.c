@@ -18,6 +18,16 @@ void main(void)
 {
 
 	/*
+	10.24 feedback:
+	- draw last frame of the game
+	- keep stats and show mvp on match over screen
+	- animate the winning team on the round over
+	- put text under the scoreboard
+	- tie the speed to the clock
+  - flash the screen on 70 honey?
+	*/
+
+	/*
 	10.22 todo:
 	[x] fix starting positions per map
 	[] add new songs
@@ -237,8 +247,8 @@ void draw_player_1(void)
 		return;
 	}
 
-	if(stun_p1 > 0 && frame_counter %2 == 0){
-		return; //flash when stunned
+	if(stun_p1 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
+		return; //flash when stunned (only if game is still ongoing)
 	}
 	
 	// Update animation frame every 10 frames
@@ -249,9 +259,9 @@ void draw_player_1(void)
 	// Check if player is in bigbee form
 	if (bee1_bigbee_timer > 0) {
 
-		if(bee1_bigbee_timer < 5){
+		if(bee1_bigbee_timer < BIGBEE_FLICKER_START){
 			// Flicker effect when bigbee is about to expire
-			if ((frame_counter % 4) < 2) {
+			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER) {
 				return; // Skip drawing this frame
 			}
 		}
@@ -356,7 +366,7 @@ void draw_player_3(void)
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
 
-	if(stun_p3 > 0 && frame_counter %2 == 0){
+	if(stun_p3 > 0 && frame_counter %2 == 0 && winner == UNDEFINED_WINNER){
 		return; //flash when stunned
 	}
 	
@@ -368,9 +378,9 @@ void draw_player_3(void)
 	// Check if player is in bigbee form
 	if (bee3_bigbee_timer > 0) {
 
-		if(bee3_bigbee_timer < 5){
+		if(bee3_bigbee_timer < BIGBEE_FLICKER_START){
 			// Flicker effect when bigbee is about to expire
-			if ((frame_counter % 4) < 2) {
+			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER) {
 				return; // Skip drawing this frame
 			}
 		}
@@ -1659,11 +1669,18 @@ void options_loop(void)
 
 void gameover_loop(void)
 {
+	
 
 	while (1)
 	{
+		++frame_counter;
 		ppu_wait_nmi();
 		read_controllers();
+
+		//only update the frames for the winners
+
+		//draw the sprites
+		draw_sprites();
 
 		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
@@ -1736,6 +1753,7 @@ void start_round(void){
 	powerup4 =1;
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_DOTS; // default
+	winner = UNDEFINED_WINNER;
 	
 	// Reset turbo counters for all players
 	turbo_p1 = turbo_amount;
@@ -1985,6 +2003,10 @@ void init_options_loop(void)
 
 void init_roundover(void){
 	// increment the win count for the winning team
+	// let's draw that last frame:
+	debug_extras(); //draws the timer at 0
+	draw_sprites(); //draws the last frame sprites
+
 	game_mode = MODE_ROUNDOVER;
 	music_stop();
 	if (winner == ONETWO_WINNER)
@@ -1997,33 +2019,33 @@ void init_roundover(void){
 	}
 	update_hud();
 
-	if (winner == ONETWO_WINNER)
-	{
-		multi_vram_buffer_horz("TEAM 1 WINS!", 12, NTADR_A(9, 12));
-	}
-	else if (winner == THREEFOUR_WINNER)
-	{
-		multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
-	}
+	// if (winner == ONETWO_WINNER)
+	// {
+	// 	multi_vram_buffer_horz("TEAM 1 WINS!", 12, NTADR_A(9, 12));
+	// }
+	// else if (winner == THREEFOUR_WINNER)
+	// {
+	// 	multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
+	// }
 
 
 	if (win_reason == WIN_DOTS)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 13));
+		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 3));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE)
 	{
-		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 13));
+		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 3));
 	}
 	else if (win_reason == WIN_ENEMY_KILL)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 13));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 3));
 	}
 	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
 	{
-		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 13));
+		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 3));
 	} else {
-		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 13));
+		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 3));
 	}
 	
 }

@@ -1,15 +1,16 @@
 #define GAME_LENGTH 99 // Timer starts at 99 and counts down to 0
 #define GAME_DURATION_SECONDS 40 // Actual game duration in seconds
 #define TIMER_TICK_FREQUENCY 24 //((GAME_DURATION_SECONDS * 60) / GAME_LENGTH) // ~24.24 frames per tick
-#define POWERUP_TIMER 8 // Powerup duration in game seconds
+#define POWERUP_TIMER 6 // Powerup duration in game seconds
 #define STUN_DURATION 3
 #define QUACK_COOLDOWN 5
 #define HITBOX_DEBUG 0
+#define BIGBEE_FLICKER_START 2
 
 // Speed options
-#define SPEED_SLOW 0x060
-#define SPEED_REGULAR 0x0A0
-#define SPEED_FAST 0x0E0
+#define SPEED_SLOW 0x080
+#define SPEED_REGULAR 0x0C0
+#define SPEED_FAST 0x100
 #define SPEED_QUACK 0x060 // additional quack speed boost
 
 #define DUCK_SPEED_LOW 20
@@ -233,6 +234,7 @@ enum
 };
 
 enum{
+	UNDEFINED_WINNER,
 	ONETWO_WINNER,
 	THREEFOUR_WINNER,
 	TIE_WINNER
