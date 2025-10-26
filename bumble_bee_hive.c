@@ -255,7 +255,7 @@ void draw_player_1(void)
 			} else {
 				oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeleft0_data);
 			} 
-		} else if (BoxGuy1.direction == DIR_RIGHT) {
+		} else { // if (BoxGuy1.direction == DIR_RIGHT)
 			if(bee1_bigbee_timer > 0){
 				oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data);
 			} else {
@@ -344,7 +344,7 @@ void draw_player_2(void)
 	if(winner == THREEFOUR_WINNER){
 		if(BoxGuy2.direction == DIR_LEFT) {
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckleft0_data);
-		} else if (BoxGuy2.direction == DIR_RIGHT) {
+		} else{ // if (BoxGuy2.direction == DIR_RIGHT) 
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduckright0_data);
 		}
 		return;
@@ -404,7 +404,7 @@ void draw_player_3(void)
 			} else {
 				oam_meta_spr(temp_x, temp_y, gamesprites_smallbee2left0_data);
 			} 
-		} else if (BoxGuy3.direction == DIR_RIGHT) {
+		} else { // if (BoxGuy3.direction == DIR_RIGHT) 
 			if(bee3_bigbee_timer > 0){
 				oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data);
 			} else {
@@ -493,7 +493,7 @@ void draw_player_4(void)
 	if(winner == ONETWO_WINNER){
 		if(BoxGuy4.direction == DIR_LEFT) {
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2left0_data);
-		} else if (BoxGuy4.direction == DIR_RIGHT) {
+		} else{ // if (BoxGuy4.direction == DIR_RIGHT) 
 			oam_meta_spr(temp_x, temp_y, gamesprites_smallduck2right0_data);
 		}
 		return;
@@ -1476,7 +1476,7 @@ void game_loop(void)
 		if (sprite_collision()) {
 			sfx_play(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
-			win_reason = WIN_BIGBEE_EAT_DUCK;
+			win_reason = WIN_FRIENDLY_FIRE_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
@@ -1504,7 +1504,7 @@ void game_loop(void)
 		if (sprite_collision()) {
 			sfx_play(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
-			win_reason = WIN_BIGBEE_EAT_DUCK;
+			win_reason = WIN_FRIENDLY_FIRE_DUCK_EATEN;
 			init_roundover();
 			return;
 		}
@@ -1531,7 +1531,7 @@ void game_loop(void)
 		// player 1 dies (friendly fire)
 		sfx_play(SFX_TEAM2_WIN, 0);
 		winner = THREEFOUR_WINNER;
-		win_reason = WIN_FRIENDLY_FIRE;
+		win_reason = WIN_FRIENDLY_FIRE_BEE_EATEN;
 		init_roundover();
 		return;
 	}
@@ -1544,7 +1544,7 @@ void game_loop(void)
 		// player 3 dies (enemy fire)
 		sfx_play(SFX_TEAM1_WIN, 0);
 		winner = ONETWO_WINNER;
-		win_reason = WIN_FRIENDLY_FIRE;
+		win_reason = WIN_FRIENDLY_FIRE_BEE_EATEN;
 		init_roundover();
 		return;
 	}
@@ -2084,21 +2084,25 @@ void init_roundover(void){
 
 	if (win_reason == WIN_DOTS)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 3));
+		multi_vram_buffer_horz("COLLECTED 100 DOTS", 18, NTADR_A(6, 2));
 	}
-	else if (win_reason == WIN_FRIENDLY_FIRE)
+	else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 3));
+		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(6, 2));
+	}
+	else if (win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
+	{
+		multi_vram_buffer_horz("FRIENDLY DUCK EATEN", 19, NTADR_A(6, 2));
 	}
 	else if (win_reason == WIN_ENEMY_KILL)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 3));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, 2));
 	}
 	else if (win_reason == WIN_BIGBEE_EAT_DUCK)
 	{
-		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 3));
+		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(7, 2));
 	} else {
-		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 3));
+		multi_vram_buffer_horz("TIME UP!", 8, NTADR_A(11, 2));
 	}
 	
 }
