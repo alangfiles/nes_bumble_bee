@@ -1673,14 +1673,9 @@ void gameover_loop(void)
 
 	while (1)
 	{
-		++frame_counter;
+		
 		ppu_wait_nmi();
 		read_controllers();
-
-		//only update the frames for the winners
-
-		//draw the sprites
-		draw_sprites();
 
 		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
 		{
@@ -2004,8 +1999,8 @@ void init_options_loop(void)
 void init_roundover(void){
 	// increment the win count for the winning team
 	// let's draw that last frame:
+
 	debug_extras(); //draws the timer at 0
-	draw_sprites(); //draws the last frame sprites
 
 	game_mode = MODE_ROUNDOVER;
 	music_stop();
@@ -2131,8 +2126,14 @@ void clear_background(void)
 }
 
 void roundover_loop(void){
+
 	while (1)
 	{
+		++frame_counter;
+		//draw the sprites
+		draw_sprites();
+		//update to only draw the winners as animated
+
 		ppu_wait_nmi();
 		read_controllers();
 
