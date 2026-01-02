@@ -47,10 +47,16 @@ unsigned char pad1;
 unsigned char pad2;
 unsigned char pad3;
 unsigned char pad4;
+unsigned char pad4_ai;
 unsigned char pad1_new;
 unsigned char pad2_new;
 unsigned char pad3_new;
 unsigned char pad4_new;
+unsigned char ai_counter;
+unsigned char player1_ai_ready;
+unsigned char player2_ai_ready;
+unsigned char player3_ai_ready;
+unsigned char player4_ai_ready;
 unsigned char game_mode;
 unsigned char winner;
 unsigned char game_frame_timer;
@@ -103,6 +109,8 @@ signed int hero_velocity_y;
 
 unsigned int old_x;
 unsigned int old_y;
+signed char signed_temp;
+signed char signed_temp2;
 unsigned char temp;
 unsigned char temp_x;
 unsigned char temp_y;
@@ -146,9 +154,34 @@ unsigned char ai_counter;
 unsigned char current_player; // tracks which player is currently being processed
 unsigned char team1_score; // score for team 1 (players 1 & 2)
 unsigned char team2_score; // score for team 2 (players 3 & 4)
+unsigned char temp_win_reason;
+unsigned char temp_win_team;
 unsigned char team1_wins;
 unsigned char team2_wins;
+unsigned char team1_win1;
+unsigned char team1_win2;
+unsigned char team1_win3;
+unsigned char team2_win1;
+unsigned char team2_win2;
+unsigned char team2_win3;
+
+unsigned char round_1;
+unsigned char round_2;
+unsigned char round_3;
+unsigned char round_4;
+unsigned char round_5;
+unsigned char current_round;
 unsigned char win_reason; // tracks how the game was won
+
+#define TEAM1_WIN			0x80
+#define TEAM2_WIN			0x40
+#define WIN_HONEY_COLLECTED	0x20
+#define WIN_FRIENDLY_FIRE_BEE_EATEN		0x10
+#define WIN_FRIENDLY_FIRE_DUCK_EATEN			0x08
+#define WIN_BEE_EATEN		0x04
+#define WIN_DUCK_EATEN		0x02
+#define WIN_MOST_HONEY_COLLECTED		0x01
+#define WIN_TIMEUP		0x00
 
 unsigned char powerup1;
 unsigned char powerup2;
@@ -246,15 +279,15 @@ enum{
 	TIE_WINNER
 };
 
-enum{
-	WIN_HONEY_COLLECTED,
-	WIN_FRIENDLY_FIRE_BEE_EATEN,
-	WIN_FRIENDLY_FIRE_DUCK_EATEN,
-	WIN_BEE_EATEN,
-	WIN_TIME_UP,
-	WIN_DUCK_EATEN,
-	WIN_MOST_HONEY_COLLECTED,
-};
+// enum{
+// 	WIN_HONEY_COLLECTED,
+// 	WIN_FRIENDLY_FIRE_BEE_EATEN,
+// 	WIN_FRIENDLY_FIRE_DUCK_EATEN,
+// 	WIN_BEE_EATEN,
+// 	WIN_TIME_UP,
+// 	WIN_DUCK_EATEN,
+// 	WIN_MOST_HONEY_COLLECTED,
+// };
 
 enum{
 	SFX_TEAM1_DOT_COLLECT,
@@ -329,9 +362,9 @@ void draw_player_4(void);
 void movement(void);	
 void check_tile_and_collect(void);
 void initialize_collision_map(void);
-void debug_extras(void);
+void draw_hud(void);
 void read_controllers(void);
-void seeker_ai(void);
+void player4_ai(void);
 void chaser_ai(void);
 void game_loop(void);
 void title_loop(void);
@@ -351,6 +384,7 @@ void game_counters(void);
 void quack_movement(void);
 void load_bg_palette(void);
 void update_options_screen(void);
+void draw_win_round_sprite(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);

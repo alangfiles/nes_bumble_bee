@@ -779,58 +779,79 @@ void draw_player_4(void)
 		}
 	}
 }
+void draw_win_round_sprite(void){
+	if(temp_win_reason == WIN_HONEY_COLLECTED){
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_honey);
+	}
+	else if(temp_win_reason == WIN_MOST_HONEY_COLLECTED){
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_time);
+	} else if(temp_win_reason == WIN_BEE_EATEN){
+		if(temp_win_team == 1){
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
+		} else {
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
+		}
+	}else if(temp_win_reason == WIN_DUCK_EATEN){
+		if(temp_win_team == 1){
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_redbee);
+		} else {
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_bluebee);
+		}
+	} else if(temp_win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN){
+		if(temp_win_team == 1){
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
+		} else {
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
+		}
+	}else if(temp_win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN){
+		if(temp_win_team == 1){
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_bluebee);
+		} else {
+			oam_meta_spr(temp_x, temp_y, gamesprites_win_redbee);
+		}
+	}
+}
 
 void update_hud(void)
 {
-	if (team1_wins > 0)
-	{
-		one_vram_buffer(0xc8, NTADR_A(13, 1)); // full
+	//draw the icons for winning
+	if(team1_win1 != 0xFF){
+		temp_x = 112;
+		temp_y = 8;
+		temp_win_reason = team1_win1;
+		draw_win_round_sprite();
 	}
-	else
-	{
-		one_vram_buffer(0xb7, NTADR_A(13, 1)); // empty
+	if(team1_win2 != 0xFF){
+		temp_x = 104;
+		temp_y = 8;
+		temp_win_reason = team1_win2;
+		draw_win_round_sprite();
 	}
-	if (team1_wins > 1)
-	{
-		one_vram_buffer(0xc9, NTADR_A(12, 1)); // full
+	if(team1_win3 != 0xFF){
+		temp_x = 96;
+		temp_y = 8;
+		temp_win_reason = team1_win3;
+		draw_win_round_sprite();
 	}
-	else
-	{
-		one_vram_buffer(0xb8, NTADR_A(12, 1)); // empty
+	if(team2_win1 != 0xFF){
+		temp_x = 136;
+		temp_y = 8;
+		temp_win_reason = team2_win1;
+		draw_win_round_sprite();
 	}
-	if (team1_wins > 2)
-	{
-		one_vram_buffer(0xca, NTADR_A(11, 1)); // full
+	if(team2_win2 != 0xFF){
+		temp_x = 144;
+		temp_y = 8;
+		temp_win_reason = team2_win2;
+		draw_win_round_sprite();
 	}
-	else
-	{
-		one_vram_buffer(0xb9, NTADR_A(11, 1)); // empty
+	if(team2_win3 != 0xFF){
+		temp_x = 152;
+		temp_y = 8;
+		temp_win_reason = team2_win3;
+		draw_win_round_sprite();
 	}
-
-	if (team2_wins > 0)
-	{
-		one_vram_buffer(0xc8, NTADR_A(18, 1)); // full
-	}
-	else
-	{
-		one_vram_buffer(0xb7, NTADR_A(18, 1)); // empty
-	}
-	if (team2_wins > 1)
-	{
-		one_vram_buffer(0xc9, NTADR_A(19, 1)); // full
-	}
-	else
-	{
-		one_vram_buffer(0xb8, NTADR_A(19, 1)); // empty
-	}
-	if (team2_wins > 2)
-	{
-		one_vram_buffer(0xca, NTADR_A(20, 1)); // full
-	}
-	else
-	{
-		one_vram_buffer(0xb9, NTADR_A(20, 1)); // empty
-	}
+	
 }
 
 // Fast single-tile collision check for quack projectiles.
@@ -1610,7 +1631,7 @@ char check_powerup_collision()
 	return 0;
 }
 
-void debug_extras(void)
+void draw_hud(void)
 {
 	// Display team 1 score (2 digits)
 	temp1 = (team1_score / 10) + 0x30;
@@ -1642,6 +1663,7 @@ void read_controllers(void)
 	doublepad = pad_poll_4score_2_4();
 	pad2 = high_byte(doublepad);
 	pad4 = low_byte(doublepad);
+	// player4_ai(); // todo: don't just have the ai here
 
 	// set the new inputs (things that have changed since last frame)
 	pad1_new = pad1 & (pad1 ^ prev_pad1);
@@ -1662,14 +1684,37 @@ void read_controllers(void)
 	//  [0b00010000,0b00100000,0b01000000,0b10000000]
 }
 
-void seeker_ai(void)
-{ // ai for the bee
-	/*
-		avoid the nearest enemy chaser (player 2)
-		avoid the friendly chaser (player 4)
-		move towards nearest dot
-	*/
-	// pad3= PAD_DOWN;
+void player4_ai(void)
+{
+	if (frame_counter % 32 == 0) //every 32 frames make a new move
+	{
+		player4_ai_ready = 1;
+	}
+
+	if(player4_ai_ready == 1)
+	{
+		++ai_counter;
+		temp_x = BoxGuy4.x >> 8;
+		temp_y = BoxGuy4.y >> 8;
+		temp_x2 = BoxGuy1.x >> 8;
+		temp_y2 = BoxGuy1.y >> 8;
+
+		if (ai_counter % 2 == 1)
+		{
+			if (temp_x < temp_x2)
+				pad4_ai = PAD_RIGHT;
+			else if (temp_x >= temp_x2)
+				pad4_ai = PAD_LEFT;
+		}
+		else
+		{
+			if (temp_y < temp_y2)
+				pad4_ai = PAD_DOWN;
+			else if (temp_y >= temp_y2)
+				pad4_ai = PAD_UP;
+		}
+	}
+	pad4 = pad4_ai;
 }
 
 void chaser_ai(void)
@@ -1688,7 +1733,7 @@ void game_loop(void)
 	ppu_wait_nmi();
 
 	// 0. DEBUGGING CODE
-	debug_extras();
+	// debug_extras();
 	// this should just move to the chr stuff
 
 	// 1. INCREMENT GLOBAL COUNTERS
@@ -1962,6 +2007,8 @@ void game_loop(void)
 
 	// 6. DRAW SPRITES
 	draw_sprites();
+	update_hud();
+	draw_hud();
 }
 
 void title_loop(void)
@@ -2169,7 +2216,7 @@ void start_round(void)
 	}
 
 	load_room();
-	update_hud();
+
 	// clear score counts
 
 	for (index = 0; index < 128; index++)
@@ -2327,8 +2374,16 @@ void init_game_loop(void)
 
 	game_mode = MODE_GAME;
 	// Initialize scores
+	// reset variables scores and rounds
 	team1_wins = 0;
 	team2_wins = 0;
+	current_round = 0;
+	team1_win1 = 0xFF;
+	team1_win2 = 0xFF;
+	team1_win3 = 0xFF;
+	team2_win1 = 0xFF;
+	team2_win2 = 0xFF;
+	team2_win3 = 0xFF;
 
 	tick_frequency = TIMER_TICK_FREQUENCY;
 	if (settings_speed == GAME_SLOW)
@@ -2527,7 +2582,7 @@ void init_roundover(void)
 	// increment the win count for the winning team
 	// let's draw that last frame:
 
-	debug_extras(); // draws the timer at 0
+	// debug_extras(); // draws the timer at 0
 
 	game_mode = MODE_ROUNDOVER;
 	music_stop();
@@ -2539,7 +2594,61 @@ void init_roundover(void)
 	{
 		team2_wins++;
 	}
-	update_hud();
+
+	if(current_round == 1){
+		round_1 = win_reason;
+		if(winner == ONETWO_WINNER)
+			round_1 += TEAM1_WIN;
+		else if (winner == THREEFOUR_WINNER)
+			round_1 += TEAM2_WIN;
+	} else if(current_round == 2){
+		round_2 = win_reason;
+		if(winner == ONETWO_WINNER)
+			round_2 += TEAM1_WIN;
+		else if (winner == THREEFOUR_WINNER)
+			round_2 += TEAM2_WIN;
+	} else if(current_round == 3){
+		round_3 = win_reason;
+		if(winner == ONETWO_WINNER)
+			round_3 += TEAM1_WIN;
+		else if (winner == THREEFOUR_WINNER)
+			round_3 += TEAM2_WIN;
+	} else if(current_round == 4){
+		round_4 = win_reason;
+		if(winner == ONETWO_WINNER)
+			round_4 += TEAM1_WIN;
+		else if (winner == THREEFOUR_WINNER)
+			round_4 += TEAM2_WIN;
+	} else if(current_round == 5){
+		round_5 = win_reason;
+		if(winner == ONETWO_WINNER)
+			round_5 += TEAM1_WIN;
+		else if (winner == THREEFOUR_WINNER)
+			round_5 += TEAM2_WIN;
+	} 
+
+	if(winner == ONETWO_WINNER)
+	{
+		if (team1_wins == 1)
+			team1_win1 = win_reason;
+		else if (team1_wins == 2)
+			team1_win2 = win_reason;
+		else if (team1_wins == 3)
+			team1_win3 = win_reason;
+	}
+	else if (winner == THREEFOUR_WINNER)
+	{
+		if (team2_wins == 1)
+			team2_win1 = win_reason;
+		else if (team2_wins == 2)
+			team2_win2 = win_reason;
+		else if (team2_wins == 3)
+			team2_win3 = win_reason;
+	}
+
+	current_round++;
+	
+	
 
 	// if (winner == ONETWO_WINNER)
 	// {
@@ -2550,6 +2659,7 @@ void init_roundover(void)
 	// 	multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
 	// }
 
+	multi_vram_buffer_horz("                      ", 22, NTADR_A(5, 3));
 	if (win_reason == WIN_HONEY_COLLECTED)
 	{
 		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 3));
@@ -2576,7 +2686,7 @@ void init_roundover(void)
 	}
 	else
 	{
-		multi_vram_buffer_horz("DRAW GAME!", 8, NTADR_A(11, 3));
+		multi_vram_buffer_horz("DRAW GAME!", 10, NTADR_A(11, 3));
 	}
 }
 
@@ -2670,6 +2780,8 @@ void roundover_loop(void)
 		++frame_counter;
 		// draw the sprites
 		draw_sprites();
+		update_hud();
+		draw_hud();
 		// update to only draw the winners as animated
 
 		ppu_wait_nmi();
@@ -2705,7 +2817,6 @@ void game_counters(void)
 	game_frame_timer++;
 	// Update sprite rotation every frame
 	sprite_rotation++;
-	ai_counter++;
 
 	if (game_frame_timer >= tick_frequency)
 	{
@@ -2731,7 +2842,7 @@ void game_counters(void)
 			else
 			{
 				winner = TIE_WINNER;
-				win_reason = WIN_TIME_UP;
+				win_reason = WIN_TIMEUP;
 				sfx_play(SFX_DRAW_GAME, 0);
 			}
 			init_roundover();
