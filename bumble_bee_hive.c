@@ -778,35 +778,58 @@ void draw_player_4(void)
 			break;
 		}
 	}
-}
-void draw_win_round_sprite(void){
-	if(temp_win_reason == WIN_HONEY_COLLECTED){
+} 
+void draw_win_round_sprite(void)
+{
+	if (temp_win_reason == WIN_HONEY_COLLECTED)
+	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_honey);
 	}
-	else if(temp_win_reason == WIN_MOST_HONEY_COLLECTED){
+	else if (temp_win_reason == WIN_MOST_HONEY_COLLECTED)
+	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_time);
-	} else if(temp_win_reason == WIN_BEE_EATEN){
-		if(temp_win_team == 1){
+	}
+	else if (temp_win_reason == WIN_BEE_EATEN)
+	{
+		if (temp_win_team == 1)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
-		} else {
+		}
+		else
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
 		}
-	}else if(temp_win_reason == WIN_DUCK_EATEN){
-		if(temp_win_team == 1){
+	}
+	else if (temp_win_reason == WIN_DUCK_EATEN)
+	{
+		if (temp_win_team == 1)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redbee);
-		} else {
+		}
+		else
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_bluebee);
 		}
-	} else if(temp_win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN){
-		if(temp_win_team == 1){
+	}
+	else if (temp_win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
+	{
+		if (temp_win_team == 1)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
-		} else {
+		}
+		else
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
 		}
-	}else if(temp_win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN){
-		if(temp_win_team == 1){
+	}
+	else if (temp_win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
+	{
+		if (temp_win_team == 1)
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_bluebee);
-		} else {
+		}
+		else
+		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redbee);
 		}
 	}
@@ -814,44 +837,87 @@ void draw_win_round_sprite(void){
 
 void update_hud(void)
 {
-	//draw the icons for winning
-	if(team1_win1 != 0xFF){
-		temp_x = 112;
-		temp_y = 8;
+	// draw the icons for winning
+	temp_x = 102;
+	temp_y = 8;
+	if (team1_win1 != 0xFF)
+	{
+
+		temp_win_team = 1;
 		temp_win_reason = team1_win1;
 		draw_win_round_sprite();
 	}
-	if(team1_win2 != 0xFF){
-		temp_x = 104;
-		temp_y = 8;
+	else
+	{
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_unwon);
+	}
+	temp_x = 92;
+	temp_y = 8;
+	if (team1_win2 != 0xFF)
+	{
+
+		temp_win_team = 1;
 		temp_win_reason = team1_win2;
 		draw_win_round_sprite();
 	}
-	if(team1_win3 != 0xFF){
-		temp_x = 96;
-		temp_y = 8;
+	else
+	{
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_unwon);
+	}
+	temp_x = 82;
+	temp_y = 8;
+	if (team1_win3 != 0xFF)
+	{
+
+		temp_win_team = 1;
 		temp_win_reason = team1_win3;
 		draw_win_round_sprite();
 	}
-	if(team2_win1 != 0xFF){
-		temp_x = 136;
-		temp_y = 8;
+	else
+	{
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_unwon);
+	}
+	temp_x = 146;
+	temp_y = 8;
+	if (team2_win1 != 0xFF)
+	{
+
+		temp_win_team = 2;
 		temp_win_reason = team2_win1;
 		draw_win_round_sprite();
 	}
-	if(team2_win2 != 0xFF){
-		temp_x = 144;
-		temp_y = 8;
+	else
+	{
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_unwon);
+	}
+
+	temp_x = 156;
+	temp_y = 8;
+	if (team2_win2 != 0xFF)
+	{
+
+		temp_win_team = 2;
 		temp_win_reason = team2_win2;
 		draw_win_round_sprite();
 	}
-	if(team2_win3 != 0xFF){
-		temp_x = 152;
-		temp_y = 8;
+	else
+	{
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_unwon);
+	}
+
+	temp_x = 166;
+	temp_y = 8;
+	if (team2_win3 != 0xFF)
+	{
+
+		temp_win_team = 2;
 		temp_win_reason = team2_win3;
 		draw_win_round_sprite();
 	}
-	
+	else
+	{
+		oam_meta_spr(temp_x, temp_y, gamesprites_win_unwon);
+	}
 }
 
 // Fast single-tile collision check for quack projectiles.
@@ -1647,9 +1713,9 @@ void draw_hud(void)
 
 	// Display team 2 score (2 digits)
 	temp1 = (team2_score / 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(23, 1));
-	temp1 = (team2_score % 10) + 0x30;
 	one_vram_buffer(temp1, NTADR_A(24, 1));
+	temp1 = (team2_score % 10) + 0x30;
+	one_vram_buffer(temp1, NTADR_A(25, 1));
 }
 
 void read_controllers(void)
@@ -1686,12 +1752,12 @@ void read_controllers(void)
 
 void player4_ai(void)
 {
-	if (frame_counter % 32 == 0) //every 32 frames make a new move
+	if (frame_counter % 32 == 0) // every 32 frames make a new move
 	{
 		player4_ai_ready = 1;
 	}
 
-	if(player4_ai_ready == 1)
+	if (player4_ai_ready == 1)
 	{
 		++ai_counter;
 		temp_x = BoxGuy4.x >> 8;
@@ -2304,6 +2370,10 @@ void start_round(void)
 
 	ppu_wait_nmi();
 	oam_clear();
+
+	draw_hud();
+	update_hud();
+
 	draw_player_1();
 	draw_player_2();
 	draw_player_3();
@@ -2595,39 +2665,48 @@ void init_roundover(void)
 		team2_wins++;
 	}
 
-	if(current_round == 1){
+	if (current_round == 1)
+	{
 		round_1 = win_reason;
-		if(winner == ONETWO_WINNER)
+		if (winner == ONETWO_WINNER)
 			round_1 += TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
 			round_1 += TEAM2_WIN;
-	} else if(current_round == 2){
+	}
+	else if (current_round == 2)
+	{
 		round_2 = win_reason;
-		if(winner == ONETWO_WINNER)
+		if (winner == ONETWO_WINNER)
 			round_2 += TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
 			round_2 += TEAM2_WIN;
-	} else if(current_round == 3){
+	}
+	else if (current_round == 3)
+	{
 		round_3 = win_reason;
-		if(winner == ONETWO_WINNER)
+		if (winner == ONETWO_WINNER)
 			round_3 += TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
 			round_3 += TEAM2_WIN;
-	} else if(current_round == 4){
+	}
+	else if (current_round == 4)
+	{
 		round_4 = win_reason;
-		if(winner == ONETWO_WINNER)
+		if (winner == ONETWO_WINNER)
 			round_4 += TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
 			round_4 += TEAM2_WIN;
-	} else if(current_round == 5){
+	}
+	else if (current_round == 5)
+	{
 		round_5 = win_reason;
-		if(winner == ONETWO_WINNER)
+		if (winner == ONETWO_WINNER)
 			round_5 += TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
 			round_5 += TEAM2_WIN;
-	} 
+	}
 
-	if(winner == ONETWO_WINNER)
+	if (winner == ONETWO_WINNER)
 	{
 		if (team1_wins == 1)
 			team1_win1 = win_reason;
@@ -2647,8 +2726,6 @@ void init_roundover(void)
 	}
 
 	current_round++;
-	
-	
 
 	// if (winner == ONETWO_WINNER)
 	// {
@@ -2682,7 +2759,7 @@ void init_roundover(void)
 	}
 	else if (win_reason == WIN_MOST_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(5, 3));
+		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(6, 3));
 	}
 	else
 	{

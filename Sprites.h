@@ -572,7 +572,7 @@ const unsigned char gamesprites_win_icon_honey[] = {
 };
 
 const unsigned char gamesprites_win_icon_time[] = {
-	0,  0,0x71,3,
+	0,  0,0x61,3,
 };
 
 const unsigned char gamesprites_win_blueduck[]={
@@ -592,5 +592,10 @@ const unsigned char gamesprites_win_bluebee[]={
 
 const unsigned char gamesprites_win_redbee[]={
 	  0,0,0x27,0,
+	0x80
+};
+
+const unsigned char gamesprites_win_unwon[]={
+	  0,0,0x26,0,
 	0x80
 };
