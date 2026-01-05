@@ -784,20 +784,24 @@ void draw_win_round_sprite(void)
 	if (temp_win_reason == WIN_HONEY_COLLECTED)
 	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_honey);
+		return;
 	}
 	else if (temp_win_reason == WIN_MOST_HONEY_COLLECTED)
 	{
 		oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_time);
+		return;
 	}
 	else if (temp_win_reason == WIN_BEE_EATEN)
 	{
 		if (temp_win_team == 1)
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
-		}
+			return;
+		} 
 		else
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
+			return;
 		}
 	}
 	else if (temp_win_reason == WIN_DUCK_EATEN)
@@ -805,10 +809,12 @@ void draw_win_round_sprite(void)
 		if (temp_win_team == 1)
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redbee);
+			return;
 		}
 		else
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_bluebee);
+			return;
 		}
 	}
 	else if (temp_win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
@@ -816,10 +822,12 @@ void draw_win_round_sprite(void)
 		if (temp_win_team == 1)
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
+			return;
 		}
 		else
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
+			return;
 		}
 	}
 	else if (temp_win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
@@ -827,10 +835,12 @@ void draw_win_round_sprite(void)
 		if (temp_win_team == 1)
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_bluebee);
+			return;
 		}
 		else
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redbee);
+			return;
 		}
 	}
 }
@@ -2447,7 +2457,17 @@ void init_game_loop(void)
 	// reset variables scores and rounds
 	team1_wins = 0;
 	team2_wins = 0;
-	current_round = 0;
+	current_round = 1;
+	round_1 = 0;
+	round_2 = 0;
+	round_3 = 0;
+	round_4 = 0;
+	round_5 = 0;
+	round_1_winner = 0;
+	round_2_winner = 0;
+	round_3_winner = 0;
+	round_4_winner = 0;
+	round_5_winner = 0;
 	team1_win1 = 0xFF;
 	team1_win2 = 0xFF;
 	team1_win3 = 0xFF;
@@ -2665,45 +2685,45 @@ void init_roundover(void)
 		team2_wins++;
 	}
 
-	if (current_round == 1)
+	if (round_1)
 	{
 		round_1 = win_reason;
 		if (winner == ONETWO_WINNER)
-			round_1 += TEAM1_WIN;
+			round_1_winner = TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
-			round_1 += TEAM2_WIN;
+			round_1_winner = TEAM2_WIN;
 	}
-	else if (current_round == 2)
+	else if (round_2)
 	{
 		round_2 = win_reason;
 		if (winner == ONETWO_WINNER)
-			round_2 += TEAM1_WIN;
+			round_2_winner = TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
-			round_2 += TEAM2_WIN;
+			round_2_winner = TEAM2_WIN;
 	}
-	else if (current_round == 3)
+	else if (round_3)
 	{
 		round_3 = win_reason;
 		if (winner == ONETWO_WINNER)
-			round_3 += TEAM1_WIN;
+			round_3_winner = TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
-			round_3 += TEAM2_WIN;
+			round_3_winner = TEAM2_WIN;
 	}
-	else if (current_round == 4)
+	else if (round_4)
 	{
 		round_4 = win_reason;
 		if (winner == ONETWO_WINNER)
-			round_4 += TEAM1_WIN;
+			round_4_winner = TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
-			round_4 += TEAM2_WIN;
+			round_4_winner = TEAM2_WIN;
 	}
-	else if (current_round == 5)
+	else if (round_5)
 	{
 		round_5 = win_reason;
 		if (winner == ONETWO_WINNER)
-			round_5 += TEAM1_WIN;
+			round_5_winner = TEAM1_WIN;
 		else if (winner == THREEFOUR_WINNER)
-			round_5 += TEAM2_WIN;
+			round_5_winner = TEAM2_WIN;
 	}
 
 	if (winner == ONETWO_WINNER)
@@ -2767,6 +2787,44 @@ void init_roundover(void)
 	}
 }
 
+void display_round_summary(void){
+if (temp_winner == TEAM1_WIN)
+	{
+		multi_vram_buffer_horz("TEAM 1", 7, NTADR_A(16, temp_y));
+	}
+	else if (temp_winner == TEAM2_WIN)
+	{
+		multi_vram_buffer_horz("TEAM 2", 7, NTADR_A(16, temp_y));
+	}
+	//display the reason
+	if((temp_round == WIN_HONEY_COLLECTED))
+	{
+		multi_vram_buffer_horz("100 HONEY COLLECTED", 19, NTADR_A(7, temp_y+1));
+	}
+	else if(temp_round == WIN_FRIENDLY_FIRE_BEE_EATEN)
+	{
+		multi_vram_buffer_horz("ENEMY ATE THEIR BEE", 19, NTADR_A(7, temp_y+1));
+	}
+	else if(temp_round == WIN_FRIENDLY_FIRE_DUCK_EATEN)
+	{
+		multi_vram_buffer_horz("ENEMY ATE THEIR DUCK", 20, NTADR_A(7, temp_y+1));
+	}
+	else if(temp_round == WIN_BEE_EATEN)
+	{
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, temp_y+1));
+	}
+	else if(temp_round == WIN_DUCK_EATEN)
+	{
+		multi_vram_buffer_horz("ENEMY DUCK EATEN", 16, NTADR_A(7, temp_y+1));
+	} 
+	else if (temp_round == WIN_MOST_HONEY_COLLECTED)
+	{
+		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(7, temp_y+1));
+	}
+
+
+}
+
 void init_gameover_loop(void)
 {
 	oam_clear();
@@ -2782,15 +2840,55 @@ void init_gameover_loop(void)
 	// say who won
 	if (team1_wins >= 3)
 	{
-		multi_vram_buffer_horz("TEAM 1 WINS THE MATCH!", 21, NTADR_A(4, 12));
+		multi_vram_buffer_horz("TEAM 1 WINS THE MATCH!", 21, NTADR_A(4, 4));
 	}
 	else if (team2_wins >= 3)
 	{
-		multi_vram_buffer_horz("TEAM 2 WINS THE MATCH!", 21, NTADR_A(4, 12));
+		multi_vram_buffer_horz("TEAM 2 WINS THE MATCH!", 21, NTADR_A(4, 4));
 	}
-	// draw on screen, probably an unrle eventually for this game
-	// probably lets the players select ai or player.
-	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
+	
+
+	//Summary of the rounds:
+
+
+	
+	multi_vram_buffer_horz("ROUND 1:", 9, NTADR_A(6, 10));
+	temp_y = 10;
+	temp_winner = round_1_winner;
+	temp_round = round_1;
+	display_round_summary();
+	
+	multi_vram_buffer_horz("ROUND 2:", 9, NTADR_A(6, 13));
+	temp_y = 13;
+	temp_winner = round_2_winner;
+	temp_round = round_2;
+	display_round_summary();
+
+	multi_vram_buffer_horz("ROUND 3:", 9, NTADR_A(6, 16));
+	temp_y = 16;
+	temp_winner = round_3_winner;
+	temp_round = round_3;
+	display_round_summary();
+
+	if (current_round >= 4)
+	{
+		multi_vram_buffer_horz("ROUND 4:", 9, NTADR_A(6, 19));
+		temp_y = 19;
+		temp_winner = round_4_winner;
+		temp_round = round_4;
+		display_round_summary();
+	}
+
+	if (current_round >= 5)
+	{
+		multi_vram_buffer_horz("ROUND 5:", 9, NTADR_A(6, 21));
+		temp_y = 21;
+		temp_winner = round_5_winner;
+		temp_round = round_5;
+		display_round_summary();
+	}
+	
+	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 25));
 
 	ppu_on_all(); // turn on screen
 	delay(10);

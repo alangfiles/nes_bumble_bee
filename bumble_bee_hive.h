@@ -165,11 +165,18 @@ unsigned char team2_win1;
 unsigned char team2_win2;
 unsigned char team2_win3;
 
+unsigned char round_1_winner;
+unsigned char round_2_winner;
+unsigned char round_3_winner;
+unsigned char round_4_winner;
+unsigned char round_5_winner;
 unsigned char round_1;
 unsigned char round_2;
 unsigned char round_3;
 unsigned char round_4;
 unsigned char round_5;
+unsigned char temp_round;
+unsigned char temp_winner;
 unsigned char current_round;
 unsigned char win_reason; // tracks how the game was won
 
@@ -181,7 +188,7 @@ unsigned char win_reason; // tracks how the game was won
 #define WIN_BEE_EATEN		0x04
 #define WIN_DUCK_EATEN		0x02
 #define WIN_MOST_HONEY_COLLECTED		0x01
-#define WIN_TIMEUP		0x00
+#define WIN_TIMEUP		0x03
 
 unsigned char powerup1;
 unsigned char powerup2;
@@ -385,6 +392,7 @@ void quack_movement(void);
 void load_bg_palette(void);
 void update_options_screen(void);
 void draw_win_round_sprite(void);
+void display_round_summary(void);
 
 char bg_collision_sub(void);
 char bg_coll_L(void);
