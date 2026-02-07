@@ -2790,11 +2790,11 @@ void init_roundover(void)
 void display_round_summary(void){
 if (temp_winner == TEAM1_WIN)
 	{
-		multi_vram_buffer_horz("TEAM 1", 7, NTADR_A(16, temp_y));
+		multi_vram_buffer_horz("RED TEAM", 8, NTADR_A(16, temp_y));
 	}
 	else if (temp_winner == TEAM2_WIN)
 	{
-		multi_vram_buffer_horz("TEAM 2", 7, NTADR_A(16, temp_y));
+		multi_vram_buffer_horz("BLUE TEAM", 9, NTADR_A(16, temp_y));
 	}
 	//display the reason
 	if((temp_round == WIN_HONEY_COLLECTED))
@@ -2842,11 +2842,11 @@ void init_gameover_loop(void)
 	// say who won
 	if (team1_wins >= 3)
 	{
-		multi_vram_buffer_horz("TEAM 1 WINS THE MATCH!", 21, NTADR_A(4, 4));
+		multi_vram_buffer_horz("RED TEAM WINS THE MATCH!", 24, NTADR_A(4, 4));
 	}
 	else if (team2_wins >= 3)
 	{
-		multi_vram_buffer_horz("TEAM 2 WINS THE MATCH!", 21, NTADR_A(4, 4));
+		multi_vram_buffer_horz("BLUE TEAM WINS THE MATCH!", 25, NTADR_A(4, 4));
 	}
 	
 
