@@ -778,7 +778,7 @@ void draw_player_4(void)
 			break;
 		}
 	}
-} 
+}
 void draw_win_round_sprite(void)
 {
 	if (temp_win_reason == WIN_HONEY_COLLECTED)
@@ -797,7 +797,7 @@ void draw_win_round_sprite(void)
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_redduck);
 			return;
-		} 
+		}
 		else
 		{
 			oam_meta_spr(temp_x, temp_y, gamesprites_win_blueduck);
@@ -1935,7 +1935,7 @@ void game_loop(void)
 	GenericBoxGuy = BoxGuy1;
 	generic_pad = pad1;
 	// call movement for generics
-	movement();																	 // this assigns old_x and old_y
+	movement(); // this assigns old_x and old_y
 	temp_x = GenericBoxGuy.x >> 8;
 	temp_y = GenericBoxGuy.y >> 8;
 	temp_x2 = BoxGuy3.x >> 8;
@@ -2236,6 +2236,18 @@ void options_loop(void)
 		if ((frame_counter % 10) == 0)
 		{
 			anim_frame_1 = (anim_frame_1 + 1) % 3;
+			if (!use_ai_player_2)
+			{
+				anim_frame_2 = (anim_frame_2 + 1) % 3;
+			}
+			if (!use_ai_player_3)
+			{
+				anim_frame_3 = (anim_frame_3 + 1) % 3;
+			}
+			if (!use_ai_player_4)
+			{
+				anim_frame_4 = (anim_frame_4 + 1) % 3;
+			}
 		}
 		switch (anim_frame_1)
 		{
@@ -2250,8 +2262,124 @@ void options_loop(void)
 			break;
 		}
 
+		// draw joinable player sprites at bottom
+
+		// Player 1 (bee)
+		if (use_ai_player_1)
+		{
+			oam_meta_spr(64, 200, gamesprites_smallbeeright0_data);
+		}
+		else
+		{
+			switch (anim_frame_1)
+			{
+			case 0:
+				oam_meta_spr(64, 200, gamesprites_smallbeeright0_data);
+				break;
+			case 1:
+				oam_meta_spr(64, 200, gamesprites_smallbeeright1_data);
+				break;
+			case 2:
+				oam_meta_spr(64, 200, gamesprites_smallbeeright2_data);
+				break;
+			}
+		}
+
+		// Player 2 (duck)
+		if (use_ai_player_2)
+		{
+			oam_meta_spr(104, 200, gamesprites_smallduckright0_data);
+		}
+		else
+		{
+			switch (anim_frame_2)
+			{
+			case 0:
+				oam_meta_spr(104, 200, gamesprites_smallduckright0_data);
+				break;
+			case 1:
+				oam_meta_spr(104, 200, gamesprites_smallduckright1_data);
+				break;
+			case 2:
+				oam_meta_spr(104, 200, gamesprites_smallduckright2_data);
+				break;
+			}
+		}
+
+		// Player 3 (bee 2)
+		if (use_ai_player_3)
+		{
+			oam_meta_spr(144, 200, gamesprites_smallbee2right0_data);
+		}
+		else
+		{
+			switch (anim_frame_3)
+			{
+			case 0:
+				oam_meta_spr(144, 200, gamesprites_smallbee2right0_data);
+				break;
+			case 1:
+				oam_meta_spr(144, 200, gamesprites_smallbee2right1_data);
+				break;
+			case 2:
+				oam_meta_spr(144, 200, gamesprites_smallbee2right2_data);
+				break;
+			}
+		}
+
+		// Player 4 (duck 2)
+		if (use_ai_player_4)
+		{
+			oam_meta_spr(184, 200, gamesprites_smallduck2right0_data);
+		}
+		else
+		{
+			switch (anim_frame_4)
+			{
+			case 0:
+				oam_meta_spr(184, 200, gamesprites_smallduck2right0_data);
+				break;
+			case 1:
+				oam_meta_spr(184, 200, gamesprites_smallduck2right1_data);
+				break;
+			case 2:
+				oam_meta_spr(184, 200, gamesprites_smallduck2right2_data);
+				break;
+			}
+		}
+
 		// Read all controllers for options screen
 		read_controllers();
+
+		// Press select to join/unjoin (toggle AI)
+		if (pad1_new & PAD_SELECT)
+		{
+			use_ai_player_1 ^= 1;
+		}
+		if (pad2_new & PAD_SELECT)
+		{
+			use_ai_player_2 ^= 1;
+			if (use_ai_player_2)
+			{
+				anim_frame_2 = 0;
+			}
+		}
+		if (pad3_new & PAD_SELECT)
+		{
+			use_ai_player_3 ^= 1;
+			if (use_ai_player_3)
+			{
+				anim_frame_3 = 0;
+			}
+		}
+		if (pad4_new & PAD_SELECT)
+		{
+			use_ai_player_4 ^= 1;
+			if (use_ai_player_4)
+			{
+				anim_frame_4 = 0;
+			}
+		}
 
 		if (pad1_new & PAD_DOWN)
 		{
@@ -2734,6 +2862,8 @@ void update_options_screen(void)
 	{
 		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 20));
 	}
+
+	multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 22));
 }
 
 void init_options_loop(void)
@@ -2809,7 +2939,7 @@ void init_roundover(void)
 		else if (winner == THREEFOUR_WINNER)
 			round_3_winner = TEAM2_WIN;
 	}
-	else if (current_round ==4)
+	else if (current_round == 4)
 	{
 		round_4 = win_reason;
 		if (winner == ONETWO_WINNER)
@@ -2887,8 +3017,9 @@ void init_roundover(void)
 	}
 }
 
-void display_round_summary(void){
-if (temp_winner == TEAM1_WIN)
+void display_round_summary(void)
+{
+	if (temp_winner == TEAM1_WIN)
 	{
 		multi_vram_buffer_horz("RED TEAM", 8, NTADR_A(16, temp_y));
 	}
@@ -2896,35 +3027,33 @@ if (temp_winner == TEAM1_WIN)
 	{
 		multi_vram_buffer_horz("BLUE TEAM", 9, NTADR_A(16, temp_y));
 	}
-	//display the reason
-	if((temp_round == WIN_HONEY_COLLECTED))
+	// display the reason
+	if ((temp_round == WIN_HONEY_COLLECTED))
 	{
-		multi_vram_buffer_horz("100 HONEY COLLECTED", 19, NTADR_A(7, temp_y+1));
+		multi_vram_buffer_horz("100 HONEY COLLECTED", 19, NTADR_A(7, temp_y + 1));
 	}
-	else if(temp_round == WIN_FRIENDLY_FIRE_BEE_EATEN)
+	else if (temp_round == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY ATE THEIR BEE", 19, NTADR_A(7, temp_y+1));
+		multi_vram_buffer_horz("ENEMY ATE THEIR BEE", 19, NTADR_A(7, temp_y + 1));
 	}
-	else if(temp_round == WIN_FRIENDLY_FIRE_DUCK_EATEN)
+	else if (temp_round == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY ATE THEIR DUCK", 20, NTADR_A(7, temp_y+1));
+		multi_vram_buffer_horz("ENEMY ATE THEIR DUCK", 20, NTADR_A(7, temp_y + 1));
 	}
-	else if(temp_round == WIN_BEE_EATEN)
+	else if (temp_round == WIN_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, temp_y+1));
+		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, temp_y + 1));
 	}
-	else if(temp_round == WIN_DUCK_EATEN)
+	else if (temp_round == WIN_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY DUCK EATEN", 16, NTADR_A(7, temp_y+1));
-	} 
+		multi_vram_buffer_horz("ENEMY DUCK EATEN", 16, NTADR_A(7, temp_y + 1));
+	}
 	else if (temp_round == WIN_MOST_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(7, temp_y+1));
+		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(7, temp_y + 1));
 	}
 
 	ppu_wait_nmi();
-
-
 }
 
 void init_gameover_loop(void)
@@ -2984,18 +3113,15 @@ void init_gameover_loop(void)
 		BoxGuy1.moving = 0;
 		BoxGuy2.moving = 0;
 	}
-	
 
-	//Summary of the rounds:
+	// Summary of the rounds:
 
-
-	
 	temp_y = 8;
 	multi_vram_buffer_horz("ROUND 1:", 9, NTADR_A(6, temp_y));
 	temp_winner = round_1_winner;
 	temp_round = round_1;
 	display_round_summary();
-	
+
 	temp_y = 11;
 	multi_vram_buffer_horz("ROUND 2:", 9, NTADR_A(6, temp_y));
 	temp_winner = round_2_winner;
@@ -3025,7 +3151,7 @@ void init_gameover_loop(void)
 		temp_round = round_5;
 		display_round_summary();
 	}
-	
+
 	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 
 	ppu_on_all(); // turn on screen
@@ -3065,7 +3191,7 @@ void init_system(void)
 	prev_pad3 = 0;
 	prev_pad4 = 0;
 
-	use_ai_player_1 = 0;
+	use_ai_player_1 = 1;
 	use_ai_player_2 = 1;
 	use_ai_player_3 = 1;
 	use_ai_player_4 = 1;
