@@ -1787,6 +1787,11 @@ static void write_two_digits(unsigned char value, unsigned char x_tens, unsigned
 	unsigned char tens = 0;
 	unsigned char ones;
 
+	if (value >= 100)
+	{
+		value = 0;
+	}
+
 	if (value == *last_value)
 	{
 		return;
@@ -2679,6 +2684,8 @@ void start_round(void)
 	ppu_wait_nmi();
 	delay(40);
 	oam_clear();
+	update_hud();
+	draw_hud();
 	draw_player_1();
 	draw_player_2();
 	draw_player_3();
@@ -2688,6 +2695,8 @@ void start_round(void)
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 	delay(40);
 	oam_clear();
+	update_hud();
+	draw_hud();
 	draw_player_1();
 	draw_player_2();
 	draw_player_3();
@@ -2697,6 +2706,8 @@ void start_round(void)
 	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 	delay(40);
 	oam_clear();
+	update_hud();
+	draw_hud();
 	draw_player_1();
 	draw_player_2();
 	draw_player_3();
