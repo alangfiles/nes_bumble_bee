@@ -12,6 +12,8 @@ unsigned char tick_frequency;
 #define QUACK_COOLDOWN 5
 #define HITBOX_DEBUG 0
 
+#define AI_DIRECTION_CHANGE_FRAMES 10
+
 
 // Speed options
 #define SPEED_SLOW 0x080
@@ -145,6 +147,18 @@ unsigned char bit_index;
 unsigned char bit_offset;
 unsigned char frame_counter;
 unsigned char ai_counter;
+unsigned char use_ai_player_1;
+unsigned char use_ai_player_2;
+unsigned char use_ai_player_3;
+unsigned char use_ai_player_4;
+unsigned char ai_timer_p1;
+unsigned char ai_timer_p2;
+unsigned char ai_timer_p3;
+unsigned char ai_timer_p4;
+unsigned char ai_dir_p1;
+unsigned char ai_dir_p2;
+unsigned char ai_dir_p3;
+unsigned char ai_dir_p4;
 unsigned char current_player; // tracks which player is currently being processed
 unsigned char team1_score; // score for team 1 (players 1 & 2)
 unsigned char team2_score; // score for team 2 (players 3 & 4)
@@ -365,6 +379,10 @@ void check_tile_and_collect(void);
 void initialize_collision_map(void);
 void draw_hud(void);
 void read_controllers(void);
+void player1_ai(void);
+void player2_ai(void);
+void player3_ai(void);
+void player4_ai(void);
 void game_loop(void);
 void title_loop(void);
 void options_loop(void);

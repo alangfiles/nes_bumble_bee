@@ -1728,6 +1728,57 @@ void draw_hud(void)
 	one_vram_buffer(temp1, NTADR_A(25, 1));
 }
 
+static unsigned char ai_dir_to_pad(unsigned char dir)
+{
+	if (dir == DIR_UP)
+	{
+		return PAD_UP;
+	}
+	else if (dir == DIR_DOWN)
+	{
+		return PAD_DOWN;
+	}
+	else if (dir == DIR_LEFT)
+	{
+		return PAD_LEFT;
+	}
+	return PAD_RIGHT;
+}
+
+static void ai_update(unsigned char *timer, unsigned char *dir)
+{
+	(*timer)++;
+	if (*timer >= AI_DIRECTION_CHANGE_FRAMES)
+	{
+		*timer = 0;
+		*dir = rand8() & 0x03;
+	}
+}
+
+void player1_ai(void)
+{
+	ai_update(&ai_timer_p1, &ai_dir_p1);
+	pad1 = ai_dir_to_pad(ai_dir_p1);
+}
+
+void player2_ai(void)
+{
+	ai_update(&ai_timer_p2, &ai_dir_p2);
+	pad2 = ai_dir_to_pad(ai_dir_p2);
+}
+
+void player3_ai(void)
+{
+	ai_update(&ai_timer_p3, &ai_dir_p3);
+	pad3 = ai_dir_to_pad(ai_dir_p3);
+}
+
+void player4_ai(void)
+{
+	ai_update(&ai_timer_p4, &ai_dir_p4);
+	pad4 = ai_dir_to_pad(ai_dir_p4);
+}
+
 void read_controllers(void)
 {
 	// read controllers 1 and 3 into an integer
@@ -1739,7 +1790,26 @@ void read_controllers(void)
 	doublepad = pad_poll_4score_2_4();
 	pad2 = high_byte(doublepad);
 	pad4 = low_byte(doublepad);
-	// player4_ai(); // todo: don't just have the ai here
+
+	if (game_mode == MODE_GAME)
+	{
+		if (use_ai_player_1)
+		{
+			player1_ai();
+		}
+		if (use_ai_player_2)
+		{
+			player2_ai();
+		}
+		if (use_ai_player_3)
+		{
+			player3_ai();
+		}
+		if (use_ai_player_4)
+		{
+			player4_ai();
+		}
+	}
 
 	// set the new inputs (things that have changed since last frame)
 	pad1_new = pad1 & (pad1 ^ prev_pad1);
@@ -2934,6 +3004,19 @@ void init_system(void)
 	prev_pad2 = 0;
 	prev_pad3 = 0;
 	prev_pad4 = 0;
+
+	use_ai_player_1 = 0;
+	use_ai_player_2 = 1;
+	use_ai_player_3 = 1;
+	use_ai_player_4 = 1;
+	ai_timer_p1 = 0;
+	ai_timer_p2 = 0;
+	ai_timer_p3 = 0;
+	ai_timer_p4 = 0;
+	ai_dir_p1 = DIR_UP;
+	ai_dir_p2 = DIR_UP;
+	ai_dir_p3 = DIR_UP;
+	ai_dir_p4 = DIR_UP;
 
 	// Initialize bigbee transformation timers
 	bee1_bigbee_timer = 0;
