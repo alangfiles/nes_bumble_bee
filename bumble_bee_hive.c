@@ -1794,11 +1794,16 @@ static void ai_dir_to_pad(void)
 
 static void ai_update(void)
 {
-	ai_timer_work++;
-	if (ai_timer_work >= AI_DIRECTION_CHANGE_FRAMES)
+	if (ai_collision_work)
 	{
 		ai_timer_work = 0;
-		ai_dir_work = rand8() & 0x03;
+		// pick a new direction on collision
+		temp = ai_dir_work;
+		do
+		{
+			ai_dir_work = rand8() & 0x03;
+		} while (ai_dir_work == temp);
+		ai_collision_work = 0;
 	}
 }
 
@@ -1806,6 +1811,7 @@ void player1_ai(void)
 {
 	ai_timer_work = ai_timer_p1;
 	ai_dir_work = ai_dir_p1;
+	ai_collision_work = BoxGuy1.collision;
 	ai_update();
 	ai_timer_p1 = ai_timer_work;
 	ai_dir_p1 = ai_dir_work;
@@ -1817,6 +1823,7 @@ void player2_ai(void)
 {
 	ai_timer_work = ai_timer_p2;
 	ai_dir_work = ai_dir_p2;
+	ai_collision_work = BoxGuy2.collision;
 	ai_update();
 	ai_timer_p2 = ai_timer_work;
 	ai_dir_p2 = ai_dir_work;
@@ -1828,6 +1835,7 @@ void player3_ai(void)
 {
 	ai_timer_work = ai_timer_p3;
 	ai_dir_work = ai_dir_p3;
+	ai_collision_work = BoxGuy3.collision;
 	ai_update();
 	ai_timer_p3 = ai_timer_work;
 	ai_dir_p3 = ai_dir_work;
@@ -1839,6 +1847,7 @@ void player4_ai(void)
 {
 	ai_timer_work = ai_timer_p4;
 	ai_dir_work = ai_dir_p4;
+	ai_collision_work = BoxGuy4.collision;
 	ai_update();
 	ai_timer_p4 = ai_timer_work;
 	ai_dir_p4 = ai_dir_work;
@@ -1936,6 +1945,8 @@ void game_loop(void)
 		// players bounce off each other
 		BoxGuy1.x = old_x;
 		BoxGuy1.y = old_y;
+		BoxGuy1.collision = 1;
+		BoxGuy3.collision = 1;
 	}
 
 	// setup generics for player 2 (chaser)
@@ -1963,6 +1974,8 @@ void game_loop(void)
 		// players bounce off each other
 		BoxGuy2.x = old_x;
 		BoxGuy2.y = old_y;
+		BoxGuy2.collision = 1;
+		BoxGuy4.collision = 1;
 	}
 
 	// setup generics for player 3 (seeker)
@@ -1980,6 +1993,8 @@ void game_loop(void)
 		// players bounce off each other
 		BoxGuy3.x = old_x;
 		BoxGuy3.y = old_y;
+		BoxGuy3.collision = 1;
+		BoxGuy1.collision = 1;
 	}
 
 	// setup generics for player 4 (chaser)
@@ -2007,6 +2022,8 @@ void game_loop(void)
 		// players bounce off each other
 		BoxGuy4.x = old_x;
 		BoxGuy4.y = old_y;
+		BoxGuy4.collision = 1;
+		BoxGuy2.collision = 1;
 	}
 
 	// 4. CHECK POWERUP COLLISIONS
