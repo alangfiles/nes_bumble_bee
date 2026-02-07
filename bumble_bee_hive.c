@@ -2256,6 +2256,18 @@ void gameover_loop(void)
 
 	while (1)
 	{
+		frame_counter++;
+		oam_clear();
+		if (winner == ONETWO_WINNER)
+		{
+			draw_player_1();
+			draw_player_2();
+		}
+		else if (winner == THREEFOUR_WINNER)
+		{
+			draw_player_3();
+			draw_player_4();
+		}
 
 		ppu_wait_nmi();
 		read_controllers();
@@ -2539,6 +2551,7 @@ void load_bg_palette(void)
 
 void init_title_loop(void)
 {
+	oam_clear();
 	delay(30);
 	game_mode = MODE_TITLE;
 	ppu_off(); // screen off
@@ -2843,10 +2856,46 @@ void init_gameover_loop(void)
 	if (team1_wins >= 3)
 	{
 		multi_vram_buffer_horz("RED TEAM WINS THE MATCH!", 24, NTADR_A(4, 4));
+		winner = ONETWO_WINNER;
 	}
 	else if (team2_wins >= 3)
 	{
 		multi_vram_buffer_horz("BLUE TEAM WINS THE MATCH!", 25, NTADR_A(4, 4));
+		winner = THREEFOUR_WINNER;
+	}
+
+	// position winning team at the top and hide the losers
+	bee1_bigbee_timer = 0;
+	bee3_bigbee_timer = 0;
+	if (winner == ONETWO_WINNER)
+	{
+		BoxGuy1.x = 0x6E00;
+		BoxGuy1.y = 0x1200;
+		BoxGuy1.direction = DIR_RIGHT;
+		BoxGuy2.x = 0x8100;
+		BoxGuy2.y = 0x1200;
+		BoxGuy2.direction = DIR_LEFT;
+		BoxGuy2.moving = 1;
+
+		BoxGuy3.y = 0xF000;
+		BoxGuy4.y = 0xF000;
+		BoxGuy3.moving = 0;
+		BoxGuy4.moving = 0;
+	}
+	else if (winner == THREEFOUR_WINNER)
+	{
+		BoxGuy3.x = 0x6E00;
+		BoxGuy3.y = 0x1200;
+		BoxGuy3.direction = DIR_RIGHT;
+		BoxGuy4.x = 0x8100;
+		BoxGuy4.y = 0x1200;
+		BoxGuy4.direction = DIR_LEFT;
+		BoxGuy4.moving = 1;
+
+		BoxGuy1.y = 0xF000;
+		BoxGuy2.y = 0xF000;
+		BoxGuy1.moving = 0;
+		BoxGuy2.moving = 0;
 	}
 	
 
