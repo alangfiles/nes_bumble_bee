@@ -101,6 +101,10 @@ void main(void)
 		{
 			roundover_loop();
 		}
+		//end of game loop
+		if(HITBOX_DEBUG){
+			gray_line();
+		}
 	}
 }
 
@@ -2492,7 +2496,9 @@ void gameover_loop(void)
 			init_title_loop();
 			break;
 		}
+
 	}
+	
 }
 
 void start_round(void)
