@@ -110,8 +110,8 @@ void main(void)
 		{
 			roundover_loop();
 		}
-		//end of game loop
-		gray_line();
+		//end of game loop DEBUG
+		// gray_line();
 	}
 }
 
@@ -2873,7 +2873,7 @@ void update_options_screen(void)
 		temp_y = 160;
 	}
 	// draws the values based on the settings:
-	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 10));
+	
 
 	// Show current speed selection
 	if (settings_speed == GAME_SLOW)
@@ -2889,7 +2889,6 @@ void update_options_screen(void)
 		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 12));
 	}
 
-	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
 
 	if (settings_map == MAP_RANDOM)
 	{
@@ -2908,7 +2907,7 @@ void update_options_screen(void)
 		multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 16));
 	}
 
-	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
+	
 	if (settings_song == SONG_BEE)
 	{
 		multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 20));
@@ -2922,7 +2921,7 @@ void update_options_screen(void)
 		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 20));
 	}
 
-	multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 22));
+	
 }
 
 void init_options_loop(void)
@@ -2948,6 +2947,11 @@ void init_options_loop(void)
 	pal_spr(palette_sp);
 	options_anim_tick = 0;
 
+	// these are the static labels, we only need to draw them once
+	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 10));
+	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
+	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
+	multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 22));
 	update_options_screen();
 
 	// Initialize start button variables for options
@@ -3081,11 +3085,11 @@ void display_round_summary(void)
 {
 	if (temp_winner == TEAM1_WIN)
 	{
-		multi_vram_buffer_horz("RED TEAM", 8, NTADR_A(16, temp_y));
+		multi_vram_buffer_horz("RED", 3, NTADR_A(16, temp_y));
 	}
 	else if (temp_winner == TEAM2_WIN)
 	{
-		multi_vram_buffer_horz("BLUE TEAM", 9, NTADR_A(16, temp_y));
+		multi_vram_buffer_horz("BLUE", 4, NTADR_A(16, temp_y));
 	}
 	// display the reason
 	if ((temp_round == WIN_HONEY_COLLECTED))
@@ -3131,12 +3135,12 @@ void init_gameover_loop(void)
 	// say who won
 	if (team1_wins >= 3)
 	{
-		multi_vram_buffer_horz("RED TEAM WINS THE MATCH!", 24, NTADR_A(4, 4));
+		multi_vram_buffer_horz("RED TEAM WINS", 13, NTADR_A(9, 4));
 		winner = ONETWO_WINNER;
 	}
 	else if (team2_wins >= 3)
 	{
-		multi_vram_buffer_horz("BLUE TEAM WINS THE MATCH!", 25, NTADR_A(4, 4));
+		multi_vram_buffer_horz("BLUE TEAM WINS", 14, NTADR_A(9, 4));
 		winner = THREEFOUR_WINNER;
 	}
 
