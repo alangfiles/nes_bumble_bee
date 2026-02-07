@@ -12,6 +12,15 @@
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
 
+static unsigned char anim_tick_p1;
+static unsigned char anim_tick_p2;
+static unsigned char anim_tick_p3;
+static unsigned char anim_tick_p4;
+static unsigned char options_anim_tick;
+static unsigned char last_team1_score = 0xFF;
+static unsigned char last_team2_score = 0xFF;
+static unsigned char last_game_timer = 0xFF;
+
 void main(void)
 {
 
@@ -102,9 +111,7 @@ void main(void)
 			roundover_loop();
 		}
 		//end of game loop
-		if(HITBOX_DEBUG){
-			gray_line();
-		}
+		gray_line();
 	}
 }
 
@@ -127,8 +134,6 @@ void load_room(void)
 		{
 			vram_put(map_ptr[largeindex]);
 		}
-
-		flush_vram_update2();
 	}
 	ppu_on_all();
 }
@@ -322,15 +327,19 @@ void draw_player_1(void)
 		return;
 	}
 
-	if (stun_p1 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	if (stun_p1 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 	{
 		return; // flash when stunned (only if game is still ongoing)
 	}
 
 	// Update animation frame every 10 frames
-	if ((frame_counter % 10) == 0)
+	if (++anim_tick_p1 >= 10)
 	{
-		anim_frame_1 = (anim_frame_1 + 1) % 3;
+		anim_tick_p1 = 0;
+		if (++anim_frame_1 >= 3)
+		{
+			anim_frame_1 = 0;
+		}
 	}
 
 	// Check if player is in bigbee form
@@ -340,7 +349,7 @@ void draw_player_1(void)
 		if (bee1_bigbee_timer < BIGBEE_FLICKER_START)
 		{
 			// Flicker effect when bigbee is about to expire
-			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER)
+			if ((frame_counter & 0x03) < 2 && winner == UNDEFINED_WINNER)
 			{
 				return; // Skip drawing this frame
 			}
@@ -471,15 +480,22 @@ void draw_player_2(void)
 		return;
 	}
 
-	if (stun_p2 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	if (stun_p2 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 	{
 		return; // flash when stunned
 	}
 
 	// Update animation frame every 10 frames, but only if player is moving
-	if ((frame_counter % 10) == 0 && BoxGuy2.moving)
+	if (BoxGuy2.moving)
 	{
-		anim_frame_2 = (anim_frame_2 + 1) % 3;
+		if (++anim_tick_p2 >= 10)
+		{
+			anim_tick_p2 = 0;
+			if (++anim_frame_2 >= 3)
+			{
+				anim_frame_2 = 0;
+			}
+		}
 	}
 
 	// Choose sprite based on direction and animation frame
@@ -573,15 +589,19 @@ void draw_player_3(void)
 		return;
 	}
 
-	if (stun_p3 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	if (stun_p3 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 	{
 		return; // flash when stunned
 	}
 
 	// Update animation frame every 10 frames
-	if ((frame_counter % 10) == 0)
+	if (++anim_tick_p3 >= 10)
 	{
-		anim_frame_3 = (anim_frame_3 + 1) % 3;
+		anim_tick_p3 = 0;
+		if (++anim_frame_3 >= 3)
+		{
+			anim_frame_3 = 0;
+		}
 	}
 
 	// Check if player is in bigbee form
@@ -591,7 +611,7 @@ void draw_player_3(void)
 		if (bee3_bigbee_timer < BIGBEE_FLICKER_START)
 		{
 			// Flicker effect when bigbee is about to expire
-			if ((frame_counter % 4) < 2 && winner == UNDEFINED_WINNER)
+			if ((frame_counter & 0x03) < 2 && winner == UNDEFINED_WINNER)
 			{
 				return; // Skip drawing this frame
 			}
@@ -722,15 +742,22 @@ void draw_player_4(void)
 		return;
 	}
 
-	if (stun_p4 > 0 && frame_counter % 2 == 0 && winner == UNDEFINED_WINNER)
+	if (stun_p4 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 	{
 		return; // flash when stunned
 	}
 
 	// Update animation frame every 10 frames, but only if player is moving
-	if ((frame_counter % 10) == 0 && BoxGuy4.moving)
+	if (BoxGuy4.moving)
 	{
-		anim_frame_4 = (anim_frame_4 + 1) % 3;
+		if (++anim_tick_p4 >= 10)
+		{
+			anim_tick_p4 = 0;
+			if (++anim_frame_4 >= 3)
+			{
+				anim_frame_4 = 0;
+			}
+		}
 	}
 
 	// Choose sprite based on direction and animation frame
@@ -1755,25 +1782,38 @@ char check_powerup_collision()
 	return 0;
 }
 
+static void write_two_digits(unsigned char value, unsigned char x_tens, unsigned char x_ones, unsigned char y, unsigned char *last_value)
+{
+	unsigned char tens = 0;
+	unsigned char ones;
+
+	if (value == *last_value)
+	{
+		return;
+	}
+	*last_value = value;
+
+	ones = value;
+	while (ones >= 10)
+	{
+		ones -= 10;
+		++tens;
+	}
+
+	one_vram_buffer(tens + 0x30, NTADR_A(x_tens, y));
+	one_vram_buffer(ones + 0x30, NTADR_A(x_ones, y));
+}
+
 void draw_hud(void)
 {
 	// Display team 1 score (2 digits)
-	temp1 = (team1_score / 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(6, 1));
-	temp1 = (team1_score % 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(7, 1));
+	write_two_digits(team1_score, 6, 7, 1, &last_team1_score);
 
 	// Timer
-	temp1 = (game_timer / 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(15, 1));
-	temp1 = (game_timer % 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(16, 1));
+	write_two_digits(game_timer, 15, 16, 1, &last_game_timer);
 
 	// Display team 2 score (2 digits)
-	temp1 = (team2_score / 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(24, 1));
-	temp1 = (team2_score % 10) + 0x30;
-	one_vram_buffer(temp1, NTADR_A(25, 1));
+	write_two_digits(team2_score, 24, 25, 1, &last_team2_score);
 }
 
 static void ai_dir_to_pad(void)
@@ -2237,20 +2277,33 @@ void options_loop(void)
 
 		// draw bee:
 		oam_clear();
-		if ((frame_counter % 10) == 0)
+		if (++options_anim_tick >= 10)
 		{
-			anim_frame_1 = (anim_frame_1 + 1) % 3;
+			options_anim_tick = 0;
+			if (++anim_frame_1 >= 3)
+			{
+				anim_frame_1 = 0;
+			}
 			if (!use_ai_player_2)
 			{
-				anim_frame_2 = (anim_frame_2 + 1) % 3;
+				if (++anim_frame_2 >= 3)
+				{
+					anim_frame_2 = 0;
+				}
 			}
 			if (!use_ai_player_3)
 			{
-				anim_frame_3 = (anim_frame_3 + 1) % 3;
+				if (++anim_frame_3 >= 3)
+				{
+					anim_frame_3 = 0;
+				}
 			}
 			if (!use_ai_player_4)
 			{
-				anim_frame_4 = (anim_frame_4 + 1) % 3;
+				if (++anim_frame_4 >= 3)
+				{
+					anim_frame_4 = 0;
+				}
 			}
 		}
 		switch (anim_frame_1)
@@ -2893,6 +2946,7 @@ void init_options_loop(void)
 	// load the title palettes
 	pal_bg(palette_options_bg);
 	pal_spr(palette_sp);
+	options_anim_tick = 0;
 
 	update_options_screen();
 
@@ -3225,7 +3279,6 @@ void clear_background(void)
 	for (tempint = 0; tempint < 1024; ++tempint)
 	{
 		vram_put(0x00);
-		flush_vram_update2();
 	}
 	ppu_on_all(); // turn on screen
 }
