@@ -569,10 +569,12 @@ const unsigned char gamesprites_powerup_data[]={
 
 const unsigned char gamesprites_win_icon_honey[] = {
 	0,  0,0x60,0,
+	0x80
 };
 
 const unsigned char gamesprites_win_icon_time[] = {
 	0, 0,0x61,0,
+	0x80
 };
 
 const unsigned char gamesprites_win_blueduck[]={
