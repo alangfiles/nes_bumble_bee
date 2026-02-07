@@ -1728,55 +1728,78 @@ void draw_hud(void)
 	one_vram_buffer(temp1, NTADR_A(25, 1));
 }
 
-static unsigned char ai_dir_to_pad(unsigned char dir)
+static void ai_dir_to_pad(void)
 {
-	if (dir == DIR_UP)
+	if (ai_dir_work == DIR_UP)
 	{
-		return PAD_UP;
+		ai_pad_work = PAD_UP;
 	}
-	else if (dir == DIR_DOWN)
+	else if (ai_dir_work == DIR_DOWN)
 	{
-		return PAD_DOWN;
+		ai_pad_work = PAD_DOWN;
 	}
-	else if (dir == DIR_LEFT)
+	else if (ai_dir_work == DIR_LEFT)
 	{
-		return PAD_LEFT;
+		ai_pad_work = PAD_LEFT;
 	}
-	return PAD_RIGHT;
+	else
+	{
+		ai_pad_work = PAD_RIGHT;
+	}
 }
 
-static void ai_update(unsigned char *timer, unsigned char *dir)
+static void ai_update(void)
 {
-	(*timer)++;
-	if (*timer >= AI_DIRECTION_CHANGE_FRAMES)
+	ai_timer_work++;
+	if (ai_timer_work >= AI_DIRECTION_CHANGE_FRAMES)
 	{
-		*timer = 0;
-		*dir = rand8() & 0x03;
+		ai_timer_work = 0;
+		ai_dir_work = rand8() & 0x03;
 	}
 }
 
 void player1_ai(void)
 {
-	ai_update(&ai_timer_p1, &ai_dir_p1);
-	pad1 = ai_dir_to_pad(ai_dir_p1);
+	ai_timer_work = ai_timer_p1;
+	ai_dir_work = ai_dir_p1;
+	ai_update();
+	ai_timer_p1 = ai_timer_work;
+	ai_dir_p1 = ai_dir_work;
+	ai_dir_to_pad();
+	pad1 = ai_pad_work;
 }
 
 void player2_ai(void)
 {
-	ai_update(&ai_timer_p2, &ai_dir_p2);
-	pad2 = ai_dir_to_pad(ai_dir_p2);
+	ai_timer_work = ai_timer_p2;
+	ai_dir_work = ai_dir_p2;
+	ai_update();
+	ai_timer_p2 = ai_timer_work;
+	ai_dir_p2 = ai_dir_work;
+	ai_dir_to_pad();
+	pad2 = ai_pad_work;
 }
 
 void player3_ai(void)
 {
-	ai_update(&ai_timer_p3, &ai_dir_p3);
-	pad3 = ai_dir_to_pad(ai_dir_p3);
+	ai_timer_work = ai_timer_p3;
+	ai_dir_work = ai_dir_p3;
+	ai_update();
+	ai_timer_p3 = ai_timer_work;
+	ai_dir_p3 = ai_dir_work;
+	ai_dir_to_pad();
+	pad3 = ai_pad_work;
 }
 
 void player4_ai(void)
 {
-	ai_update(&ai_timer_p4, &ai_dir_p4);
-	pad4 = ai_dir_to_pad(ai_dir_p4);
+	ai_timer_work = ai_timer_p4;
+	ai_dir_work = ai_dir_p4;
+	ai_update();
+	ai_timer_p4 = ai_timer_work;
+	ai_dir_p4 = ai_dir_work;
+	ai_dir_to_pad();
+	pad4 = ai_pad_work;
 }
 
 void read_controllers(void)

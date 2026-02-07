@@ -159,6 +159,9 @@ unsigned char ai_dir_p1;
 unsigned char ai_dir_p2;
 unsigned char ai_dir_p3;
 unsigned char ai_dir_p4;
+unsigned char ai_timer_work;
+unsigned char ai_dir_work;
+unsigned char ai_pad_work;
 unsigned char current_player; // tracks which player is currently being processed
 unsigned char team1_score; // score for team 1 (players 1 & 2)
 unsigned char team2_score; // score for team 2 (players 3 & 4)
