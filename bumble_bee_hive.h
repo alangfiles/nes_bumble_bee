@@ -249,6 +249,7 @@ struct BoxGuy {
 	unsigned int y;
 	unsigned char direction;
 	unsigned char moving;
+	unsigned char collision;
 };
 
 // Quack projectile for each duck (2 and 4)
@@ -266,10 +267,10 @@ unsigned char quack4_cooldown; // Cooldown timer for duck 4's qu
 
 struct BoxGuy GenericBoxGuy;
 
-struct BoxGuy BoxGuy1 = {0x4000,0x2800};
-struct BoxGuy BoxGuy2 = {0x8000,0x3000};
-struct BoxGuy BoxGuy3 = {0xA000,0x3000};
-struct BoxGuy BoxGuy4 = {0xC000,0x4000};
+struct BoxGuy BoxGuy1 = {0x4000, 0x2800, DIR_NONE, 0, 0};
+struct BoxGuy BoxGuy2 = {0x8000, 0x3000, DIR_NONE, 0, 0};
+struct BoxGuy BoxGuy3 = {0xA000, 0x3000, DIR_NONE, 0, 0};
+struct BoxGuy BoxGuy4 = {0xC000, 0x4000, DIR_NONE, 0, 0};
 
 #define HERO_WIDTH 6
 #define HERO_HEIGHT 6

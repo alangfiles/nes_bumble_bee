@@ -1223,6 +1223,10 @@ void check_powerup(void)
 
 void movement(void)
 {
+	// reset collision state for this movement step
+	collision = 0;
+	GenericBoxGuy.collision = 0;
+
 	// stunned players can't move
 	if ((current_player == 1 && stun_p1 > 0) ||
 			(current_player == 2 && stun_p2 > 0) ||
@@ -1230,6 +1234,21 @@ void movement(void)
 			(current_player == 4 && stun_p4 > 0))
 	{
 		// Player is stunned, skip movement processing
+		switch (current_player)
+		{
+		case 1:
+			BoxGuy1 = GenericBoxGuy;
+			break;
+		case 2:
+			BoxGuy2 = GenericBoxGuy;
+			break;
+		case 3:
+			BoxGuy3 = GenericBoxGuy;
+			break;
+		case 4:
+			BoxGuy4 = GenericBoxGuy;
+			break;
+		}
 		return;
 	}
 
@@ -1411,6 +1430,8 @@ void movement(void)
 		if (bg_coll_L())
 		{													 // check collision left
 			GenericBoxGuy.x = old_x; // revert to old position
+			collision = 1;
+			GenericBoxGuy.collision = 1;
 		}
 	}
 	else if (hero_velocity_x > 0)
@@ -1418,6 +1439,8 @@ void movement(void)
 		if (bg_coll_R())
 		{													 // check collision right
 			GenericBoxGuy.x = old_x; // revert to old position
+			collision = 1;
+			GenericBoxGuy.collision = 1;
 		}
 	}
 	// else 0, skip it
@@ -1474,6 +1497,8 @@ void movement(void)
 		if (bg_coll_U())
 		{													 // check collision up
 			GenericBoxGuy.y = old_y; // revert to old position
+			collision = 1;
+			GenericBoxGuy.collision = 1;
 		}
 	}
 	else if (hero_velocity_y > 0)
@@ -1481,12 +1506,31 @@ void movement(void)
 		if (bg_coll_D())
 		{													 // check collision down
 			GenericBoxGuy.y = old_y; // revert to old position
+			collision = 1;
+			GenericBoxGuy.collision = 1;
 		}
 	}
 	// else 0, skip it
 
 	// player has moved, now collect any pellets
 	check_tile_and_collect();
+
+	// move updated generic to the specific player
+	switch (current_player)
+	{
+	case 1:
+		BoxGuy1 = GenericBoxGuy;
+		break;
+	case 2:
+		BoxGuy2 = GenericBoxGuy;
+		break;
+	case 3:
+		BoxGuy3 = GenericBoxGuy;
+		break;
+	case 4:
+		BoxGuy4 = GenericBoxGuy;
+		break;
+	}
 }
 
 char bg_coll_L(void)
@@ -1883,7 +1927,6 @@ void game_loop(void)
 	generic_pad = pad1;
 	// call movement for generics
 	movement();																	 // this assigns old_x and old_y
-	BoxGuy1.direction = GenericBoxGuy.direction; // keep direction updated for animation
 	temp_x = GenericBoxGuy.x >> 8;
 	temp_y = GenericBoxGuy.y >> 8;
 	temp_x2 = BoxGuy3.x >> 8;
@@ -1894,18 +1937,12 @@ void game_loop(void)
 		BoxGuy1.x = old_x;
 		BoxGuy1.y = old_y;
 	}
-	else
-	{
-		BoxGuy1.x = GenericBoxGuy.x;
-		BoxGuy1.y = GenericBoxGuy.y;
-	}
 
 	// setup generics for player 2 (chaser)
 	current_player = 2;
 	GenericBoxGuy = BoxGuy2;
 	generic_pad = pad2;
 	movement();
-	BoxGuy2.direction = GenericBoxGuy.direction; // keep direction updated for animation
 
 	// For ducks, set direction to NONE if no input is pressed
 	if (!(pad2 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN)))
@@ -1927,11 +1964,6 @@ void game_loop(void)
 		BoxGuy2.x = old_x;
 		BoxGuy2.y = old_y;
 	}
-	else
-	{
-		BoxGuy2.x = GenericBoxGuy.x;
-		BoxGuy2.y = GenericBoxGuy.y;
-	}
 
 	// setup generics for player 3 (seeker)
 	current_player = 3;
@@ -1939,7 +1971,6 @@ void game_loop(void)
 	generic_pad = pad3;
 	movement();
 	// player 1 blocks player 3
-	BoxGuy3.direction = GenericBoxGuy.direction; // keep direction updated for animation
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
 	temp_x2 = GenericBoxGuy.x >> 8;
@@ -1950,18 +1981,12 @@ void game_loop(void)
 		BoxGuy3.x = old_x;
 		BoxGuy3.y = old_y;
 	}
-	else
-	{
-		BoxGuy3.x = GenericBoxGuy.x;
-		BoxGuy3.y = GenericBoxGuy.y;
-	}
 
 	// setup generics for player 4 (chaser)
 	current_player = 4;
 	GenericBoxGuy = BoxGuy4;
 	generic_pad = pad4;
 	movement();
-	BoxGuy4.direction = GenericBoxGuy.direction; // keep direction updated for animation
 
 	// For ducks, set direction to NONE if no input is pressed
 	if (!(pad4 & (PAD_LEFT | PAD_RIGHT | PAD_UP | PAD_DOWN)))
@@ -1982,11 +2007,6 @@ void game_loop(void)
 		// players bounce off each other
 		BoxGuy4.x = old_x;
 		BoxGuy4.y = old_y;
-	}
-	else
-	{
-		BoxGuy4.x = GenericBoxGuy.x;
-		BoxGuy4.y = GenericBoxGuy.y;
 	}
 
 	// 4. CHECK POWERUP COLLISIONS
