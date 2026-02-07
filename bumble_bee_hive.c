@@ -1760,49 +1760,6 @@ void read_controllers(void)
 	//  [0b00010000,0b00100000,0b01000000,0b10000000]
 }
 
-void player4_ai(void)
-{
-	if (frame_counter % 32 == 0) // every 32 frames make a new move
-	{
-		player4_ai_ready = 1;
-	}
-
-	if (player4_ai_ready == 1)
-	{
-		++ai_counter;
-		temp_x = BoxGuy4.x >> 8;
-		temp_y = BoxGuy4.y >> 8;
-		temp_x2 = BoxGuy1.x >> 8;
-		temp_y2 = BoxGuy1.y >> 8;
-
-		if (ai_counter % 2 == 1)
-		{
-			if (temp_x < temp_x2)
-				pad4_ai = PAD_RIGHT;
-			else if (temp_x >= temp_x2)
-				pad4_ai = PAD_LEFT;
-		}
-		else
-		{
-			if (temp_y < temp_y2)
-				pad4_ai = PAD_DOWN;
-			else if (temp_y >= temp_y2)
-				pad4_ai = PAD_UP;
-		}
-	}
-	pad4 = pad4_ai;
-}
-
-void chaser_ai(void)
-{ // ai for the duck
-	/*
-			move towards the nearest enemy seeker
-			avoid the friendly seeker
-		*/
-	// pad2 = PAD_LEFT;
-	// pad4 = PAD_LEFT;
-}
-
 void game_loop(void)
 {
 	// wait till beginning of the frame
