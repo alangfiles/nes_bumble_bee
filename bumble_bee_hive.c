@@ -3255,7 +3255,10 @@ void init_roundover(void)
 			team2_win3 = win_reason;
 	}
 
-	current_round++;
+	if (winner != TIE_WINNER)
+	{
+		current_round++;
+	}
 
 	// if (winner == ONETWO_WINNER)
 	// {
