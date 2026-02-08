@@ -2458,11 +2458,11 @@ _combs:
 	.byte	$B6
 	.byte	$B6
 	.byte	$00
+	.byte	$04
+	.byte	$01
+	.byte	$00
+	.byte	$00
 	.byte	$0C
-	.byte	$0F
-	.byte	$07
-	.byte	$0D
-	.byte	$0F
 	.byte	$03
 	.byte	$00
 	.byte	$00
@@ -2696,14 +2696,14 @@ _vines:
 	.byte	$C0
 	.byte	$A0
 	.byte	$A1
+	.byte	$C1
 	.byte	$C4
-	.byte	$A5
 	.byte	$A5
 	.byte	$C0
 	.byte	$E1
 	.byte	$A0
+	.byte	$A1
 	.byte	$C4
-	.byte	$A5
 	.byte	$A5
 	.byte	$D3
 	.byte	$D4
@@ -2728,15 +2728,15 @@ _vines:
 	.byte	$D4
 	.byte	$B0
 	.byte	$B1
-	.byte	$F0
-	.byte	$A5
+	.byte	$00
+	.byte	$E0
 	.byte	$A5
 	.byte	$D0
 	.byte	$00
 	.byte	$B0
+	.byte	$B1
 	.byte	$D3
 	.byte	$C4
-	.byte	$A5
 	.byte	$A5
 	.byte	$A5
 	.byte	$A5
@@ -2760,15 +2760,15 @@ _vines:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$F0
+	.byte	$00
+	.byte	$D0
 	.byte	$A5
-	.byte	$A5
 	.byte	$F0
+	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$D3
-	.byte	$C1
 	.byte	$E2
 	.byte	$C1
 	.byte	$C4
@@ -2792,8 +2792,8 @@ _vines:
 	.byte	$E1
 	.byte	$E2
 	.byte	$C1
+	.byte	$C1
 	.byte	$D4
-	.byte	$A5
 	.byte	$A5
 	.byte	$D3
 	.byte	$C2
@@ -2856,10 +2856,10 @@ _vines:
 	.byte	$E2
 	.byte	$C5
 	.byte	$E1
-	.byte	$D1
-	.byte	$A5
-	.byte	$A5
-	.byte	$D2
+	.byte	$C1
+	.byte	$C1
+	.byte	$C1
+	.byte	$C1
 	.byte	$C1
 	.byte	$C5
 	.byte	$C1
@@ -2920,10 +2920,10 @@ _vines:
 	.byte	$D4
 	.byte	$A5
 	.byte	$A5
+	.byte	$A7
 	.byte	$A5
 	.byte	$A5
-	.byte	$A5
-	.byte	$A5
+	.byte	$A7
 	.byte	$A5
 	.byte	$A5
 	.byte	$D3
@@ -2983,12 +2983,12 @@ _vines:
 	.byte	$A5
 	.byte	$A5
 	.byte	$A5
-	.byte	$A7
+	.byte	$A5
 	.byte	$A7
 	.byte	$A5
 	.byte	$A5
 	.byte	$A7
-	.byte	$A7
+	.byte	$A5
 	.byte	$A5
 	.byte	$A5
 	.byte	$A5
@@ -3014,14 +3014,14 @@ _vines:
 	.byte	$F0
 	.byte	$A5
 	.byte	$A5
-	.byte	$A7
+	.byte	$A5
 	.byte	$A7
 	.byte	$A7
 	.byte	$B6
 	.byte	$B6
 	.byte	$A7
 	.byte	$A7
-	.byte	$A7
+	.byte	$A5
 	.byte	$A5
 	.byte	$A5
 	.byte	$E0
@@ -3110,14 +3110,14 @@ _vines:
 	.byte	$E3
 	.byte	$A5
 	.byte	$A5
-	.byte	$A7
+	.byte	$A5
 	.byte	$A7
 	.byte	$A7
 	.byte	$B6
 	.byte	$B6
 	.byte	$A7
 	.byte	$A7
-	.byte	$A7
+	.byte	$A5
 	.byte	$A5
 	.byte	$A5
 	.byte	$E3
@@ -3143,12 +3143,12 @@ _vines:
 	.byte	$A5
 	.byte	$A5
 	.byte	$A5
-	.byte	$A7
+	.byte	$A5
 	.byte	$A7
 	.byte	$A5
 	.byte	$A5
 	.byte	$A7
-	.byte	$A7
+	.byte	$A5
 	.byte	$A5
 	.byte	$A5
 	.byte	$A5
@@ -3239,12 +3239,12 @@ _vines:
 	.byte	$A5
 	.byte	$F0
 	.byte	$D3
+	.byte	$C1
 	.byte	$C4
 	.byte	$A5
 	.byte	$A5
-	.byte	$A5
-	.byte	$A5
 	.byte	$C0
+	.byte	$C1
 	.byte	$D4
 	.byte	$F0
 	.byte	$A5
@@ -3271,12 +3271,12 @@ _vines:
 	.byte	$A5
 	.byte	$F0
 	.byte	$00
+	.byte	$00
 	.byte	$D3
-	.byte	$C4
-	.byte	$A5
-	.byte	$A5
-	.byte	$C0
+	.byte	$C1
+	.byte	$C1
 	.byte	$D4
+	.byte	$00
 	.byte	$00
 	.byte	$F0
 	.byte	$A5
@@ -3304,10 +3304,10 @@ _vines:
 	.byte	$F1
 	.byte	$E1
 	.byte	$C1
-	.byte	$D4
-	.byte	$A5
-	.byte	$A5
-	.byte	$D3
+	.byte	$C2
+	.byte	$C1
+	.byte	$C1
+	.byte	$C1
 	.byte	$C1
 	.byte	$C1
 	.byte	$F1
@@ -3483,61 +3483,61 @@ _vines:
 	.byte	$CC
 	.byte	$CC
 	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$44
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$11
-	.byte	$44
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$11
-	.byte	$44
-	.byte	$55
-	.byte	$55
-	.byte	$01
 	.byte	$04
-	.byte	$55
-	.byte	$55
-	.byte	$11
-	.byte	$44
-	.byte	$55
-	.byte	$55
+	.byte	$01
 	.byte	$00
 	.byte	$00
-	.byte	$55
-	.byte	$55
-	.byte	$11
-	.byte	$44
-	.byte	$55
-	.byte	$55
-	.byte	$51
-	.byte	$54
-	.byte	$55
-	.byte	$55
-	.byte	$11
-	.byte	$44
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$55
-	.byte	$11
+	.byte	$0C
+	.byte	$03
+	.byte	$00
+	.byte	$88
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$22
+	.byte	$88
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$22
+	.byte	$88
+	.byte	$AA
+	.byte	$AA
+	.byte	$02
+	.byte	$08
+	.byte	$AA
+	.byte	$AA
+	.byte	$22
+	.byte	$88
+	.byte	$AA
+	.byte	$AA
+	.byte	$00
+	.byte	$00
+	.byte	$AA
+	.byte	$AA
+	.byte	$22
+	.byte	$88
+	.byte	$AA
+	.byte	$AA
+	.byte	$A2
+	.byte	$A8
+	.byte	$AA
+	.byte	$AA
+	.byte	$22
+	.byte	$88
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$AA
+	.byte	$22
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -4127,8 +4127,8 @@ _outdoors:
 	.byte	$79
 	.byte	$A5
 	.byte	$A5
-	.byte	$A5
-	.byte	$A5
+	.byte	$00
+	.byte	$00
 	.byte	$A5
 	.byte	$A5
 	.byte	$64
@@ -4149,8 +4149,8 @@ _outdoors:
 	.byte	$65
 	.byte	$A5
 	.byte	$A5
-	.byte	$A5
-	.byte	$A5
+	.byte	$00
+	.byte	$00
 	.byte	$A5
 	.byte	$A5
 	.byte	$89
@@ -4159,8 +4159,8 @@ _outdoors:
 	.byte	$98
 	.byte	$A5
 	.byte	$A5
-	.byte	$A5
-	.byte	$A5
+	.byte	$00
+	.byte	$00
 	.byte	$A5
 	.byte	$A5
 	.byte	$74
@@ -4181,8 +4181,8 @@ _outdoors:
 	.byte	$85
 	.byte	$A5
 	.byte	$A5
-	.byte	$A5
-	.byte	$A5
+	.byte	$00
+	.byte	$00
 	.byte	$A5
 	.byte	$A5
 	.byte	$97
@@ -4508,12 +4508,12 @@ _outdoors:
 	.byte	$90
 	.byte	$91
 	.byte	$AA
+	.byte	$A6
+	.byte	$A9
 	.byte	$AA
 	.byte	$AA
-	.byte	$AA
-	.byte	$AA
-	.byte	$AA
-	.byte	$AA
+	.byte	$AE
+	.byte	$AB
 	.byte	$AA
 	.byte	$22
 	.byte	$20
@@ -4538,15 +4538,15 @@ _outdoors:
 	.byte	$AA
 	.byte	$A2
 	.byte	$00
-	.byte	$F8
-	.byte	$FF
+	.byte	$C8
+	.byte	$3F
 	.byte	$3C
 	.byte	$AF
 	.byte	$A3
 	.byte	$AC
 	.byte	$AF
-	.byte	$F3
-	.byte	$FF
+	.byte	$C3
+	.byte	$CF
 	.byte	$AA
 	.byte	$A2
 	.byte	$20
@@ -4638,13 +4638,13 @@ _settings:
 	.byte	$00
 	.byte	$00
 	.byte	$F0
+	.byte	$AF
 	.byte	$B6
 	.byte	$B6
+	.byte	$AF
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$AF
 	.byte	$B6
 	.byte	$D0
 	.byte	$B5
@@ -4662,7 +4662,7 @@ _settings:
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
+	.byte	$AE
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
@@ -4671,12 +4671,12 @@ _settings:
 	.byte	$00
 	.byte	$C3
 	.byte	$B6
+	.byte	$B9
+	.byte	$B8
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B9
+	.byte	$B8
+	.byte	$BA
 	.byte	$B6
 	.byte	$D3
 	.byte	$C1
@@ -4692,73 +4692,73 @@ _settings:
 	.byte	$D4
 	.byte	$B6
 	.byte	$B6
+	.byte	$BA
 	.byte	$B6
+	.byte	$BA
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$BA
 	.byte	$B6
 	.byte	$D0
 	.byte	$00
 	.byte	$00
 	.byte	$C3
+	.byte	$AF
+	.byte	$B7
+	.byte	$B9
+	.byte	$B6
+	.byte	$B8
+	.byte	$BA
 	.byte	$B6
 	.byte	$B6
+	.byte	$AD
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AE
+	.byte	$BA
+	.byte	$B6
+	.byte	$AE
 	.byte	$B6
 	.byte	$B6
+	.byte	$B9
+	.byte	$BA
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$AD
 	.byte	$B6
 	.byte	$F0
 	.byte	$00
 	.byte	$00
 	.byte	$F0
 	.byte	$B6
+	.byte	$B8
+	.byte	$B8
 	.byte	$B6
+	.byte	$B7
+	.byte	$AD
+	.byte	$B9
+	.byte	$AD
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$B7
+	.byte	$B9
+	.byte	$AE
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B7
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
@@ -4767,62 +4767,62 @@ _settings:
 	.byte	$00
 	.byte	$C3
 	.byte	$B6
+	.byte	$BA
+	.byte	$BA
+	.byte	$B7
+	.byte	$B8
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B7
+	.byte	$B9
 	.byte	$B6
 	.byte	$C3
 	.byte	$00
 	.byte	$00
 	.byte	$E0
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B8
+	.byte	$B7
+	.byte	$AD
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AE
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
@@ -4831,31 +4831,31 @@ _settings:
 	.byte	$00
 	.byte	$D0
 	.byte	$B6
+	.byte	$B8
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AC
 	.byte	$B6
 	.byte	$B6
 	.byte	$C3
@@ -4864,63 +4864,63 @@ _settings:
 	.byte	$F0
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B7
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$E0
 	.byte	$00
 	.byte	$00
 	.byte	$F0
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B8
+	.byte	$AD
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AF
 	.byte	$B6
 	.byte	$C3
 	.byte	$00
@@ -4928,30 +4928,30 @@ _settings:
 	.byte	$F0
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B9
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$B6
 	.byte	$F0
@@ -4960,30 +4960,30 @@ _settings:
 	.byte	$F0
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$B6
 	.byte	$F0
@@ -4991,31 +4991,95 @@ _settings:
 	.byte	$00
 	.byte	$F0
 	.byte	$B6
+	.byte	$AD
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AE
 	.byte	$B6
+	.byte	$F0
+	.byte	$00
+	.byte	$00
+	.byte	$F0
 	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
+	.byte	$F0
+	.byte	$00
+	.byte	$00
+	.byte	$F0
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B9
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$B6
 	.byte	$F0
@@ -5023,127 +5087,63 @@ _settings:
 	.byte	$00
 	.byte	$F0
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$F0
+	.byte	$AD
 	.byte	$00
 	.byte	$00
-	.byte	$F0
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$F0
 	.byte	$00
 	.byte	$00
-	.byte	$F0
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$BA
 	.byte	$B6
 	.byte	$E0
 	.byte	$00
 	.byte	$00
 	.byte	$D0
+	.byte	$AF
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$B9
 	.byte	$B6
 	.byte	$B6
 	.byte	$F0
@@ -5152,30 +5152,30 @@ _settings:
 	.byte	$E0
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$B6
 	.byte	$F0
@@ -5184,125 +5184,125 @@ _settings:
 	.byte	$F0
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$F0
 	.byte	$00
 	.byte	$00
 	.byte	$F0
+	.byte	$BA
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$BA
 	.byte	$B6
 	.byte	$D0
 	.byte	$00
 	.byte	$00
 	.byte	$C3
 	.byte	$B6
+	.byte	$B9
+	.byte	$B7
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$BA
 	.byte	$E0
 	.byte	$00
 	.byte	$00
 	.byte	$C3
+	.byte	$AD
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$AD
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
@@ -5310,33 +5310,33 @@ _settings:
 	.byte	$00
 	.byte	$00
 	.byte	$F0
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B8
+	.byte	$B7
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AF
 	.byte	$B6
 	.byte	$F0
 	.byte	$00
@@ -5344,114 +5344,114 @@ _settings:
 	.byte	$F0
 	.byte	$B6
 	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AF
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$AE
 	.byte	$C3
 	.byte	$00
 	.byte	$00
 	.byte	$D0
 	.byte	$B6
 	.byte	$B6
+	.byte	$B7
+	.byte	$00
+	.byte	$00
+	.byte	$B9
 	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AF
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$B7
 	.byte	$B6
 	.byte	$B6
 	.byte	$F0
 	.byte	$00
 	.byte	$00
 	.byte	$F0
+	.byte	$BA
+	.byte	$B8
+	.byte	$B6
+	.byte	$B6
+	.byte	$BA
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$AD
+	.byte	$AF
+	.byte	$BA
+	.byte	$B8
+	.byte	$B8
+	.byte	$BA
+	.byte	$BA
+	.byte	$AE
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$BA
+	.byte	$B8
 	.byte	$B6
 	.byte	$C3
 	.byte	$00
 	.byte	$00
 	.byte	$F0
+	.byte	$AE
+	.byte	$B6
+	.byte	$B6
+	.byte	$B6
+	.byte	$BA
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$BA
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
@@ -5464,8 +5464,8 @@ _settings:
 	.byte	$B6
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$AE
+	.byte	$AD
 	.byte	$F0
 	.byte	$00
 	.byte	$00
@@ -6657,16 +6657,16 @@ _palette_combsnplants_bg:
 	.byte	$27
 	.byte	$07
 	.byte	$0F
-	.byte	$35
-	.byte	$26
-	.byte	$07
+	.byte	$15
+	.byte	$30
+	.byte	$11
 	.byte	$0F
 	.byte	$0F
 	.byte	$30
 	.byte	$30
 	.byte	$0F
+	.byte	$11
 	.byte	$21
-	.byte	$16
 	.byte	$30
 _palette_outdoors_bg:
 	.byte	$0F
@@ -6674,34 +6674,34 @@ _palette_outdoors_bg:
 	.byte	$17
 	.byte	$28
 	.byte	$0F
-	.byte	$35
-	.byte	$26
-	.byte	$07
+	.byte	$15
+	.byte	$30
+	.byte	$11
 	.byte	$0F
 	.byte	$30
 	.byte	$2A
 	.byte	$1B
 	.byte	$0F
-	.byte	$30
-	.byte	$21
 	.byte	$11
+	.byte	$21
+	.byte	$30
 _palette_vineswoflowers_bg:
 	.byte	$0F
 	.byte	$30
 	.byte	$27
 	.byte	$07
 	.byte	$0F
+	.byte	$15
 	.byte	$30
-	.byte	$2A
-	.byte	$1B
+	.byte	$11
 	.byte	$0F
-	.byte	$1A
 	.byte	$30
+	.byte	$1A
 	.byte	$38
 	.byte	$0F
+	.byte	$11
+	.byte	$21
 	.byte	$30
-	.byte	$15
-	.byte	$00
 _palette_sp:
 	.byte	$0F
 	.byte	$16
@@ -12043,13 +12043,13 @@ L29F5:	jsr     _oam_meta_spr
 L230B:	lda     _use_ai_player_1
 	beq     L231E
 ;
-; oam_meta_spr(64, 200, gamesprites_smallbeeright0_data);
+; oam_meta_spr(64, 184, gamesprites_smallbeeright0_data);
 ;
 	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright0_data)
@@ -12072,13 +12072,13 @@ L231E:	lda     _anim_frame_1
 	beq     L2335
 	jmp     L2327
 ;
-; oam_meta_spr(64, 200, gamesprites_smallbeeright0_data);
+; oam_meta_spr(64, 184, gamesprites_smallbeeright0_data);
 ;
 L2329:	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright0_data)
@@ -12088,13 +12088,13 @@ L2329:	jsr     decsp2
 ;
 	jmp     L29F6
 ;
-; oam_meta_spr(64, 200, gamesprites_smallbeeright1_data);
+; oam_meta_spr(64, 184, gamesprites_smallbeeright1_data);
 ;
 L232F:	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright1_data)
@@ -12104,13 +12104,13 @@ L232F:	jsr     decsp2
 ;
 	jmp     L29F6
 ;
-; oam_meta_spr(64, 200, gamesprites_smallbeeright2_data);
+; oam_meta_spr(64, 184, gamesprites_smallbeeright2_data);
 ;
 L2335:	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright2_data)
@@ -12122,13 +12122,13 @@ L29F6:	jsr     _oam_meta_spr
 L2327:	lda     _use_ai_player_2
 	beq     L233A
 ;
-; oam_meta_spr(104, 200, gamesprites_smallduckright0_data);
+; oam_meta_spr(104, 184, gamesprites_smallduckright0_data);
 ;
 	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduckright0_data)
@@ -12151,13 +12151,13 @@ L233A:	lda     _anim_frame_2
 	beq     L2351
 	jmp     L2343
 ;
-; oam_meta_spr(104, 200, gamesprites_smallduckright0_data);
+; oam_meta_spr(104, 184, gamesprites_smallduckright0_data);
 ;
 L2345:	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduckright0_data)
@@ -12167,13 +12167,13 @@ L2345:	jsr     decsp2
 ;
 	jmp     L29F7
 ;
-; oam_meta_spr(104, 200, gamesprites_smallduckright1_data);
+; oam_meta_spr(104, 184, gamesprites_smallduckright1_data);
 ;
 L234B:	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduckright1_data)
@@ -12183,13 +12183,13 @@ L234B:	jsr     decsp2
 ;
 	jmp     L29F7
 ;
-; oam_meta_spr(104, 200, gamesprites_smallduckright2_data);
+; oam_meta_spr(104, 184, gamesprites_smallduckright2_data);
 ;
 L2351:	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduckright2_data)
@@ -12201,13 +12201,13 @@ L29F7:	jsr     _oam_meta_spr
 L2343:	lda     _use_ai_player_3
 	beq     L2356
 ;
-; oam_meta_spr(144, 200, gamesprites_smallbee2right0_data);
+; oam_meta_spr(144, 184, gamesprites_smallbee2right0_data);
 ;
 	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbee2right0_data)
@@ -12230,13 +12230,13 @@ L2356:	lda     _anim_frame_3
 	beq     L236D
 	jmp     L235F
 ;
-; oam_meta_spr(144, 200, gamesprites_smallbee2right0_data);
+; oam_meta_spr(144, 184, gamesprites_smallbee2right0_data);
 ;
 L2361:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbee2right0_data)
@@ -12246,13 +12246,13 @@ L2361:	jsr     decsp2
 ;
 	jmp     L29F8
 ;
-; oam_meta_spr(144, 200, gamesprites_smallbee2right1_data);
+; oam_meta_spr(144, 184, gamesprites_smallbee2right1_data);
 ;
 L2367:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbee2right1_data)
@@ -12262,13 +12262,13 @@ L2367:	jsr     decsp2
 ;
 	jmp     L29F8
 ;
-; oam_meta_spr(144, 200, gamesprites_smallbee2right2_data);
+; oam_meta_spr(144, 184, gamesprites_smallbee2right2_data);
 ;
 L236D:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
+	lda     #$B8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbee2right2_data)
@@ -12280,13 +12280,12 @@ L29F8:	jsr     _oam_meta_spr
 L235F:	lda     _use_ai_player_4
 	beq     L2372
 ;
-; oam_meta_spr(184, 200, gamesprites_smallduck2right0_data);
+; oam_meta_spr(184, 184, gamesprites_smallduck2right0_data);
 ;
 	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduck2right0_data)
@@ -12309,13 +12308,12 @@ L2372:	lda     _anim_frame_4
 	beq     L2389
 	jmp     L237B
 ;
-; oam_meta_spr(184, 200, gamesprites_smallduck2right0_data);
+; oam_meta_spr(184, 184, gamesprites_smallduck2right0_data);
 ;
 L237D:	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduck2right0_data)
@@ -12325,13 +12323,12 @@ L237D:	jsr     decsp2
 ;
 	jmp     L29F9
 ;
-; oam_meta_spr(184, 200, gamesprites_smallduck2right1_data);
+; oam_meta_spr(184, 184, gamesprites_smallduck2right1_data);
 ;
 L2383:	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduck2right1_data)
@@ -12341,13 +12338,12 @@ L2383:	jsr     decsp2
 ;
 	jmp     L29F9
 ;
-; oam_meta_spr(184, 200, gamesprites_smallduck2right2_data);
+; oam_meta_spr(184, 184, gamesprites_smallduck2right2_data);
 ;
 L2389:	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
-	lda     #$C8
 	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduck2right2_data)
@@ -13012,7 +13008,7 @@ L2543:	jsr     _load_bg_palette
 	lda     #$00
 	sta     _options_anim_tick
 ;
-; multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 10));
+; multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 8));
 ;
 	jsr     decsp3
 	lda     #<(L2624)
@@ -13025,10 +13021,10 @@ L2543:	jsr     _load_bg_palette
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$21
-	lda     #$48
+	lda     #$08
 	jsr     _multi_vram_buffer_horz
 ;
-; multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
+; multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 12));
 ;
 	jsr     decsp3
 	lda     #<(L262E)
@@ -13041,10 +13037,10 @@ L2543:	jsr     _load_bg_palette
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$21
-	lda     #$C8
+	lda     #$88
 	jsr     _multi_vram_buffer_horz
 ;
-; multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
+; multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 16));
 ;
 	jsr     decsp3
 	lda     #<(L2638)
@@ -13057,10 +13053,10 @@ L2543:	jsr     _load_bg_palette
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
-	lda     #$48
+	lda     #$08
 	jsr     _multi_vram_buffer_horz
 ;
-; multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 22));
+; multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 20));
 ;
 	jsr     decsp3
 	lda     #<(L2642)
@@ -13073,7 +13069,7 @@ L2543:	jsr     _load_bg_palette
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
-	lda     #$C6
+	lda     #$86
 	jsr     _multi_vram_buffer_horz
 ;
 ; update_options_screen();
@@ -16181,9 +16177,9 @@ L2556:	rts
 	lda     _current_settings_choice
 	bne     L2A76
 ;
-; temp_y = 96;
+; temp_y = 80;
 ;
-	lda     #$60
+	lda     #$50
 ;
 ; else if (current_settings_choice == SETTING_MAP)
 ;
@@ -16192,9 +16188,9 @@ L2A76:	lda     _current_settings_choice
 	cmp     #$01
 	bne     L2A77
 ;
-; temp_y = 128;
+; temp_y = 112;
 ;
-	lda     #$80
+	lda     #$70
 ;
 ; else if (current_settings_choice == SETTING_SONG)
 ;
@@ -16203,9 +16199,9 @@ L2A77:	lda     _current_settings_choice
 	cmp     #$02
 	bne     L2A78
 ;
-; temp_y = 160;
+; temp_y = 144;
 ;
-	lda     #$A0
+	lda     #$90
 L2A73:	sta     _temp_y
 ;
 ; if (settings_speed == GAME_SLOW)
@@ -16213,7 +16209,7 @@ L2A73:	sta     _temp_y
 L2A78:	lda     _settings_speed
 	bne     L2A79
 ;
-; multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 12));
+; multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 10));
 ;
 	jsr     decsp3
 	lda     #<(L2593)
@@ -16229,7 +16225,7 @@ L2A79:	lda     _settings_speed
 	cmp     #$01
 	bne     L2A7A
 ;
-; multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+; multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 10));
 ;
 	jsr     decsp3
 	lda     #<(L25A0)
@@ -16245,7 +16241,7 @@ L2A7A:	lda     _settings_speed
 	cmp     #$02
 	bne     L2A7B
 ;
-; multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 12));
+; multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 10));
 ;
 	jsr     decsp3
 	lda     #<(L25AD)
@@ -16258,7 +16254,7 @@ L2A8C:	sta     (sp),y
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$21
-	lda     #$8B
+	lda     #$4B
 	jsr     _multi_vram_buffer_horz
 ;
 ; if (settings_map == MAP_RANDOM)
@@ -16267,7 +16263,7 @@ L2A7B:	lda     _settings_map
 	cmp     #$03
 	bne     L2A7C
 ;
-; multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 16));
+; multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
 	lda     #<(L25B9)
@@ -16283,7 +16279,7 @@ L2A7C:	lda     _settings_map
 	cmp     #$01
 	bne     L2A7D
 ;
-; multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 16));
+; multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
 	lda     #<(L25C6)
@@ -16298,7 +16294,7 @@ L2A7C:	lda     _settings_map
 L2A7D:	lda     _settings_map
 	bne     L2A7E
 ;
-; multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 16));
+; multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
 	lda     #<(L25D3)
@@ -16314,7 +16310,7 @@ L2A7E:	lda     _settings_map
 	cmp     #$02
 	bne     L2A7F
 ;
-; multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 16));
+; multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
 	lda     #<(L25E0)
@@ -16326,8 +16322,8 @@ L2A8D:	sta     (sp),y
 	lda     #$08
 	ldy     #$00
 	sta     (sp),y
-	ldx     #$22
-	lda     #$0B
+	ldx     #$21
+	lda     #$CB
 	jsr     _multi_vram_buffer_horz
 ;
 ; if (settings_song == SONG_BEE)
@@ -16335,7 +16331,7 @@ L2A8D:	sta     (sp),y
 L2A7F:	lda     _settings_song
 	bne     L2A80
 ;
-; multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 20));
+; multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 18));
 ;
 	jsr     decsp3
 	lda     #<(L25EC)
@@ -16348,7 +16344,7 @@ L2A7F:	lda     _settings_song
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
-	lda     #$8B
+	lda     #$4B
 	jmp     _multi_vram_buffer_horz
 ;
 ; else if (settings_song == SONG_LAKE)
@@ -16357,7 +16353,7 @@ L2A80:	lda     _settings_song
 	cmp     #$01
 	bne     L2A81
 ;
-; multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 20));
+; multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 18));
 ;
 	jsr     decsp3
 	lda     #<(L25F9)
@@ -16370,7 +16366,7 @@ L2A80:	lda     _settings_song
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
-	lda     #$8B
+	lda     #$4B
 	jmp     _multi_vram_buffer_horz
 ;
 ; else if (settings_song == SONG_HONEY)
@@ -16379,7 +16375,7 @@ L2A81:	lda     _settings_song
 	cmp     #$02
 	bne     L2603
 ;
-; multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 20));
+; multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 18));
 ;
 	jsr     decsp3
 	lda     #<(L2606)
@@ -16392,7 +16388,7 @@ L2A81:	lda     _settings_song
 	ldy     #$00
 	sta     (sp),y
 	ldx     #$22
-	lda     #$8B
+	lda     #$4B
 	jmp     _multi_vram_buffer_horz
 ;
 ; }

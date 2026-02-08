@@ -2329,20 +2329,20 @@ void options_loop(void)
 		// Player 1 (bee)
 		if (use_ai_player_1)
 		{
-			oam_meta_spr(64, 200, gamesprites_smallbeeright0_data);
+			oam_meta_spr(64, 184, gamesprites_smallbeeright0_data);
 		}
 		else
 		{
 			switch (anim_frame_1)
 			{
 			case 0:
-				oam_meta_spr(64, 200, gamesprites_smallbeeright0_data);
+				oam_meta_spr(64, 184, gamesprites_smallbeeright0_data);
 				break;
 			case 1:
-				oam_meta_spr(64, 200, gamesprites_smallbeeright1_data);
+				oam_meta_spr(64, 184, gamesprites_smallbeeright1_data);
 				break;
 			case 2:
-				oam_meta_spr(64, 200, gamesprites_smallbeeright2_data);
+				oam_meta_spr(64, 184, gamesprites_smallbeeright2_data);
 				break;
 			}
 		}
@@ -2350,20 +2350,20 @@ void options_loop(void)
 		// Player 2 (duck)
 		if (use_ai_player_2)
 		{
-			oam_meta_spr(104, 200, gamesprites_smallduckright0_data);
+			oam_meta_spr(104, 184, gamesprites_smallduckright0_data);
 		}
 		else
 		{
 			switch (anim_frame_2)
 			{
 			case 0:
-				oam_meta_spr(104, 200, gamesprites_smallduckright0_data);
+				oam_meta_spr(104, 184, gamesprites_smallduckright0_data);
 				break;
 			case 1:
-				oam_meta_spr(104, 200, gamesprites_smallduckright1_data);
+				oam_meta_spr(104, 184, gamesprites_smallduckright1_data);
 				break;
 			case 2:
-				oam_meta_spr(104, 200, gamesprites_smallduckright2_data);
+				oam_meta_spr(104, 184, gamesprites_smallduckright2_data);
 				break;
 			}
 		}
@@ -2371,20 +2371,20 @@ void options_loop(void)
 		// Player 3 (bee 2)
 		if (use_ai_player_3)
 		{
-			oam_meta_spr(144, 200, gamesprites_smallbee2right0_data);
+			oam_meta_spr(144, 184, gamesprites_smallbee2right0_data);
 		}
 		else
 		{
 			switch (anim_frame_3)
 			{
 			case 0:
-				oam_meta_spr(144, 200, gamesprites_smallbee2right0_data);
+				oam_meta_spr(144, 184, gamesprites_smallbee2right0_data);
 				break;
 			case 1:
-				oam_meta_spr(144, 200, gamesprites_smallbee2right1_data);
+				oam_meta_spr(144, 184, gamesprites_smallbee2right1_data);
 				break;
 			case 2:
-				oam_meta_spr(144, 200, gamesprites_smallbee2right2_data);
+				oam_meta_spr(144, 184, gamesprites_smallbee2right2_data);
 				break;
 			}
 		}
@@ -2392,20 +2392,20 @@ void options_loop(void)
 		// Player 4 (duck 2)
 		if (use_ai_player_4)
 		{
-			oam_meta_spr(184, 200, gamesprites_smallduck2right0_data);
+			oam_meta_spr(184, 184, gamesprites_smallduck2right0_data);
 		}
 		else
 		{
 			switch (anim_frame_4)
 			{
 			case 0:
-				oam_meta_spr(184, 200, gamesprites_smallduck2right0_data);
+				oam_meta_spr(184, 184, gamesprites_smallduck2right0_data);
 				break;
 			case 1:
-				oam_meta_spr(184, 200, gamesprites_smallduck2right1_data);
+				oam_meta_spr(184, 184, gamesprites_smallduck2right1_data);
 				break;
 			case 2:
-				oam_meta_spr(184, 200, gamesprites_smallduck2right2_data);
+				oam_meta_spr(184, 184, gamesprites_smallduck2right2_data);
 				break;
 			}
 		}
@@ -2873,15 +2873,15 @@ void update_options_screen(void)
 	temp_x = 64;
 	if (current_settings_choice == SETTING_SPEED)
 	{
-		temp_y = 96;
+		temp_y = 80;
 	}
 	else if (current_settings_choice == SETTING_MAP)
 	{
-		temp_y = 128;
+		temp_y = 112;
 	}
 	else if (current_settings_choice == SETTING_SONG)
 	{
-		temp_y = 160;
+		temp_y = 144;
 	}
 	// draws the values based on the settings:
 	
@@ -2889,47 +2889,47 @@ void update_options_screen(void)
 	// Show current speed selection
 	if (settings_speed == GAME_SLOW)
 	{
-		multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 12));
+		multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 10));
 	}
 	else if (settings_speed == GAME_REGULAR)
 	{
-		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 12));
+		multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 10));
 	}
 	else if (settings_speed == GAME_FAST)
 	{
-		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 12));
+		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 10));
 	}
 
 
 	if (settings_map == MAP_RANDOM)
 	{
-		multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 16));
+		multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 14));
 	}
 	else if (settings_map == MAP_OUTDOORS)
 	{
-		multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 16));
+		multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 14));
 	}
 	else if (settings_map == MAP_COMBS)
 	{
-		multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 16));
+		multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 14));
 	}
 	else if (settings_map == MAP_VINES)
 	{
-		multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 16));
+		multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 14));
 	}
 
 	
 	if (settings_song == SONG_BEE)
 	{
-		multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 20));
+		multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 18));
 	}
 	else if (settings_song == SONG_LAKE)
 	{
-		multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 20));
+		multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 18));
 	}
 	else if (settings_song == SONG_HONEY)
 	{
-		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 20));
+		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 18));
 	}
 
 	
@@ -2959,10 +2959,10 @@ void init_options_loop(void)
 	options_anim_tick = 0;
 
 	// these are the static labels, we only need to draw them once
-	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 10));
-	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 14));
-	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 18));
-	multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 22));
+	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 8));
+	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 12));
+	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 16));
+	multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 20));
 	update_options_screen();
 
 	// Initialize start button variables for options
