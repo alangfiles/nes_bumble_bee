@@ -2656,7 +2656,7 @@ void options_loop(void)
 			}
 			if (current_settings_choice == SETTING_SONG)
 			{
-				if (settings_song < SONG_HONEY)
+				if (settings_song < SONG_RANDOM)
 				{
 					settings_song++;
 				}
@@ -2926,12 +2926,27 @@ void start_round(void)
 		}
 	}
 
-	song = SONG_BEE; // TODO: add more songs then fix this
+	if(settings_song == SONG_RANDOM)
+	{
+		if (frame_counter % 3 == 0)
+		{
+			song = SONG_BEE;
+		}
+		else if (frame_counter % 3 == 1)
+		{
+			song = SONG_LAKE;
+		}
+		else
+		{
+			song = SONG_HONEY;
+		}
+	}
 	music_play(song);
 }
 
 void init_game_loop(void)
 {
+	music_stop();
 	clear_background();
 
 	game_mode = MODE_GAME;
@@ -3108,15 +3123,22 @@ void update_options_screen(void)
 	
 	if (settings_song == SONG_BEE)
 	{
-		multi_vram_buffer_horz("BEE  ", 5, NTADR_A(11, 18));
+		multi_vram_buffer_horz("BEE   ", 6, NTADR_A(11, 18));
+		song = SONG_BEE;
 	}
 	else if (settings_song == SONG_LAKE)
 	{
-		multi_vram_buffer_horz("LAKE ", 5, NTADR_A(11, 18));
+		multi_vram_buffer_horz("LAKE  ", 6, NTADR_A(11, 18));
+		song = SONG_LAKE;
 	}
 	else if (settings_song == SONG_HONEY)
 	{
-		multi_vram_buffer_horz("HONEY", 5, NTADR_A(11, 18));
+		multi_vram_buffer_horz("HONEY ", 6, NTADR_A(11, 18));
+		song = SONG_HONEY;
+	} else if (settings_song == SONG_RANDOM)
+	{
+		multi_vram_buffer_horz("RANDOM", 6, NTADR_A(11, 18));
+		song = SONG_RANDOM;
 	}
 
 	
@@ -3156,6 +3178,8 @@ void init_options_loop(void)
 	start_hold_timer = 0;
 	start_held = 1;
 
+	song = SONG_RANDOM; //this is actually the 4th song, the settings jingle
+	music_play(song);
 	ppu_on_all(); // turn on screen
 }
 
@@ -3434,7 +3458,7 @@ void init_system(void)
 	// Initialize default settings
 	settings_speed = GAME_REGULAR;
 	settings_map = MAP_RANDOM;
-	settings_song = SONG_BEE;
+	settings_song = SONG_RANDOM;
 
 	speed_option = SPEED_REGULAR;
 	turbo_amount = TURBO_MEDIUM;

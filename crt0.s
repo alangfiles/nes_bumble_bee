@@ -278,11 +278,6 @@ sounds_data:
 
 	
 	
-.segment "SAMPLES"
-;	.incbin "music_dpcm.bin"
-
-
-
 .segment "VECTORS"
 
     .word nmi	;$fffa vblank nmi
