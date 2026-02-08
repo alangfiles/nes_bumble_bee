@@ -12,8 +12,6 @@
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
 
-#define JOY1 (*(volatile unsigned char*)0x4016)
-#define JOY2 (*(volatile unsigned char*)0x4017)
 #define SPRITE_HIT_TEMP() (temp_x < (temp_x2 + collision_box_size) && temp_x + collision_box_size > temp_x2 && temp_y < (temp_y2 + collision_box_size) && temp_y + collision_box_size > temp_y2)
 
 static unsigned char anim_tick_p1; 
@@ -28,39 +26,6 @@ static unsigned char four_score_present;
 static unsigned char controller1_slot;
 static unsigned char controller2_slot;
 
-static unsigned char detect_four_score(void)
-{
-	unsigned char i;
-	unsigned char sig1 = 0;
-	unsigned char sig2 = 0;
-
-	// latch
-	JOY1 = 1;
-	JOY1 = 0;
-
-	// discard 8 bits (normal pads)
-	for (i = 0; i < 8; ++i)
-	{
-		sig1 = (sig1 << 1) | (JOY1 & 1);
-		sig2 = (sig2 << 1) | (JOY2 & 1);
-	}
-
-	// read next 8 bits (signature)
-	sig1 = 0;
-	sig2 = 0;
-	for (i = 0; i < 8; ++i)
-	{
-		sig1 = (sig1 << 1) | (JOY1 & 1);
-		sig2 = (sig2 << 1) | (JOY2 & 1);
-	}
-
-	// Standard controllers typically return 0xFF here; Four Score does not.
-	if (sig1 != 0xFF || sig2 != 0xFF)
-	{
-		return 1;
-	}
-	return 0;
-}
 
 void main(void)
 {
@@ -3508,17 +3473,10 @@ void init_system(void)
 	bee1_bigbee_timer = 0;
 	bee3_bigbee_timer = 0;
 
-	four_score_present = detect_four_score();
-	if (four_score_present)
-	{
-		controller1_slot = 1;
-		controller2_slot = 2;
-	}
-	else
-	{
-		controller1_slot = 1;
-		controller2_slot = 0;
-	}
+	// Default to Four Score input.
+	four_score_present = 1;
+	controller1_slot = 1;
+	controller2_slot = 2;
 
 	ppu_on_all(); // turn on screenxw
 }
