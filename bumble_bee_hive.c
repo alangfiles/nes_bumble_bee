@@ -96,6 +96,7 @@ void main(void)
 
 	while (1)
 	{
+		set_music_speed(7); //need to do this every frame. 
 		if (game_mode == MODE_TITLE)
 		{
 			title_loop();
@@ -3454,6 +3455,7 @@ void init_system(void)
 	set_vram_buffer();
 	bank_spr(1);
 	set_scroll_y(0xff); // shift the bg down one pixel
+	
 
 	// Initialize default settings
 	settings_speed = GAME_REGULAR;
