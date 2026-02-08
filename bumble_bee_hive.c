@@ -25,6 +25,8 @@ static unsigned char last_team1_score = 0xFF;
 static unsigned char last_team2_score = 0xFF;
 static unsigned char last_game_timer = 0xFF;
 static unsigned char four_score_present;
+static unsigned char controller1_slot;
+static unsigned char controller2_slot;
 
 static unsigned char detect_four_score(void)
 {
@@ -1959,10 +1961,60 @@ void read_controllers(void)
 	}
 	else
 	{
-		pad1 = pad_poll(0);
-		pad2 = pad_poll(1);
-		pad3 = 0;
-		pad4 = 0;
+		unsigned char raw1 = pad_poll(0);
+		unsigned char raw2 = pad_poll(1);
+
+		if (game_mode == MODE_GAME)
+		{
+			pad1 = 0;
+			pad2 = 0;
+			pad3 = 0;
+			pad4 = 0;
+
+			switch (controller1_slot)
+			{
+			case 1:
+				pad1 = raw1;
+				break;
+			case 2:
+				pad2 = raw1;
+				break;
+			case 3:
+				pad3 = raw1;
+				break;
+			case 4:
+				pad4 = raw1;
+				break;
+			default:
+				break;
+			}
+
+			switch (controller2_slot)
+			{
+			case 1:
+				pad1 = raw2;
+				break;
+			case 2:
+				pad2 = raw2;
+				break;
+			case 3:
+				pad3 = raw2;
+				break;
+			case 4:
+				pad4 = raw2;
+				break;
+			default:
+				break;
+			}
+		}
+		else
+		{
+			// In menus, keep raw pads for select/cursor handling
+			pad1 = raw1;
+			pad2 = raw2;
+			pad3 = 0;
+			pad4 = 0;
+		}
 	}
 
 	if (game_mode == MODE_GAME)
@@ -2463,32 +2515,136 @@ void options_loop(void)
 		read_controllers();
 
 		// Press select to join/unjoin (toggle AI)
-		if (pad1_new & PAD_SELECT)
+		if (four_score_present)
 		{
-			use_ai_player_1 ^= 1;
-		}
-		if (pad2_new & PAD_SELECT)
-		{
-			use_ai_player_2 ^= 1;
-			if (use_ai_player_2)
+			if (pad1_new & PAD_SELECT)
 			{
-				anim_frame_2 = 0;
+				use_ai_player_1 ^= 1;
+			}
+			if (pad2_new & PAD_SELECT)
+			{
+				use_ai_player_2 ^= 1;
+				if (use_ai_player_2)
+				{
+					anim_frame_2 = 0;
+				}
+			}
+			if (pad3_new & PAD_SELECT)
+			{
+				use_ai_player_3 ^= 1;
+				if (use_ai_player_3)
+				{
+					anim_frame_3 = 0;
+				}
+			}
+			if (pad4_new & PAD_SELECT)
+			{
+				use_ai_player_4 ^= 1;
+				if (use_ai_player_4)
+				{
+					anim_frame_4 = 0;
+				}
 			}
 		}
-		if (pad3_new & PAD_SELECT)
+		else
 		{
-			use_ai_player_3 ^= 1;
-			if (use_ai_player_3)
+			if (pad1_new & PAD_SELECT)
 			{
-				anim_frame_3 = 0;
+				unsigned char old_slot = controller1_slot;
+				unsigned char guard = 0;
+
+				do
+				{
+					controller1_slot++;
+					if (controller1_slot > 4)
+					{
+						controller1_slot = 1;
+					}
+					guard++;
+				} while (controller1_slot == controller2_slot && guard < 5);
+
+				if (old_slot == 1)
+					use_ai_player_1 = 1;
+				else if (old_slot == 2)
+					use_ai_player_2 = 1;
+				else if (old_slot == 3)
+					use_ai_player_3 = 1;
+				else if (old_slot == 4)
+					use_ai_player_4 = 1;
+
+				if (controller1_slot == 1)
+					use_ai_player_1 = 0;
+				else if (controller1_slot == 2)
+					use_ai_player_2 = 0;
+				else if (controller1_slot == 3)
+					use_ai_player_3 = 0;
+				else if (controller1_slot == 4)
+					use_ai_player_4 = 0;
 			}
-		}
-		if (pad4_new & PAD_SELECT)
-		{
-			use_ai_player_4 ^= 1;
-			if (use_ai_player_4)
+
+			if (pad2_new & PAD_SELECT)
 			{
-				anim_frame_4 = 0;
+				unsigned char old_slot = controller2_slot;
+				unsigned char guard = 0;
+				switch (controller2_slot)
+				{
+				case 0:
+					controller2_slot = 2;
+					break;
+				case 2:
+					controller2_slot = 3;
+					break;
+				case 3:
+					controller2_slot = 4;
+					break;
+				case 4:
+					controller2_slot = 1;
+					break;
+				default:
+					controller2_slot = 0;
+					break;
+				}
+
+				while (controller2_slot != 0 && controller2_slot == controller1_slot && guard < 5)
+				{
+					guard++;
+					switch (controller2_slot)
+					{
+					case 2:
+						controller2_slot = 3;
+						break;
+					case 3:
+						controller2_slot = 4;
+						break;
+					case 4:
+						controller2_slot = 1;
+						break;
+					case 1:
+						controller2_slot = 0;
+						break;
+					default:
+						controller2_slot = 0;
+						break;
+					}
+				}
+
+				if (old_slot == 1)
+					use_ai_player_1 = 1;
+				else if (old_slot == 2)
+					use_ai_player_2 = 1;
+				else if (old_slot == 3)
+					use_ai_player_3 = 1;
+				else if (old_slot == 4)
+					use_ai_player_4 = 1;
+
+				if (controller2_slot == 1)
+					use_ai_player_1 = 0;
+				else if (controller2_slot == 2)
+					use_ai_player_2 = 0;
+				else if (controller2_slot == 3)
+					use_ai_player_3 = 0;
+				else if (controller2_slot == 4)
+					use_ai_player_4 = 0;
 			}
 		}
 
@@ -3333,6 +3489,16 @@ void init_system(void)
 	bee3_bigbee_timer = 0;
 
 	four_score_present = detect_four_score();
+	if (four_score_present)
+	{
+		controller1_slot = 1;
+		controller2_slot = 2;
+	}
+	else
+	{
+		controller1_slot = 1;
+		controller2_slot = 0;
+	}
 
 	ppu_on_all(); // turn on screenxw
 }
