@@ -16,7 +16,7 @@
 #define JOY2 (*(volatile unsigned char*)0x4017)
 #define SPRITE_HIT_TEMP() (temp_x < (temp_x2 + collision_box_size) && temp_x + collision_box_size > temp_x2 && temp_y < (temp_y2 + collision_box_size) && temp_y + collision_box_size > temp_y2)
 
-static unsigned char anim_tick_p1;
+static unsigned char anim_tick_p1; 
 static unsigned char anim_tick_p2;
 static unsigned char anim_tick_p3;
 static unsigned char anim_tick_p4;
@@ -2365,11 +2365,18 @@ void title_loop(void)
 		}
 
 		// Handle start button hold logic
-		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
+		if ((pad1 | pad2 | pad3 | pad4) & PAD_START)
 		{
-
-			init_options_loop();
-			break;
+			if (!start_held && (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START))
+			{
+				start_held = 1;
+				init_options_loop();
+				break;
+			}
+		}
+		else
+		{
+			start_held = 0;
 		}
 	}
 }
@@ -2719,11 +2726,19 @@ void options_loop(void)
 		}
 
 		// Handle start button hold logic
-		if (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START)
+		if ((pad1 | pad2 | pad3 | pad4) & PAD_START)
 		{
-			sfx_play(SFX_START, 0);
-			init_game_loop();
-			break;
+			if (!start_held && (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START))
+			{
+				start_held = 1;
+				sfx_play(SFX_START, 0);
+				init_game_loop();
+				break;
+			}
+		}
+		else
+		{
+			start_held = 0;
 		}
 	}
 
@@ -3068,6 +3083,8 @@ void init_title_loop(void)
 	BoxGuy4.y = 0xC800; // y = 200 (0xC8)
 	BoxGuy4.direction = DIR_NONE;
 
+	start_held = 1;
+
 	ppu_on_all(); // turn on screen
 }
 
@@ -3172,7 +3189,7 @@ void init_options_loop(void)
 
 	// Initialize start button variables for options
 	start_hold_timer = 0;
-	start_held = 0;
+	start_held = 1;
 
 	ppu_on_all(); // turn on screen
 }
