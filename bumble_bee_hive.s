@@ -6815,7 +6815,7 @@ L28E8:
 	.byte	$45,$4E,$45,$4D,$59,$20,$41,$54,$45,$20,$54,$48,$45,$49,$52,$20
 	.byte	$44,$55,$43,$4B,$00
 L27C5:
-	.byte	$50,$52,$45,$53,$53,$20,$53,$45,$4C,$45,$43,$54,$20,$54,$4F,$20
+	.byte	$50,$52,$45,$53,$53,$20,$42,$55,$54,$54,$4F,$4E,$20,$54,$4F,$20
 	.byte	$4A,$4F,$49,$4E,$00
 L2912:
 	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$4D,$4F,$52,$45,$20,$48
@@ -12859,10 +12859,10 @@ L242F:	jsr     _read_controllers
 	lda     _four_score_present
 	beq     L2443
 ;
-; if (pad1_new & PAD_SELECT)
+; if (pad1_new & PAD_A)
 ;
 	lda     _pad1_new
-	and     #$20
+	and     #$80
 	beq     L2BB3
 ;
 ; use_ai_player_1 ^= 1;
@@ -12871,10 +12871,10 @@ L242F:	jsr     _read_controllers
 	eor     #$01
 	sta     _use_ai_player_1
 ;
-; if (pad2_new & PAD_SELECT)
+; if (pad2_new & PAD_A)
 ;
 L2BB3:	lda     _pad2_new
-	and     #$20
+	and     #$80
 	beq     L2BB4
 ;
 ; use_ai_player_2 ^= 1;
@@ -12893,10 +12893,10 @@ L2BB3:	lda     _pad2_new
 	lda     #$00
 	sta     _anim_frame_2
 ;
-; if (pad3_new & PAD_SELECT)
+; if (pad3_new & PAD_A)
 ;
 L2BB4:	lda     _pad3_new
-	and     #$20
+	and     #$80
 	beq     L2BB5
 ;
 ; use_ai_player_3 ^= 1;
@@ -12915,10 +12915,10 @@ L2BB4:	lda     _pad3_new
 	lda     #$00
 	sta     _anim_frame_3
 ;
-; if (pad4_new & PAD_SELECT)
+; if (pad4_new & PAD_A)
 ;
 L2BB5:	lda     _pad4_new
-	and     #$20
+	and     #$80
 	jeq     L2BDD
 ;
 ; use_ai_player_4 ^= 1;
@@ -12941,10 +12941,10 @@ L2BB5:	lda     _pad4_new
 ;
 	jmp     L2BDD
 ;
-; if (pad1_new & PAD_SELECT)
+; if (pad1_new & PAD_A)
 ;
 L2443:	lda     _pad1_new
-	and     #$20
+	and     #$80
 	jeq     L2BC3
 ;
 ; unsigned char old_slot = controller1_slot;
@@ -13084,10 +13084,10 @@ L2BC2:	lda     _controller1_slot
 ;
 L2494:	jsr     incsp2
 ;
-; if (pad2_new & PAD_SELECT)
+; if (pad2_new & PAD_A)
 ;
 L2BC3:	lda     _pad2_new
-	and     #$20
+	and     #$80
 	jeq     L2BDD
 ;
 ; unsigned char old_slot = controller2_slot;
@@ -13966,7 +13966,7 @@ L26AF:	jsr     _load_bg_palette
 	lda     #$08
 	jsr     _multi_vram_buffer_horz
 ;
-; multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 20));
+; multi_vram_buffer_horz("PRESS BUTTON TO JOIN", 20, NTADR_A(6, 20));
 ;
 	jsr     decsp3
 	lda     #<(L27C5)

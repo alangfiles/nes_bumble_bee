@@ -2550,11 +2550,11 @@ void options_loop(void)
 		// Press select to join/unjoin (toggle AI)
 		if (four_score_present)
 		{
-			if (pad1_new & PAD_SELECT)
+			if (pad1_new & PAD_A)
 			{
 				use_ai_player_1 ^= 1;
 			}
-			if (pad2_new & PAD_SELECT)
+			if (pad2_new & PAD_A)
 			{
 				use_ai_player_2 ^= 1;
 				if (use_ai_player_2)
@@ -2562,7 +2562,7 @@ void options_loop(void)
 					anim_frame_2 = 0;
 				}
 			}
-			if (pad3_new & PAD_SELECT)
+			if (pad3_new & PAD_A)
 			{
 				use_ai_player_3 ^= 1;
 				if (use_ai_player_3)
@@ -2570,7 +2570,7 @@ void options_loop(void)
 					anim_frame_3 = 0;
 				}
 			}
-			if (pad4_new & PAD_SELECT)
+			if (pad4_new & PAD_A)
 			{
 				use_ai_player_4 ^= 1;
 				if (use_ai_player_4)
@@ -2581,7 +2581,7 @@ void options_loop(void)
 		}
 		else
 		{
-			if (pad1_new & PAD_SELECT)
+			if (pad1_new & PAD_A)
 			{
 				unsigned char old_slot = controller1_slot;
 				unsigned char guard = 0;
@@ -2615,7 +2615,7 @@ void options_loop(void)
 					use_ai_player_4 = 0;
 			}
 
-			if (pad2_new & PAD_SELECT)
+			if (pad2_new & PAD_A)
 			{
 				unsigned char old_slot = controller2_slot;
 				unsigned char guard = 0;
@@ -3236,7 +3236,7 @@ void init_options_loop(void)
 	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 8));
 	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 12));
 	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 16));
-	multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 20));
+	multi_vram_buffer_horz("PRESS BUTTON TO JOIN", 20, NTADR_A(6, 20));
 	update_options_screen();
 
 	// Initialize start button variables for options
