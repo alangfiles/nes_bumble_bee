@@ -35,7 +35,7 @@ void main(void)
 		Things still needed for this game:
  [] more songs.
  [] better ai
- [] reduce the button usage (no start button)
+ [x] reduce the button usage (no start button)
  [x] have characters bounce off each other when they collide.
 	*/
 
