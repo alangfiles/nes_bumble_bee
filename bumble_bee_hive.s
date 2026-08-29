@@ -238,6 +238,16 @@
 	.export		_stun_p2
 	.export		_stun_p3
 	.export		_stun_p4
+	.export		_bounce_p1
+	.export		_bounce_p2
+	.export		_bounce_p3
+	.export		_bounce_p4
+	.export		_bounce_dir_p1
+	.export		_bounce_dir_p2
+	.export		_bounce_dir_p3
+	.export		_bounce_dir_p4
+	.export		_bounce_timer
+	.export		_bounce_direction
 	.export		_GenericBoxGuy
 	.export		_BoxGuy1
 	.export		_BoxGuy2
@@ -6798,92 +6808,92 @@ _blank_tiles:
 	.byte	$69
 	.byte	$6A
 	.byte	$6B
-L27E0:
+L284D:
 	.byte	$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
 	.byte	$20,$20,$20,$20,$20,$20,$00
-L287B:
+L28E8:
 	.byte	$45,$4E,$45,$4D,$59,$20,$41,$54,$45,$20,$54,$48,$45,$49,$52,$20
 	.byte	$44,$55,$43,$4B,$00
-L2758:
+L27C5:
 	.byte	$50,$52,$45,$53,$53,$20,$53,$45,$4C,$45,$43,$54,$20,$54,$4F,$20
 	.byte	$4A,$4F,$49,$4E,$00
-L28A5:
+L2912:
 	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$4D,$4F,$52,$45,$20,$48
 	.byte	$4F,$4E,$45,$59,$00
-L282D	:=	L28A5+0
-L286D:
+L289A	:=	L2912+0
+L28DA:
 	.byte	$45,$4E,$45,$4D,$59,$20,$41,$54,$45,$20,$54,$48,$45,$49,$52,$20
 	.byte	$42,$45,$45,$00
-L285F:
+L28CC:
 	.byte	$31,$30,$30,$20,$48,$4F,$4E,$45,$59,$20,$43,$4F,$4C,$4C,$45,$43
 	.byte	$54,$45,$44,$00
-L2806:
+L2873:
 	.byte	$46,$52,$49,$45,$4E,$44,$4C,$59,$20,$44,$55,$43,$4B,$20,$45,$41
 	.byte	$54,$45,$4E,$00
-L27EC:
+L2859:
 	.byte	$43,$4F,$4C,$4C,$45,$43,$54,$45,$44,$20,$31,$30,$30,$20,$48,$4F
 	.byte	$4E,$45,$59,$00
-L27F9:
+L2866:
 	.byte	$46,$52,$49,$45,$4E,$44,$4C,$59,$20,$42,$45,$45,$20,$45,$41,$54
 	.byte	$45,$4E,$00
-L2820:
+L288D:
 	.byte	$42,$49,$47,$42,$45,$45,$20,$41,$54,$45,$20,$44,$55,$43,$4B,$21
 	.byte	$00
-L2897:
+L2904:
 	.byte	$45,$4E,$45,$4D,$59,$20,$44,$55,$43,$4B,$20,$45,$41,$54,$45,$4E
 	.byte	$00
-L2889:
+L28F6:
 	.byte	$45,$4E,$45,$4D,$59,$20,$42,$45,$45,$20,$45,$41,$54,$45,$4E,$00
-L2813	:=	L2889+0
-L28CC:
+L2880	:=	L28F6+0
+L2939:
 	.byte	$42,$4C,$55,$45,$20,$54,$45,$41,$4D,$20,$57,$49,$4E,$53,$00
-L28BD:
+L292A:
 	.byte	$52,$45,$44,$20,$54,$45,$41,$4D,$20,$57,$49,$4E,$53,$00
-L2966:
+L29D3:
 	.byte	$50,$52,$45,$53,$53,$20,$53,$54,$41,$52,$54,$00
-L2838:
+L28A5:
 	.byte	$44,$52,$41,$57,$20,$47,$41,$4D,$45,$21,$00
-L2920:
+L298D:
 	.byte	$52,$4F,$55,$4E,$44,$20,$32,$3A,$00
-L2931:
+L299E:
 	.byte	$52,$4F,$55,$4E,$44,$20,$33,$3A,$00
-L2957:
+L29C4:
 	.byte	$52,$4F,$55,$4E,$44,$20,$35,$3A,$00
-L290F:
+L297C:
 	.byte	$52,$4F,$55,$4E,$44,$20,$31,$3A,$00
-L26BA:
+L2727:
 	.byte	$52,$41,$4E,$44,$4F,$4D,$20,$20,$00
-L26C7:
+L2734:
 	.byte	$4F,$55,$54,$44,$4F,$4F,$52,$53,$00
-L26D4:
+L2741:
 	.byte	$43,$4F,$4D,$42,$53,$20,$20,$20,$00
-L26E1:
-	.byte	$56,$49,$4E,$45,$53,$20,$20,$20,$00
-L2944:
-	.byte	$52,$4F,$55,$4E,$44,$20,$34,$3A,$00
-L26A1:
-	.byte	$52,$45,$47,$55,$4C,$41,$52,$00
-L26AE:
-	.byte	$46,$41,$53,$54,$20,$20,$20,$00
-L2694:
-	.byte	$53,$4C,$4F,$57,$20,$20,$20,$00
-L270B:
-	.byte	$48,$4F,$4E,$45,$59,$20,$00
-L26FC:
-	.byte	$4C,$41,$4B,$45,$20,$20,$00
-L271A:
-	.byte	$52,$41,$4E,$44,$4F,$4D,$00
-L26ED:
-	.byte	$42,$45,$45,$20,$20,$20,$00
 L274E:
+	.byte	$56,$49,$4E,$45,$53,$20,$20,$20,$00
+L29B1:
+	.byte	$52,$4F,$55,$4E,$44,$20,$34,$3A,$00
+L270E:
+	.byte	$52,$45,$47,$55,$4C,$41,$52,$00
+L271B:
+	.byte	$46,$41,$53,$54,$20,$20,$20,$00
+L2701:
+	.byte	$53,$4C,$4F,$57,$20,$20,$20,$00
+L2778:
+	.byte	$48,$4F,$4E,$45,$59,$20,$00
+L2769:
+	.byte	$4C,$41,$4B,$45,$20,$20,$00
+L2787:
+	.byte	$52,$41,$4E,$44,$4F,$4D,$00
+L275A:
+	.byte	$42,$45,$45,$20,$20,$20,$00
+L27BB:
 	.byte	$4D,$55,$53,$49,$43,$3A,$00
-L273A:
+L27A7:
 	.byte	$53,$50,$45,$45,$44,$3A,$00
-L2852:
+L28BF:
 	.byte	$42,$4C,$55,$45,$00
-L2744:
+L27B1:
 	.byte	$4D,$41,$50,$3A,$00
-L2845:
+L28B2:
 	.byte	$52,$45,$44,$00
 
 .segment	"BSS"
@@ -7176,6 +7186,26 @@ _stun_p3:
 	.res	1,$00
 _stun_p4:
 	.res	1,$00
+_bounce_p1:
+	.res	1,$00
+_bounce_p2:
+	.res	1,$00
+_bounce_p3:
+	.res	1,$00
+_bounce_p4:
+	.res	1,$00
+_bounce_dir_p1:
+	.res	1,$00
+_bounce_dir_p2:
+	.res	1,$00
+_bounce_dir_p3:
+	.res	1,$00
+_bounce_dir_p4:
+	.res	1,$00
+_bounce_timer:
+	.res	1,$00
+_bounce_direction:
+	.res	1,$00
 _GenericBoxGuy:
 	.res	7,$00
 _anim_tick_p1:
@@ -7228,7 +7258,7 @@ L1924:	ldx     _largeindex+1
 ; if (game_mode == MODE_TITLE)
 ;
 	lda     _game_mode
-	bne     L2A23
+	bne     L2A90
 ;
 ; vram_put(title[largeindex]);
 ;
@@ -7242,8 +7272,8 @@ L1924:	ldx     _largeindex+1
 ;
 ; else if (game_mode == MODE_OPTIONS)
 ;
-	jmp     L2A24
-L2A23:	lda     _game_mode
+	jmp     L2A91
+L2A90:	lda     _game_mode
 	cmp     #$01
 	bne     L1933
 ;
@@ -7259,7 +7289,7 @@ L2A23:	lda     _game_mode
 ;
 ; else
 ;
-	jmp     L2A24
+	jmp     L2A91
 ;
 ; vram_put(map_ptr[largeindex]);
 ;
@@ -7271,7 +7301,7 @@ L1933:	lda     _map_ptr
 	adc     _largeindex+1
 	sta     ptr1+1
 	ldy     #$00
-L2A24:	lda     (ptr1),y
+L2A91:	lda     (ptr1),y
 	jsr     _vram_put
 ;
 ; for (largeindex = 0; largeindex < 1024; ++largeindex)
@@ -7306,12 +7336,12 @@ L1925:	jmp     _ppu_on_all
 ;
 	lda     _powerup1
 	cmp     #$01
-	bne     L2A2D
+	bne     L2A9A
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2A2B
+	bne     L2A98
 ;
 ; oam_meta_spr(COMBS_FLOWER_X[0], COMBS_FLOWER_Y[0], gamesprites_powerup_data);
 ;
@@ -7323,10 +7353,10 @@ L1925:	jmp     _ppu_on_all
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2A49
-L2A2B:	lda     _map
+	jmp     L2AB6
+L2A98:	lda     _map
 	cmp     #$02
-	bne     L2A2C
+	bne     L2A99
 ;
 ; oam_meta_spr(VINES_FLOWER_X[0], VINES_FLOWER_Y[0], gamesprites_powerup_data);
 ;
@@ -7338,10 +7368,10 @@ L2A2B:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2A49
-L2A2C:	lda     _map
+	jmp     L2AB6
+L2A99:	lda     _map
 	cmp     #$01
-	bne     L2A2D
+	bne     L2A9A
 ;
 ; oam_meta_spr(OUTDOORS_FLOWER_X[0], OUTDOORS_FLOWER_Y[0], gamesprites_powerup_data);
 ;
@@ -7350,7 +7380,7 @@ L2A2C:	lda     _map
 	ldy     #$01
 	sta     (sp),y
 	lda     _OUTDOORS_FLOWER_Y
-L2A49:	dey
+L2AB6:	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_powerup_data)
 	ldx     #>(_gamesprites_powerup_data)
@@ -7358,14 +7388,14 @@ L2A49:	dey
 ;
 ; if (powerup2 == 1)
 ;
-L2A2D:	lda     _powerup2
+L2A9A:	lda     _powerup2
 	cmp     #$01
-	bne     L2A30
+	bne     L2A9D
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2A2E
+	bne     L2A9B
 ;
 ; oam_meta_spr(COMBS_FLOWER_X[1], COMBS_FLOWER_Y[1], gamesprites_powerup_data);
 ;
@@ -7377,10 +7407,10 @@ L2A2D:	lda     _powerup2
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2A4A
-L2A2E:	lda     _map
+	jmp     L2AB7
+L2A9B:	lda     _map
 	cmp     #$02
-	bne     L2A2F
+	bne     L2A9C
 ;
 ; oam_meta_spr(VINES_FLOWER_X[1], VINES_FLOWER_Y[1], gamesprites_powerup_data);
 ;
@@ -7392,10 +7422,10 @@ L2A2E:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2A4A
-L2A2F:	lda     _map
+	jmp     L2AB7
+L2A9C:	lda     _map
 	cmp     #$01
-	bne     L2A30
+	bne     L2A9D
 ;
 ; oam_meta_spr(OUTDOORS_FLOWER_X[1], OUTDOORS_FLOWER_Y[1], gamesprites_powerup_data);
 ;
@@ -7404,7 +7434,7 @@ L2A2F:	lda     _map
 	ldy     #$01
 	sta     (sp),y
 	lda     _OUTDOORS_FLOWER_Y+1
-L2A4A:	dey
+L2AB7:	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_powerup_data)
 	ldx     #>(_gamesprites_powerup_data)
@@ -7412,14 +7442,14 @@ L2A4A:	dey
 ;
 ; if (powerup3 == 1)
 ;
-L2A30:	lda     _powerup3
+L2A9D:	lda     _powerup3
 	cmp     #$01
-	bne     L2A33
+	bne     L2AA0
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2A31
+	bne     L2A9E
 ;
 ; oam_meta_spr(COMBS_FLOWER_X[2], COMBS_FLOWER_Y[2], gamesprites_powerup_data);
 ;
@@ -7431,10 +7461,10 @@ L2A30:	lda     _powerup3
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2A4B
-L2A31:	lda     _map
+	jmp     L2AB8
+L2A9E:	lda     _map
 	cmp     #$02
-	bne     L2A32
+	bne     L2A9F
 ;
 ; oam_meta_spr(VINES_FLOWER_X[2], VINES_FLOWER_Y[2], gamesprites_powerup_data);
 ;
@@ -7446,10 +7476,10 @@ L2A31:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2A4B
-L2A32:	lda     _map
+	jmp     L2AB8
+L2A9F:	lda     _map
 	cmp     #$01
-	bne     L2A33
+	bne     L2AA0
 ;
 ; oam_meta_spr(OUTDOORS_FLOWER_X[2], OUTDOORS_FLOWER_Y[2], gamesprites_powerup_data);
 ;
@@ -7458,7 +7488,7 @@ L2A32:	lda     _map
 	ldy     #$01
 	sta     (sp),y
 	lda     _OUTDOORS_FLOWER_Y+2
-L2A4B:	dey
+L2AB8:	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_powerup_data)
 	ldx     #>(_gamesprites_powerup_data)
@@ -7466,14 +7496,14 @@ L2A4B:	dey
 ;
 ; if (powerup4 == 1)
 ;
-L2A33:	lda     _powerup4
+L2AA0:	lda     _powerup4
 	cmp     #$01
 	bne     L19A7
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2A34
+	bne     L2AA1
 ;
 ; oam_meta_spr(COMBS_FLOWER_X[3], COMBS_FLOWER_Y[3], gamesprites_powerup_data);
 ;
@@ -7485,10 +7515,10 @@ L2A33:	lda     _powerup4
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2A4C
-L2A34:	lda     _map
+	jmp     L2AB9
+L2AA1:	lda     _map
 	cmp     #$02
-	bne     L2A35
+	bne     L2AA2
 ;
 ; oam_meta_spr(VINES_FLOWER_X[3], VINES_FLOWER_Y[3], gamesprites_powerup_data);
 ;
@@ -7500,8 +7530,8 @@ L2A34:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2A4C
-L2A35:	lda     _map
+	jmp     L2AB9
+L2AA2:	lda     _map
 	cmp     #$01
 	bne     L19A7
 ;
@@ -7512,7 +7542,7 @@ L2A35:	lda     _map
 	ldy     #$01
 	sta     (sp),y
 	lda     _OUTDOORS_FLOWER_Y+3
-L2A4C:	dey
+L2AB9:	dey
 	sta     (sp),y
 	lda     #<(_gamesprites_powerup_data)
 	ldx     #>(_gamesprites_powerup_data)
@@ -7537,7 +7567,7 @@ L19A7:	lda     _quack2+5
 ;
 	lda     _quack2+4
 	cmp     #$02
-	bne     L2A36
+	bne     L2AA3
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackleft_data);
 ;
@@ -7553,10 +7583,10 @@ L19A7:	lda     _quack2+5
 ;
 ; else if (quack2.direction == DIR_RIGHT)
 ;
-	jmp     L2A29
-L2A36:	lda     _quack2+4
+	jmp     L2A96
+L2AA3:	lda     _quack2+4
 	cmp     #$03
-	bne     L2A37
+	bne     L2AA4
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
 ;
@@ -7572,10 +7602,10 @@ L2A36:	lda     _quack2+4
 ;
 ; else if (quack2.direction == DIR_DOWN)
 ;
-	jmp     L2A29
-L2A37:	lda     _quack2+4
+	jmp     L2A96
+L2AA4:	lda     _quack2+4
 	cmp     #$01
-	bne     L2A38
+	bne     L2AA5
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackdown_data);
 ;
@@ -7591,8 +7621,8 @@ L2A37:	lda     _quack2+4
 ;
 ; else if (quack2.direction == DIR_UP)
 ;
-	jmp     L2A29
-L2A38:	lda     _quack2+4
+	jmp     L2A96
+L2AA5:	lda     _quack2+4
 	bne     L19CA
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
@@ -7606,12 +7636,12 @@ L2A38:	lda     _quack2+4
 	sta     (sp),y
 	lda     #<(_gamesprites_quackup_data)
 	ldx     #>(_gamesprites_quackup_data)
-L2A29:	jsr     _oam_meta_spr
+L2A96:	jsr     _oam_meta_spr
 ;
 ; if (quack4.moving)
 ;
 L19CA:	lda     _quack4+5
-	jeq     L2A3C
+	jeq     L2AA9
 ;
 ; temp_x = quack4.x >> 8;
 ;
@@ -7627,7 +7657,7 @@ L19CA:	lda     _quack4+5
 ;
 	lda     _quack4+4
 	cmp     #$02
-	bne     L2A39
+	bne     L2AA6
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackleft_data);
 ;
@@ -7643,10 +7673,10 @@ L19CA:	lda     _quack4+5
 ;
 ; else if (quack4.direction == DIR_RIGHT)
 ;
-	jmp     L2A2A
-L2A39:	lda     _quack4+4
+	jmp     L2A97
+L2AA6:	lda     _quack4+4
 	cmp     #$03
-	bne     L2A3A
+	bne     L2AA7
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackright_data);
 ;
@@ -7662,10 +7692,10 @@ L2A39:	lda     _quack4+4
 ;
 ; else if (quack4.direction == DIR_DOWN)
 ;
-	jmp     L2A2A
-L2A3A:	lda     _quack4+4
+	jmp     L2A97
+L2AA7:	lda     _quack4+4
 	cmp     #$01
-	bne     L2A3B
+	bne     L2AA8
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackdown_data);
 ;
@@ -7681,9 +7711,9 @@ L2A3A:	lda     _quack4+4
 ;
 ; else if (quack4.direction == DIR_UP)
 ;
-	jmp     L2A2A
-L2A3B:	lda     _quack4+4
-	bne     L2A3C
+	jmp     L2A97
+L2AA8:	lda     _quack4+4
+	bne     L2AA9
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_quackup_data);
 ;
@@ -7696,11 +7726,11 @@ L2A3B:	lda     _quack4+4
 	sta     (sp),y
 	lda     #<(_gamesprites_quackup_data)
 	ldx     #>(_gamesprites_quackup_data)
-L2A2A:	jsr     _oam_meta_spr
+L2A97:	jsr     _oam_meta_spr
 ;
 ; switch (sprite_rotation & 0x03)
 ;
-L2A3C:	lda     _sprite_rotation
+L2AA9:	lda     _sprite_rotation
 	and     #$03
 ;
 ; }
@@ -7805,13 +7835,13 @@ L1A07:	jsr     _draw_player_4
 ;
 	lda     _winner
 	cmp     #$02
-	bne     L2A50
+	bne     L2ABD
 ;
 ; if (BoxGuy1.direction == DIR_LEFT)
 ;
 	lda     _BoxGuy1+4
 	cmp     #$02
-	bne     L2A4F
+	bne     L2ABC
 ;
 ; if (bee1_bigbee_timer > 0)
 ;
@@ -7849,7 +7879,7 @@ L1A1B:	jsr     decsp2
 ;
 ; if (bee1_bigbee_timer > 0)
 ;
-L2A4F:	lda     _bee1_bigbee_timer
+L2ABC:	lda     _bee1_bigbee_timer
 	beq     L1A27
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_bigbeeright0_data);
@@ -7880,13 +7910,13 @@ L1A27:	jsr     decsp2
 ;
 ; if (stun_p1 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 ;
-L2A50:	lda     _stun_p1
-	beq     L2A54
+L2ABD:	lda     _stun_p1
+	beq     L2AC1
 	lda     _frame_counter
 	and     #$01
-	bne     L2A54
+	bne     L2AC1
 	lda     _winner
-	bne     L2A54
+	bne     L2AC1
 ;
 ; return; // flash when stunned (only if game is still ongoing)
 ;
@@ -7894,10 +7924,10 @@ L2A50:	lda     _stun_p1
 ;
 ; if (++anim_tick_p1 >= 10)
 ;
-L2A54:	inc     _anim_tick_p1
+L2AC1:	inc     _anim_tick_p1
 	lda     _anim_tick_p1
 	cmp     #$0A
-	bcc     L2A55
+	bcc     L2AC2
 ;
 ; anim_tick_p1 = 0;
 ;
@@ -7909,7 +7939,7 @@ L2A54:	inc     _anim_tick_p1
 	inc     _anim_frame_1
 	lda     _anim_frame_1
 	cmp     #$03
-	bcc     L2A55
+	bcc     L2AC2
 ;
 ; anim_frame_1 = 0;
 ;
@@ -7918,22 +7948,22 @@ L2A54:	inc     _anim_tick_p1
 ;
 ; if (bee1_bigbee_timer > 0)
 ;
-L2A55:	lda     _bee1_bigbee_timer
-	jeq     L2A5B
+L2AC2:	lda     _bee1_bigbee_timer
+	jeq     L2AC8
 ;
 ; if (bee1_bigbee_timer < BIGBEE_FLICKER_START)
 ;
 	cmp     #$04
-	bcs     L2A58
+	bcs     L2AC5
 ;
 ; if ((frame_counter & 0x03) < 2 && winner == UNDEFINED_WINNER)
 ;
 	lda     _frame_counter
 	and     #$03
 	cmp     #$02
-	bcs     L2A58
+	bcs     L2AC5
 	lda     _winner
-	bne     L2A58
+	bne     L2AC5
 ;
 ; return; // Skip drawing this frame
 ;
@@ -7941,9 +7971,9 @@ L2A55:	lda     _bee1_bigbee_timer
 ;
 ; if (BoxGuy1.direction == DIR_LEFT)
 ;
-L2A58:	lda     _BoxGuy1+4
+L2AC5:	lda     _BoxGuy1+4
 	cmp     #$02
-	bne     L2A59
+	bne     L2AC6
 ;
 ; switch (anim_frame_1)
 ;
@@ -7999,9 +8029,9 @@ L1A5C:	jsr     decsp2
 ;
 ; else if (BoxGuy1.direction == DIR_RIGHT)
 ;
-L2A59:	lda     _BoxGuy1+4
+L2AC6:	lda     _BoxGuy1+4
 	cmp     #$03
-	bne     L2A5A
+	bne     L2AC7
 ;
 ; switch (anim_frame_1)
 ;
@@ -8057,7 +8087,7 @@ L1A74:	jsr     decsp2
 ;
 ; switch (anim_frame_1)
 ;
-L2A5A:	lda     _anim_frame_1
+L2AC7:	lda     _anim_frame_1
 ;
 ; }
 ;
@@ -8109,9 +8139,9 @@ L1A8A:	jsr     decsp2
 ;
 ; if (BoxGuy1.direction == DIR_LEFT)
 ;
-L2A5B:	lda     _BoxGuy1+4
+L2AC8:	lda     _BoxGuy1+4
 	cmp     #$02
-	bne     L2A5C
+	bne     L2AC9
 ;
 ; switch (anim_frame_1)
 ;
@@ -8167,9 +8197,9 @@ L1AA2:	jsr     decsp2
 ;
 ; else if (BoxGuy1.direction == DIR_RIGHT)
 ;
-L2A5C:	lda     _BoxGuy1+4
+L2AC9:	lda     _BoxGuy1+4
 	cmp     #$03
-	bne     L2A5D
+	bne     L2ACA
 ;
 ; switch (anim_frame_1)
 ;
@@ -8225,7 +8255,7 @@ L1ABA:	jsr     decsp2
 ;
 ; switch (anim_frame_1)
 ;
-L2A5D:	lda     _anim_frame_1
+L2ACA:	lda     _anim_frame_1
 ;
 ; }
 ;
@@ -8302,7 +8332,7 @@ L1AD0:	jsr     decsp2
 ;
 	lda     _winner
 	cmp     #$02
-	bne     L2A5F
+	bne     L2ACC
 ;
 ; if (BoxGuy2.direction == DIR_LEFT)
 ;
@@ -8338,7 +8368,7 @@ L1AE2:	jsr     decsp2
 ;
 ; if (stun_p2 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 ;
-L2A5F:	lda     _stun_p2
+L2ACC:	lda     _stun_p2
 	beq     L1AED
 	lda     _frame_counter
 	and     #$01
@@ -8353,14 +8383,14 @@ L2A5F:	lda     _stun_p2
 ; if (BoxGuy2.moving)
 ;
 L1AED:	lda     _BoxGuy2+5
-	beq     L2A63
+	beq     L2AD0
 ;
 ; if (++anim_tick_p2 >= 10)
 ;
 	inc     _anim_tick_p2
 	lda     _anim_tick_p2
 	cmp     #$0A
-	bcc     L2A63
+	bcc     L2AD0
 ;
 ; anim_tick_p2 = 0;
 ;
@@ -8372,7 +8402,7 @@ L1AED:	lda     _BoxGuy2+5
 	inc     _anim_frame_2
 	lda     _anim_frame_2
 	cmp     #$03
-	bcc     L2A63
+	bcc     L2AD0
 ;
 ; anim_frame_2 = 0;
 ;
@@ -8381,9 +8411,9 @@ L1AED:	lda     _BoxGuy2+5
 ;
 ; if (BoxGuy2.direction == DIR_LEFT)
 ;
-L2A63:	lda     _BoxGuy2+4
+L2AD0:	lda     _BoxGuy2+4
 	cmp     #$02
-	bne     L2A64
+	bne     L2AD1
 ;
 ; switch (anim_frame_2)
 ;
@@ -8439,9 +8469,9 @@ L1B0F:	jsr     decsp2
 ;
 ; else if (BoxGuy2.direction == DIR_RIGHT)
 ;
-L2A64:	lda     _BoxGuy2+4
+L2AD1:	lda     _BoxGuy2+4
 	cmp     #$03
-	bne     L2A65
+	bne     L2AD2
 ;
 ; switch (anim_frame_2)
 ;
@@ -8497,7 +8527,7 @@ L1B27:	jsr     decsp2
 ;
 ; switch (anim_frame_2)
 ;
-L2A65:	lda     _anim_frame_2
+L2AD2:	lda     _anim_frame_2
 ;
 ; }
 ;
@@ -8574,13 +8604,13 @@ L1B3D:	jsr     decsp2
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2A68
+	bne     L2AD5
 ;
 ; if (BoxGuy3.direction == DIR_LEFT)
 ;
 	lda     _BoxGuy3+4
 	cmp     #$02
-	bne     L2A67
+	bne     L2AD4
 ;
 ; if (bee3_bigbee_timer > 0)
 ;
@@ -8618,7 +8648,7 @@ L1B51:	jsr     decsp2
 ;
 ; if (bee3_bigbee_timer > 0)
 ;
-L2A67:	lda     _bee3_bigbee_timer
+L2AD4:	lda     _bee3_bigbee_timer
 	beq     L1B5D
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_bigbee2right0_data);
@@ -8649,13 +8679,13 @@ L1B5D:	jsr     decsp2
 ;
 ; if (stun_p3 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 ;
-L2A68:	lda     _stun_p3
-	beq     L2A6C
+L2AD5:	lda     _stun_p3
+	beq     L2AD9
 	lda     _frame_counter
 	and     #$01
-	bne     L2A6C
+	bne     L2AD9
 	lda     _winner
-	bne     L2A6C
+	bne     L2AD9
 ;
 ; return; // flash when stunned
 ;
@@ -8663,10 +8693,10 @@ L2A68:	lda     _stun_p3
 ;
 ; if (++anim_tick_p3 >= 10)
 ;
-L2A6C:	inc     _anim_tick_p3
+L2AD9:	inc     _anim_tick_p3
 	lda     _anim_tick_p3
 	cmp     #$0A
-	bcc     L2A6D
+	bcc     L2ADA
 ;
 ; anim_tick_p3 = 0;
 ;
@@ -8678,7 +8708,7 @@ L2A6C:	inc     _anim_tick_p3
 	inc     _anim_frame_3
 	lda     _anim_frame_3
 	cmp     #$03
-	bcc     L2A6D
+	bcc     L2ADA
 ;
 ; anim_frame_3 = 0;
 ;
@@ -8687,22 +8717,22 @@ L2A6C:	inc     _anim_tick_p3
 ;
 ; if (bee3_bigbee_timer > 0)
 ;
-L2A6D:	lda     _bee3_bigbee_timer
-	jeq     L2A73
+L2ADA:	lda     _bee3_bigbee_timer
+	jeq     L2AE0
 ;
 ; if (bee3_bigbee_timer < BIGBEE_FLICKER_START)
 ;
 	cmp     #$04
-	bcs     L2A70
+	bcs     L2ADD
 ;
 ; if ((frame_counter & 0x03) < 2 && winner == UNDEFINED_WINNER)
 ;
 	lda     _frame_counter
 	and     #$03
 	cmp     #$02
-	bcs     L2A70
+	bcs     L2ADD
 	lda     _winner
-	bne     L2A70
+	bne     L2ADD
 ;
 ; return; // Skip drawing this frame
 ;
@@ -8710,9 +8740,9 @@ L2A6D:	lda     _bee3_bigbee_timer
 ;
 ; if (BoxGuy3.direction == DIR_LEFT)
 ;
-L2A70:	lda     _BoxGuy3+4
+L2ADD:	lda     _BoxGuy3+4
 	cmp     #$02
-	bne     L2A71
+	bne     L2ADE
 ;
 ; switch (anim_frame_3)
 ;
@@ -8768,9 +8798,9 @@ L1B92:	jsr     decsp2
 ;
 ; else if (BoxGuy3.direction == DIR_RIGHT)
 ;
-L2A71:	lda     _BoxGuy3+4
+L2ADE:	lda     _BoxGuy3+4
 	cmp     #$03
-	bne     L2A72
+	bne     L2ADF
 ;
 ; switch (anim_frame_3)
 ;
@@ -8826,7 +8856,7 @@ L1BAA:	jsr     decsp2
 ;
 ; switch (anim_frame_3)
 ;
-L2A72:	lda     _anim_frame_3
+L2ADF:	lda     _anim_frame_3
 ;
 ; }
 ;
@@ -8878,9 +8908,9 @@ L1BC0:	jsr     decsp2
 ;
 ; if (BoxGuy3.direction == DIR_LEFT)
 ;
-L2A73:	lda     _BoxGuy3+4
+L2AE0:	lda     _BoxGuy3+4
 	cmp     #$02
-	bne     L2A74
+	bne     L2AE1
 ;
 ; switch (anim_frame_3)
 ;
@@ -8936,9 +8966,9 @@ L1BD8:	jsr     decsp2
 ;
 ; else if (BoxGuy3.direction == DIR_RIGHT)
 ;
-L2A74:	lda     _BoxGuy3+4
+L2AE1:	lda     _BoxGuy3+4
 	cmp     #$03
-	bne     L2A75
+	bne     L2AE2
 ;
 ; switch (anim_frame_3)
 ;
@@ -8994,7 +9024,7 @@ L1BF0:	jsr     decsp2
 ;
 ; switch (anim_frame_3)
 ;
-L2A75:	lda     _anim_frame_3
+L2AE2:	lda     _anim_frame_3
 ;
 ; }
 ;
@@ -9071,7 +9101,7 @@ L1C06:	jsr     decsp2
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2A77
+	bne     L2AE4
 ;
 ; if (BoxGuy4.direction == DIR_LEFT)
 ;
@@ -9107,7 +9137,7 @@ L1C18:	jsr     decsp2
 ;
 ; if (stun_p4 > 0 && (frame_counter & 0x01) == 0 && winner == UNDEFINED_WINNER)
 ;
-L2A77:	lda     _stun_p4
+L2AE4:	lda     _stun_p4
 	beq     L1C23
 	lda     _frame_counter
 	and     #$01
@@ -9122,14 +9152,14 @@ L2A77:	lda     _stun_p4
 ; if (BoxGuy4.moving)
 ;
 L1C23:	lda     _BoxGuy4+5
-	beq     L2A7B
+	beq     L2AE8
 ;
 ; if (++anim_tick_p4 >= 10)
 ;
 	inc     _anim_tick_p4
 	lda     _anim_tick_p4
 	cmp     #$0A
-	bcc     L2A7B
+	bcc     L2AE8
 ;
 ; anim_tick_p4 = 0;
 ;
@@ -9141,7 +9171,7 @@ L1C23:	lda     _BoxGuy4+5
 	inc     _anim_frame_4
 	lda     _anim_frame_4
 	cmp     #$03
-	bcc     L2A7B
+	bcc     L2AE8
 ;
 ; anim_frame_4 = 0;
 ;
@@ -9150,9 +9180,9 @@ L1C23:	lda     _BoxGuy4+5
 ;
 ; if (BoxGuy4.direction == DIR_LEFT)
 ;
-L2A7B:	lda     _BoxGuy4+4
+L2AE8:	lda     _BoxGuy4+4
 	cmp     #$02
-	bne     L2A7C
+	bne     L2AE9
 ;
 ; switch (anim_frame_4)
 ;
@@ -9208,9 +9238,9 @@ L1C45:	jsr     decsp2
 ;
 ; else if (BoxGuy4.direction == DIR_RIGHT)
 ;
-L2A7C:	lda     _BoxGuy4+4
+L2AE9:	lda     _BoxGuy4+4
 	cmp     #$03
-	bne     L2A7D
+	bne     L2AEA
 ;
 ; switch (anim_frame_4)
 ;
@@ -9266,7 +9296,7 @@ L1C5D:	jsr     decsp2
 ;
 ; switch (anim_frame_4)
 ;
-L2A7D:	lda     _anim_frame_4
+L2AEA:	lda     _anim_frame_4
 ;
 ; }
 ;
@@ -9342,37 +9372,37 @@ L1C73:	jsr     decsp2
 ;
 	lda     _current_player
 	cmp     #$01
-	bne     L2A8F
+	bne     L2AFE
 	lda     _stun_p1
-	bne     L2A9C
+	bne     L2B0B
 ;
 ; (current_player == 2 && stun_p2 > 0) ||
 ;
-L2A8F:	lda     _current_player
+L2AFE:	lda     _current_player
 	cmp     #$02
-	bne     L2A92
+	bne     L2B01
 	lda     _stun_p2
-	bne     L2A9C
+	bne     L2B0B
 ;
 ; (current_player == 3 && stun_p3 > 0) ||
 ;
-L2A92:	lda     _current_player
+L2B01:	lda     _current_player
 	cmp     #$03
-	bne     L2A95
+	bne     L2B04
 	lda     _stun_p3
-	bne     L2A9C
+	bne     L2B0B
 ;
 ; (current_player == 4 && stun_p4 > 0))
 ;
-L2A95:	lda     _current_player
+L2B04:	lda     _current_player
 	cmp     #$04
-	bne     L1E96
+	bne     L2B0C
 	lda     _stun_p4
-	beq     L1E96
+	beq     L2B0C
 ;
 ; switch (current_player)
 ;
-L2A9C:	lda     _current_player
+L2B0B:	lda     _current_player
 ;
 ; }
 ;
@@ -9434,9 +9464,74 @@ L1EB5:	lda     #<(_BoxGuy4)
 	lda     #$07
 	jmp     _memcpy
 ;
+; switch (current_player)
+;
+L2B0C:	lda     _current_player
+;
+; }
+;
+	cmp     #$01
+	beq     L2B0D
+	cmp     #$02
+	beq     L2B0E
+	cmp     #$03
+	beq     L2B0F
+	cmp     #$04
+	beq     L2B10
+	jmp     L1EBA
+;
+; bounce_timer = bounce_p1;
+;
+L2B0D:	lda     _bounce_p1
+	sta     _bounce_timer
+;
+; bounce_direction = bounce_dir_p1;
+;
+	lda     _bounce_dir_p1
+;
+; break;
+;
+	jmp     L2AF3
+;
+; bounce_timer = bounce_p2;
+;
+L2B0E:	lda     _bounce_p2
+	sta     _bounce_timer
+;
+; bounce_direction = bounce_dir_p2;
+;
+	lda     _bounce_dir_p2
+;
+; break;
+;
+	jmp     L2AF3
+;
+; bounce_timer = bounce_p3;
+;
+L2B0F:	lda     _bounce_p3
+	sta     _bounce_timer
+;
+; bounce_direction = bounce_dir_p3;
+;
+	lda     _bounce_dir_p3
+;
+; break;
+;
+	jmp     L2AF3
+;
+; bounce_timer = bounce_p4;
+;
+L2B10:	lda     _bounce_p4
+	sta     _bounce_timer
+;
+; bounce_direction = bounce_dir_p4;
+;
+	lda     _bounce_dir_p4
+L2AF3:	sta     _bounce_direction
+;
 ; old_x = GenericBoxGuy.x;
 ;
-L1E96:	lda     _GenericBoxGuy+1
+L1EBA:	lda     _GenericBoxGuy+1
 	sta     _old_x+1
 	lda     _GenericBoxGuy
 	sta     _old_x
@@ -9445,17 +9540,17 @@ L1E96:	lda     _GenericBoxGuy+1
 ;
 	lda     _generic_pad
 	and     #$40
-	jeq     L2AA9
+	jeq     L2B1D
 ;
 ; if (current_player == 2 && quack2.moving == 0 && quack2_cooldown == 0)
 ;
 	lda     _current_player
 	cmp     #$02
-	jne     L2AA3
+	jne     L2B17
 	lda     _quack2+5
-	jne     L2AA3
+	jne     L2B17
 	lda     _quack2_cooldown
-	jne     L2AA3
+	jne     L2B17
 ;
 ; quack2.x = GenericBoxGuy.x;
 ;
@@ -9485,7 +9580,7 @@ L1E96:	lda     _GenericBoxGuy+1
 ;
 	lda     _quack2+4
 	cmp     #$02
-	bne     L2A9F
+	bne     L2B13
 ;
 ; quack2.x -= 0x0800; // move it 1 block to the left;
 ;
@@ -9499,10 +9594,10 @@ L1E96:	lda     _GenericBoxGuy+1
 ;
 ; else if (quack2.direction == DIR_RIGHT)
 ;
-	jmp     L2AA2
-L2A9F:	lda     _quack2+4
+	jmp     L2B16
+L2B13:	lda     _quack2+4
 	cmp     #$03
-	bne     L2AA0
+	bne     L2B14
 ;
 ; quack2.x += 0x0800;
 ;
@@ -9516,9 +9611,9 @@ L2A9F:	lda     _quack2+4
 ;
 ; else if (quack2.direction == DIR_UP)
 ;
-	jmp     L2AA2
-L2AA0:	lda     _quack2+4
-	bne     L2AA1
+	jmp     L2B16
+L2B14:	lda     _quack2+4
+	bne     L2B15
 ;
 ; quack2.y -= 0x0800;
 ;
@@ -9531,10 +9626,10 @@ L2AA0:	lda     _quack2+4
 ;
 ; else if (quack2.direction == DIR_DOWN)
 ;
-	jmp     L2ADE
-L2AA1:	lda     _quack2+4
+	jmp     L2B56
+L2B15:	lda     _quack2+4
 	cmp     #$01
-	bne     L2AA2
+	bne     L2B16
 ;
 ; quack2.y += 0x0800;
 ;
@@ -9544,22 +9639,22 @@ L2AA1:	lda     _quack2+4
 	sta     _quack2+2
 	lda     #$08
 	adc     _quack2+2+1
-L2ADE:	sta     _quack2+2+1
+L2B56:	sta     _quack2+2+1
 ;
 ; quack2.moving = 1;
 ;
-L2AA2:	lda     #$01
+L2B16:	lda     #$01
 	sta     _quack2+5
 ;
 ; if (current_player == 4 && quack4.moving == 0 && quack4_cooldown == 0)
 ;
-L2AA3:	lda     _current_player
+L2B17:	lda     _current_player
 	cmp     #$04
-	jne     L2AA9
+	jne     L2B1D
 	lda     _quack4+5
-	jne     L2AA9
+	jne     L2B1D
 	lda     _quack4_cooldown
-	jne     L2AA9
+	jne     L2B1D
 ;
 ; quack4.x = GenericBoxGuy.x;
 ;
@@ -9594,7 +9689,7 @@ L2AA3:	lda     _current_player
 ;
 	lda     _quack4+4
 	cmp     #$02
-	bne     L2AA6
+	bne     L2B1A
 ;
 ; quack4.x -= 0x0800; // move it 1 block to the left;
 ;
@@ -9608,10 +9703,10 @@ L2AA3:	lda     _current_player
 ;
 ; else if (quack4.direction == DIR_RIGHT)
 ;
-	jmp     L2AA9
-L2AA6:	lda     _quack4+4
+	jmp     L2B1D
+L2B1A:	lda     _quack4+4
 	cmp     #$03
-	bne     L2AA7
+	bne     L2B1B
 ;
 ; quack4.x += 0x0800;
 ;
@@ -9625,9 +9720,9 @@ L2AA6:	lda     _quack4+4
 ;
 ; else if (quack4.direction == DIR_UP)
 ;
-	jmp     L2AA9
-L2AA7:	lda     _quack4+4
-	bne     L2AA8
+	jmp     L2B1D
+L2B1B:	lda     _quack4+4
+	bne     L2B1C
 ;
 ; quack4.y -= 0x0800;
 ;
@@ -9640,10 +9735,10 @@ L2AA7:	lda     _quack4+4
 ;
 ; else if (quack4.direction == DIR_DOWN)
 ;
-	jmp     L2ADF
-L2AA8:	lda     _quack4+4
+	jmp     L2B57
+L2B1C:	lda     _quack4+4
 	cmp     #$01
-	bne     L2AA9
+	bne     L2B1D
 ;
 ; quack4.y += 0x0800;
 ;
@@ -9653,50 +9748,50 @@ L2AA8:	lda     _quack4+4
 	sta     _quack4+2
 	lda     #$08
 	adc     _quack4+2+1
-L2ADF:	sta     _quack4+2+1
+L2B57:	sta     _quack4+2+1
 ;
 ; if (generic_pad & PAD_A)
 ;
-L2AA9:	lda     _generic_pad
+L2B1D:	lda     _generic_pad
 	and     #$80
-	beq     L1F13
+	beq     L1F2E
 ;
 ; if ((current_player == 1 && turbo_p1 > 0 && bee1_bigbee_timer == 0) ||
 ;
 	lda     _current_player
 	cmp     #$01
-	bne     L2AAD
+	bne     L2B21
 	lda     _turbo_p1
-	beq     L2AAD
+	beq     L2B21
 	lda     _bee1_bigbee_timer
-	beq     L2AE7
+	beq     L2B5F
 ;
 ; (current_player == 2 && turbo_p2 > 0) ||
 ;
-L2AAD:	lda     _current_player
+L2B21:	lda     _current_player
 	cmp     #$02
-	bne     L2AB0
+	bne     L2B24
 	lda     _turbo_p2
-	bne     L2AE7
+	bne     L2B5F
 ;
 ; (current_player == 3 && turbo_p3 > 0 && bee3_bigbee_timer == 0) ||
 ;
-L2AB0:	lda     _current_player
+L2B24:	lda     _current_player
 	cmp     #$03
-	bne     L2AB4
+	bne     L2B28
 	lda     _turbo_p3
-	beq     L2AB4
+	beq     L2B28
 	lda     _bee3_bigbee_timer
-	beq     L2AE7
+	beq     L2B5F
 ;
 ; (current_player == 4 && turbo_p4 > 0))
 ;
-L2AB4:	lda     _current_player
+L2B28:	lda     _current_player
 	cmp     #$04
-	bne     L1F13
+	bne     L1F2E
 	lda     _turbo_p4
-	beq     L1F13
-L2AE7:	lda     #$01
+	beq     L1F2E
+L2B5F:	lda     #$01
 ;
 ; use_turbo = 1;
 ;
@@ -9709,59 +9804,59 @@ L2AE7:	lda     #$01
 ; }
 ;
 	cmp     #$01
-	beq     L2ABD
+	beq     L2B31
 	cmp     #$02
-	beq     L2ABE
+	beq     L2B32
 	cmp     #$03
-	beq     L2ABF
+	beq     L2B33
 	cmp     #$04
-	beq     L2AC0
-	jmp     L1F13
+	beq     L2B34
+	jmp     L1F2E
 ;
 ; turbo_p1--;
 ;
-L2ABD:	dec     _turbo_p1
+L2B31:	dec     _turbo_p1
 ;
 ; break;
 ;
-	jmp     L1F13
+	jmp     L1F2E
 ;
 ; turbo_p2--;
 ;
-L2ABE:	dec     _turbo_p2
+L2B32:	dec     _turbo_p2
 ;
 ; break;
 ;
-	jmp     L1F13
+	jmp     L1F2E
 ;
 ; turbo_p3--;
 ;
-L2ABF:	dec     _turbo_p3
+L2B33:	dec     _turbo_p3
 ;
 ; break;
 ;
-	jmp     L1F13
+	jmp     L1F2E
 ;
 ; turbo_p4--;
 ;
-L2AC0:	dec     _turbo_p4
+L2B34:	dec     _turbo_p4
 ;
 ; if (ducks_go_faster_over_time)
 ;
-L1F13:	lda     _ducks_go_faster_over_time
-	beq     L1F20
+L1F2E:	lda     _ducks_go_faster_over_time
+	beq     L1F3B
 ;
 ; if (current_player == 2 || current_player == 4)
 ;
 	lda     _current_player
 	cmp     #$02
-	beq     L2AC1
+	beq     L2B35
 	cmp     #$04
-	bne     L1F20
+	bne     L1F3B
 ;
 ; current_speed = speed_option;
 ;
-L2AC1:	lda     _speed_option+1
+L2B35:	lda     _speed_option+1
 	sta     _current_speed+1
 	lda     _speed_option
 	sta     _current_speed
@@ -9770,7 +9865,7 @@ L2AC1:	lda     _speed_option+1
 ;
 	lda     _game_timer
 	cmp     #$51
-	bcc     L2AC2
+	bcc     L2B36
 ;
 ; current_speed -= DUCK_SPEED_LOW;
 ;
@@ -9778,20 +9873,20 @@ L2AC1:	lda     _speed_option+1
 	sec
 	sbc     #$14
 	sta     _current_speed
-	bcs     L1F40
+	bcs     L1F5B
 	dec     _current_speed+1
 ;
 ; else if (game_timer > 20)
 ;
-	jmp     L1F40
-L2AC2:	lda     _game_timer
+	jmp     L1F5B
+L2B36:	lda     _game_timer
 	cmp     #$15
 ;
 ; else if (game_timer > 10)
 ;
-	bcs     L1F20
+	bcs     L1F3B
 	cmp     #$0B
-	bcc     L2AC4
+	bcc     L2B38
 ;
 ; current_speed += DUCK_SPEED_HIGH;
 ;
@@ -9799,14 +9894,14 @@ L2AC2:	lda     _game_timer
 	clc
 	adc     _current_speed
 	sta     _current_speed
-	bcc     L1F40
+	bcc     L1F5B
 	inc     _current_speed+1
 ;
 ; else if (game_timer > 0)
 ;
-	jmp     L1F40
-L2AC4:	lda     _game_timer
-	beq     L1F40
+	jmp     L1F5B
+L2B38:	lda     _game_timer
+	beq     L1F5B
 ;
 ; current_speed += DUCK_SPEED_MAX;
 ;
@@ -9814,27 +9909,90 @@ L2AC4:	lda     _game_timer
 	clc
 	adc     _current_speed
 	sta     _current_speed
-	bcc     L1F40
+	bcc     L1F5B
 	inc     _current_speed+1
 ;
 ; else
 ;
-	jmp     L1F40
+	jmp     L1F5B
 ;
 ; current_speed = speed_option; // feature disabled, all normal speed
 ;
-L1F20:	lda     _speed_option+1
+L1F3B:	lda     _speed_option+1
 	sta     _current_speed+1
 	lda     _speed_option
 	sta     _current_speed
 ;
+; if (bounce_timer > 0)
+;
+L1F5B:	lda     _bounce_timer
+	beq     L2B3C
+;
+; generic_pad = 0;
+;
+	lda     #$00
+	sta     _generic_pad
+;
+; current_speed = 0x0100;
+;
+	ldx     #$01
+	sta     _current_speed
+	stx     _current_speed+1
+;
+; bounce_timer--;
+;
+	dec     _bounce_timer
+;
+; if (bounce_direction == DIR_UP)
+;
+	lda     _bounce_direction
+	bne     L2B39
+;
+; generic_pad = PAD_DOWN;
+;
+	lda     #$04
+;
+; else if (bounce_direction == DIR_DOWN)
+;
+	jmp     L2AF7
+L2B39:	lda     _bounce_direction
+	cmp     #$01
+	bne     L2B3A
+;
+; generic_pad = PAD_UP;
+;
+	lda     #$08
+;
+; else if (bounce_direction == DIR_LEFT)
+;
+	jmp     L2AF7
+L2B3A:	lda     _bounce_direction
+	cmp     #$02
+	bne     L2B3B
+;
+; generic_pad = PAD_RIGHT;
+;
+	txa
+;
+; else if (bounce_direction == DIR_RIGHT)
+;
+	jmp     L2AF7
+L2B3B:	lda     _bounce_direction
+	cmp     #$03
+	bne     L2B3C
+;
+; generic_pad = PAD_LEFT;
+;
+	lda     #$02
+L2AF7:	sta     _generic_pad
+;
 ; if (bee1_bigbee_timer > 0 && current_player == 1)
 ;
-L1F40:	lda     _bee1_bigbee_timer
-	beq     L2AC9
+L2B3C:	lda     _bee1_bigbee_timer
+	beq     L2B41
 	lda     _current_player
 	cmp     #$01
-	bne     L2AC9
+	bne     L2B41
 ;
 ; current_speed += (current_speed >> 2); // big bee boost
 ;
@@ -9850,11 +10008,11 @@ L1F40:	lda     _bee1_bigbee_timer
 ;
 ; if (bee3_bigbee_timer > 0 && current_player == 3)
 ;
-L2AC9:	lda     _bee3_bigbee_timer
-	beq     L2ACD
+L2B41:	lda     _bee3_bigbee_timer
+	beq     L2B45
 	lda     _current_player
 	cmp     #$03
-	bne     L2ACD
+	bne     L2B45
 ;
 ; current_speed += (current_speed >> 2); // big bee boost
 ;
@@ -9870,9 +10028,9 @@ L2AC9:	lda     _bee3_bigbee_timer
 ;
 ; if (generic_pad & PAD_LEFT)
 ;
-L2ACD:	lda     _generic_pad
+L2B45:	lda     _generic_pad
 	and     #$02
-	beq     L2ACF
+	beq     L2B47
 ;
 ; hero_velocity_x = -current_speed;
 ;
@@ -9886,7 +10044,7 @@ L2ACD:	lda     _generic_pad
 ;
 	lda     _use_turbo
 	cmp     #$01
-	bne     L2ACE
+	bne     L2B46
 ;
 ; hero_velocity_x -= SPEED_TURBO_BOOST; // add turbo boost
 ;
@@ -9894,25 +10052,25 @@ L2ACD:	lda     _generic_pad
 	sec
 	sbc     #$60
 	sta     _hero_velocity_x
-	bcs     L1F59
+	bcs     L1F8E
 	dec     _hero_velocity_x+1
 ;
 ; use_turbo = 0;            // reset turbo flag
 ;
-L1F59:	lda     #$00
+L1F8E:	lda     #$00
 	sta     _use_turbo
 ;
 ; GenericBoxGuy.direction = DIR_LEFT;
 ;
-L2ACE:	lda     #$02
+L2B46:	lda     #$02
 	sta     _GenericBoxGuy+4
 ;
 ; else if (generic_pad & PAD_RIGHT)
 ;
-	jmp     L1F6C
-L2ACF:	lda     _generic_pad
+	jmp     L1FA1
+L2B47:	lda     _generic_pad
 	and     #$01
-	beq     L2AD2
+	beq     L2B4A
 ;
 ; hero_velocity_x = current_speed;
 ;
@@ -9925,7 +10083,7 @@ L2ACF:	lda     _generic_pad
 ;
 	lda     _use_turbo
 	cmp     #$01
-	bne     L2AD0
+	bne     L2B48
 ;
 ; hero_velocity_x += SPEED_TURBO_BOOST; // add turbo boost
 ;
@@ -9933,31 +10091,31 @@ L2ACF:	lda     _generic_pad
 	clc
 	adc     _hero_velocity_x
 	sta     _hero_velocity_x
-	bcc     L1F67
+	bcc     L1F9C
 	inc     _hero_velocity_x+1
 ;
 ; use_turbo = 0;            // reset turbo flag
 ;
-L1F67:	lda     #$00
+L1F9C:	lda     #$00
 	sta     _use_turbo
 ;
 ; GenericBoxGuy.direction = DIR_RIGHT;
 ;
-L2AD0:	lda     #$03
+L2B48:	lda     #$03
 	sta     _GenericBoxGuy+4
 ;
 ; else
 ;
-	jmp     L1F6C
+	jmp     L1FA1
 ;
 ; hero_velocity_x = 0;
 ;
-L2AD2:	sta     _hero_velocity_x
+L2B4A:	sta     _hero_velocity_x
 	sta     _hero_velocity_x+1
 ;
 ; GenericBoxGuy.x += hero_velocity_x;
 ;
-L1F6C:	lda     _hero_velocity_x
+L1FA1:	lda     _hero_velocity_x
 	clc
 	adc     _GenericBoxGuy
 	sta     _GenericBoxGuy
@@ -9971,7 +10129,7 @@ L1F6C:	lda     _hero_velocity_x
 	cmp     #$01
 	lda     _GenericBoxGuy+1
 	sbc     #$F0
-	bcc     L2AD5
+	bcc     L2B4D
 ;
 ; if (old_x >= 0x8000)
 ;
@@ -9981,7 +10139,7 @@ L1F6C:	lda     _hero_velocity_x
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L2AD4
+	bcc     L2B4C
 ;
 ; GenericBoxGuy.x = 0xf000; // max right
 ;
@@ -9989,12 +10147,12 @@ L1F6C:	lda     _hero_velocity_x
 ;
 ; GenericBoxGuy.x = 0x0000; // max left
 ;
-L2AD4:	sta     _GenericBoxGuy
+L2B4C:	sta     _GenericBoxGuy
 	stx     _GenericBoxGuy+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L2AD5:	lda     _GenericBoxGuy+1
+L2B4D:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -10015,7 +10173,7 @@ L2AD5:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_x+1
 	cpx     #$80
-	bcc     L1F82
+	bcc     L1FB7
 ;
 ; if (bg_coll_L())
 ;
@@ -10023,20 +10181,20 @@ L2AD5:	lda     _GenericBoxGuy+1
 ;
 ; else if (hero_velocity_x > 0)
 ;
-	jmp     L2AF4
-L1F82:	lda     _hero_velocity_x
+	jmp     L2B6C
+L1FB7:	lda     _hero_velocity_x
 	cmp     #$01
 	lda     _hero_velocity_x+1
 	sbc     #$00
-	bvs     L1F8F
+	bvs     L1FC4
 	eor     #$80
-L1F8F:	bpl     L1F90
+L1FC4:	bpl     L1FC5
 ;
 ; if (bg_coll_R())
 ;
 	jsr     _bg_coll_R
-L2AF4:	tax
-	beq     L1F90
+L2B6C:	tax
+	beq     L1FC5
 ;
 ; GenericBoxGuy.x = old_x; // revert to old position
 ;
@@ -10056,7 +10214,7 @@ L2AF4:	tax
 ;
 ; old_y = GenericBoxGuy.y;
 ;
-L1F90:	lda     _GenericBoxGuy+2+1
+L1FC5:	lda     _GenericBoxGuy+2+1
 	sta     _old_y+1
 	lda     _GenericBoxGuy+2
 	sta     _old_y
@@ -10065,7 +10223,7 @@ L1F90:	lda     _GenericBoxGuy+2+1
 ;
 	lda     _generic_pad
 	and     #$08
-	beq     L2AD7
+	beq     L2B4F
 ;
 ; hero_velocity_y = -current_speed;
 ;
@@ -10079,7 +10237,7 @@ L1F90:	lda     _GenericBoxGuy+2+1
 ;
 	lda     _use_turbo
 	cmp     #$01
-	bne     L2AD6
+	bne     L2B4E
 ;
 ; hero_velocity_y -= SPEED_TURBO_BOOST; // add turbo boost
 ;
@@ -10087,25 +10245,25 @@ L1F90:	lda     _GenericBoxGuy+2+1
 	sec
 	sbc     #$60
 	sta     _hero_velocity_y
-	bcs     L1FA2
+	bcs     L1FD7
 	dec     _hero_velocity_y+1
 ;
 ; use_turbo = 0;            // reset turbo flag
 ;
-L1FA2:	lda     #$00
+L1FD7:	lda     #$00
 	sta     _use_turbo
 ;
 ; GenericBoxGuy.direction = DIR_UP; // entually we'll set up and down but not now.
 ;
-L2AD6:	lda     #$00
+L2B4E:	lda     #$00
 	sta     _GenericBoxGuy+4
 ;
 ; else if (generic_pad & PAD_DOWN)
 ;
-	jmp     L1FB5
-L2AD7:	lda     _generic_pad
+	jmp     L1FEA
+L2B4F:	lda     _generic_pad
 	and     #$04
-	beq     L2ADA
+	beq     L2B52
 ;
 ; hero_velocity_y = current_speed;
 ;
@@ -10118,7 +10276,7 @@ L2AD7:	lda     _generic_pad
 ;
 	lda     _use_turbo
 	cmp     #$01
-	bne     L2AD8
+	bne     L2B50
 ;
 ; hero_velocity_y += SPEED_TURBO_BOOST; // add turbo boost
 ;
@@ -10126,31 +10284,31 @@ L2AD7:	lda     _generic_pad
 	clc
 	adc     _hero_velocity_y
 	sta     _hero_velocity_y
-	bcc     L1FB0
+	bcc     L1FE5
 	inc     _hero_velocity_y+1
 ;
 ; use_turbo = 0;            // reset turbo flag
 ;
-L1FB0:	lda     #$00
+L1FE5:	lda     #$00
 	sta     _use_turbo
 ;
 ; GenericBoxGuy.direction = DIR_DOWN;
 ;
-L2AD8:	lda     #$01
+L2B50:	lda     #$01
 	sta     _GenericBoxGuy+4
 ;
 ; else
 ;
-	jmp     L1FB5
+	jmp     L1FEA
 ;
 ; hero_velocity_y = 0;
 ;
-L2ADA:	sta     _hero_velocity_y
+L2B52:	sta     _hero_velocity_y
 	sta     _hero_velocity_y+1
 ;
 ; GenericBoxGuy.y += hero_velocity_y;
 ;
-L1FB5:	lda     _hero_velocity_y
+L1FEA:	lda     _hero_velocity_y
 	clc
 	adc     _GenericBoxGuy+2
 	sta     _GenericBoxGuy+2
@@ -10164,7 +10322,7 @@ L1FB5:	lda     _hero_velocity_y
 	cmp     #$01
 	lda     _GenericBoxGuy+2+1
 	sbc     #$E0
-	bcc     L2ADD
+	bcc     L2B55
 ;
 ; if (old_y >= 0x8000)
 ;
@@ -10174,7 +10332,7 @@ L1FB5:	lda     _hero_velocity_y
 	sbc     #$80
 	lda     #$00
 	tax
-	bcc     L2ADC
+	bcc     L2B54
 ;
 ; GenericBoxGuy.y = 0xe000; // max down
 ;
@@ -10182,12 +10340,12 @@ L1FB5:	lda     _hero_velocity_y
 ;
 ; GenericBoxGuy.y = 0x0000; // max up
 ;
-L2ADC:	sta     _GenericBoxGuy+2
+L2B54:	sta     _GenericBoxGuy+2
 	stx     _GenericBoxGuy+2+1
 ;
 ; Generic.x = GenericBoxGuy.x >> 8; // the collision routine needs an 8 bit value
 ;
-L2ADD:	lda     _GenericBoxGuy+1
+L2B55:	lda     _GenericBoxGuy+1
 	sta     _Generic
 ;
 ; Generic.y = GenericBoxGuy.y >> 8;
@@ -10199,7 +10357,7 @@ L2ADD:	lda     _GenericBoxGuy+1
 ;
 	ldx     _hero_velocity_y+1
 	cpx     #$80
-	bcc     L1FC7
+	bcc     L1FFC
 ;
 ; if (bg_coll_U())
 ;
@@ -10207,20 +10365,20 @@ L2ADD:	lda     _GenericBoxGuy+1
 ;
 ; else if (hero_velocity_y > 0)
 ;
-	jmp     L2AF5
-L1FC7:	lda     _hero_velocity_y
+	jmp     L2B6D
+L1FFC:	lda     _hero_velocity_y
 	cmp     #$01
 	lda     _hero_velocity_y+1
 	sbc     #$00
-	bvs     L1FD4
+	bvs     L2009
 	eor     #$80
-L1FD4:	bpl     L1FD5
+L2009:	bpl     L200A
 ;
 ; if (bg_coll_D())
 ;
 	jsr     _bg_coll_D
-L2AF5:	tax
-	beq     L1FD5
+L2B6D:	tax
+	beq     L200A
 ;
 ; GenericBoxGuy.y = old_y; // revert to old position
 ;
@@ -10240,7 +10398,7 @@ L2AF5:	tax
 ;
 ; check_tile_and_collect();
 ;
-L1FD5:	jsr     _check_tile_and_collect
+L200A:	jsr     _check_tile_and_collect
 ;
 ; switch (current_player)
 ;
@@ -10249,18 +10407,18 @@ L1FD5:	jsr     _check_tile_and_collect
 ; }
 ;
 	cmp     #$01
-	beq     L1FE2
+	beq     L2017
 	cmp     #$02
-	beq     L1FE6
+	beq     L201D
 	cmp     #$03
-	beq     L1FEA
+	beq     L2023
 	cmp     #$04
-	beq     L1FEE
+	beq     L2029
 	rts
 ;
 ; BoxGuy1 = GenericBoxGuy;
 ;
-L1FE2:	lda     #<(_BoxGuy1)
+L2017:	lda     #<(_BoxGuy1)
 	ldx     #>(_BoxGuy1)
 	jsr     pushax
 	lda     #<(_GenericBoxGuy)
@@ -10268,11 +10426,20 @@ L1FE2:	lda     #<(_BoxGuy1)
 	jsr     pushax
 	ldx     #$00
 	lda     #$07
-	jmp     _memcpy
+	jsr     _memcpy
+;
+; bounce_p1 = bounce_timer;
+;
+	lda     _bounce_timer
+	sta     _bounce_p1
+;
+; break;
+;
+	rts
 ;
 ; BoxGuy2 = GenericBoxGuy;
 ;
-L1FE6:	lda     #<(_BoxGuy2)
+L201D:	lda     #<(_BoxGuy2)
 	ldx     #>(_BoxGuy2)
 	jsr     pushax
 	lda     #<(_GenericBoxGuy)
@@ -10280,11 +10447,20 @@ L1FE6:	lda     #<(_BoxGuy2)
 	jsr     pushax
 	ldx     #$00
 	lda     #$07
-	jmp     _memcpy
+	jsr     _memcpy
+;
+; bounce_p2 = bounce_timer;
+;
+	lda     _bounce_timer
+	sta     _bounce_p2
+;
+; break;
+;
+	rts
 ;
 ; BoxGuy3 = GenericBoxGuy;
 ;
-L1FEA:	lda     #<(_BoxGuy3)
+L2023:	lda     #<(_BoxGuy3)
 	ldx     #>(_BoxGuy3)
 	jsr     pushax
 	lda     #<(_GenericBoxGuy)
@@ -10292,11 +10468,20 @@ L1FEA:	lda     #<(_BoxGuy3)
 	jsr     pushax
 	ldx     #$00
 	lda     #$07
-	jmp     _memcpy
+	jsr     _memcpy
+;
+; bounce_p3 = bounce_timer;
+;
+	lda     _bounce_timer
+	sta     _bounce_p3
+;
+; break;
+;
+	rts
 ;
 ; BoxGuy4 = GenericBoxGuy;
 ;
-L1FEE:	lda     #<(_BoxGuy4)
+L2029:	lda     #<(_BoxGuy4)
 	ldx     #>(_BoxGuy4)
 	jsr     pushax
 	lda     #<(_GenericBoxGuy)
@@ -10304,7 +10489,16 @@ L1FEE:	lda     #<(_BoxGuy4)
 	jsr     pushax
 	ldx     #$00
 	lda     #$07
-	jmp     _memcpy
+	jsr     _memcpy
+;
+; bounce_p4 = bounce_timer;
+;
+	lda     _bounce_timer
+	sta     _bounce_p4
+;
+; }
+;
+	rts
 
 .endproc
 
@@ -10324,9 +10518,9 @@ L1FEE:	lda     #<(_BoxGuy4)
 	ldx     #$00
 	lda     _current_player
 	cmp     #$01
-	beq     L2AFB
+	beq     L2B73
 	cmp     #$03
-	beq     L2AFB
+	beq     L2B73
 ;
 ; return; // Chasers cannot collect dots
 ;
@@ -10334,12 +10528,12 @@ L1FEE:	lda     #<(_BoxGuy4)
 ;
 ; temp_x = (Generic.x + 4) >> 3; // get this between 0-30
 ;
-L2AFB:	lda     _Generic
+L2B73:	lda     _Generic
 	clc
 	adc     #$04
-	bcc     L207C
+	bcc     L20B9
 	inx
-L207C:	jsr     shrax3
+L20B9:	jsr     shrax3
 	sta     _temp_x
 ;
 ; temp_y = (Generic.y + 2) >> 3; // get this between 0-32
@@ -10348,9 +10542,9 @@ L207C:	jsr     shrax3
 	lda     _Generic+1
 	clc
 	adc     #$02
-	bcc     L2080
+	bcc     L20BD
 	inx
-L2080:	jsr     shrax3
+L20BD:	jsr     shrax3
 	sta     _temp_y
 ;
 ; largeindex = (temp_y << 5) + temp_x;
@@ -10364,9 +10558,9 @@ L2080:	jsr     shrax3
 	ldx     tmp1
 	clc
 	adc     _temp_x
-	bcc     L2AF6
+	bcc     L2B6E
 	inx
-L2AF6:	sta     _largeindex
+L2B6E:	sta     _largeindex
 	stx     _largeindex+1
 ;
 ; temp = map_ptr[largeindex];
@@ -10385,9 +10579,9 @@ L2AF6:	sta     _largeindex
 ; for (index = 0; index < sizeof(pellet_tiles); index++)
 ;
 	sty     _index
-L2AFC:	lda     _index
+L2B74:	lda     _index
 	cmp     #$06
-	bcc     L2AFE
+	bcc     L2B76
 ;
 ; }
 ;
@@ -10395,10 +10589,10 @@ L2AFC:	lda     _index
 ;
 ; if (temp == pellet_tiles[index])
 ;
-L2AFE:	ldy     _index
+L2B76:	ldy     _index
 	lda     _pellet_tiles,y
 	cmp     _temp
-	jne     L2090
+	jne     L20CD
 ;
 ; if (!is_dot_consumed(largeindex))
 ;
@@ -10406,7 +10600,7 @@ L2AFE:	ldy     _index
 	ldx     _largeindex+1
 	jsr     _is_dot_consumed
 	tax
-	beq     L2AFF
+	beq     L2B77
 ;
 ; }
 ;
@@ -10414,7 +10608,7 @@ L2AFE:	ldy     _index
 ;
 ; mark_dot_consumed(largeindex);
 ;
-L2AFF:	lda     _largeindex
+L2B77:	lda     _largeindex
 	ldx     _largeindex+1
 	jsr     _mark_dot_consumed
 ;
@@ -10442,7 +10636,7 @@ L2AFF:	lda     _largeindex
 ;
 	lda     _current_player
 	cmp     #$01
-	bne     L2AFD
+	bne     L2B75
 ;
 ; sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
 ;
@@ -10458,7 +10652,7 @@ L2AFF:	lda     _largeindex
 ;
 	lda     _team1_score
 	cmp     #$64
-	bcc     L20B8
+	bcc     L20F5
 ;
 ; sfx_play(SFX_TEAM1_WIN, 0);
 ;
@@ -10483,9 +10677,9 @@ L2AFF:	lda     _largeindex
 ;
 ; else if (current_player == 3)
 ;
-L2AFD:	lda     _current_player
+L2B75:	lda     _current_player
 	cmp     #$03
-	bne     L2088
+	bne     L20C5
 ;
 ; sfx_play(SFX_TEAM2_DOT_COLLECT, 0);
 ;
@@ -10502,7 +10696,7 @@ L2AFD:	lda     _current_player
 ;
 	lda     _team2_score
 	cmp     #$64
-	bcc     L2088
+	bcc     L20C5
 ;
 ; sfx_play(SFX_TEAM2_WIN, 0);
 ;
@@ -10527,26 +10721,26 @@ L2AFD:	lda     _current_player
 ;
 ; break;
 ;
-L20B8:	rts
+L20F5:	rts
 ;
 ; else if (temp == blank_tiles[index])
 ;
-L2090:	ldy     _index
+L20CD:	ldy     _index
 	lda     _blank_tiles,y
 	cmp     _temp
 ;
 ; break;
 ;
-	beq     L2088
+	beq     L20C5
 ;
 ; for (index = 0; index < sizeof(pellet_tiles); index++)
 ;
 	inc     _index
-	jmp     L2AFC
+	jmp     L2B74
 ;
 ; }
 ;
-L2088:	rts
+L20C5:	rts
 
 .endproc
 
@@ -10634,7 +10828,7 @@ L2088:	rts
 ; if (four_score_present)
 ;
 	lda     _four_score_present
-	beq     L2B01
+	beq     L2B79
 ;
 ; doublepad = pad_poll_4score_1_3();
 ;
@@ -10670,11 +10864,11 @@ L2088:	rts
 ;
 ; else
 ;
-	jmp     L2B03
+	jmp     L2B7B
 ;
 ; unsigned char raw1 = pad_poll(0);
 ;
-L2B01:	jsr     _pad_poll
+L2B79:	jsr     _pad_poll
 	jsr     pusha
 ;
 ; unsigned char raw2 = pad_poll(1);
@@ -10687,7 +10881,7 @@ L2B01:	jsr     _pad_poll
 ;
 	lda     _game_mode
 	cmp     #$02
-	jne     L218A
+	jne     L21C7
 ;
 ; pad1 = 0;
 ;
@@ -10713,109 +10907,109 @@ L2B01:	jsr     _pad_poll
 ; }
 ;
 	cmp     #$01
-	beq     L2198
+	beq     L21D5
 	cmp     #$02
-	beq     L219C
+	beq     L21D9
 	cmp     #$03
-	beq     L21A0
+	beq     L21DD
 	cmp     #$04
-	beq     L21A4
-	jmp     L2B02
+	beq     L21E1
+	jmp     L2B7A
 ;
 ; pad1 = raw1;
 ;
-L2198:	tay
+L21D5:	tay
 	lda     (sp),y
 	sta     _pad1
 ;
 ; break;
 ;
-	jmp     L2B02
+	jmp     L2B7A
 ;
 ; pad2 = raw1;
 ;
-L219C:	ldy     #$01
+L21D9:	ldy     #$01
 	lda     (sp),y
 	sta     _pad2
 ;
 ; break;
 ;
-	jmp     L2B02
+	jmp     L2B7A
 ;
 ; pad3 = raw1;
 ;
-L21A0:	ldy     #$01
+L21DD:	ldy     #$01
 	lda     (sp),y
 	sta     _pad3
 ;
 ; break;
 ;
-	jmp     L2B02
+	jmp     L2B7A
 ;
 ; pad4 = raw1;
 ;
-L21A4:	ldy     #$01
+L21E1:	ldy     #$01
 	lda     (sp),y
 	sta     _pad4
 ;
 ; switch (controller2_slot)
 ;
-L2B02:	lda     _controller2_slot
+L2B7A:	lda     _controller2_slot
 ;
 ; }
 ;
 	cmp     #$01
-	beq     L21AC
+	beq     L21E9
 	cmp     #$02
-	beq     L21B0
+	beq     L21ED
 	cmp     #$03
-	beq     L21B4
+	beq     L21F1
 	cmp     #$04
-	beq     L21B8
-	jmp     L21BC
+	beq     L21F5
+	jmp     L21F9
 ;
 ; pad1 = raw2;
 ;
-L21AC:	ldy     #$00
+L21E9:	ldy     #$00
 	lda     (sp),y
 	sta     _pad1
 ;
 ; break;
 ;
-	jmp     L21BC
+	jmp     L21F9
 ;
 ; pad2 = raw2;
 ;
-L21B0:	ldy     #$00
+L21ED:	ldy     #$00
 	lda     (sp),y
 	sta     _pad2
 ;
 ; break;
 ;
-	jmp     L21BC
+	jmp     L21F9
 ;
 ; pad3 = raw2;
 ;
-L21B4:	ldy     #$00
+L21F1:	ldy     #$00
 	lda     (sp),y
 	sta     _pad3
 ;
 ; break;
 ;
-	jmp     L21BC
+	jmp     L21F9
 ;
 ; pad4 = raw2;
 ;
-L21B8:	ldy     #$00
+L21F5:	ldy     #$00
 	lda     (sp),y
 ;
 ; break;
 ;
-	jmp     L2B00
+	jmp     L2B78
 ;
 ; pad1 = raw1;
 ;
-L218A:	ldy     #$01
+L21C7:	ldy     #$01
 	lda     (sp),y
 	sta     _pad1
 ;
@@ -10832,22 +11026,22 @@ L218A:	ldy     #$01
 ;
 ; pad4 = 0;
 ;
-L2B00:	sta     _pad4
+L2B78:	sta     _pad4
 ;
 ; }
 ;
-L21BC:	jsr     incsp2
+L21F9:	jsr     incsp2
 ;
 ; if (game_mode == MODE_GAME)
 ;
-L2B03:	lda     _game_mode
+L2B7B:	lda     _game_mode
 	cmp     #$02
-	bne     L2B04
+	bne     L2B7C
 ;
 ; if (use_ai_player_1)
 ;
 	lda     _use_ai_player_1
-	beq     L21C7
+	beq     L2204
 ;
 ; player1_ai();
 ;
@@ -10855,8 +11049,8 @@ L2B03:	lda     _game_mode
 ;
 ; if (use_ai_player_2)
 ;
-L21C7:	lda     _use_ai_player_2
-	beq     L21CA
+L2204:	lda     _use_ai_player_2
+	beq     L2207
 ;
 ; player2_ai();
 ;
@@ -10864,8 +11058,8 @@ L21C7:	lda     _use_ai_player_2
 ;
 ; if (use_ai_player_3)
 ;
-L21CA:	lda     _use_ai_player_3
-	beq     L21CD
+L2207:	lda     _use_ai_player_3
+	beq     L220A
 ;
 ; player3_ai();
 ;
@@ -10873,8 +11067,8 @@ L21CA:	lda     _use_ai_player_3
 ;
 ; if (use_ai_player_4)
 ;
-L21CD:	lda     _use_ai_player_4
-	beq     L2B04
+L220A:	lda     _use_ai_player_4
+	beq     L2B7C
 ;
 ; player4_ai();
 ;
@@ -10882,7 +11076,7 @@ L21CD:	lda     _use_ai_player_4
 ;
 ; pad1_new = pad1 & (pad1 ^ prev_pad1);
 ;
-L2B04:	lda     _prev_pad1
+L2B7C:	lda     _prev_pad1
 	eor     _pad1
 	and     _pad1
 	sta     _pad1_new
@@ -11227,11 +11421,34 @@ L2B04:	lda     _prev_pad1
 	lda     _BoxGuy3+3
 	sta     _temp_y2
 ;
-; if (sprite_collision()) // 1 and 3, both seekers
+; if (sprite_collision() && bounce_p1 == 0 && bounce_p3 == 0) // 1 and 3, both seekers
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B07
+	beq     L2B82
+	lda     _bounce_p1
+	bne     L2B82
+	lda     _bounce_p3
+	bne     L2B82
+;
+; bounce_p1 = BOUNCE_DURATION;
+;
+	lda     #$0A
+	sta     _bounce_p1
+;
+; bounce_p3 = BOUNCE_DURATION;
+;
+	sta     _bounce_p3
+;
+; bounce_dir_p1 = BoxGuy1.direction;
+;
+	lda     _BoxGuy1+4
+	sta     _bounce_dir_p1
+;
+; bounce_dir_p3 = BoxGuy3.direction;
+;
+	lda     _BoxGuy3+4
+	sta     _bounce_dir_p3
 ;
 ; BoxGuy1.x = old_x;
 ;
@@ -11258,7 +11475,7 @@ L2B04:	lda     _prev_pad1
 ;
 ; current_player = 2;
 ;
-L2B07:	lda     #$02
+L2B82:	lda     #$02
 	sta     _current_player
 ;
 ; GenericBoxGuy = BoxGuy2;
@@ -11289,12 +11506,12 @@ L2B07:	lda     #$02
 ;
 ; else
 ;
-	beq     L2B05
+	beq     L2B7D
 ;
 ; BoxGuy2.moving = 1;
 ;
 	lda     #$01
-L2B05:	sta     _BoxGuy2+5
+L2B7D:	sta     _BoxGuy2+5
 ;
 ; temp_x = GenericBoxGuy.x >> 8;
 ;
@@ -11316,11 +11533,34 @@ L2B05:	sta     _BoxGuy2+5
 	lda     _BoxGuy4+3
 	sta     _temp_y2
 ;
-; if (sprite_collision()) // player 2 blocks player 4 (chasers)
+; if (sprite_collision() && bounce_p2 == 0 && bounce_p4 == 0) // player 2 blocks player 4 (chasers)
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B09
+	beq     L2B87
+	lda     _bounce_p2
+	bne     L2B87
+	lda     _bounce_p4
+	bne     L2B87
+;
+; bounce_p2 = BOUNCE_DURATION;
+;
+	lda     #$0A
+	sta     _bounce_p2
+;
+; bounce_p4 = BOUNCE_DURATION;
+;
+	sta     _bounce_p4
+;
+; bounce_dir_p2 = BoxGuy2.direction;
+;
+	lda     _BoxGuy2+4
+	sta     _bounce_dir_p2
+;
+; bounce_dir_p4 = BoxGuy4.direction;
+;
+	lda     _BoxGuy4+4
+	sta     _bounce_dir_p4
 ;
 ; BoxGuy2.x = old_x;
 ;
@@ -11347,7 +11587,7 @@ L2B05:	sta     _BoxGuy2+5
 ;
 ; current_player = 3;
 ;
-L2B09:	lda     #$03
+L2B87:	lda     #$03
 	sta     _current_player
 ;
 ; GenericBoxGuy = BoxGuy3;
@@ -11391,11 +11631,34 @@ L2B09:	lda     #$03
 	lda     _GenericBoxGuy+3
 	sta     _temp_y2
 ;
-; if (sprite_collision()) // 1 blocks 3 (seekers)
+; if (sprite_collision() && bounce_p1 == 0 && bounce_p3 == 0) // 1 blocks 3 (seekers)
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B0A
+	beq     L2B8B
+	lda     _bounce_p1
+	bne     L2B8B
+	lda     _bounce_p3
+	bne     L2B8B
+;
+; bounce_p1 = BOUNCE_DURATION;
+;
+	lda     #$0A
+	sta     _bounce_p1
+;
+; bounce_p3 = BOUNCE_DURATION;
+;
+	sta     _bounce_p3
+;
+; bounce_dir_p1 = BoxGuy1.direction;
+;
+	lda     _BoxGuy1+4
+	sta     _bounce_dir_p1
+;
+; bounce_dir_p3 = BoxGuy3.direction;
+;
+	lda     _BoxGuy3+4
+	sta     _bounce_dir_p3
 ;
 ; BoxGuy3.x = old_x;
 ;
@@ -11422,7 +11685,7 @@ L2B09:	lda     #$03
 ;
 ; current_player = 4;
 ;
-L2B0A:	lda     #$04
+L2B8B:	lda     #$04
 	sta     _current_player
 ;
 ; GenericBoxGuy = BoxGuy4;
@@ -11453,12 +11716,12 @@ L2B0A:	lda     #$04
 ;
 ; else
 ;
-	beq     L2B06
+	beq     L2B7E
 ;
 ; BoxGuy4.moving = 1;
 ;
 	lda     #$01
-L2B06:	sta     _BoxGuy4+5
+L2B7E:	sta     _BoxGuy4+5
 ;
 ; temp_x = BoxGuy2.x >> 8;
 ;
@@ -11480,11 +11743,34 @@ L2B06:	sta     _BoxGuy4+5
 	lda     _GenericBoxGuy+3
 	sta     _temp_y2
 ;
-; if (sprite_collision()) // 2 blocks 4 (seekers)
+; if (sprite_collision() && bounce_p2 == 0 && bounce_p4 == 0) // 2 blocks 4 (seekers)
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B0C
+	beq     L2B90
+	lda     _bounce_p2
+	bne     L2B90
+	lda     _bounce_p4
+	bne     L2B90
+;
+; bounce_p2 = BOUNCE_DURATION;
+;
+	lda     #$0A
+	sta     _bounce_p2
+;
+; bounce_p4 = BOUNCE_DURATION;
+;
+	sta     _bounce_p4
+;
+; bounce_dir_p2 = BoxGuy2.direction;
+;
+	lda     _BoxGuy2+4
+	sta     _bounce_dir_p2
+;
+; bounce_dir_p4 = BoxGuy4.direction;
+;
+	lda     _BoxGuy4+4
+	sta     _bounce_dir_p4
 ;
 ; BoxGuy4.x = old_x;
 ;
@@ -11511,8 +11797,8 @@ L2B06:	sta     _BoxGuy4+5
 ;
 ; if (bee1_bigbee_timer == 0)
 ;
-L2B0C:	lda     _bee1_bigbee_timer
-	bne     L2B0D
+L2B90:	lda     _bee1_bigbee_timer
+	bne     L2B91
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
@@ -11535,8 +11821,8 @@ L2B0C:	lda     _bee1_bigbee_timer
 ;
 ; if (bee3_bigbee_timer == 0)
 ;
-L2B0D:	lda     _bee3_bigbee_timer
-	bne     L2B0E
+L2B91:	lda     _bee3_bigbee_timer
+	bne     L2B92
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
@@ -11559,8 +11845,8 @@ L2B0D:	lda     _bee3_bigbee_timer
 ;
 ; if (bee1_bigbee_timer > 0)
 ;
-L2B0E:	lda     _bee1_bigbee_timer
-	beq     L2B10
+L2B92:	lda     _bee1_bigbee_timer
+	beq     L2B94
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
@@ -11586,7 +11872,7 @@ L2B0E:	lda     _bee1_bigbee_timer
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B0F
+	beq     L2B93
 ;
 ; sfx_play(SFX_TEAM2_WIN, 0);
 ;
@@ -11611,7 +11897,7 @@ L2B0E:	lda     _bee1_bigbee_timer
 ;
 ; temp_x2 = BoxGuy4.x >> 8;
 ;
-L2B0F:	lda     _BoxGuy4+1
+L2B93:	lda     _BoxGuy4+1
 	sta     _temp_x2
 ;
 ; temp_y2 = BoxGuy4.y >> 8;
@@ -11623,7 +11909,7 @@ L2B0F:	lda     _BoxGuy4+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B10
+	beq     L2B94
 ;
 ; sfx_play(SFX_TEAM1_WIN, 0);
 ;
@@ -11648,8 +11934,8 @@ L2B0F:	lda     _BoxGuy4+1
 ;
 ; if (bee3_bigbee_timer > 0)
 ;
-L2B10:	lda     _bee3_bigbee_timer
-	beq     L2B12
+L2B94:	lda     _bee3_bigbee_timer
+	beq     L2B96
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
@@ -11675,7 +11961,7 @@ L2B10:	lda     _bee3_bigbee_timer
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B11
+	beq     L2B95
 ;
 ; sfx_play(SFX_TEAM1_WIN, 0);
 ;
@@ -11700,7 +11986,7 @@ L2B10:	lda     _bee3_bigbee_timer
 ;
 ; temp_x2 = BoxGuy2.x >> 8;
 ;
-L2B11:	lda     _BoxGuy2+1
+L2B95:	lda     _BoxGuy2+1
 	sta     _temp_x2
 ;
 ; temp_y2 = BoxGuy2.y >> 8;
@@ -11712,7 +11998,7 @@ L2B11:	lda     _BoxGuy2+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B12
+	beq     L2B96
 ;
 ; sfx_play(SFX_TEAM2_WIN, 0);
 ;
@@ -11736,7 +12022,7 @@ L2B11:	lda     _BoxGuy2+1
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L2B12:	lda     _BoxGuy1+1
+L2B96:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -11758,7 +12044,7 @@ L2B12:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B13
+	beq     L2B97
 ;
 ; sfx_play(SFX_TEAM2_WIN, 0);
 ;
@@ -11783,7 +12069,7 @@ L2B12:	lda     _BoxGuy1+1
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
-L2B13:	lda     _BoxGuy3+1
+L2B97:	lda     _BoxGuy3+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy3.y >> 8;
@@ -11805,7 +12091,7 @@ L2B13:	lda     _BoxGuy3+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B14
+	beq     L2B98
 ;
 ; sfx_play(SFX_TEAM1_WIN, 0);
 ;
@@ -11830,7 +12116,7 @@ L2B13:	lda     _BoxGuy3+1
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L2B14:	lda     _BoxGuy1+1
+L2B98:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -11852,7 +12138,7 @@ L2B14:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2B15
+	beq     L2B99
 ;
 ; sfx_play(SFX_TEAM2_WIN, 0);
 ;
@@ -11877,7 +12163,7 @@ L2B14:	lda     _BoxGuy1+1
 ;
 ; temp_x = BoxGuy2.x >> 8;
 ;
-L2B15:	lda     _BoxGuy2+1
+L2B99:	lda     _BoxGuy2+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy2.y >> 8;
@@ -11899,7 +12185,7 @@ L2B15:	lda     _BoxGuy2+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L22F6
+	beq     L235B
 ;
 ; sfx_play(SFX_TEAM1_WIN, 0);
 ;
@@ -11924,7 +12210,7 @@ L2B15:	lda     _BoxGuy2+1
 ;
 ; draw_sprites();
 ;
-L22F6:	jsr     _draw_sprites
+L235B:	jsr     _draw_sprites
 ;
 ; update_hud();
 ;
@@ -11949,7 +12235,7 @@ L22F6:	jsr     _draw_sprites
 ;
 ; frame_counter++;
 ;
-L2B16:	inc     _frame_counter
+L2B9A:	inc     _frame_counter
 ;
 ; ppu_wait_nmi();
 ;
@@ -11963,13 +12249,13 @@ L2B16:	inc     _frame_counter
 ;
 	lda     _pad1_new
 	and     #$08
-	beq     L2B17
+	beq     L2B9B
 ;
 ; if ((BoxGuy1.y >> 8) > 160)
 ;
 	lda     _BoxGuy1+3
 	cmp     #$A1
-	bcc     L2B17
+	bcc     L2B9B
 ;
 ; BoxGuy1.y -= 0x0400; // Move up 4 pixels (0x0400 = 1024 sub-pixels)
 ;
@@ -11983,15 +12269,15 @@ L2B16:	inc     _frame_counter
 ;
 ; if (pad2_new & PAD_UP)
 ;
-L2B17:	lda     _pad2_new
+L2B9B:	lda     _pad2_new
 	and     #$08
-	beq     L2B18
+	beq     L2B9C
 ;
 ; if ((BoxGuy2.y >> 8) > 160)
 ;
 	lda     _BoxGuy2+3
 	cmp     #$A1
-	bcc     L2B18
+	bcc     L2B9C
 ;
 ; BoxGuy2.y -= 0x0400;
 ;
@@ -12005,15 +12291,15 @@ L2B17:	lda     _pad2_new
 ;
 ; if (pad3_new & PAD_UP)
 ;
-L2B18:	lda     _pad3_new
+L2B9C:	lda     _pad3_new
 	and     #$08
-	beq     L2B19
+	beq     L2B9D
 ;
 ; if ((BoxGuy3.y >> 8) > 160)
 ;
 	lda     _BoxGuy3+3
 	cmp     #$A1
-	bcc     L2B19
+	bcc     L2B9D
 ;
 ; BoxGuy3.y -= 0x0400;
 ;
@@ -12027,15 +12313,15 @@ L2B18:	lda     _pad3_new
 ;
 ; if (pad4_new & PAD_UP)
 ;
-L2B19:	lda     _pad4_new
+L2B9D:	lda     _pad4_new
 	and     #$08
-	beq     L2B1A
+	beq     L2B9E
 ;
 ; if ((BoxGuy4.y >> 8) > 160)
 ;
 	lda     _BoxGuy4+3
 	cmp     #$A1
-	bcc     L2B1A
+	bcc     L2B9E
 ;
 ; BoxGuy4.y -= 0x0400;
 ;
@@ -12049,7 +12335,7 @@ L2B19:	lda     _pad4_new
 ;
 ; if ((pad1 | pad2 | pad3 | pad4) & PAD_START)
 ;
-L2B1A:	lda     _pad2
+L2B9E:	lda     _pad2
 	ora     _pad1
 	sta     ptr1
 	lda     _pad3
@@ -12058,25 +12344,25 @@ L2B1A:	lda     _pad2
 	lda     _pad4
 	ora     ptr1
 	and     #$10
-	beq     L2B23
+	beq     L2BA7
 ;
 ; if (!start_held && (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START))
 ;
 	lda     _start_held
-	jne     L2B16
+	jne     L2B9A
 	lda     _pad1_new
 	and     #$10
-	bne     L2B1B
+	bne     L2B9F
 	lda     _pad2_new
 	and     #$10
-	bne     L2B1B
+	bne     L2B9F
 	lda     _pad3_new
 	and     #$10
-	bne     L2B1B
+	bne     L2B9F
 	lda     _pad4_new
 	and     #$10
-	jeq     L2B16
-L2B1B:	lda     #$01
+	jeq     L2B9A
+L2B9F:	lda     #$01
 ;
 ; start_held = 1;
 ;
@@ -12088,11 +12374,11 @@ L2B1B:	lda     #$01
 ;
 ; start_held = 0;
 ;
-L2B23:	sta     _start_held
+L2BA7:	sta     _start_held
 ;
 ; while (1)
 ;
-	jmp     L2B16
+	jmp     L2B9A
 
 .endproc
 
@@ -12109,7 +12395,7 @@ L2B23:	sta     _start_held
 ;
 ; ppu_wait_nmi();
 ;
-L2337:	jsr     _ppu_wait_nmi
+L239C:	jsr     _ppu_wait_nmi
 ;
 ; frame_counter++;
 ;
@@ -12124,7 +12410,7 @@ L2337:	jsr     _ppu_wait_nmi
 	inc     _options_anim_tick
 	lda     _options_anim_tick
 	cmp     #$0A
-	bcc     L2B2E
+	bcc     L2BB2
 ;
 ; options_anim_tick = 0;
 ;
@@ -12136,7 +12422,7 @@ L2337:	jsr     _ppu_wait_nmi
 	inc     _anim_frame_1
 	lda     _anim_frame_1
 	cmp     #$03
-	bcc     L2342
+	bcc     L23A7
 ;
 ; anim_frame_1 = 0;
 ;
@@ -12145,15 +12431,15 @@ L2337:	jsr     _ppu_wait_nmi
 ;
 ; if (!use_ai_player_2)
 ;
-L2342:	lda     _use_ai_player_2
-	bne     L2348
+L23A7:	lda     _use_ai_player_2
+	bne     L23AD
 ;
 ; if (++anim_frame_2 >= 3)
 ;
 	inc     _anim_frame_2
 	lda     _anim_frame_2
 	cmp     #$03
-	bcc     L2348
+	bcc     L23AD
 ;
 ; anim_frame_2 = 0;
 ;
@@ -12162,15 +12448,15 @@ L2342:	lda     _use_ai_player_2
 ;
 ; if (!use_ai_player_3)
 ;
-L2348:	lda     _use_ai_player_3
-	bne     L234E
+L23AD:	lda     _use_ai_player_3
+	bne     L23B3
 ;
 ; if (++anim_frame_3 >= 3)
 ;
 	inc     _anim_frame_3
 	lda     _anim_frame_3
 	cmp     #$03
-	bcc     L234E
+	bcc     L23B3
 ;
 ; anim_frame_3 = 0;
 ;
@@ -12179,15 +12465,15 @@ L2348:	lda     _use_ai_player_3
 ;
 ; if (!use_ai_player_4)
 ;
-L234E:	lda     _use_ai_player_4
-	bne     L2B2E
+L23B3:	lda     _use_ai_player_4
+	bne     L2BB2
 ;
 ; if (++anim_frame_4 >= 3)
 ;
 	inc     _anim_frame_4
 	lda     _anim_frame_4
 	cmp     #$03
-	bcc     L2B2E
+	bcc     L2BB2
 ;
 ; anim_frame_4 = 0;
 ;
@@ -12196,20 +12482,20 @@ L234E:	lda     _use_ai_player_4
 ;
 ; switch (anim_frame_1)
 ;
-L2B2E:	lda     _anim_frame_1
+L2BB2:	lda     _anim_frame_1
 ;
 ; }
 ;
-	beq     L235C
+	beq     L23C1
 	cmp     #$01
-	beq     L2362
+	beq     L23C7
 	cmp     #$02
-	beq     L2368
-	jmp     L235A
+	beq     L23CD
+	jmp     L23BF
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright0_data);
 ;
-L235C:	jsr     decsp2
+L23C1:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
@@ -12221,11 +12507,11 @@ L235C:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B28
+	jmp     L2BAC
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright1_data);
 ;
-L2362:	jsr     decsp2
+L23C7:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
@@ -12237,11 +12523,11 @@ L2362:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B28
+	jmp     L2BAC
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_smallbeeright2_data);
 ;
-L2368:	jsr     decsp2
+L23CD:	jsr     decsp2
 	lda     _temp_x
 	ldy     #$01
 	sta     (sp),y
@@ -12250,12 +12536,12 @@ L2368:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright2_data)
 	ldx     #>(_gamesprites_smallbeeright2_data)
-L2B28:	jsr     _oam_meta_spr
+L2BAC:	jsr     _oam_meta_spr
 ;
 ; if (use_ai_player_1)
 ;
-L235A:	lda     _use_ai_player_1
-	beq     L236D
+L23BF:	lda     _use_ai_player_1
+	beq     L23D2
 ;
 ; oam_meta_spr(64, 184, gamesprites_smallbeeright0_data);
 ;
@@ -12271,24 +12557,24 @@ L235A:	lda     _use_ai_player_1
 ;
 ; else
 ;
-	jmp     L2B29
+	jmp     L2BAD
 ;
 ; switch (anim_frame_1)
 ;
-L236D:	lda     _anim_frame_1
+L23D2:	lda     _anim_frame_1
 ;
 ; }
 ;
-	beq     L2378
+	beq     L23DD
 	cmp     #$01
-	beq     L237E
+	beq     L23E3
 	cmp     #$02
-	beq     L2384
-	jmp     L2376
+	beq     L23E9
+	jmp     L23DB
 ;
 ; oam_meta_spr(64, 184, gamesprites_smallbeeright0_data);
 ;
-L2378:	jsr     decsp2
+L23DD:	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
@@ -12300,11 +12586,11 @@ L2378:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B29
+	jmp     L2BAD
 ;
 ; oam_meta_spr(64, 184, gamesprites_smallbeeright1_data);
 ;
-L237E:	jsr     decsp2
+L23E3:	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
@@ -12316,11 +12602,11 @@ L237E:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B29
+	jmp     L2BAD
 ;
 ; oam_meta_spr(64, 184, gamesprites_smallbeeright2_data);
 ;
-L2384:	jsr     decsp2
+L23E9:	jsr     decsp2
 	lda     #$40
 	ldy     #$01
 	sta     (sp),y
@@ -12329,12 +12615,12 @@ L2384:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbeeright2_data)
 	ldx     #>(_gamesprites_smallbeeright2_data)
-L2B29:	jsr     _oam_meta_spr
+L2BAD:	jsr     _oam_meta_spr
 ;
 ; if (use_ai_player_2)
 ;
-L2376:	lda     _use_ai_player_2
-	beq     L2389
+L23DB:	lda     _use_ai_player_2
+	beq     L23EE
 ;
 ; oam_meta_spr(104, 184, gamesprites_smallduckright0_data);
 ;
@@ -12350,24 +12636,24 @@ L2376:	lda     _use_ai_player_2
 ;
 ; else
 ;
-	jmp     L2B2A
+	jmp     L2BAE
 ;
 ; switch (anim_frame_2)
 ;
-L2389:	lda     _anim_frame_2
+L23EE:	lda     _anim_frame_2
 ;
 ; }
 ;
-	beq     L2394
+	beq     L23F9
 	cmp     #$01
-	beq     L239A
+	beq     L23FF
 	cmp     #$02
-	beq     L23A0
-	jmp     L2392
+	beq     L2405
+	jmp     L23F7
 ;
 ; oam_meta_spr(104, 184, gamesprites_smallduckright0_data);
 ;
-L2394:	jsr     decsp2
+L23F9:	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
@@ -12379,11 +12665,11 @@ L2394:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B2A
+	jmp     L2BAE
 ;
 ; oam_meta_spr(104, 184, gamesprites_smallduckright1_data);
 ;
-L239A:	jsr     decsp2
+L23FF:	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
@@ -12395,11 +12681,11 @@ L239A:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B2A
+	jmp     L2BAE
 ;
 ; oam_meta_spr(104, 184, gamesprites_smallduckright2_data);
 ;
-L23A0:	jsr     decsp2
+L2405:	jsr     decsp2
 	lda     #$68
 	ldy     #$01
 	sta     (sp),y
@@ -12408,12 +12694,12 @@ L23A0:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduckright2_data)
 	ldx     #>(_gamesprites_smallduckright2_data)
-L2B2A:	jsr     _oam_meta_spr
+L2BAE:	jsr     _oam_meta_spr
 ;
 ; if (use_ai_player_3)
 ;
-L2392:	lda     _use_ai_player_3
-	beq     L23A5
+L23F7:	lda     _use_ai_player_3
+	beq     L240A
 ;
 ; oam_meta_spr(144, 184, gamesprites_smallbee2right0_data);
 ;
@@ -12429,24 +12715,24 @@ L2392:	lda     _use_ai_player_3
 ;
 ; else
 ;
-	jmp     L2B2B
+	jmp     L2BAF
 ;
 ; switch (anim_frame_3)
 ;
-L23A5:	lda     _anim_frame_3
+L240A:	lda     _anim_frame_3
 ;
 ; }
 ;
-	beq     L23B0
+	beq     L2415
 	cmp     #$01
-	beq     L23B6
+	beq     L241B
 	cmp     #$02
-	beq     L23BC
-	jmp     L23AE
+	beq     L2421
+	jmp     L2413
 ;
 ; oam_meta_spr(144, 184, gamesprites_smallbee2right0_data);
 ;
-L23B0:	jsr     decsp2
+L2415:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
@@ -12458,11 +12744,11 @@ L23B0:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B2B
+	jmp     L2BAF
 ;
 ; oam_meta_spr(144, 184, gamesprites_smallbee2right1_data);
 ;
-L23B6:	jsr     decsp2
+L241B:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
@@ -12474,11 +12760,11 @@ L23B6:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B2B
+	jmp     L2BAF
 ;
 ; oam_meta_spr(144, 184, gamesprites_smallbee2right2_data);
 ;
-L23BC:	jsr     decsp2
+L2421:	jsr     decsp2
 	lda     #$90
 	ldy     #$01
 	sta     (sp),y
@@ -12487,12 +12773,12 @@ L23BC:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_gamesprites_smallbee2right2_data)
 	ldx     #>(_gamesprites_smallbee2right2_data)
-L2B2B:	jsr     _oam_meta_spr
+L2BAF:	jsr     _oam_meta_spr
 ;
 ; if (use_ai_player_4)
 ;
-L23AE:	lda     _use_ai_player_4
-	beq     L23C1
+L2413:	lda     _use_ai_player_4
+	beq     L2426
 ;
 ; oam_meta_spr(184, 184, gamesprites_smallduck2right0_data);
 ;
@@ -12507,24 +12793,24 @@ L23AE:	lda     _use_ai_player_4
 ;
 ; else
 ;
-	jmp     L2B2C
+	jmp     L2BB0
 ;
 ; switch (anim_frame_4)
 ;
-L23C1:	lda     _anim_frame_4
+L2426:	lda     _anim_frame_4
 ;
 ; }
 ;
-	beq     L23CC
+	beq     L2431
 	cmp     #$01
-	beq     L23D2
+	beq     L2437
 	cmp     #$02
-	beq     L23D8
-	jmp     L23CA
+	beq     L243D
+	jmp     L242F
 ;
 ; oam_meta_spr(184, 184, gamesprites_smallduck2right0_data);
 ;
-L23CC:	jsr     decsp2
+L2431:	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
@@ -12535,11 +12821,11 @@ L23CC:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B2C
+	jmp     L2BB0
 ;
 ; oam_meta_spr(184, 184, gamesprites_smallduck2right1_data);
 ;
-L23D2:	jsr     decsp2
+L2437:	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
@@ -12550,11 +12836,11 @@ L23D2:	jsr     decsp2
 ;
 ; break;
 ;
-	jmp     L2B2C
+	jmp     L2BB0
 ;
 ; oam_meta_spr(184, 184, gamesprites_smallduck2right2_data);
 ;
-L23D8:	jsr     decsp2
+L243D:	jsr     decsp2
 	lda     #$B8
 	ldy     #$01
 	sta     (sp),y
@@ -12562,22 +12848,22 @@ L23D8:	jsr     decsp2
 	sta     (sp),y
 	lda     #<(_gamesprites_smallduck2right2_data)
 	ldx     #>(_gamesprites_smallduck2right2_data)
-L2B2C:	jsr     _oam_meta_spr
+L2BB0:	jsr     _oam_meta_spr
 ;
 ; read_controllers();
 ;
-L23CA:	jsr     _read_controllers
+L242F:	jsr     _read_controllers
 ;
 ; if (four_score_present)
 ;
 	lda     _four_score_present
-	beq     L23DE
+	beq     L2443
 ;
 ; if (pad1_new & PAD_SELECT)
 ;
 	lda     _pad1_new
 	and     #$20
-	beq     L2B2F
+	beq     L2BB3
 ;
 ; use_ai_player_1 ^= 1;
 ;
@@ -12587,9 +12873,9 @@ L23CA:	jsr     _read_controllers
 ;
 ; if (pad2_new & PAD_SELECT)
 ;
-L2B2F:	lda     _pad2_new
+L2BB3:	lda     _pad2_new
 	and     #$20
-	beq     L2B30
+	beq     L2BB4
 ;
 ; use_ai_player_2 ^= 1;
 ;
@@ -12600,7 +12886,7 @@ L2B2F:	lda     _pad2_new
 ; if (use_ai_player_2)
 ;
 	lda     _use_ai_player_2
-	beq     L2B30
+	beq     L2BB4
 ;
 ; anim_frame_2 = 0;
 ;
@@ -12609,9 +12895,9 @@ L2B2F:	lda     _pad2_new
 ;
 ; if (pad3_new & PAD_SELECT)
 ;
-L2B30:	lda     _pad3_new
+L2BB4:	lda     _pad3_new
 	and     #$20
-	beq     L2B31
+	beq     L2BB5
 ;
 ; use_ai_player_3 ^= 1;
 ;
@@ -12622,7 +12908,7 @@ L2B30:	lda     _pad3_new
 ; if (use_ai_player_3)
 ;
 	lda     _use_ai_player_3
-	beq     L2B31
+	beq     L2BB5
 ;
 ; anim_frame_3 = 0;
 ;
@@ -12631,9 +12917,9 @@ L2B30:	lda     _pad3_new
 ;
 ; if (pad4_new & PAD_SELECT)
 ;
-L2B31:	lda     _pad4_new
+L2BB5:	lda     _pad4_new
 	and     #$20
-	jeq     L2B59
+	jeq     L2BDD
 ;
 ; use_ai_player_4 ^= 1;
 ;
@@ -12644,7 +12930,7 @@ L2B31:	lda     _pad4_new
 ; if (use_ai_player_4)
 ;
 	lda     _use_ai_player_4
-	jeq     L2B59
+	jeq     L2BDD
 ;
 ; anim_frame_4 = 0;
 ;
@@ -12653,13 +12939,13 @@ L2B31:	lda     _pad4_new
 ;
 ; else
 ;
-	jmp     L2B59
+	jmp     L2BDD
 ;
 ; if (pad1_new & PAD_SELECT)
 ;
-L23DE:	lda     _pad1_new
+L2443:	lda     _pad1_new
 	and     #$20
-	jeq     L2B3F
+	jeq     L2BC3
 ;
 ; unsigned char old_slot = controller1_slot;
 ;
@@ -12673,13 +12959,13 @@ L23DE:	lda     _pad1_new
 ;
 ; controller1_slot++;
 ;
-L2B32:	inc     _controller1_slot
+L2BB6:	inc     _controller1_slot
 ;
 ; if (controller1_slot > 4)
 ;
 	lda     _controller1_slot
 	cmp     #$05
-	bcc     L2405
+	bcc     L246A
 ;
 ; controller1_slot = 1;
 ;
@@ -12688,7 +12974,7 @@ L2B32:	inc     _controller1_slot
 ;
 ; guard++;
 ;
-L2405:	ldy     #$00
+L246A:	ldy     #$00
 	lda     (sp),y
 	clc
 	adc     #$01
@@ -12698,17 +12984,17 @@ L2405:	ldy     #$00
 ;
 	lda     _controller2_slot
 	cmp     _controller1_slot
-	bne     L2B26
+	bne     L2BAA
 	lda     (sp),y
 	cmp     #$05
-	bcc     L2B32
+	bcc     L2BB6
 ;
 ; if (old_slot == 1)
 ;
-L2B26:	iny
+L2BAA:	iny
 	lda     (sp),y
 	cmp     #$01
-	bne     L2B36
+	bne     L2BBA
 ;
 ; use_ai_player_1 = 1;
 ;
@@ -12716,10 +13002,10 @@ L2B26:	iny
 ;
 ; else if (old_slot == 2)
 ;
-	jmp     L2B3B
-L2B36:	lda     (sp),y
+	jmp     L2BBF
+L2BBA:	lda     (sp),y
 	cmp     #$02
-	bne     L2B38
+	bne     L2BBC
 ;
 ; use_ai_player_2 = 1;
 ;
@@ -12727,10 +13013,10 @@ L2B36:	lda     (sp),y
 ;
 ; else if (old_slot == 3)
 ;
-	jmp     L2B3B
-L2B38:	lda     (sp),y
+	jmp     L2BBF
+L2BBC:	lda     (sp),y
 	cmp     #$03
-	bne     L2B3A
+	bne     L2BBE
 ;
 ; use_ai_player_3 = 1;
 ;
@@ -12738,10 +13024,10 @@ L2B38:	lda     (sp),y
 ;
 ; else if (old_slot == 4)
 ;
-	jmp     L2B3B
-L2B3A:	lda     (sp),y
+	jmp     L2BBF
+L2BBE:	lda     (sp),y
 	cmp     #$04
-	bne     L2B3B
+	bne     L2BBF
 ;
 ; use_ai_player_4 = 1;
 ;
@@ -12749,9 +13035,9 @@ L2B3A:	lda     (sp),y
 ;
 ; if (controller1_slot == 1)
 ;
-L2B3B:	lda     _controller1_slot
+L2BBF:	lda     _controller1_slot
 	cmp     #$01
-	bne     L2B3C
+	bne     L2BC0
 ;
 ; use_ai_player_1 = 0;
 ;
@@ -12760,10 +13046,10 @@ L2B3B:	lda     _controller1_slot
 ;
 ; else if (controller1_slot == 2)
 ;
-	jmp     L242F
-L2B3C:	lda     _controller1_slot
+	jmp     L2494
+L2BC0:	lda     _controller1_slot
 	cmp     #$02
-	bne     L2B3D
+	bne     L2BC1
 ;
 ; use_ai_player_2 = 0;
 ;
@@ -12772,10 +13058,10 @@ L2B3C:	lda     _controller1_slot
 ;
 ; else if (controller1_slot == 3)
 ;
-	jmp     L242F
-L2B3D:	lda     _controller1_slot
+	jmp     L2494
+L2BC1:	lda     _controller1_slot
 	cmp     #$03
-	bne     L2B3E
+	bne     L2BC2
 ;
 ; use_ai_player_3 = 0;
 ;
@@ -12784,10 +13070,10 @@ L2B3D:	lda     _controller1_slot
 ;
 ; else if (controller1_slot == 4)
 ;
-	jmp     L242F
-L2B3E:	lda     _controller1_slot
+	jmp     L2494
+L2BC2:	lda     _controller1_slot
 	cmp     #$04
-	bne     L242F
+	bne     L2494
 ;
 ; use_ai_player_4 = 0;
 ;
@@ -12796,13 +13082,13 @@ L2B3E:	lda     _controller1_slot
 ;
 ; }
 ;
-L242F:	jsr     incsp2
+L2494:	jsr     incsp2
 ;
 ; if (pad2_new & PAD_SELECT)
 ;
-L2B3F:	lda     _pad2_new
+L2BC3:	lda     _pad2_new
 	and     #$20
-	jeq     L2B59
+	jeq     L2BDD
 ;
 ; unsigned char old_slot = controller2_slot;
 ;
@@ -12820,50 +13106,50 @@ L2B3F:	lda     _pad2_new
 ;
 ; }
 ;
-	beq     L2B40
+	beq     L2BC4
 	cmp     #$02
-	beq     L2B41
+	beq     L2BC5
 	cmp     #$03
-	beq     L2B42
+	beq     L2BC6
 	cmp     #$04
-	beq     L2B43
-	jmp     L2B4B
+	beq     L2BC7
+	jmp     L2BCF
 ;
 ; controller2_slot = 2;
 ;
-L2B40:	lda     #$02
+L2BC4:	lda     #$02
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; controller2_slot = 3;
 ;
-L2B41:	lda     #$03
+L2BC5:	lda     #$03
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; controller2_slot = 4;
 ;
-L2B42:	lda     #$04
+L2BC6:	lda     #$04
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; controller2_slot = 1;
 ;
-L2B43:	lda     #$01
+L2BC7:	lda     #$01
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; guard++;
 ;
-L2B46:	lda     (sp),y
+L2BCA:	lda     (sp),y
 	clc
 	adc     #$01
 	sta     (sp),y
@@ -12875,62 +13161,62 @@ L2B46:	lda     (sp),y
 ; }
 ;
 	cmp     #$01
-	beq     L2B4B
+	beq     L2BCF
 	cmp     #$02
-	beq     L2B47
+	beq     L2BCB
 	cmp     #$03
-	beq     L2B48
+	beq     L2BCC
 	cmp     #$04
-	beq     L2B49
-	jmp     L2B4B
+	beq     L2BCD
+	jmp     L2BCF
 ;
 ; controller2_slot = 3;
 ;
-L2B47:	lda     #$03
+L2BCB:	lda     #$03
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; controller2_slot = 4;
 ;
-L2B48:	lda     #$04
+L2BCC:	lda     #$04
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; controller2_slot = 1;
 ;
-L2B49:	lda     #$01
+L2BCD:	lda     #$01
 ;
 ; break;
 ;
-	jmp     L2B2D
+	jmp     L2BB1
 ;
 ; controller2_slot = 0;
 ;
-L2B4B:	lda     #$00
-L2B2D:	sta     _controller2_slot
+L2BCF:	lda     #$00
+L2BB1:	sta     _controller2_slot
 ;
 ; while (controller2_slot != 0 && controller2_slot == controller1_slot && guard < 5)
 ;
 	lda     _controller2_slot
-	beq     L2B27
+	beq     L2BAB
 	lda     _controller1_slot
 	cmp     _controller2_slot
-	bne     L2B27
+	bne     L2BAB
 	ldy     #$00
 	lda     (sp),y
 	cmp     #$05
-	bcc     L2B46
+	bcc     L2BCA
 ;
 ; if (old_slot == 1)
 ;
-L2B27:	ldy     #$01
+L2BAB:	ldy     #$01
 	lda     (sp),y
 	cmp     #$01
-	bne     L2B50
+	bne     L2BD4
 ;
 ; use_ai_player_1 = 1;
 ;
@@ -12938,10 +13224,10 @@ L2B27:	ldy     #$01
 ;
 ; else if (old_slot == 2)
 ;
-	jmp     L2B55
-L2B50:	lda     (sp),y
+	jmp     L2BD9
+L2BD4:	lda     (sp),y
 	cmp     #$02
-	bne     L2B52
+	bne     L2BD6
 ;
 ; use_ai_player_2 = 1;
 ;
@@ -12949,10 +13235,10 @@ L2B50:	lda     (sp),y
 ;
 ; else if (old_slot == 3)
 ;
-	jmp     L2B55
-L2B52:	lda     (sp),y
+	jmp     L2BD9
+L2BD6:	lda     (sp),y
 	cmp     #$03
-	bne     L2B54
+	bne     L2BD8
 ;
 ; use_ai_player_3 = 1;
 ;
@@ -12960,10 +13246,10 @@ L2B52:	lda     (sp),y
 ;
 ; else if (old_slot == 4)
 ;
-	jmp     L2B55
-L2B54:	lda     (sp),y
+	jmp     L2BD9
+L2BD8:	lda     (sp),y
 	cmp     #$04
-	bne     L2B55
+	bne     L2BD9
 ;
 ; use_ai_player_4 = 1;
 ;
@@ -12971,9 +13257,9 @@ L2B54:	lda     (sp),y
 ;
 ; if (controller2_slot == 1)
 ;
-L2B55:	lda     _controller2_slot
+L2BD9:	lda     _controller2_slot
 	cmp     #$01
-	bne     L2B56
+	bne     L2BDA
 ;
 ; use_ai_player_1 = 0;
 ;
@@ -12982,10 +13268,10 @@ L2B55:	lda     _controller2_slot
 ;
 ; else if (controller2_slot == 2)
 ;
-	jmp     L248C
-L2B56:	lda     _controller2_slot
+	jmp     L24F1
+L2BDA:	lda     _controller2_slot
 	cmp     #$02
-	bne     L2B57
+	bne     L2BDB
 ;
 ; use_ai_player_2 = 0;
 ;
@@ -12994,10 +13280,10 @@ L2B56:	lda     _controller2_slot
 ;
 ; else if (controller2_slot == 3)
 ;
-	jmp     L248C
-L2B57:	lda     _controller2_slot
+	jmp     L24F1
+L2BDB:	lda     _controller2_slot
 	cmp     #$03
-	bne     L2B58
+	bne     L2BDC
 ;
 ; use_ai_player_3 = 0;
 ;
@@ -13006,10 +13292,10 @@ L2B57:	lda     _controller2_slot
 ;
 ; else if (controller2_slot == 4)
 ;
-	jmp     L248C
-L2B58:	lda     _controller2_slot
+	jmp     L24F1
+L2BDC:	lda     _controller2_slot
 	cmp     #$04
-	bne     L248C
+	bne     L24F1
 ;
 ; use_ai_player_4 = 0;
 ;
@@ -13018,19 +13304,19 @@ L2B58:	lda     _controller2_slot
 ;
 ; }
 ;
-L248C:	jsr     incsp2
+L24F1:	jsr     incsp2
 ;
 ; if (pad1_new & PAD_DOWN)
 ;
-L2B59:	lda     _pad1_new
+L2BDD:	lda     _pad1_new
 	and     #$04
-	beq     L2B5A
+	beq     L2BDE
 ;
 ; if (current_settings_choice < SETTING_SONG)
 ;
 	lda     _current_settings_choice
 	cmp     #$02
-	bcs     L2B5A
+	bcs     L2BDE
 ;
 ; current_settings_choice++;
 ;
@@ -13042,14 +13328,14 @@ L2B59:	lda     _pad1_new
 ;
 ; if (pad1_new & PAD_UP)
 ;
-L2B5A:	lda     _pad1_new
+L2BDE:	lda     _pad1_new
 	and     #$08
-	beq     L2B5B
+	beq     L2BDF
 ;
 ; if (current_settings_choice > 0)
 ;
 	lda     _current_settings_choice
-	beq     L2B5B
+	beq     L2BDF
 ;
 ; current_settings_choice--;
 ;
@@ -13061,21 +13347,21 @@ L2B5A:	lda     _pad1_new
 ;
 ; if (pad1_new & PAD_RIGHT)
 ;
-L2B5B:	lda     _pad1_new
+L2BDF:	lda     _pad1_new
 	and     #$01
-	beq     L2B5E
+	beq     L2BE2
 ;
 ; if (current_settings_choice == SETTING_MAP)
 ;
 	lda     _current_settings_choice
 	cmp     #$01
-	bne     L2B5C
+	bne     L2BE0
 ;
 ; if (settings_map < MAP_RANDOM)
 ;
 	lda     _settings_map
 	cmp     #$03
-	bcs     L2B5C
+	bcs     L2BE0
 ;
 ; settings_map++;
 ;
@@ -13083,14 +13369,14 @@ L2B5B:	lda     _pad1_new
 ;
 ; if (current_settings_choice == SETTING_SPEED)
 ;
-L2B5C:	lda     _current_settings_choice
-	bne     L2B5D
+L2BE0:	lda     _current_settings_choice
+	bne     L2BE1
 ;
 ; if (settings_speed < GAME_FAST)
 ;
 	lda     _settings_speed
 	cmp     #$02
-	bcs     L2B5D
+	bcs     L2BE1
 ;
 ; settings_speed++;
 ;
@@ -13098,15 +13384,15 @@ L2B5C:	lda     _current_settings_choice
 ;
 ; if (current_settings_choice == SETTING_SONG)
 ;
-L2B5D:	lda     _current_settings_choice
+L2BE1:	lda     _current_settings_choice
 	cmp     #$02
-	bne     L24AA
+	bne     L250F
 ;
 ; if (settings_song < SONG_RANDOM)
 ;
 	lda     _settings_song
 	cmp     #$03
-	bcs     L24AA
+	bcs     L250F
 ;
 ; settings_song++;
 ;
@@ -13114,24 +13400,24 @@ L2B5D:	lda     _current_settings_choice
 ;
 ; update_options_screen();
 ;
-L24AA:	jsr     _update_options_screen
+L250F:	jsr     _update_options_screen
 ;
 ; if (pad1_new & PAD_LEFT)
 ;
-L2B5E:	lda     _pad1_new
+L2BE2:	lda     _pad1_new
 	and     #$02
-	beq     L2B61
+	beq     L2BE5
 ;
 ; if (current_settings_choice == SETTING_MAP)
 ;
 	lda     _current_settings_choice
 	cmp     #$01
-	bne     L2B5F
+	bne     L2BE3
 ;
 ; if (settings_map > 0)
 ;
 	lda     _settings_map
-	beq     L2B5F
+	beq     L2BE3
 ;
 ; settings_map--;
 ;
@@ -13139,13 +13425,13 @@ L2B5E:	lda     _pad1_new
 ;
 ; if (current_settings_choice == SETTING_SPEED)
 ;
-L2B5F:	lda     _current_settings_choice
-	bne     L2B60
+L2BE3:	lda     _current_settings_choice
+	bne     L2BE4
 ;
 ; if (settings_speed > 0)
 ;
 	lda     _settings_speed
-	beq     L2B60
+	beq     L2BE4
 ;
 ; settings_speed--;
 ;
@@ -13153,14 +13439,14 @@ L2B5F:	lda     _current_settings_choice
 ;
 ; if (current_settings_choice == SETTING_SONG)
 ;
-L2B60:	lda     _current_settings_choice
+L2BE4:	lda     _current_settings_choice
 	cmp     #$02
-	bne     L24BC
+	bne     L2521
 ;
 ; if (settings_song > 0)
 ;
 	lda     _settings_song
-	beq     L24BC
+	beq     L2521
 ;
 ; settings_song--;
 ;
@@ -13168,11 +13454,11 @@ L2B60:	lda     _current_settings_choice
 ;
 ; update_options_screen();
 ;
-L24BC:	jsr     _update_options_screen
+L2521:	jsr     _update_options_screen
 ;
 ; if ((pad1 | pad2 | pad3 | pad4) & PAD_START)
 ;
-L2B61:	lda     _pad2
+L2BE5:	lda     _pad2
 	ora     _pad1
 	sta     ptr1
 	lda     _pad3
@@ -13181,25 +13467,25 @@ L2B61:	lda     _pad2
 	lda     _pad4
 	ora     ptr1
 	and     #$10
-	beq     L2B6A
+	beq     L2BEE
 ;
 ; if (!start_held && (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START))
 ;
 	lda     _start_held
-	jne     L2337
+	jne     L239C
 	lda     _pad1_new
 	and     #$10
-	bne     L2B62
+	bne     L2BE6
 	lda     _pad2_new
 	and     #$10
-	bne     L2B62
+	bne     L2BE6
 	lda     _pad3_new
 	and     #$10
-	bne     L2B62
+	bne     L2BE6
 	lda     _pad4_new
 	and     #$10
-	jeq     L2337
-L2B62:	lda     #$01
+	jeq     L239C
+L2BE6:	lda     #$01
 ;
 ; start_held = 1;
 ;
@@ -13218,19 +13504,19 @@ L2B62:	lda     #$01
 ;
 ; break;
 ;
-	jmp     L2338
+	jmp     L239D
 ;
 ; start_held = 0;
 ;
-L2B6A:	sta     _start_held
+L2BEE:	sta     _start_held
 ;
 ; while (1)
 ;
-	jmp     L2337
+	jmp     L239C
 ;
 ; prev_pad1 = pad1;
 ;
-L2338:	lda     _pad1
+L239D:	lda     _pad1
 	sta     _prev_pad1
 ;
 ; prev_pad2 = pad2;
@@ -13267,7 +13553,7 @@ L2338:	lda     _pad1
 ;
 ; frame_counter++;
 ;
-L24DB:	inc     _frame_counter
+L2540:	inc     _frame_counter
 ;
 ; oam_clear();
 ;
@@ -13277,7 +13563,7 @@ L24DB:	inc     _frame_counter
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B6B
+	bne     L2BEF
 ;
 ; draw_player_1();
 ;
@@ -13289,10 +13575,10 @@ L24DB:	inc     _frame_counter
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L24E6
-L2B6B:	lda     _winner
+	jmp     L254B
+L2BEF:	lda     _winner
 	cmp     #$02
-	bne     L24E6
+	bne     L254B
 ;
 ; draw_player_3();
 ;
@@ -13304,7 +13590,7 @@ L2B6B:	lda     _winner
 ;
 ; ppu_wait_nmi();
 ;
-L24E6:	jsr     _ppu_wait_nmi
+L254B:	jsr     _ppu_wait_nmi
 ;
 ; read_controllers();
 ;
@@ -13314,20 +13600,20 @@ L24E6:	jsr     _ppu_wait_nmi
 ;
 	lda     _pad1_new
 	and     #$10
-	bne     L2B6C
+	bne     L2BF0
 	lda     _pad2_new
 	and     #$10
-	bne     L2B6C
+	bne     L2BF0
 	lda     _pad3_new
 	and     #$10
-	bne     L2B6C
+	bne     L2BF0
 	lda     _pad4_new
 	and     #$10
-	beq     L24DB
+	beq     L2540
 ;
 ; init_title_loop();
 ;
-L2B6C:	jmp     _init_title_loop
+L2BF0:	jmp     _init_title_loop
 
 .endproc
 
@@ -13443,7 +13729,7 @@ L2B6C:	jmp     _init_title_loop
 ; if (settings_speed == GAME_SLOW)
 ;
 	lda     _settings_speed
-	bne     L2B70
+	bne     L2BF4
 ;
 ; tick_frequency += 8;
 ;
@@ -13453,22 +13739,22 @@ L2B6C:	jmp     _init_title_loop
 ;
 ; else if (settings_speed == GAME_FAST)
 ;
-	jmp     L2B6D
-L2B70:	lda     _settings_speed
+	jmp     L2BF1
+L2BF4:	lda     _settings_speed
 	cmp     #$02
-	bne     L2B71
+	bne     L2BF5
 ;
 ; tick_frequency -= 12;
 ;
 	lda     _tick_frequency
 	sec
 	sbc     #$0C
-L2B6D:	sta     _tick_frequency
+L2BF1:	sta     _tick_frequency
 ;
 ; if (settings_map == MAP_COMBS)
 ;
-L2B71:	lda     _settings_map
-	bne     L2B72
+L2BF5:	lda     _settings_map
+	bne     L2BF6
 ;
 ; map_ptr = combs;
 ;
@@ -13483,10 +13769,10 @@ L2B71:	lda     _settings_map
 ;
 ; else if (settings_map == MAP_VINES)
 ;
-	jmp     L2B6E
-L2B72:	lda     _settings_map
+	jmp     L2BF2
+L2BF6:	lda     _settings_map
 	cmp     #$02
-	bne     L2B73
+	bne     L2BF7
 ;
 ; map_ptr = vines;
 ;
@@ -13501,10 +13787,10 @@ L2B72:	lda     _settings_map
 ;
 ; else if (settings_map == MAP_OUTDOORS)
 ;
-	jmp     L2B6E
-L2B73:	lda     _settings_map
+	jmp     L2BF2
+L2BF7:	lda     _settings_map
 	cmp     #$01
-	bne     L2B74
+	bne     L2BF8
 ;
 ; map_ptr = outdoors;
 ;
@@ -13516,12 +13802,12 @@ L2B73:	lda     _settings_map
 ; map = MAP_OUTDOORS;
 ;
 	lda     #$01
-L2B6E:	sta     _map
+L2BF2:	sta     _map
 ;
 ; if (settings_speed == GAME_SLOW)
 ;
-L2B74:	lda     _settings_speed
-	bne     L2B75
+L2BF8:	lda     _settings_speed
+	bne     L2BF9
 ;
 ; speed_option = SPEED_SLOW;
 ;
@@ -13530,10 +13816,10 @@ L2B74:	lda     _settings_speed
 ;
 ; else if (settings_speed == GAME_REGULAR)
 ;
-	jmp     L2B77
-L2B75:	lda     _settings_speed
+	jmp     L2BFB
+L2BF9:	lda     _settings_speed
 	cmp     #$01
-	bne     L2B76
+	bne     L2BFA
 ;
 ; speed_option = SPEED_REGULAR;
 ;
@@ -13542,21 +13828,21 @@ L2B75:	lda     _settings_speed
 ;
 ; else if (settings_speed == GAME_FAST)
 ;
-	jmp     L2B77
-L2B76:	lda     _settings_speed
+	jmp     L2BFB
+L2BFA:	lda     _settings_speed
 	cmp     #$02
-	bne     L2642
+	bne     L26AF
 ;
 ; speed_option = SPEED_FAST;
 ;
 	ldx     #$01
 	lda     #$00
-L2B77:	sta     _speed_option
+L2BFB:	sta     _speed_option
 	stx     _speed_option+1
 ;
 ; load_bg_palette();
 ;
-L2642:	jsr     _load_bg_palette
+L26AF:	jsr     _load_bg_palette
 ;
 ; pal_spr(palette_sp);
 ;
@@ -13635,11 +13921,11 @@ L2642:	jsr     _load_bg_palette
 ; multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 8));
 ;
 	jsr     decsp3
-	lda     #<(L273A)
+	lda     #<(L27A7)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L273A)
+	lda     #>(L27A7)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -13651,11 +13937,11 @@ L2642:	jsr     _load_bg_palette
 ; multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 12));
 ;
 	jsr     decsp3
-	lda     #<(L2744)
+	lda     #<(L27B1)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2744)
+	lda     #>(L27B1)
 	sta     (sp),y
 	lda     #$04
 	ldy     #$00
@@ -13667,11 +13953,11 @@ L2642:	jsr     _load_bg_palette
 ; multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 16));
 ;
 	jsr     decsp3
-	lda     #<(L274E)
+	lda     #<(L27BB)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L274E)
+	lda     #>(L27BB)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -13683,11 +13969,11 @@ L2642:	jsr     _load_bg_palette
 ; multi_vram_buffer_horz("PRESS SELECT TO JOIN", 20, NTADR_A(6, 20));
 ;
 	jsr     decsp3
-	lda     #<(L2758)
+	lda     #<(L27C5)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2758)
+	lda     #>(L27C5)
 	sta     (sp),y
 	lda     #$14
 	ldy     #$00
@@ -13771,16 +14057,16 @@ L2642:	jsr     _load_bg_palette
 ;
 	lda     _team1_wins
 	cmp     #$03
-	bcc     L2B79
+	bcc     L2BFD
 ;
 ; multi_vram_buffer_horz("RED TEAM WINS", 13, NTADR_A(9, 4));
 ;
 	jsr     decsp3
-	lda     #<(L28BD)
+	lda     #<(L292A)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L28BD)
+	lda     #>(L292A)
 	sta     (sp),y
 	lda     #$0D
 	ldy     #$00
@@ -13795,20 +14081,20 @@ L2642:	jsr     _load_bg_palette
 ;
 ; else if (team2_wins >= 3)
 ;
-	jmp     L2B78
-L2B79:	lda     _team2_wins
+	jmp     L2BFC
+L2BFD:	lda     _team2_wins
 	cmp     #$03
 	lda     #$00
-	bcc     L2B7B
+	bcc     L2BFF
 ;
 ; multi_vram_buffer_horz("BLUE TEAM WINS", 14, NTADR_A(9, 4));
 ;
 	jsr     decsp3
-	lda     #<(L28CC)
+	lda     #<(L2939)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L28CC)
+	lda     #>(L2939)
 	sta     (sp),y
 	lda     #$0E
 	ldy     #$00
@@ -13820,12 +14106,12 @@ L2B79:	lda     _team2_wins
 ; winner = THREEFOUR_WINNER;
 ;
 	lda     #$02
-L2B78:	sta     _winner
+L2BFC:	sta     _winner
 ;
 ; bee1_bigbee_timer = 0;
 ;
 	lda     #$00
-L2B7B:	sta     _bee1_bigbee_timer
+L2BFF:	sta     _bee1_bigbee_timer
 ;
 ; bee3_bigbee_timer = 0;
 ;
@@ -13835,7 +14121,7 @@ L2B7B:	sta     _bee1_bigbee_timer
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B7C
+	bne     L2C00
 ;
 ; BoxGuy1.x = 0x6E00;
 ;
@@ -13900,10 +14186,10 @@ L2B7B:	sta     _bee1_bigbee_timer
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B7D
-L2B7C:	lda     _winner
+	jmp     L2C01
+L2C00:	lda     _winner
 	cmp     #$02
-	bne     L2B7D
+	bne     L2C01
 ;
 ; BoxGuy3.x = 0x6E00;
 ;
@@ -13968,17 +14254,17 @@ L2B7C:	lda     _winner
 ;
 ; temp_y = 8;
 ;
-L2B7D:	lda     #$08
+L2C01:	lda     #$08
 	sta     _temp_y
 ;
 ; multi_vram_buffer_horz("ROUND 1:", 9, NTADR_A(6, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L290F)
+	lda     #<(L297C)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L290F)
+	lda     #>(L297C)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -14019,11 +14305,11 @@ L2B7D:	lda     #$08
 ; multi_vram_buffer_horz("ROUND 2:", 9, NTADR_A(6, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L2920)
+	lda     #<(L298D)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2920)
+	lda     #>(L298D)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -14064,11 +14350,11 @@ L2B7D:	lda     #$08
 ; multi_vram_buffer_horz("ROUND 3:", 9, NTADR_A(6, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L2931)
+	lda     #<(L299E)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2931)
+	lda     #>(L299E)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -14104,7 +14390,7 @@ L2B7D:	lda     #$08
 ; if (round_4 != 0)
 ;
 	lda     _round_4
-	beq     L2B7E
+	beq     L2C02
 ;
 ; temp_y = 17;
 ;
@@ -14114,11 +14400,11 @@ L2B7D:	lda     #$08
 ; multi_vram_buffer_horz("ROUND 4:", 9, NTADR_A(6, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L2944)
+	lda     #<(L29B1)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2944)
+	lda     #>(L29B1)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -14153,8 +14439,8 @@ L2B7D:	lda     #$08
 ;
 ; if (round_5 != 0)
 ;
-L2B7E:	lda     _round_5
-	beq     L2952
+L2C02:	lda     _round_5
+	beq     L29BF
 ;
 ; temp_y = 20;
 ;
@@ -14164,11 +14450,11 @@ L2B7E:	lda     _round_5
 ; multi_vram_buffer_horz("ROUND 5:", 9, NTADR_A(6, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L2957)
+	lda     #<(L29C4)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2957)
+	lda     #>(L29C4)
 	sta     (sp),y
 	lda     #$09
 	ldy     #$00
@@ -14203,12 +14489,12 @@ L2B7E:	lda     _round_5
 ;
 ; multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
 ;
-L2952:	jsr     decsp3
-	lda     #<(L2966)
+L29BF:	jsr     decsp3
+	lda     #<(L29D3)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2966)
+	lda     #>(L29D3)
 	sta     (sp),y
 	lda     #$0B
 	ldy     #$00
@@ -14566,9 +14852,9 @@ L2952:	jsr     decsp3
 	lda     #$00
 	sta     _tempint
 	sta     _tempint+1
-L29C1:	ldx     _tempint+1
+L2A2E:	ldx     _tempint+1
 	cpx     #$04
-	bcs     L29C2
+	bcs     L2A2F
 ;
 ; vram_put(0x00);
 ;
@@ -14578,13 +14864,13 @@ L29C1:	ldx     _tempint+1
 ; for (tempint = 0; tempint < 1024; ++tempint)
 ;
 	inc     _tempint
-	bne     L29C1
+	bne     L2A2E
 	inc     _tempint+1
-	jmp     L29C1
+	jmp     L2A2E
 ;
 ; ppu_on_all(); // turn on screen
 ;
-L29C2:	jmp     _ppu_on_all
+L2A2F:	jmp     _ppu_on_all
 
 .endproc
 
@@ -14903,7 +15189,7 @@ L1D13:	jsr     decsp2
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B80
+	bne     L2C04
 ;
 ; team1_wins++;
 ;
@@ -14911,10 +15197,10 @@ L1D13:	jsr     decsp2
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B81
-L2B80:	lda     _winner
+	jmp     L2C05
+L2C04:	lda     _winner
 	cmp     #$02
-	bne     L2B81
+	bne     L2C05
 ;
 ; team2_wins++;
 ;
@@ -14922,9 +15208,9 @@ L2B80:	lda     _winner
 ;
 ; if (current_round == 1)
 ;
-L2B81:	lda     _current_round
+L2C05:	lda     _current_round
 	cmp     #$01
-	bne     L2B83
+	bne     L2C07
 ;
 ; round_1 = win_reason;
 ;
@@ -14935,7 +15221,7 @@ L2B81:	lda     _current_round
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B82
+	bne     L2C06
 ;
 ; round_1_winner = TEAM1_WIN;
 ;
@@ -14944,10 +15230,10 @@ L2B81:	lda     _current_round
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B8B
-L2B82:	lda     _winner
+	jmp     L2C0F
+L2C06:	lda     _winner
 	cmp     #$02
-	jne     L2B8B
+	jne     L2C0F
 ;
 ; round_1_winner = TEAM2_WIN;
 ;
@@ -14956,10 +15242,10 @@ L2B82:	lda     _winner
 ;
 ; else if (current_round == 2)
 ;
-	jmp     L2B8B
-L2B83:	lda     _current_round
+	jmp     L2C0F
+L2C07:	lda     _current_round
 	cmp     #$02
-	bne     L2B85
+	bne     L2C09
 ;
 ; round_2 = win_reason;
 ;
@@ -14970,7 +15256,7 @@ L2B83:	lda     _current_round
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B84
+	bne     L2C08
 ;
 ; round_2_winner = TEAM1_WIN;
 ;
@@ -14979,10 +15265,10 @@ L2B83:	lda     _current_round
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B8B
-L2B84:	lda     _winner
+	jmp     L2C0F
+L2C08:	lda     _winner
 	cmp     #$02
-	jne     L2B8B
+	jne     L2C0F
 ;
 ; round_2_winner = TEAM2_WIN;
 ;
@@ -14991,10 +15277,10 @@ L2B84:	lda     _winner
 ;
 ; else if (current_round == 3)
 ;
-	jmp     L2B8B
-L2B85:	lda     _current_round
+	jmp     L2C0F
+L2C09:	lda     _current_round
 	cmp     #$03
-	bne     L2B87
+	bne     L2C0B
 ;
 ; round_3 = win_reason;
 ;
@@ -15005,7 +15291,7 @@ L2B85:	lda     _current_round
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B86
+	bne     L2C0A
 ;
 ; round_3_winner = TEAM1_WIN;
 ;
@@ -15014,10 +15300,10 @@ L2B85:	lda     _current_round
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B8B
-L2B86:	lda     _winner
+	jmp     L2C0F
+L2C0A:	lda     _winner
 	cmp     #$02
-	bne     L2B8B
+	bne     L2C0F
 ;
 ; round_3_winner = TEAM2_WIN;
 ;
@@ -15026,10 +15312,10 @@ L2B86:	lda     _winner
 ;
 ; else if (current_round == 4)
 ;
-	jmp     L2B8B
-L2B87:	lda     _current_round
+	jmp     L2C0F
+L2C0B:	lda     _current_round
 	cmp     #$04
-	bne     L2B89
+	bne     L2C0D
 ;
 ; round_4 = win_reason;
 ;
@@ -15040,7 +15326,7 @@ L2B87:	lda     _current_round
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B88
+	bne     L2C0C
 ;
 ; round_4_winner = TEAM1_WIN;
 ;
@@ -15049,10 +15335,10 @@ L2B87:	lda     _current_round
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B8B
-L2B88:	lda     _winner
+	jmp     L2C0F
+L2C0C:	lda     _winner
 	cmp     #$02
-	bne     L2B8B
+	bne     L2C0F
 ;
 ; round_4_winner = TEAM2_WIN;
 ;
@@ -15061,10 +15347,10 @@ L2B88:	lda     _winner
 ;
 ; else if (current_round == 5)
 ;
-	jmp     L2B8B
-L2B89:	lda     _current_round
+	jmp     L2C0F
+L2C0D:	lda     _current_round
 	cmp     #$05
-	bne     L2B8B
+	bne     L2C0F
 ;
 ; round_5 = win_reason;
 ;
@@ -15075,7 +15361,7 @@ L2B89:	lda     _current_round
 ;
 	lda     _winner
 	cmp     #$01
-	bne     L2B8A
+	bne     L2C0E
 ;
 ; round_5_winner = TEAM1_WIN;
 ;
@@ -15083,27 +15369,27 @@ L2B89:	lda     _current_round
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B7F
-L2B8A:	lda     _winner
+	jmp     L2C03
+L2C0E:	lda     _winner
 	cmp     #$02
-	bne     L2B8B
+	bne     L2C0F
 ;
 ; round_5_winner = TEAM2_WIN;
 ;
 	lda     #$40
-L2B7F:	sta     _round_5_winner
+L2C03:	sta     _round_5_winner
 ;
 ; if (winner == ONETWO_WINNER)
 ;
-L2B8B:	lda     _winner
+L2C0F:	lda     _winner
 	cmp     #$01
-	bne     L2B8E
+	bne     L2C12
 ;
 ; if (team1_wins == 1)
 ;
 	lda     _team1_wins
 	cmp     #$01
-	bne     L2B8C
+	bne     L2C10
 ;
 ; team1_win1 = win_reason;
 ;
@@ -15112,10 +15398,10 @@ L2B8B:	lda     _winner
 ;
 ; else if (team1_wins == 2)
 ;
-	jmp     L2B91
-L2B8C:	lda     _team1_wins
+	jmp     L2C15
+L2C10:	lda     _team1_wins
 	cmp     #$02
-	bne     L2B8D
+	bne     L2C11
 ;
 ; team1_win2 = win_reason;
 ;
@@ -15124,10 +15410,10 @@ L2B8C:	lda     _team1_wins
 ;
 ; else if (team1_wins == 3)
 ;
-	jmp     L2B91
-L2B8D:	lda     _team1_wins
+	jmp     L2C15
+L2C11:	lda     _team1_wins
 	cmp     #$03
-	bne     L2B91
+	bne     L2C15
 ;
 ; team1_win3 = win_reason;
 ;
@@ -15136,16 +15422,16 @@ L2B8D:	lda     _team1_wins
 ;
 ; else if (winner == THREEFOUR_WINNER)
 ;
-	jmp     L2B91
-L2B8E:	lda     _winner
+	jmp     L2C15
+L2C12:	lda     _winner
 	cmp     #$02
-	bne     L2B91
+	bne     L2C15
 ;
 ; if (team2_wins == 1)
 ;
 	lda     _team2_wins
 	cmp     #$01
-	bne     L2B8F
+	bne     L2C13
 ;
 ; team2_win1 = win_reason;
 ;
@@ -15154,10 +15440,10 @@ L2B8E:	lda     _winner
 ;
 ; else if (team2_wins == 2)
 ;
-	jmp     L2B91
-L2B8F:	lda     _team2_wins
+	jmp     L2C15
+L2C13:	lda     _team2_wins
 	cmp     #$02
-	bne     L2B90
+	bne     L2C14
 ;
 ; team2_win2 = win_reason;
 ;
@@ -15166,10 +15452,10 @@ L2B8F:	lda     _team2_wins
 ;
 ; else if (team2_wins == 3)
 ;
-	jmp     L2B91
-L2B90:	lda     _team2_wins
+	jmp     L2C15
+L2C14:	lda     _team2_wins
 	cmp     #$03
-	bne     L2B91
+	bne     L2C15
 ;
 ; team2_win3 = win_reason;
 ;
@@ -15178,9 +15464,9 @@ L2B90:	lda     _team2_wins
 ;
 ; if (winner != TIE_WINNER)
 ;
-L2B91:	lda     _winner
+L2C15:	lda     _winner
 	cmp     #$03
-	beq     L27DC
+	beq     L2849
 ;
 ; current_round++;
 ;
@@ -15188,12 +15474,12 @@ L2B91:	lda     _winner
 ;
 ; multi_vram_buffer_horz("                      ", 22, NTADR_A(5, 3));
 ;
-L27DC:	jsr     decsp3
-	lda     #<(L27E0)
+L2849:	jsr     decsp3
+	lda     #<(L284D)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L27E0)
+	lda     #>(L284D)
 	sta     (sp),y
 	lda     #$16
 	ldy     #$00
@@ -15206,16 +15492,16 @@ L27DC:	jsr     decsp3
 ;
 	lda     _win_reason
 	cmp     #$20
-	bne     L2B92
+	bne     L2C16
 ;
 ; multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 3));
 ;
 	jsr     decsp3
-	lda     #<(L27EC)
+	lda     #<(L2859)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L27EC)
+	lda     #>(L2859)
 	sta     (sp),y
 	lda     #$13
 	ldy     #$00
@@ -15226,18 +15512,18 @@ L27DC:	jsr     decsp3
 ;
 ; else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 ;
-L2B92:	lda     _win_reason
+L2C16:	lda     _win_reason
 	cmp     #$10
-	bne     L2B93
+	bne     L2C17
 ;
 ; multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(7, 3));
 ;
 	jsr     decsp3
-	lda     #<(L27F9)
+	lda     #<(L2866)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L27F9)
+	lda     #>(L2866)
 	sta     (sp),y
 	lda     #$12
 	ldy     #$00
@@ -15248,18 +15534,18 @@ L2B92:	lda     _win_reason
 ;
 ; else if (win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 ;
-L2B93:	lda     _win_reason
+L2C17:	lda     _win_reason
 	cmp     #$08
-	bne     L2B94
+	bne     L2C18
 ;
 ; multi_vram_buffer_horz("FRIENDLY DUCK EATEN", 19, NTADR_A(6, 3));
 ;
 	jsr     decsp3
-	lda     #<(L2806)
+	lda     #<(L2873)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2806)
+	lda     #>(L2873)
 	sta     (sp),y
 	lda     #$13
 	ldy     #$00
@@ -15270,18 +15556,18 @@ L2B93:	lda     _win_reason
 ;
 ; else if (win_reason == WIN_BEE_EATEN)
 ;
-L2B94:	lda     _win_reason
+L2C18:	lda     _win_reason
 	cmp     #$04
-	bne     L2B95
+	bne     L2C19
 ;
 ; multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(8, 3));
 ;
 	jsr     decsp3
-	lda     #<(L2813)
+	lda     #<(L2880)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2813)
+	lda     #>(L2880)
 	sta     (sp),y
 	lda     #$0F
 	ldy     #$00
@@ -15292,18 +15578,18 @@ L2B94:	lda     _win_reason
 ;
 ; else if (win_reason == WIN_DUCK_EATEN)
 ;
-L2B95:	lda     _win_reason
+L2C19:	lda     _win_reason
 	cmp     #$02
-	bne     L2B96
+	bne     L2C1A
 ;
 ; multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 3));
 ;
 	jsr     decsp3
-	lda     #<(L2820)
+	lda     #<(L288D)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2820)
+	lda     #>(L288D)
 	sta     (sp),y
 	lda     #$10
 	ldy     #$00
@@ -15314,18 +15600,18 @@ L2B95:	lda     _win_reason
 ;
 ; else if (win_reason == WIN_MOST_HONEY_COLLECTED)
 ;
-L2B96:	lda     _win_reason
+L2C1A:	lda     _win_reason
 	cmp     #$01
-	bne     L282A
+	bne     L2897
 ;
 ; multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(6, 3));
 ;
 	jsr     decsp3
-	lda     #<(L282D)
+	lda     #<(L289A)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L282D)
+	lda     #>(L289A)
 	sta     (sp),y
 	lda     #$14
 	ldy     #$00
@@ -15336,12 +15622,12 @@ L2B96:	lda     _win_reason
 ;
 ; multi_vram_buffer_horz("DRAW GAME!", 10, NTADR_A(11, 3));
 ;
-L282A:	jsr     decsp3
-	lda     #<(L2838)
+L2897:	jsr     decsp3
+	lda     #<(L28A5)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2838)
+	lda     #>(L28A5)
 	sta     (sp),y
 	lda     #$0A
 	ldy     #$00
@@ -15367,7 +15653,7 @@ L282A:	jsr     decsp3
 ;
 	lda     _settings_map
 	cmp     #$03
-	bne     L24F1
+	bne     L2556
 ;
 ; if (frame_counter % 3 == 0)
 ;
@@ -15376,9 +15662,9 @@ L282A:	jsr     decsp3
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L2BA5
+	bne     L2C29
 	cmp     #$00
-	bne     L2BA5
+	bne     L2C29
 ;
 ; map_ptr = combs;
 ;
@@ -15393,15 +15679,15 @@ L282A:	jsr     decsp3
 ;
 ; else if (frame_counter % 3 == 1)
 ;
-	jmp     L2B97
-L2BA5:	lda     _frame_counter
+	jmp     L2C1B
+L2C29:	lda     _frame_counter
 	jsr     pusha0
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L24FB
+	bne     L2560
 	cmp     #$01
-	bne     L24FB
+	bne     L2560
 ;
 ; map_ptr = vines;
 ;
@@ -15416,11 +15702,11 @@ L2BA5:	lda     _frame_counter
 ;
 ; else
 ;
-	jmp     L2B97
+	jmp     L2C1B
 ;
 ; map_ptr = outdoors;
 ;
-L24FB:	lda     #>(_outdoors)
+L2560:	lda     #>(_outdoors)
 	sta     _map_ptr+1
 	lda     #<(_outdoors)
 	sta     _map_ptr
@@ -15428,7 +15714,7 @@ L24FB:	lda     #>(_outdoors)
 ; map = MAP_OUTDOORS;
 ;
 	lda     #$01
-L2B97:	sta     _map
+L2C1B:	sta     _map
 ;
 ; load_bg_palette();
 ;
@@ -15436,15 +15722,15 @@ L2B97:	sta     _map
 ;
 ; load_room();
 ;
-L24F1:	jsr     _load_room
+L2556:	jsr     _load_room
 ;
 ; for (index = 0; index < 128; index++)
 ;
 	lda     #$00
 	sta     _index
-L2B9B:	lda     _index
+L2C1F:	lda     _index
 	cmp     #$80
-	bcs     L2B9C
+	bcs     L2C20
 ;
 ; consumed_dots[index] = 0;
 ;
@@ -15455,12 +15741,12 @@ L2B9B:	lda     _index
 ; for (index = 0; index < 128; index++)
 ;
 	inc     _index
-	jmp     L2B9B
+	jmp     L2C1F
 ;
 ; if (map == MAP_COMBS)
 ;
-L2B9C:	lda     _map
-	bne     L2B9D
+L2C20:	lda     _map
+	bne     L2C21
 ;
 ; BoxGuy1.x = 0x3800;
 ;
@@ -15510,10 +15796,10 @@ L2B9C:	lda     _map
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2BA4
-L2B9D:	lda     _map
+	jmp     L2C28
+L2C21:	lda     _map
 	cmp     #$02
-	bne     L2B9E
+	bne     L2C22
 ;
 ; BoxGuy1.x = 0x6000;
 ;
@@ -15563,10 +15849,10 @@ L2B9D:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2BA4
-L2B9E:	lda     _map
+	jmp     L2C28
+L2C22:	lda     _map
 	cmp     #$01
-	bne     L2B9F
+	bne     L2C23
 ;
 ; BoxGuy1.x = 0x2800;
 ;
@@ -15612,12 +15898,12 @@ L2B9E:	lda     _map
 ;
 ; BoxGuy4.y = 0xD800;
 ;
-L2BA4:	sta     _BoxGuy4+2
+L2C28:	sta     _BoxGuy4+2
 	stx     _BoxGuy4+2+1
 ;
 ; team1_score = 0;
 ;
-L2B9F:	lda     #$00
+L2C23:	lda     #$00
 	sta     _team1_score
 ;
 ; team2_score = 0;
@@ -15688,6 +15974,22 @@ L2B9F:	lda     #$00
 ; stun_p3 = 0;
 ;
 	sta     _stun_p3
+;
+; bounce_p1 = 0;
+;
+	sta     _bounce_p1
+;
+; bounce_p2 = 0;
+;
+	sta     _bounce_p2
+;
+; bounce_p3 = 0;
+;
+	sta     _bounce_p3
+;
+; bounce_p4 = 0;
+;
+	sta     _bounce_p4
 ;
 ; quack2.moving = 0;
 ;
@@ -15944,19 +16246,19 @@ L2B9F:	lda     #$00
 ;
 ; else if (settings_song == SONG_LAKE)
 ;
-	beq     L2B99
+	beq     L2C1D
 	cmp     #$01
 ;
 ; else if (settings_song == SONG_HONEY)
 ;
-	beq     L2B99
+	beq     L2C1D
 	cmp     #$02
 ;
 ; else if (settings_song == SONG_RANDOM)
 ;
-	beq     L2B99
+	beq     L2C1D
 	cmp     #$03
-	bne     L2BA3
+	bne     L2C27
 ;
 ; if (frame_counter % 3 == 0)
 ;
@@ -15965,34 +16267,34 @@ L2B9F:	lda     #$00
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L25CE
+	bne     L263B
 	cmp     #$00
 ;
 ; else if (frame_counter % 3 == 1)
 ;
-	beq     L2B99
-L25CE:	lda     _frame_counter
+	beq     L2C1D
+L263B:	lda     _frame_counter
 	jsr     pusha0
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L25D4
+	bne     L2641
 	cmp     #$01
 ;
 ; else
 ;
-	beq     L2B99
+	beq     L2C1D
 ;
 ; song = SONG_HONEY;
 ;
-L25D4:	lda     #$02
-L2B99:	sta     _song
+L2641:	lda     #$02
+L2C1D:	sta     _song
 ;
 ; if(settings_song == SONG_RANDOM)
 ;
-L2BA3:	lda     _settings_song
+L2C27:	lda     _settings_song
 	cmp     #$03
-	bne     L25E9
+	bne     L2656
 ;
 ; if (frame_counter % 3 == 0)
 ;
@@ -16001,32 +16303,32 @@ L2BA3:	lda     _settings_song
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L25DE
+	bne     L264B
 	cmp     #$00
 ;
 ; else if (frame_counter % 3 == 1)
 ;
-	beq     L2B9A
-L25DE:	lda     _frame_counter
+	beq     L2C1E
+L264B:	lda     _frame_counter
 	jsr     pusha0
 	lda     #$03
 	jsr     tosumoda0
 	cpx     #$00
-	bne     L25E4
+	bne     L2651
 	cmp     #$01
 ;
 ; else
 ;
-	beq     L2B9A
+	beq     L2C1E
 ;
 ; song = SONG_HONEY;
 ;
-L25E4:	lda     #$02
-L2B9A:	sta     _song
+L2651:	lda     #$02
+L2C1E:	sta     _song
 ;
 ; music_play(song);
 ;
-L25E9:	lda     _song
+L2656:	lda     _song
 	jmp     _music_play
 
 .endproc
@@ -16044,7 +16346,7 @@ L25E9:	lda     _song
 ;
 ; ++frame_counter;
 ;
-L29CE:	inc     _frame_counter
+L2A3B:	inc     _frame_counter
 ;
 ; draw_sprites();
 ;
@@ -16070,20 +16372,20 @@ L29CE:	inc     _frame_counter
 ;
 	lda     _pad1_new
 	and     #$10
-	bne     L2BA6
+	bne     L2C2A
 	lda     _pad2_new
 	and     #$10
-	bne     L2BA6
+	bne     L2C2A
 	lda     _pad3_new
 	and     #$10
-	bne     L2BA6
+	bne     L2C2A
 	lda     _pad4_new
 	and     #$10
-	beq     L29CE
+	beq     L2A3B
 ;
 ; if (team1_wins >= 3)
 ;
-L2BA6:	lda     _team1_wins
+L2C2A:	lda     _team1_wins
 	cmp     #$03
 ;
 ; init_gameover_loop();
@@ -16132,7 +16434,7 @@ L2BA6:	lda     _team1_wins
 ;
 	lda     _game_frame_timer
 	cmp     _tick_frequency
-	bcs     L2BB5
+	bcs     L2C39
 ;
 ; }
 ;
@@ -16140,7 +16442,7 @@ L2BA6:	lda     _team1_wins
 ;
 ; game_frame_timer = 0; // reset the frame timer
 ;
-L2BB5:	lda     #$00
+L2C39:	lda     #$00
 	sta     _game_frame_timer
 ;
 ; game_timer--;
@@ -16149,15 +16451,15 @@ L2BB5:	lda     #$00
 ;
 ; if (game_timer == 0)
 ;
-	bne     L2BAB
+	bne     L2C2F
 ;
 ; if (team1_score > team2_score)
 ;
 	lda     _team1_score
 	sec
 	sbc     _team2_score
-	bcc     L2BA9
-	beq     L2BA9
+	bcc     L2C2D
+	beq     L2C2D
 ;
 ; winner = ONETWO_WINNER;
 ;
@@ -16174,12 +16476,12 @@ L2BB5:	lda     #$00
 ;
 ; else if (team2_score > team1_score)
 ;
-	jmp     L2BB4
-L2BA9:	lda     _team2_score
+	jmp     L2C38
+L2C2D:	lda     _team2_score
 	sec
 	sbc     _team1_score
-	bcc     L2BAA
-	beq     L2BAA
+	bcc     L2C2E
+	beq     L2C2E
 ;
 ; winner = THREEFOUR_WINNER;
 ;
@@ -16197,11 +16499,11 @@ L2BA9:	lda     _team2_score
 ;
 ; else
 ;
-	jmp     L2BB4
+	jmp     L2C38
 ;
 ; winner = TIE_WINNER;
 ;
-L2BAA:	lda     #$03
+L2C2E:	lda     #$03
 	sta     _winner
 ;
 ; win_reason = WIN_TIMEUP;
@@ -16211,7 +16513,7 @@ L2BAA:	lda     #$03
 ; sfx_play(SFX_DRAW_GAME, 0);
 ;
 	lda     #$04
-L2BB4:	jsr     pusha
+L2C38:	jsr     pusha
 	lda     #$00
 	jsr     _sfx_play
 ;
@@ -16221,8 +16523,8 @@ L2BB4:	jsr     pusha
 ;
 ; if (quack2_cooldown > 0)
 ;
-L2BAB:	lda     _quack2_cooldown
-	beq     L2BAC
+L2C2F:	lda     _quack2_cooldown
+	beq     L2C30
 ;
 ; quack2_cooldown--;
 ;
@@ -16230,8 +16532,8 @@ L2BAB:	lda     _quack2_cooldown
 ;
 ; if (quack4_cooldown > 0)
 ;
-L2BAC:	lda     _quack4_cooldown
-	beq     L2BAD
+L2C30:	lda     _quack4_cooldown
+	beq     L2C31
 ;
 ; quack4_cooldown--;
 ;
@@ -16239,8 +16541,8 @@ L2BAC:	lda     _quack4_cooldown
 ;
 ; if (stun_p1 > 0)
 ;
-L2BAD:	lda     _stun_p1
-	beq     L2BAE
+L2C31:	lda     _stun_p1
+	beq     L2C32
 ;
 ; stun_p1--;
 ;
@@ -16248,8 +16550,8 @@ L2BAD:	lda     _stun_p1
 ;
 ; if (stun_p2 > 0)
 ;
-L2BAE:	lda     _stun_p2
-	beq     L2BAF
+L2C32:	lda     _stun_p2
+	beq     L2C33
 ;
 ; stun_p2--;
 ;
@@ -16257,8 +16559,8 @@ L2BAE:	lda     _stun_p2
 ;
 ; if (stun_p3 > 0)
 ;
-L2BAF:	lda     _stun_p3
-	beq     L2BB0
+L2C33:	lda     _stun_p3
+	beq     L2C34
 ;
 ; stun_p3--;
 ;
@@ -16266,8 +16568,8 @@ L2BAF:	lda     _stun_p3
 ;
 ; if (stun_p4 > 0)
 ;
-L2BB0:	lda     _stun_p4
-	beq     L2BB1
+L2C34:	lda     _stun_p4
+	beq     L2C35
 ;
 ; stun_p4--;
 ;
@@ -16275,8 +16577,8 @@ L2BB0:	lda     _stun_p4
 ;
 ; if (bee1_bigbee_timer > 0)
 ;
-L2BB1:	lda     _bee1_bigbee_timer
-	beq     L2BB2
+L2C35:	lda     _bee1_bigbee_timer
+	beq     L2C36
 ;
 ; bee1_bigbee_timer--;
 ;
@@ -16284,8 +16586,8 @@ L2BB1:	lda     _bee1_bigbee_timer
 ;
 ; if (bee3_bigbee_timer > 0)
 ;
-L2BB2:	lda     _bee3_bigbee_timer
-	beq     L2A1F
+L2C36:	lda     _bee3_bigbee_timer
+	beq     L2A8C
 ;
 ; bee3_bigbee_timer--;
 ;
@@ -16293,7 +16595,7 @@ L2BB2:	lda     _bee3_bigbee_timer
 ;
 ; }
 ;
-L2A1F:	rts
+L2A8C:	rts
 
 .endproc
 
@@ -16317,7 +16619,7 @@ L2A1F:	rts
 ;
 	lda     _quack2+4
 	cmp     #$02
-	bne     L2BBC
+	bne     L2C40
 ;
 ; quack2.x -= (speed_option + SPEED_QUACK);
 ;
@@ -16338,10 +16640,10 @@ L1D3D:	eor     #$FF
 ;
 ; else if (quack2.direction == DIR_RIGHT)
 ;
-	jmp     L2BBF
-L2BBC:	lda     _quack2+4
+	jmp     L2C43
+L2C40:	lda     _quack2+4
 	cmp     #$03
-	bne     L2BBD
+	bne     L2C41
 ;
 ; quack2.x += (speed_option + SPEED_QUACK);
 ;
@@ -16349,10 +16651,10 @@ L2BBC:	lda     _quack2+4
 	ldx     _speed_option+1
 	clc
 	adc     #$60
-	bcc     L2BB8
+	bcc     L2C3C
 	inx
 	clc
-L2BB8:	adc     _quack2
+L2C3C:	adc     _quack2
 	sta     _quack2
 	txa
 	adc     _quack2+1
@@ -16360,9 +16662,9 @@ L2BB8:	adc     _quack2
 ;
 ; else if (quack2.direction == DIR_UP)
 ;
-	jmp     L2BBF
-L2BBD:	lda     _quack2+4
-	bne     L2BBE
+	jmp     L2C43
+L2C41:	lda     _quack2+4
+	bne     L2C42
 ;
 ; quack2.y -= (speed_option + SPEED_QUACK);
 ;
@@ -16381,10 +16683,10 @@ L1D4B:	eor     #$FF
 ;
 ; else if (quack2.direction == DIR_DOWN)
 ;
-	jmp     L2BD2
-L2BBE:	lda     _quack2+4
+	jmp     L2C56
+L2C42:	lda     _quack2+4
 	cmp     #$01
-	bne     L2BBF
+	bne     L2C43
 ;
 ; quack2.y += (speed_option + SPEED_QUACK);
 ;
@@ -16392,18 +16694,18 @@ L2BBE:	lda     _quack2+4
 	ldx     _speed_option+1
 	clc
 	adc     #$60
-	bcc     L2BB9
+	bcc     L2C3D
 	inx
 	clc
-L2BB9:	adc     _quack2+2
+L2C3D:	adc     _quack2+2
 	sta     _quack2+2
 	txa
-L2BD2:	adc     _quack2+2+1
+L2C56:	adc     _quack2+2+1
 	sta     _quack2+2+1
 ;
 ; temp_x2 = quack2.x >> 8;
 ;
-L2BBF:	lda     _quack2+1
+L2C43:	lda     _quack2+1
 	sta     _temp_x2
 ;
 ; temp_y2 = quack2.y >> 8;
@@ -16415,7 +16717,7 @@ L2BBF:	lda     _quack2+1
 ;
 	jsr     _quack_tile_solid
 	tax
-	beq     L2BC0
+	beq     L2C44
 ;
 ; quack2.moving = 0;
 ;
@@ -16424,7 +16726,7 @@ L2BBF:	lda     _quack2+1
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L2BC0:	lda     _BoxGuy1+1
+L2C44:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -16446,12 +16748,12 @@ L2BC0:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2BC2
+	beq     L2C46
 ;
 ; if (bee1_bigbee_timer == 0)
 ;
 	lda     _bee1_bigbee_timer
-	bne     L2BC1
+	bne     L2C45
 ;
 ; stun_p1 = STUN_DURATION;
 ;
@@ -16460,12 +16762,12 @@ L2BC0:	lda     _BoxGuy1+1
 ;
 ; quack2.moving = 0;
 ;
-L2BC1:	lda     #$00
+L2C45:	lda     #$00
 	sta     _quack2+5
 ;
 ; temp_x = BoxGuy2.x >> 8;
 ;
-L2BC2:	lda     _BoxGuy2+1
+L2C46:	lda     _BoxGuy2+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy2.y >> 8;
@@ -16477,7 +16779,7 @@ L2BC2:	lda     _BoxGuy2+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2BC3
+	beq     L2C47
 ;
 ; stun_p2 = STUN_DURATION;
 ;
@@ -16491,7 +16793,7 @@ L2BC2:	lda     _BoxGuy2+1
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
-L2BC3:	lda     _BoxGuy3+1
+L2C47:	lda     _BoxGuy3+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy3.y >> 8;
@@ -16503,12 +16805,12 @@ L2BC3:	lda     _BoxGuy3+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2BC5
+	beq     L2C49
 ;
 ; if (bee3_bigbee_timer == 0)
 ;
 	lda     _bee3_bigbee_timer
-	bne     L2BC4
+	bne     L2C48
 ;
 ; stun_p3 = STUN_DURATION;
 ;
@@ -16517,12 +16819,12 @@ L2BC3:	lda     _BoxGuy3+1
 ;
 ; quack2.moving = 0;
 ;
-L2BC4:	lda     #$00
+L2C48:	lda     #$00
 	sta     _quack2+5
 ;
 ; temp_x = BoxGuy4.x >> 8;
 ;
-L2BC5:	lda     _BoxGuy4+1
+L2C49:	lda     _BoxGuy4+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy4.y >> 8;
@@ -16549,7 +16851,7 @@ L2BC5:	lda     _BoxGuy4+1
 ; if (quack4.moving)
 ;
 L1D85:	lda     _quack4+5
-	bne     L2BD4
+	bne     L2C58
 ;
 ; }
 ;
@@ -16557,9 +16859,9 @@ L1D85:	lda     _quack4+5
 ;
 ; if (quack4.direction == DIR_LEFT)
 ;
-L2BD4:	lda     _quack4+4
+L2C58:	lda     _quack4+4
 	cmp     #$02
-	bne     L2BC6
+	bne     L2C4A
 ;
 ; quack4.x -= (speed_option + SPEED_QUACK);
 ;
@@ -16580,10 +16882,10 @@ L1D92:	eor     #$FF
 ;
 ; else if (quack4.direction == DIR_RIGHT)
 ;
-	jmp     L2BC9
-L2BC6:	lda     _quack4+4
+	jmp     L2C4D
+L2C4A:	lda     _quack4+4
 	cmp     #$03
-	bne     L2BC7
+	bne     L2C4B
 ;
 ; quack4.x += (speed_option + SPEED_QUACK);
 ;
@@ -16591,10 +16893,10 @@ L2BC6:	lda     _quack4+4
 	ldx     _speed_option+1
 	clc
 	adc     #$60
-	bcc     L2BBA
+	bcc     L2C3E
 	inx
 	clc
-L2BBA:	adc     _quack4
+L2C3E:	adc     _quack4
 	sta     _quack4
 	txa
 	adc     _quack4+1
@@ -16602,9 +16904,9 @@ L2BBA:	adc     _quack4
 ;
 ; else if (quack4.direction == DIR_UP)
 ;
-	jmp     L2BC9
-L2BC7:	lda     _quack4+4
-	bne     L2BC8
+	jmp     L2C4D
+L2C4B:	lda     _quack4+4
+	bne     L2C4C
 ;
 ; quack4.y -= (speed_option + SPEED_QUACK);
 ;
@@ -16623,10 +16925,10 @@ L1DA0:	eor     #$FF
 ;
 ; else if (quack4.direction == DIR_DOWN)
 ;
-	jmp     L2BD3
-L2BC8:	lda     _quack4+4
+	jmp     L2C57
+L2C4C:	lda     _quack4+4
 	cmp     #$01
-	bne     L2BC9
+	bne     L2C4D
 ;
 ; quack4.y += (speed_option + SPEED_QUACK);
 ;
@@ -16634,18 +16936,18 @@ L2BC8:	lda     _quack4+4
 	ldx     _speed_option+1
 	clc
 	adc     #$60
-	bcc     L2BBB
+	bcc     L2C3F
 	inx
 	clc
-L2BBB:	adc     _quack4+2
+L2C3F:	adc     _quack4+2
 	sta     _quack4+2
 	txa
-L2BD3:	adc     _quack4+2+1
+L2C57:	adc     _quack4+2+1
 	sta     _quack4+2+1
 ;
 ; temp_x2 = quack4.x >> 8;
 ;
-L2BC9:	lda     _quack4+1
+L2C4D:	lda     _quack4+1
 	sta     _temp_x2
 ;
 ; temp_y2 = quack4.y >> 8;
@@ -16657,7 +16959,7 @@ L2BC9:	lda     _quack4+1
 ;
 	jsr     _quack_tile_solid
 	tax
-	beq     L2BCA
+	beq     L2C4E
 ;
 ; quack4.moving = 0;
 ;
@@ -16666,7 +16968,7 @@ L2BC9:	lda     _quack4+1
 ;
 ; temp_x = BoxGuy1.x >> 8;
 ;
-L2BCA:	lda     _BoxGuy1+1
+L2C4E:	lda     _BoxGuy1+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy1.y >> 8;
@@ -16688,12 +16990,12 @@ L2BCA:	lda     _BoxGuy1+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2BCC
+	beq     L2C50
 ;
 ; if (bee1_bigbee_timer == 0)
 ;
 	lda     _bee1_bigbee_timer
-	bne     L2BCB
+	bne     L2C4F
 ;
 ; stun_p1 = STUN_DURATION;
 ;
@@ -16702,12 +17004,12 @@ L2BCA:	lda     _BoxGuy1+1
 ;
 ; quack4.moving = 0;
 ;
-L2BCB:	lda     #$00
+L2C4F:	lda     #$00
 	sta     _quack4+5
 ;
 ; temp_x = BoxGuy2.x >> 8;
 ;
-L2BCC:	lda     _BoxGuy2+1
+L2C50:	lda     _BoxGuy2+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy2.y >> 8;
@@ -16719,7 +17021,7 @@ L2BCC:	lda     _BoxGuy2+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2BCD
+	beq     L2C51
 ;
 ; stun_p2 = STUN_DURATION;
 ;
@@ -16733,7 +17035,7 @@ L2BCC:	lda     _BoxGuy2+1
 ;
 ; temp_x = BoxGuy3.x >> 8;
 ;
-L2BCD:	lda     _BoxGuy3+1
+L2C51:	lda     _BoxGuy3+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy3.y >> 8;
@@ -16745,12 +17047,12 @@ L2BCD:	lda     _BoxGuy3+1
 ;
 	jsr     _sprite_collision
 	tax
-	beq     L2BCF
+	beq     L2C53
 ;
 ; if (bee3_bigbee_timer == 0)
 ;
 	lda     _bee3_bigbee_timer
-	bne     L2BCE
+	bne     L2C52
 ;
 ; stun_p3 = STUN_DURATION;
 ;
@@ -16759,12 +17061,12 @@ L2BCD:	lda     _BoxGuy3+1
 ;
 ; quack4.moving = 0;
 ;
-L2BCE:	lda     #$00
+L2C52:	lda     #$00
 	sta     _quack4+5
 ;
 ; temp_x = BoxGuy4.x >> 8;
 ;
-L2BCF:	lda     _BoxGuy4+1
+L2C53:	lda     _BoxGuy4+1
 	sta     _temp_x
 ;
 ; temp_y = BoxGuy4.y >> 8;
@@ -16809,7 +17111,7 @@ L1DDA:	rts
 ;
 	lda     _map
 	cmp     #$01
-	bne     L2BD5
+	bne     L2C59
 ;
 ; pal_bg(palette_outdoors_bg);
 ;
@@ -16819,8 +17121,8 @@ L1DDA:	rts
 ;
 ; else if (map == MAP_COMBS)
 ;
-L2BD5:	lda     _map
-	bne     L2BD6
+L2C59:	lda     _map
+	bne     L2C5A
 ;
 ; pal_bg(palette_combsnplants_bg);
 ;
@@ -16830,9 +17132,9 @@ L2BD5:	lda     _map
 ;
 ; else if (map == MAP_VINES)
 ;
-L2BD6:	lda     _map
+L2C5A:	lda     _map
 	cmp     #$02
-	bne     L2655
+	bne     L26C2
 ;
 ; pal_bg(palette_vineswoflowers_bg);
 ;
@@ -16842,7 +17144,7 @@ L2BD6:	lda     _map
 ;
 ; }
 ;
-L2655:	rts
+L26C2:	rts
 
 .endproc
 
@@ -16865,7 +17167,7 @@ L2655:	rts
 ; if (current_settings_choice == SETTING_SPEED)
 ;
 	lda     _current_settings_choice
-	bne     L2BDB
+	bne     L2C5F
 ;
 ; temp_y = 80;
 ;
@@ -16873,10 +17175,10 @@ L2655:	rts
 ;
 ; else if (current_settings_choice == SETTING_MAP)
 ;
-	jmp     L2BD7
-L2BDB:	lda     _current_settings_choice
+	jmp     L2C5B
+L2C5F:	lda     _current_settings_choice
 	cmp     #$01
-	bne     L2BDC
+	bne     L2C60
 ;
 ; temp_y = 112;
 ;
@@ -16884,62 +17186,62 @@ L2BDB:	lda     _current_settings_choice
 ;
 ; else if (current_settings_choice == SETTING_SONG)
 ;
-	jmp     L2BD7
-L2BDC:	lda     _current_settings_choice
+	jmp     L2C5B
+L2C60:	lda     _current_settings_choice
 	cmp     #$02
-	bne     L2BDD
+	bne     L2C61
 ;
 ; temp_y = 144;
 ;
 	lda     #$90
-L2BD7:	sta     _temp_y
+L2C5B:	sta     _temp_y
 ;
 ; if (settings_speed == GAME_SLOW)
 ;
-L2BDD:	lda     _settings_speed
-	bne     L2BDE
+L2C61:	lda     _settings_speed
+	bne     L2C62
 ;
 ; multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 10));
 ;
 	jsr     decsp3
-	lda     #<(L2694)
+	lda     #<(L2701)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2694)
+	lda     #>(L2701)
 ;
 ; else if (settings_speed == GAME_REGULAR)
 ;
-	jmp     L2BF2
-L2BDE:	lda     _settings_speed
+	jmp     L2C76
+L2C62:	lda     _settings_speed
 	cmp     #$01
-	bne     L2BDF
+	bne     L2C63
 ;
 ; multi_vram_buffer_horz("REGULAR", 7, NTADR_A(11, 10));
 ;
 	jsr     decsp3
-	lda     #<(L26A1)
+	lda     #<(L270E)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26A1)
+	lda     #>(L270E)
 ;
 ; else if (settings_speed == GAME_FAST)
 ;
-	jmp     L2BF2
-L2BDF:	lda     _settings_speed
+	jmp     L2C76
+L2C63:	lda     _settings_speed
 	cmp     #$02
-	bne     L2BE0
+	bne     L2C64
 ;
 ; multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 10));
 ;
 	jsr     decsp3
-	lda     #<(L26AE)
+	lda     #<(L271B)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26AE)
-L2BF2:	sta     (sp),y
+	lda     #>(L271B)
+L2C76:	sta     (sp),y
 	lda     #$07
 	ldy     #$00
 	sta     (sp),y
@@ -16949,66 +17251,66 @@ L2BF2:	sta     (sp),y
 ;
 ; if (settings_map == MAP_RANDOM)
 ;
-L2BE0:	lda     _settings_map
+L2C64:	lda     _settings_map
 	cmp     #$03
-	bne     L2BE1
+	bne     L2C65
 ;
 ; multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
-	lda     #<(L26BA)
+	lda     #<(L2727)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26BA)
+	lda     #>(L2727)
 ;
 ; else if (settings_map == MAP_OUTDOORS)
 ;
-	jmp     L2BF3
-L2BE1:	lda     _settings_map
+	jmp     L2C77
+L2C65:	lda     _settings_map
 	cmp     #$01
-	bne     L2BE2
+	bne     L2C66
 ;
 ; multi_vram_buffer_horz("OUTDOORS", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
-	lda     #<(L26C7)
+	lda     #<(L2734)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26C7)
+	lda     #>(L2734)
 ;
 ; else if (settings_map == MAP_COMBS)
 ;
-	jmp     L2BF3
-L2BE2:	lda     _settings_map
-	bne     L2BE3
+	jmp     L2C77
+L2C66:	lda     _settings_map
+	bne     L2C67
 ;
 ; multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
-	lda     #<(L26D4)
+	lda     #<(L2741)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26D4)
+	lda     #>(L2741)
 ;
 ; else if (settings_map == MAP_VINES)
 ;
-	jmp     L2BF3
-L2BE3:	lda     _settings_map
+	jmp     L2C77
+L2C67:	lda     _settings_map
 	cmp     #$02
-	bne     L2BE4
+	bne     L2C68
 ;
 ; multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 14));
 ;
 	jsr     decsp3
-	lda     #<(L26E1)
+	lda     #<(L274E)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26E1)
-L2BF3:	sta     (sp),y
+	lda     #>(L274E)
+L2C77:	sta     (sp),y
 	lda     #$08
 	ldy     #$00
 	sta     (sp),y
@@ -17018,17 +17320,17 @@ L2BF3:	sta     (sp),y
 ;
 ; if (settings_song == SONG_BEE)
 ;
-L2BE4:	lda     _settings_song
-	bne     L2BE5
+L2C68:	lda     _settings_song
+	bne     L2C69
 ;
 ; multi_vram_buffer_horz("BEE   ", 6, NTADR_A(11, 18));
 ;
 	jsr     decsp3
-	lda     #<(L26ED)
+	lda     #<(L275A)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26ED)
+	lda     #>(L275A)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -17043,19 +17345,19 @@ L2BE4:	lda     _settings_song
 ;
 ; else if (settings_song == SONG_LAKE)
 ;
-	jmp     L2BDA
-L2BE5:	lda     _settings_song
+	jmp     L2C5E
+L2C69:	lda     _settings_song
 	cmp     #$01
-	bne     L2BE6
+	bne     L2C6A
 ;
 ; multi_vram_buffer_horz("LAKE  ", 6, NTADR_A(11, 18));
 ;
 	jsr     decsp3
-	lda     #<(L26FC)
+	lda     #<(L2769)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L26FC)
+	lda     #>(L2769)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -17070,19 +17372,19 @@ L2BE5:	lda     _settings_song
 ;
 ; else if (settings_song == SONG_HONEY)
 ;
-	jmp     L2BDA
-L2BE6:	lda     _settings_song
+	jmp     L2C5E
+L2C6A:	lda     _settings_song
 	cmp     #$02
-	bne     L2BE7
+	bne     L2C6B
 ;
 ; multi_vram_buffer_horz("HONEY ", 6, NTADR_A(11, 18));
 ;
 	jsr     decsp3
-	lda     #<(L270B)
+	lda     #<(L2778)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L270B)
+	lda     #>(L2778)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -17097,19 +17399,19 @@ L2BE6:	lda     _settings_song
 ;
 ; } else if (settings_song == SONG_RANDOM)
 ;
-	jmp     L2BDA
-L2BE7:	lda     _settings_song
+	jmp     L2C5E
+L2C6B:	lda     _settings_song
 	cmp     #$03
-	bne     L2717
+	bne     L2784
 ;
 ; multi_vram_buffer_horz("RANDOM", 6, NTADR_A(11, 18));
 ;
 	jsr     decsp3
-	lda     #<(L271A)
+	lda     #<(L2787)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L271A)
+	lda     #>(L2787)
 	sta     (sp),y
 	lda     #$06
 	ldy     #$00
@@ -17121,11 +17423,11 @@ L2BE7:	lda     _settings_song
 ; song = SONG_RANDOM;
 ;
 	lda     #$03
-L2BDA:	sta     _song
+L2C5E:	sta     _song
 ;
 ; }
 ;
-L2717:	rts
+L2784:	rts
 
 .endproc
 
@@ -17144,7 +17446,7 @@ L2717:	rts
 ;
 	lda     _temp_win_reason
 	cmp     #$20
-	bne     L2BF4
+	bne     L2C78
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_honey);
 ;
@@ -17161,9 +17463,9 @@ L2717:	rts
 ;
 ; else if (temp_win_reason == WIN_MOST_HONEY_COLLECTED)
 ;
-L2BF4:	lda     _temp_win_reason
+L2C78:	lda     _temp_win_reason
 	cmp     #$01
-	bne     L2BF5
+	bne     L2C79
 ;
 ; oam_meta_spr(temp_x, temp_y, gamesprites_win_icon_time);
 ;
@@ -17180,9 +17482,9 @@ L2BF4:	lda     _temp_win_reason
 ;
 ; else if (temp_win_reason == WIN_BEE_EATEN)
 ;
-L2BF5:	lda     _temp_win_reason
+L2C79:	lda     _temp_win_reason
 	cmp     #$04
-	bne     L2BF6
+	bne     L2C7A
 ;
 ; if (temp_win_team == 1)
 ;
@@ -17218,9 +17520,9 @@ L1C89:	jsr     decsp2
 ;
 ; else if (temp_win_reason == WIN_DUCK_EATEN)
 ;
-L2BF6:	lda     _temp_win_reason
+L2C7A:	lda     _temp_win_reason
 	cmp     #$02
-	bne     L2BF7
+	bne     L2C7B
 ;
 ; if (temp_win_team == 1)
 ;
@@ -17256,9 +17558,9 @@ L1C97:	jsr     decsp2
 ;
 ; else if (temp_win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 ;
-L2BF7:	lda     _temp_win_reason
+L2C7B:	lda     _temp_win_reason
 	cmp     #$10
-	bne     L2BF8
+	bne     L2C7C
 ;
 ; if (temp_win_team == 1)
 ;
@@ -17294,7 +17596,7 @@ L1CA5:	jsr     decsp2
 ;
 ; else if (temp_win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 ;
-L2BF8:	lda     _temp_win_reason
+L2C7C:	lda     _temp_win_reason
 	cmp     #$08
 	bne     L1CB9
 ;
@@ -17351,37 +17653,37 @@ L1CB9:	rts
 ;
 	lda     _temp_winner
 	cmp     #$80
-	bne     L2BFB
+	bne     L2C7F
 ;
 ; multi_vram_buffer_horz("RED", 3, NTADR_A(16, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L2845)
+	lda     #<(L28B2)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2845)
+	lda     #>(L28B2)
 	sta     (sp),y
 	lda     #$03
 ;
 ; else if (temp_winner == TEAM2_WIN)
 ;
-	jmp     L2C1B
-L2BFB:	lda     _temp_winner
+	jmp     L2C9F
+L2C7F:	lda     _temp_winner
 	cmp     #$40
-	bne     L2BFC
+	bne     L2C80
 ;
 ; multi_vram_buffer_horz("BLUE", 4, NTADR_A(16, temp_y));
 ;
 	jsr     decsp3
-	lda     #<(L2852)
+	lda     #<(L28BF)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2852)
+	lda     #>(L28BF)
 	sta     (sp),y
 	lda     #$04
-L2C1B:	ldy     #$00
+L2C9F:	ldy     #$00
 	sta     (sp),y
 	ldx     #$00
 	lda     _temp_y
@@ -17399,117 +17701,117 @@ L2C1B:	ldy     #$00
 ;
 ; if ((temp_round == WIN_HONEY_COLLECTED))
 ;
-L2BFC:	lda     _temp_round
+L2C80:	lda     _temp_round
 	cmp     #$20
-	bne     L2BFD
+	bne     L2C81
 ;
 ; multi_vram_buffer_horz("100 HONEY COLLECTED", 19, NTADR_A(7, temp_y + 1));
 ;
 	jsr     decsp3
-	lda     #<(L285F)
+	lda     #<(L28CC)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L285F)
+	lda     #>(L28CC)
 	sta     (sp),y
 	lda     #$13
 ;
 ; else if (temp_round == WIN_FRIENDLY_FIRE_BEE_EATEN)
 ;
-	jmp     L2C20
-L2BFD:	lda     _temp_round
+	jmp     L2CA4
+L2C81:	lda     _temp_round
 	cmp     #$10
-	bne     L2BFE
+	bne     L2C82
 ;
 ; multi_vram_buffer_horz("ENEMY ATE THEIR BEE", 19, NTADR_A(7, temp_y + 1));
 ;
 	jsr     decsp3
-	lda     #<(L286D)
+	lda     #<(L28DA)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L286D)
+	lda     #>(L28DA)
 	sta     (sp),y
 	lda     #$13
 ;
 ; else if (temp_round == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 ;
-	jmp     L2C20
-L2BFE:	lda     _temp_round
+	jmp     L2CA4
+L2C82:	lda     _temp_round
 	cmp     #$08
-	bne     L2BFF
+	bne     L2C83
 ;
 ; multi_vram_buffer_horz("ENEMY ATE THEIR DUCK", 20, NTADR_A(7, temp_y + 1));
 ;
 	jsr     decsp3
-	lda     #<(L287B)
+	lda     #<(L28E8)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L287B)
+	lda     #>(L28E8)
 ;
 ; else if (temp_round == WIN_BEE_EATEN)
 ;
-	jmp     L2C22
-L2BFF:	lda     _temp_round
+	jmp     L2CA6
+L2C83:	lda     _temp_round
 	cmp     #$04
-	bne     L2C00
+	bne     L2C84
 ;
 ; multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, temp_y + 1));
 ;
 	jsr     decsp3
-	lda     #<(L2889)
+	lda     #<(L28F6)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2889)
+	lda     #>(L28F6)
 	sta     (sp),y
 	lda     #$0F
 ;
 ; else if (temp_round == WIN_DUCK_EATEN)
 ;
-	jmp     L2C20
-L2C00:	lda     _temp_round
+	jmp     L2CA4
+L2C84:	lda     _temp_round
 	cmp     #$02
-	bne     L2C01
+	bne     L2C85
 ;
 ; multi_vram_buffer_horz("ENEMY DUCK EATEN", 16, NTADR_A(7, temp_y + 1));
 ;
 	jsr     decsp3
-	lda     #<(L2897)
+	lda     #<(L2904)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L2897)
+	lda     #>(L2904)
 	sta     (sp),y
 	lda     #$10
 ;
 ; else if (temp_round == WIN_MOST_HONEY_COLLECTED)
 ;
-	jmp     L2C20
-L2C01:	lda     _temp_round
+	jmp     L2CA4
+L2C85:	lda     _temp_round
 	cmp     #$01
-	bne     L28A2
+	bne     L290F
 ;
 ; multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(7, temp_y + 1));
 ;
 	jsr     decsp3
-	lda     #<(L28A5)
+	lda     #<(L2912)
 	ldy     #$01
 	sta     (sp),y
 	iny
-	lda     #>(L28A5)
-L2C22:	sta     (sp),y
+	lda     #>(L2912)
+L2CA6:	sta     (sp),y
 	lda     #$14
-L2C20:	ldy     #$00
+L2CA4:	ldy     #$00
 	sta     (sp),y
 	ldx     #$00
 	lda     _temp_y
 	clc
 	adc     #$01
-	bcc     L28AD
+	bcc     L291A
 	inx
-L28AD:	jsr     shlax4
+L291A:	jsr     shlax4
 	stx     tmp1
 	asl     a
 	rol     tmp1
@@ -17523,7 +17825,7 @@ L28AD:	jsr     shlax4
 ;
 ; ppu_wait_nmi();
 ;
-L28A2:	jmp     _ppu_wait_nmi
+L290F:	jmp     _ppu_wait_nmi
 
 .endproc
 
@@ -17543,7 +17845,7 @@ L28A2:	jmp     _ppu_wait_nmi
 	lda     _temp_y
 	cmp     #$F0
 	ldx     #$00
-	bcc     L2C23
+	bcc     L2CA7
 ;
 ; return 0;
 ;
@@ -17552,7 +17854,7 @@ L28A2:	jmp     _ppu_wait_nmi
 ;
 ; temp = map_ptr[((temp_y >> 3) << 5) + (temp_x >> 3)];
 ;
-L2C23:	lda     _temp_y
+L2CA7:	lda     _temp_y
 	lsr     a
 	lsr     a
 	lsr     a
@@ -17587,58 +17889,58 @@ L2C23:	lda     _temp_y
 ; if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca || temp == 0xa5)
 ;
 	cmp     #$C6
-	beq     L2C24
+	beq     L2CA8
 	lda     _temp
 	cmp     #$C7
-	beq     L2C24
+	beq     L2CA8
 	cmp     #$C8
-	beq     L2C24
+	beq     L2CA8
 	cmp     #$C9
-	beq     L2C24
+	beq     L2CA8
 	cmp     #$CA
-	beq     L2C24
+	beq     L2CA8
 	cmp     #$A5
-	bne     L2C25
+	bne     L2CA9
 ;
 ; return 0;
 ;
-L2C24:	ldx     #$00
+L2CA8:	ldx     #$00
 	txa
 	rts
 ;
 ; else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba || temp == 0x00 || temp == 0x69 || temp == 0x6a || temp == 0x6b)
 ;
-L2C25:	lda     _temp
+L2CA9:	lda     _temp
 	cmp     #$B6
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$B7
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$B8
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$B9
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$BA
-	beq     L2C26
+	beq     L2CAA
 	lda     _temp
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$69
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$6A
-	beq     L2C26
+	beq     L2CAA
 	cmp     #$6B
-	beq     L2C26
+	beq     L2CAA
 	ldx     #$00
-	jmp     L2C27
+	jmp     L2CAB
 ;
 ; return 0;
 ;
-L2C26:	ldx     #$00
+L2CAA:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L2C27:	lda     #$01
+L2CAB:	lda     #$01
 ;
 ; }
 ;
@@ -17678,7 +17980,7 @@ L2C27:	lda     #$01
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C29
+	beq     L2CAD
 ;
 ; return 1;
 ;
@@ -17688,7 +17990,7 @@ L2C27:	lda     #$01
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L2C29:	lda     _Generic+1
+L2CAD:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -17703,7 +18005,7 @@ L2C29:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C2B
+	beq     L2CAF
 ;
 ; return 1;
 ;
@@ -17713,7 +18015,7 @@ L2C29:	lda     _Generic+1
 ;
 ; }
 ;
-L2C2B:	rts
+L2CAF:	rts
 
 .endproc
 
@@ -17755,7 +18057,7 @@ L2C2B:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C2E
+	beq     L2CB2
 ;
 ; return 1;
 ;
@@ -17765,7 +18067,7 @@ L2C2B:	rts
 ;
 ; temp_y = Generic.y + Generic.height;
 ;
-L2C2E:	lda     _Generic+1
+L2CB2:	lda     _Generic+1
 	clc
 	adc     _Generic+3
 	sta     _temp_y
@@ -17780,7 +18082,7 @@ L2C2E:	lda     _Generic+1
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C30
+	beq     L2CB4
 ;
 ; return 1;
 ;
@@ -17790,7 +18092,7 @@ L2C2E:	lda     _Generic+1
 ;
 ; }
 ;
-L2C30:	rts
+L2CB4:	rts
 
 .endproc
 
@@ -17826,7 +18128,7 @@ L2C30:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C32
+	beq     L2CB6
 ;
 ; return 1;
 ;
@@ -17836,7 +18138,7 @@ L2C30:	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L2C32:	lda     _Generic
+L2CB6:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -17851,7 +18153,7 @@ L2C32:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C34
+	beq     L2CB8
 ;
 ; return 1;
 ;
@@ -17861,7 +18163,7 @@ L2C32:	lda     _Generic
 ;
 ; }
 ;
-L2C34:	rts
+L2CB8:	rts
 
 .endproc
 
@@ -17903,7 +18205,7 @@ L2C34:	rts
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C37
+	beq     L2CBB
 ;
 ; return 1;
 ;
@@ -17913,7 +18215,7 @@ L2C34:	rts
 ;
 ; temp_x = Generic.x + Generic.width;
 ;
-L2C37:	lda     _Generic
+L2CBB:	lda     _Generic
 	clc
 	adc     _Generic+2
 	sta     _temp_x
@@ -17928,7 +18230,7 @@ L2C37:	lda     _Generic
 ;
 	jsr     _bg_collision_sub
 	tax
-	beq     L2C39
+	beq     L2CBD
 ;
 ; return 1;
 ;
@@ -17938,7 +18240,7 @@ L2C37:	lda     _Generic
 ;
 ; }
 ;
-L2C39:	rts
+L2CBD:	rts
 
 .endproc
 
@@ -17960,24 +18262,24 @@ L2C39:	rts
 	lda     _temp_x2
 	clc
 	adc     _collision_box_size
-	bcc     L2C3A
+	bcc     L2CBE
 	ldx     #$01
-L2C3A:	jsr     tosicmp
-	bcs     L20CB
+L2CBE:	jsr     tosicmp
+	bcs     L2108
 	ldx     #$00
 	lda     _temp_x
 	clc
 	adc     _collision_box_size
-	bcc     L2C3B
+	bcc     L2CBF
 	inx
-L2C3B:	sec
+L2CBF:	sec
 	sbc     _temp_x2
 	sta     tmp1
 	txa
 	sbc     #$00
 	ora     tmp1
-	bcc     L20CB
-	beq     L20CB
+	bcc     L2108
+	beq     L2108
 ;
 ; temp_y < temp_y2 + collision_box_size && temp_y + collision_box_size > temp_y2)
 ;
@@ -17986,31 +18288,31 @@ L2C3B:	sec
 	lda     _temp_y2
 	clc
 	adc     _collision_box_size
-	bcc     L2C3C
+	bcc     L2CC0
 	ldx     #$01
-L2C3C:	jsr     tosicmp
-	bcs     L20CB
+L2CC0:	jsr     tosicmp
+	bcs     L2108
 	ldx     #$00
 	lda     _temp_y
 	clc
 	adc     _collision_box_size
-	bcc     L2C3D
+	bcc     L2CC1
 	inx
-L2C3D:	sec
+L2CC1:	sec
 	sbc     _temp_y2
 	sta     tmp1
 	txa
 	sbc     #$00
 	ora     tmp1
-	beq     L20CB
-	bcs     L20CA
-L20CB:	ldx     #$00
+	beq     L2108
+	bcs     L2107
+L2108:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L20CA:	ldx     #$00
+L2107:	ldx     #$00
 	lda     #$01
 	rts
 
@@ -18033,28 +18335,28 @@ L20CA:	ldx     #$00
 	lda     _temp_x
 	clc
 	adc     #$04
-	bcc     L20D3
+	bcc     L2110
 	inx
-L20D3:	cmp     _temp_x2
+L2110:	cmp     _temp_x2
 	txa
 	sbc     #$00
 	lda     #$00
 	tax
-	bcc     L2C43
+	bcc     L2CC7
 	lda     _temp_x
 	clc
 	adc     #$04
-	bcc     L20D5
+	bcc     L2112
 	inx
-L20D5:	jsr     pushax
+L2112:	jsr     pushax
 	ldx     #$00
 	lda     _temp_x2
 	clc
 	adc     #$10
-	bcc     L20D6
+	bcc     L2113
 	inx
-L20D6:	jsr     tosicmp
-	bcs     L20D4
+L2113:	jsr     tosicmp
+	bcs     L2111
 ;
 ; temp_y + 4 >= temp_y2 && temp_y + 4 < temp_y2 + 16)
 ;
@@ -18062,41 +18364,41 @@ L20D6:	jsr     tosicmp
 	lda     _temp_y
 	clc
 	adc     #$04
-	bcc     L20D7
+	bcc     L2114
 	inx
-L20D7:	cmp     _temp_y2
+L2114:	cmp     _temp_y2
 	txa
 	sbc     #$00
 	lda     #$00
 	tax
-	bcc     L2C43
+	bcc     L2CC7
 	lda     _temp_y
 	clc
 	adc     #$04
-	bcc     L20D8
+	bcc     L2115
 	inx
-L20D8:	jsr     pushax
+L2115:	jsr     pushax
 	ldx     #$00
 	lda     _temp_y2
 	clc
 	adc     #$10
-	bcc     L20D9
+	bcc     L2116
 	inx
-L20D9:	jsr     tosicmp
-	bcc     L20D2
-L20D4:	ldx     #$00
+L2116:	jsr     tosicmp
+	bcc     L210F
+L2111:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L20D2:	ldx     #$00
+L210F:	ldx     #$00
 	lda     #$01
 	rts
 ;
 ; }
 ;
-L2C43:	rts
+L2CC7:	rts
 
 .endproc
 
@@ -18127,7 +18429,7 @@ L190B:	lda     #$07
 ; if (game_mode == MODE_TITLE)
 ;
 	lda     _game_mode
-	bne     L2C44
+	bne     L2CC8
 ;
 ; title_loop();
 ;
@@ -18135,9 +18437,9 @@ L190B:	lda     #$07
 ;
 ; if (game_mode == MODE_OPTIONS)
 ;
-L2C44:	lda     _game_mode
+L2CC8:	lda     _game_mode
 	cmp     #$01
-	bne     L2C45
+	bne     L2CC9
 ;
 ; options_loop();
 ;
@@ -18145,9 +18447,9 @@ L2C44:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAME)
 ;
-L2C45:	lda     _game_mode
+L2CC9:	lda     _game_mode
 	cmp     #$02
-	bne     L2C46
+	bne     L2CCA
 ;
 ; game_loop();
 ;
@@ -18155,9 +18457,9 @@ L2C45:	lda     _game_mode
 ;
 ; if (game_mode == MODE_GAMEOVER)
 ;
-L2C46:	lda     _game_mode
+L2CCA:	lda     _game_mode
 	cmp     #$03
-	bne     L2C47
+	bne     L2CCB
 ;
 ; gameover_loop();
 ;
@@ -18165,7 +18467,7 @@ L2C46:	lda     _game_mode
 ;
 ; if (game_mode == MODE_ROUNDOVER)
 ;
-L2C47:	lda     _game_mode
+L2CCB:	lda     _game_mode
 	cmp     #$04
 	bne     L190B
 ;
@@ -18195,7 +18497,7 @@ L2C47:	lda     _game_mode
 	lda     _temp_y2
 	cmp     #$F0
 	ldx     #$00
-	bcc     L2C48
+	bcc     L2CCC
 ;
 ; return 0;
 ;
@@ -18204,7 +18506,7 @@ L2C47:	lda     _game_mode
 ;
 ; largeindex = ((temp_y2 >> 3) << 5) + (temp_x2 >> 3);
 ;
-L2C48:	lda     _temp_y2
+L2CCC:	lda     _temp_y2
 	lsr     a
 	lsr     a
 	lsr     a
@@ -18242,58 +18544,58 @@ L2C48:	lda     _temp_y2
 ; if (temp == 0xc6 || temp == 0xc7 || temp == 0xc8 || temp == 0xc9 || temp == 0xca || temp == 0xa5)
 ;
 	cmp     #$C6
-	beq     L2C49
+	beq     L2CCD
 	lda     _temp
 	cmp     #$C7
-	beq     L2C49
+	beq     L2CCD
 	cmp     #$C8
-	beq     L2C49
+	beq     L2CCD
 	cmp     #$C9
-	beq     L2C49
+	beq     L2CCD
 	cmp     #$CA
-	beq     L2C49
+	beq     L2CCD
 	cmp     #$A5
-	bne     L2C4A
+	bne     L2CCE
 ;
 ; return 0;
 ;
-L2C49:	ldx     #$00
+L2CCD:	ldx     #$00
 	txa
 	rts
 ;
 ; else if (temp == 0xb6 || temp == 0xb7 || temp == 0xb8 || temp == 0xb9 || temp == 0xba || temp == 0x00 || temp == 0x69 || temp == 0x6a || temp == 0x6b)
 ;
-L2C4A:	lda     _temp
+L2CCE:	lda     _temp
 	cmp     #$B6
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$B7
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$B8
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$B9
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$BA
-	beq     L2C4B
+	beq     L2CCF
 	lda     _temp
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$69
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$6A
-	beq     L2C4B
+	beq     L2CCF
 	cmp     #$6B
-	beq     L2C4B
+	beq     L2CCF
 	ldx     #$00
-	jmp     L2C4C
+	jmp     L2CD0
 ;
 ; return 0;
 ;
-L2C4B:	ldx     #$00
+L2CCF:	ldx     #$00
 	txa
 	rts
 ;
 ; return 1;
 ;
-L2C4C:	lda     #$01
+L2CD0:	lda     #$01
 ;
 ; }
 ;
@@ -18316,12 +18618,12 @@ L2C4C:	lda     #$01
 ;
 	lda     _powerup1
 	cmp     #$01
-	bne     L2C54
+	bne     L2CD8
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2C51
+	bne     L2CD5
 ;
 ; temp_x2 = COMBS_FLOWER_X[0];
 ;
@@ -18334,10 +18636,10 @@ L2C4C:	lda     #$01
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2C4D
-L2C51:	lda     _map
+	jmp     L2CD1
+L2CD5:	lda     _map
 	cmp     #$02
-	bne     L2C52
+	bne     L2CD6
 ;
 ; temp_x2 = VINES_FLOWER_X[0];
 ;
@@ -18350,8 +18652,8 @@ L2C51:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2C4D
-L2C52:	lda     _map
+	jmp     L2CD1
+L2CD6:	lda     _map
 	cmp     #$01
 	bne     L1DF5
 ;
@@ -18363,13 +18665,13 @@ L2C52:	lda     _map
 ; temp_y2 = OUTDOORS_FLOWER_Y[0];
 ;
 	lda     _OUTDOORS_FLOWER_Y
-L2C4D:	sta     _temp_y2
+L2CD1:	sta     _temp_y2
 ;
 ; if (check_powerup_collision())
 ;
 L1DF5:	jsr     _check_powerup_collision
 	tax
-	beq     L2C54
+	beq     L2CD8
 ;
 ; powerup1 = 0; // Remove powerup
 ;
@@ -18380,7 +18682,7 @@ L1DF5:	jsr     _check_powerup_collision
 ;
 	lda     _temp
 	cmp     #$01
-	bne     L2C53
+	bne     L2CD7
 ;
 ; bee1_bigbee_timer = POWERUP_TIMER;
 ;
@@ -18390,7 +18692,7 @@ L1DF5:	jsr     _check_powerup_collision
 ; else if (temp == 3)
 ;
 	jmp     L1E06
-L2C53:	lda     _temp
+L2CD7:	lda     _temp
 	cmp     #$03
 	bne     L1E06
 ;
@@ -18408,14 +18710,14 @@ L1E06:	lda     #$06
 ;
 ; if (powerup2 == 1)
 ;
-L2C54:	lda     _powerup2
+L2CD8:	lda     _powerup2
 	cmp     #$01
-	bne     L2C58
+	bne     L2CDC
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2C55
+	bne     L2CD9
 ;
 ; temp_x2 = COMBS_FLOWER_X[1];
 ;
@@ -18428,10 +18730,10 @@ L2C54:	lda     _powerup2
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2C4E
-L2C55:	lda     _map
+	jmp     L2CD2
+L2CD9:	lda     _map
 	cmp     #$02
-	bne     L2C56
+	bne     L2CDA
 ;
 ; temp_x2 = VINES_FLOWER_X[1];
 ;
@@ -18444,8 +18746,8 @@ L2C55:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2C4E
-L2C56:	lda     _map
+	jmp     L2CD2
+L2CDA:	lda     _map
 	cmp     #$01
 	bne     L1E21
 ;
@@ -18457,13 +18759,13 @@ L2C56:	lda     _map
 ; temp_y2 = OUTDOORS_FLOWER_Y[1];
 ;
 	lda     _OUTDOORS_FLOWER_Y+1
-L2C4E:	sta     _temp_y2
+L2CD2:	sta     _temp_y2
 ;
 ; if (check_powerup_collision())
 ;
 L1E21:	jsr     _check_powerup_collision
 	tax
-	beq     L2C58
+	beq     L2CDC
 ;
 ; powerup2 = 0; // Remove powerup
 ;
@@ -18474,7 +18776,7 @@ L1E21:	jsr     _check_powerup_collision
 ;
 	lda     _temp
 	cmp     #$01
-	bne     L2C57
+	bne     L2CDB
 ;
 ; bee1_bigbee_timer = POWERUP_TIMER;
 ;
@@ -18484,7 +18786,7 @@ L1E21:	jsr     _check_powerup_collision
 ; else if (temp == 3)
 ;
 	jmp     L1E32
-L2C57:	lda     _temp
+L2CDB:	lda     _temp
 	cmp     #$03
 	bne     L1E32
 ;
@@ -18502,14 +18804,14 @@ L1E32:	lda     #$06
 ;
 ; if (powerup3 == 1)
 ;
-L2C58:	lda     _powerup3
+L2CDC:	lda     _powerup3
 	cmp     #$01
-	bne     L2C5C
+	bne     L2CE0
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2C59
+	bne     L2CDD
 ;
 ; temp_x2 = COMBS_FLOWER_X[2];
 ;
@@ -18522,10 +18824,10 @@ L2C58:	lda     _powerup3
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2C4F
-L2C59:	lda     _map
+	jmp     L2CD3
+L2CDD:	lda     _map
 	cmp     #$02
-	bne     L2C5A
+	bne     L2CDE
 ;
 ; temp_x2 = VINES_FLOWER_X[2];
 ;
@@ -18538,8 +18840,8 @@ L2C59:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2C4F
-L2C5A:	lda     _map
+	jmp     L2CD3
+L2CDE:	lda     _map
 	cmp     #$01
 	bne     L1E4D
 ;
@@ -18551,13 +18853,13 @@ L2C5A:	lda     _map
 ; temp_y2 = OUTDOORS_FLOWER_Y[2];
 ;
 	lda     _OUTDOORS_FLOWER_Y+2
-L2C4F:	sta     _temp_y2
+L2CD3:	sta     _temp_y2
 ;
 ; if (check_powerup_collision())
 ;
 L1E4D:	jsr     _check_powerup_collision
 	tax
-	beq     L2C5C
+	beq     L2CE0
 ;
 ; powerup3 = 0; // Remove powerup
 ;
@@ -18568,7 +18870,7 @@ L1E4D:	jsr     _check_powerup_collision
 ;
 	lda     _temp
 	cmp     #$01
-	bne     L2C5B
+	bne     L2CDF
 ;
 ; bee1_bigbee_timer = POWERUP_TIMER;
 ;
@@ -18578,7 +18880,7 @@ L1E4D:	jsr     _check_powerup_collision
 ; else if (temp == 3)
 ;
 	jmp     L1E5E
-L2C5B:	lda     _temp
+L2CDF:	lda     _temp
 	cmp     #$03
 	bne     L1E5E
 ;
@@ -18596,14 +18898,14 @@ L1E5E:	lda     #$06
 ;
 ; if (powerup4 == 1)
 ;
-L2C5C:	lda     _powerup4
+L2CE0:	lda     _powerup4
 	cmp     #$01
 	bne     L1E81
 ;
 ; if (map == MAP_COMBS)
 ;
 	lda     _map
-	bne     L2C5D
+	bne     L2CE1
 ;
 ; temp_x2 = COMBS_FLOWER_X[3];
 ;
@@ -18616,10 +18918,10 @@ L2C5C:	lda     _powerup4
 ;
 ; else if (map == MAP_VINES)
 ;
-	jmp     L2C50
-L2C5D:	lda     _map
+	jmp     L2CD4
+L2CE1:	lda     _map
 	cmp     #$02
-	bne     L2C5E
+	bne     L2CE2
 ;
 ; temp_x2 = VINES_FLOWER_X[3];
 ;
@@ -18632,8 +18934,8 @@ L2C5D:	lda     _map
 ;
 ; else if (map == MAP_OUTDOORS)
 ;
-	jmp     L2C50
-L2C5E:	lda     _map
+	jmp     L2CD4
+L2CE2:	lda     _map
 	cmp     #$01
 	bne     L1E79
 ;
@@ -18645,7 +18947,7 @@ L2C5E:	lda     _map
 ; temp_y2 = OUTDOORS_FLOWER_Y[3];
 ;
 	lda     _OUTDOORS_FLOWER_Y+3
-L2C50:	sta     _temp_y2
+L2CD4:	sta     _temp_y2
 ;
 ; if (check_powerup_collision())
 ;
@@ -18662,7 +18964,7 @@ L1E79:	jsr     _check_powerup_collision
 ;
 	lda     _temp
 	cmp     #$01
-	bne     L2C5F
+	bne     L2CE3
 ;
 ; bee1_bigbee_timer = POWERUP_TIMER;
 ;
@@ -18672,7 +18974,7 @@ L1E79:	jsr     _check_powerup_collision
 ; else if (temp == 3)
 ;
 	jmp     L1E8A
-L2C5F:	lda     _temp
+L2CE3:	lda     _temp
 	cmp     #$03
 	bne     L1E8A
 ;
@@ -18737,9 +19039,9 @@ L1E81:	rts
 	lda     (sp),y
 	tay
 	lda     ptr1
-L2C60:	lsr     a
+L2CE4:	lsr     a
 	dey
-	bpl     L2C60
+	bpl     L2CE4
 	rol     a
 	and     #$01
 	ldx     #$00
@@ -18789,9 +19091,9 @@ L2C60:	lsr     a
 	ldy     #$01
 	clc
 	adc     (sp),y
-	bcc     L2071
+	bcc     L20AE
 	inx
-L2071:	jsr     pushax
+L20AE:	jsr     pushax
 	sta     ptr1
 	stx     ptr1+1
 	ldy     #$00
@@ -18801,9 +19103,9 @@ L2071:	jsr     pushax
 	lda     (sp),y
 	tay
 	lda     #$01
-L2C61:	asl     a
+L2CE5:	asl     a
 	dey
-	bpl     L2C61
+	bpl     L2CE5
 	ror     a
 	ora     ptr1
 	ldy     #$00
@@ -18841,7 +19143,7 @@ L2C61:	asl     a
 	ldy     #$07
 	lda     (sp),y
 	cmp     #$64
-	bcc     L2C64
+	bcc     L2CE8
 ;
 ; value = 0;
 ;
@@ -18850,7 +19152,7 @@ L2C61:	asl     a
 ;
 ; if (value == *last_value)
 ;
-L2C64:	lda     (sp),y
+L2CE8:	lda     (sp),y
 	jsr     pusha0
 	ldy     #$05
 	lda     (sp),y
@@ -18863,7 +19165,7 @@ L2C64:	lda     (sp),y
 ;
 ; return;
 ;
-	bne     L2C67
+	bne     L2CEB
 ;
 ; }
 ;
@@ -18871,7 +19173,7 @@ L2C64:	lda     (sp),y
 ;
 ; *last_value = value;
 ;
-L2C67:	ldy     #$03
+L2CEB:	ldy     #$03
 	lda     (sp),y
 	sta     ptr1+1
 	dey
@@ -18890,11 +19192,11 @@ L2C67:	ldy     #$03
 ;
 ; while (ones >= 10)
 ;
-	jmp     L2C62
+	jmp     L2CE6
 ;
 ; ones -= 10;
 ;
-L2C66:	lda     (sp),y
+L2CEA:	lda     (sp),y
 	sec
 	sbc     #$0A
 	sta     (sp),y
@@ -18905,14 +19207,14 @@ L2C66:	lda     (sp),y
 	clc
 	tya
 	adc     (sp),y
-L2C62:	sta     (sp),y
+L2CE6:	sta     (sp),y
 ;
 ; while (ones >= 10)
 ;
 	ldy     #$00
 	lda     (sp),y
 	cmp     #$0A
-	bcs     L2C66
+	bcs     L2CEA
 ;
 ; one_vram_buffer(tens + 0x30, NTADR_A(x_tens, y));
 ;
@@ -18984,7 +19286,7 @@ L2C62:	sta     (sp),y
 ; if (ai_dir_work == DIR_UP)
 ;
 	lda     _ai_dir_work
-	bne     L2C69
+	bne     L2CED
 ;
 ; ai_pad_work = PAD_UP;
 ;
@@ -18992,10 +19294,10 @@ L2C62:	sta     (sp),y
 ;
 ; else if (ai_dir_work == DIR_DOWN)
 ;
-	jmp     L2C68
-L2C69:	lda     _ai_dir_work
+	jmp     L2CEC
+L2CED:	lda     _ai_dir_work
 	cmp     #$01
-	bne     L2C6A
+	bne     L2CEE
 ;
 ; ai_pad_work = PAD_DOWN;
 ;
@@ -19003,18 +19305,18 @@ L2C69:	lda     _ai_dir_work
 ;
 ; else if (ai_dir_work == DIR_LEFT)
 ;
-	jmp     L2C68
-L2C6A:	lda     _ai_dir_work
+	jmp     L2CEC
+L2CEE:	lda     _ai_dir_work
 	cmp     #$02
 ;
 ; else
 ;
-	beq     L2C68
+	beq     L2CEC
 ;
 ; ai_pad_work = PAD_RIGHT;
 ;
 	lda     #$01
-L2C68:	sta     _ai_pad_work
+L2CEC:	sta     _ai_pad_work
 ;
 ; }
 ;
@@ -19036,7 +19338,7 @@ L2C68:	sta     _ai_pad_work
 ; if (ai_collision_work)
 ;
 	lda     _ai_collision_work
-	beq     L2128
+	beq     L2165
 ;
 ; ai_timer_work = 0;
 ;
@@ -19050,7 +19352,7 @@ L2C68:	sta     _ai_pad_work
 ;
 ; ai_dir_work = rand8() & 0x03;
 ;
-L212E:	jsr     _rand8
+L216B:	jsr     _rand8
 	and     #$03
 	sta     _ai_dir_work
 ;
@@ -19058,7 +19360,7 @@ L212E:	jsr     _rand8
 ;
 	lda     _temp
 	cmp     _ai_dir_work
-	beq     L212E
+	beq     L216B
 ;
 ; ai_collision_work = 0;
 ;
@@ -19067,7 +19369,7 @@ L212E:	jsr     _rand8
 ;
 ; }
 ;
-L2128:	rts
+L2165:	rts
 
 .endproc
 

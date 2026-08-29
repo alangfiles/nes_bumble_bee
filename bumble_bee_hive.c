@@ -30,6 +30,15 @@ static unsigned char controller2_slot;
 void main(void)
 {
 
+	// 08/29/20226
+	/* 
+		Things still needed for this game:
+ [] more songs.
+ [] better ai
+ [] reduce the button usage (no start button)
+ [x] have characters bounce off each other when they collide.
+	*/
+
 	/*
 	10.24 feedback:
 	[x] draw last frame of the game
@@ -1290,6 +1299,26 @@ void movement(void)
 		return;
 	}
 
+	switch (current_player)
+	{
+	case 1:
+		bounce_timer = bounce_p1;
+		bounce_direction = bounce_dir_p1;
+		break;
+	case 2:
+		bounce_timer = bounce_p2;
+		bounce_direction = bounce_dir_p2;
+		break;
+	case 3:
+		bounce_timer = bounce_p3;
+		bounce_direction = bounce_dir_p3;
+		break;
+	case 4:
+		bounce_timer = bounce_p4;
+		bounce_direction = bounce_dir_p4;
+		break;
+	}
+
 	// handle x
 	old_x = GenericBoxGuy.x;
 
@@ -1405,6 +1434,21 @@ void movement(void)
 	else
 	{
 		current_speed = speed_option; // feature disabled, all normal speed
+	}
+
+	if (bounce_timer > 0)
+	{
+		generic_pad = 0;
+		current_speed = 0x0100;
+		bounce_timer--;
+		if (bounce_direction == DIR_UP)
+			generic_pad = PAD_DOWN;
+		else if (bounce_direction == DIR_DOWN)
+			generic_pad = PAD_UP;
+		else if (bounce_direction == DIR_LEFT)
+			generic_pad = PAD_RIGHT;
+		else if (bounce_direction == DIR_RIGHT)
+			generic_pad = PAD_LEFT;
 	}
 
 	if (bee1_bigbee_timer > 0 && current_player == 1)
@@ -1558,15 +1602,19 @@ void movement(void)
 	{
 	case 1:
 		BoxGuy1 = GenericBoxGuy;
+		bounce_p1 = bounce_timer;
 		break;
 	case 2:
 		BoxGuy2 = GenericBoxGuy;
+		bounce_p2 = bounce_timer;
 		break;
 	case 3:
 		BoxGuy3 = GenericBoxGuy;
+		bounce_p3 = bounce_timer;
 		break;
 	case 4:
 		BoxGuy4 = GenericBoxGuy;
+		bounce_p4 = bounce_timer;
 		break;
 	}
 }
@@ -2056,9 +2104,12 @@ void game_loop(void)
 	temp_y = GenericBoxGuy.y >> 8;
 	temp_x2 = BoxGuy3.x >> 8;
 	temp_y2 = BoxGuy3.y >> 8;
-	if (sprite_collision()) // 1 and 3, both seekers
+	if (sprite_collision() && bounce_p1 == 0 && bounce_p3 == 0) // 1 and 3, both seekers
 	{
-		// players bounce off each other
+		bounce_p1 = BOUNCE_DURATION;
+		bounce_p3 = BOUNCE_DURATION;
+		bounce_dir_p1 = BoxGuy1.direction;
+		bounce_dir_p3 = BoxGuy3.direction;
 		BoxGuy1.x = old_x;
 		BoxGuy1.y = old_y;
 		BoxGuy1.collision = 1;
@@ -2085,9 +2136,12 @@ void game_loop(void)
 	temp_y = GenericBoxGuy.y >> 8;
 	temp_x2 = BoxGuy4.x >> 8;
 	temp_y2 = BoxGuy4.y >> 8;
-	if (sprite_collision()) // player 2 blocks player 4 (chasers)
+	if (sprite_collision() && bounce_p2 == 0 && bounce_p4 == 0) // player 2 blocks player 4 (chasers)
 	{
-		// players bounce off each other
+		bounce_p2 = BOUNCE_DURATION;
+		bounce_p4 = BOUNCE_DURATION;
+		bounce_dir_p2 = BoxGuy2.direction;
+		bounce_dir_p4 = BoxGuy4.direction;
 		BoxGuy2.x = old_x;
 		BoxGuy2.y = old_y;
 		BoxGuy2.collision = 1;
@@ -2104,9 +2158,12 @@ void game_loop(void)
 	temp_y = BoxGuy1.y >> 8;
 	temp_x2 = GenericBoxGuy.x >> 8;
 	temp_y2 = GenericBoxGuy.y >> 8;
-	if (sprite_collision()) // 1 blocks 3 (seekers)
+	if (sprite_collision() && bounce_p1 == 0 && bounce_p3 == 0) // 1 blocks 3 (seekers)
 	{
-		// players bounce off each other
+		bounce_p1 = BOUNCE_DURATION;
+		bounce_p3 = BOUNCE_DURATION;
+		bounce_dir_p1 = BoxGuy1.direction;
+		bounce_dir_p3 = BoxGuy3.direction;
 		BoxGuy3.x = old_x;
 		BoxGuy3.y = old_y;
 		BoxGuy3.collision = 1;
@@ -2133,9 +2190,12 @@ void game_loop(void)
 	temp_y = BoxGuy2.y >> 8;
 	temp_x2 = GenericBoxGuy.x >> 8;
 	temp_y2 = GenericBoxGuy.y >> 8;
-	if (sprite_collision()) // 2 blocks 4 (seekers)
+	if (sprite_collision() && bounce_p2 == 0 && bounce_p4 == 0) // 2 blocks 4 (seekers)
 	{
-		// players bounce off each other
+		bounce_p2 = BOUNCE_DURATION;
+		bounce_p4 = BOUNCE_DURATION;
+		bounce_dir_p2 = BoxGuy2.direction;
+		bounce_dir_p4 = BoxGuy4.direction;
 		BoxGuy4.x = old_x;
 		BoxGuy4.y = old_y;
 		BoxGuy4.collision = 1;
@@ -2844,6 +2904,10 @@ void start_round(void)
 	stun_p1 = 0;
 	stun_p2 = 0;
 	stun_p3 = 0;
+	bounce_p1 = 0;
+	bounce_p2 = 0;
+	bounce_p3 = 0;
+	bounce_p4 = 0;
 
 	// Reset quacks
 	quack2.moving = 0;

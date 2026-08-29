@@ -267,6 +267,18 @@ unsigned char quack4_cooldown; // Cooldown timer for duck 4's qu
  unsigned char stun_p3;
  unsigned char stun_p4;
 
+#define BOUNCE_DURATION 10
+unsigned char bounce_p1;
+unsigned char bounce_p2;
+unsigned char bounce_p3;
+unsigned char bounce_p4;
+unsigned char bounce_dir_p1;
+unsigned char bounce_dir_p2;
+unsigned char bounce_dir_p3;
+unsigned char bounce_dir_p4;
+unsigned char bounce_timer;
+unsigned char bounce_direction;
+
 struct BoxGuy GenericBoxGuy;
 
 struct BoxGuy BoxGuy1 = {0x4000, 0x2800, DIR_NONE, 0, 0};
