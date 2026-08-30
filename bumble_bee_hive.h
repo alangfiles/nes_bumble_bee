@@ -302,7 +302,8 @@ enum
 	MODE_OPTIONS,
 	MODE_GAME,
 	MODE_GAMEOVER,
-	MODE_ROUNDOVER
+	MODE_ROUNDOVER,
+	MODE_INTRO
 };
 
 enum{
@@ -380,6 +381,11 @@ const unsigned char palette_title_bg[]={ 0x0f,0x30,0x27,0x07,0x0f,0x07,0x2a,0x1b
 // Settings Palettes: 
 const unsigned char palette_options_bg[]={ 0x0f,0x30,0x27,0x07,0x0f,0x24,0x2a,0x1b,0x0f,0x30,0x2a,0x1b,0x0f,0x27,0x2a,0x1b };
 
+const unsigned char palette_intro_bg[]={
+	0x0f,0x30,0x27,0x07, 0x0f,0x0f,0x0f,0x0f,
+	0x0f,0x0f,0x0f,0x0f, 0x0f,0x0f,0x0f,0x0f
+};
+
 
 
 
@@ -418,9 +424,11 @@ void player3_ai(void);
 void player4_ai(void);
 void game_loop(void);
 void title_loop(void);
+void intro_loop(void);
 void options_loop(void);
 void gameover_loop(void);
 void init_game_loop(void);
+void init_intro_loop(void);
 void init_options_loop(void);
 void init_gameover_loop(void);
 void init_title_loop(void);

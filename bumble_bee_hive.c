@@ -17,8 +17,10 @@
 #define AI_TIMER_MASK 0x7f
 #define AI_BRANCH_CHECK_FRAMES 4
 #define AI_LOOK_AHEAD 4
-#define TITLE_DEMO_FRAMES 600
+#define TITLE_DEMO_FRAMES 240
 #define DEMO_DURATION_FRAMES 600
+#define INTRO_STAGE_FRAMES 120
+#define INTRO_HOLD_FRAMES 240
 
 static unsigned char anim_tick_p1; 
 static unsigned char anim_tick_p2;
@@ -35,6 +37,10 @@ static unsigned char demo_mode;
 static unsigned int demo_title_timer;
 static unsigned char demo_button_pressed;
 static unsigned int demo_frame_timer;
+static unsigned char intro_stage;
+static unsigned char intro_timer;
+
+static void draw_intro_scene(void);
 
 static void sfx_play_with_check(unsigned char sound, unsigned char channel)
 {
@@ -128,6 +134,10 @@ void main(void)
 		if (game_mode == MODE_TITLE)
 		{
 			title_loop();
+		}
+		if (game_mode == MODE_INTRO)
+		{
+			intro_loop();
 		}
 		if (game_mode == MODE_OPTIONS)
 		{
@@ -2525,8 +2535,7 @@ void title_loop(void)
 
 		if (++demo_title_timer >= TITLE_DEMO_FRAMES)
 		{
-			demo_mode = 1;
-			init_game_loop();
+			init_intro_loop();
 			break;
 		}
 
@@ -2575,6 +2584,141 @@ void title_loop(void)
 			start_held = 0;
 		}
 	}
+}
+
+static void intro_draw_bee_honey(unsigned char animate)
+{
+	unsigned char frame = intro_timer;
+	if (!animate || frame > 104)
+		frame = 104;
+	oam_meta_spr(72 + frame, 64, gamesprites_smallbeeright0_data);
+	if (frame == 24)
+		one_vram_buffer(0x00, NTADR_A(13, 8));
+	if (frame == 40)
+		one_vram_buffer(0x00, NTADR_A(15, 8));
+	if (frame == 56)
+		one_vram_buffer(0x00, NTADR_A(17, 8));
+	if (frame == 72)
+		one_vram_buffer(0x00, NTADR_A(19, 8));
+	if (frame == 88)
+		one_vram_buffer(0x00, NTADR_A(21, 8));
+}
+
+static void intro_begin_bee_honey(void)
+{
+	one_vram_buffer(0xa5, NTADR_A(13, 8));
+	one_vram_buffer(0xa5, NTADR_A(15, 8));
+	one_vram_buffer(0xa5, NTADR_A(17, 8));
+	one_vram_buffer(0xa5, NTADR_A(19, 8));
+	one_vram_buffer(0xa5, NTADR_A(21, 8));
+	multi_vram_buffer_horz("BEES COLLECT HONEY", 18, NTADR_A(7, 6));
+}
+
+static void intro_draw_duck_eats_bee(unsigned char y, unsigned char blue_bee, unsigned char animate)
+{
+	unsigned char frame = intro_timer;
+	if (!animate || frame > 56)
+		frame = 56;
+	oam_meta_spr(80 + frame, y, gamesprites_smallduck2right0_data);
+	if (frame < 56)
+	{
+		if (blue_bee)
+			oam_meta_spr(144, y, gamesprites_smallbee2left0_data);
+		else
+			oam_meta_spr(144, y, gamesprites_smallbeeleft0_data);
+	}
+	else if (blue_bee)
+	{
+		oam_spr(144, y + 1, 0x27, 2 | OAM_FLIP_V);
+		oam_spr(152, y + 1, 0x28, 2 | OAM_FLIP_V);
+	}
+	else
+	{
+		oam_spr(144, y + 1, 0x27, OAM_FLIP_V);
+		oam_spr(152, y + 1, 0x28, OAM_FLIP_V);
+	}
+}
+
+static void intro_draw_bigbee(unsigned char animate)
+{
+	unsigned char frame = intro_timer;
+	if (!animate || frame > 88)
+		frame = 88;
+	if (frame < 32)
+	{
+		oam_meta_spr(80 + frame, 144, gamesprites_smallbeeright0_data);
+		oam_meta_spr(112, 144, gamesprites_powerup_data);
+	}
+	else
+	{
+		oam_meta_spr(112 + frame - 32, 144, gamesprites_bigbeeright0_data);
+		if (frame < 88)
+			oam_meta_spr(176, 144, gamesprites_smallduckright0_data);
+		else
+		{
+			oam_spr(176, 144, 0x1c, OAM_FLIP_H | OAM_FLIP_V);
+			oam_spr(176, 152, 0x0c, OAM_FLIP_H | OAM_FLIP_V);
+		}
+	}
+}
+
+static void draw_intro_scene(void)
+{
+	if (intro_stage >= 1)
+		intro_draw_bee_honey(intro_stage == 1);
+	if (intro_stage >= 2)
+		intro_draw_duck_eats_bee(104, 0, intro_stage == 2);
+	if (intro_stage >= 3)
+		intro_draw_bigbee(intro_stage == 3);
+	if (intro_stage >= 4)
+		intro_draw_duck_eats_bee(184, 1, intro_stage == 4);
+}
+
+static void intro_add_rule(void)
+{
+	if (intro_stage == 1)
+		intro_begin_bee_honey();
+	else if (intro_stage == 2)
+		multi_vram_buffer_horz("DUCKS EAT BEES", 14, NTADR_A(9, 11));
+	else if (intro_stage == 3)
+		multi_vram_buffer_horz("BIG BEES EAT DUCKS", 18, NTADR_A(7, 16));
+	else if (intro_stage == 4)
+		multi_vram_buffer_horz("DONT EAT YOUR PARTNER!", 22, NTADR_A(5, 21));
+}
+
+void intro_loop(void)
+{
+	while (1)
+	{
+		ppu_wait_nmi();
+		oam_clear();
+		draw_intro_scene();
+		if (++intro_timer >= (intro_stage == 5 ? INTRO_HOLD_FRAMES : INTRO_STAGE_FRAMES))
+		{
+			intro_timer = 0;
+			if (++intro_stage > 5)
+			{
+				demo_mode = 1;
+				init_game_loop();
+				break;
+			}
+			intro_add_rule();
+		}
+	}
+}
+
+void init_intro_loop(void)
+{
+	oam_clear();
+	clear_background();
+	ppu_off();
+	pal_bg(palette_intro_bg);
+	pal_spr(palette_sp);
+	intro_stage = 0;
+	intro_timer = 0;
+	game_mode = MODE_INTRO;
+	multi_vram_buffer_horz("HOW TO PLAY", 11, NTADR_A(10, 2));
+	ppu_on_all();
 }
 
 void options_loop(void)
