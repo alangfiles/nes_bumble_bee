@@ -36,6 +36,13 @@ static unsigned int demo_title_timer;
 static unsigned char demo_button_pressed;
 static unsigned int demo_frame_timer;
 
+static void sfx_play_with_check(unsigned char sound, unsigned char channel)
+{
+	if (!demo_mode)
+	{
+		sfx_play(sound, channel);
+	}
+}
 
 void main(void)
 {
@@ -1175,7 +1182,7 @@ void check_powerup(void)
 			{
 				bee3_bigbee_timer = POWERUP_TIMER;
 			}
-			sfx_play(SFX_POWERUP, 0);
+			sfx_play_with_check(SFX_POWERUP, 0);
 		}
 	}
 	// Check powerup2 (top-right)
@@ -1208,7 +1215,7 @@ void check_powerup(void)
 			{
 				bee3_bigbee_timer = POWERUP_TIMER;
 			}
-			sfx_play(SFX_POWERUP, 0);
+			sfx_play_with_check(SFX_POWERUP, 0);
 		}
 	}
 	// Check powerup3 (bottom-left)
@@ -1241,7 +1248,7 @@ void check_powerup(void)
 			{
 				bee3_bigbee_timer = POWERUP_TIMER;
 			}
-			sfx_play(SFX_POWERUP, 0);
+			sfx_play_with_check(SFX_POWERUP, 0);
 		}
 	}
 
@@ -1275,7 +1282,7 @@ void check_powerup(void)
 			{
 				bee3_bigbee_timer = POWERUP_TIMER;
 			}
-			sfx_play(SFX_POWERUP, 0);
+			sfx_play_with_check(SFX_POWERUP, 0);
 		}
 	}
 }
@@ -1781,12 +1788,12 @@ void check_tile_and_collect()
 				// update team score
 				if (current_player == 1)
 				{
-					sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+					sfx_play_with_check(SFX_TEAM1_DOT_COLLECT, 0);
 					team1_score++;
 					// Check for win condition
 					if (team1_score >= 100)
 					{
-						sfx_play(SFX_TEAM1_WIN, 0);
+						sfx_play_with_check(SFX_TEAM1_WIN, 0);
 						winner = ONETWO_WINNER;
 						win_reason = WIN_HONEY_COLLECTED;
 						init_roundover();
@@ -1795,12 +1802,12 @@ void check_tile_and_collect()
 				}
 				else if (current_player == 3)
 				{
-					sfx_play(SFX_TEAM2_DOT_COLLECT, 0);
+					sfx_play_with_check(SFX_TEAM2_DOT_COLLECT, 0);
 					team2_score++;
 					// Check for win condition
 					if (team2_score >= 100)
 					{
-						sfx_play(SFX_TEAM2_WIN, 0);
+						sfx_play_with_check(SFX_TEAM2_WIN, 0);
 						winner = THREEFOUR_WINNER;
 						win_reason = WIN_HONEY_COLLECTED;
 						init_roundover();
@@ -2394,7 +2401,7 @@ void game_loop(void)
 		temp_y2 = BoxGuy2.y >> 8;
 		if (sprite_collision())
 		{
-			sfx_play(SFX_TEAM2_WIN, 0);
+			sfx_play_with_check(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
 			win_reason = WIN_FRIENDLY_FIRE_DUCK_EATEN;
 			init_roundover();
@@ -2406,7 +2413,7 @@ void game_loop(void)
 		temp_y2 = BoxGuy4.y >> 8;
 		if (sprite_collision())
 		{
-			sfx_play(SFX_TEAM1_WIN, 0);
+			sfx_play_with_check(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_DUCK_EATEN;
 			init_roundover();
@@ -2425,7 +2432,7 @@ void game_loop(void)
 		temp_y2 = BoxGuy4.y >> 8;
 		if (sprite_collision())
 		{
-			sfx_play(SFX_TEAM1_WIN, 0);
+			sfx_play_with_check(SFX_TEAM1_WIN, 0);
 			winner = ONETWO_WINNER;
 			win_reason = WIN_FRIENDLY_FIRE_DUCK_EATEN;
 			init_roundover();
@@ -2437,7 +2444,7 @@ void game_loop(void)
 		temp_y2 = BoxGuy2.y >> 8;
 		if (sprite_collision())
 		{
-			sfx_play(SFX_TEAM2_WIN, 0);
+			sfx_play_with_check(SFX_TEAM2_WIN, 0);
 			winner = THREEFOUR_WINNER;
 			win_reason = WIN_DUCK_EATEN;
 			init_roundover();
@@ -2453,7 +2460,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 1 dies (friendly fire)
-		sfx_play(SFX_TEAM2_WIN, 0);
+		sfx_play_with_check(SFX_TEAM2_WIN, 0);
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE_BEE_EATEN;
 		init_roundover();
@@ -2466,7 +2473,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 3 dies (enemy fire)
-		sfx_play(SFX_TEAM1_WIN, 0);
+		sfx_play_with_check(SFX_TEAM1_WIN, 0);
 		winner = ONETWO_WINNER;
 		win_reason = WIN_FRIENDLY_FIRE_BEE_EATEN;
 		init_roundover();
@@ -2480,7 +2487,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 1 dies (enemy fire)
-		sfx_play(SFX_TEAM2_WIN, 0);
+		sfx_play_with_check(SFX_TEAM2_WIN, 0);
 		winner = THREEFOUR_WINNER;
 		win_reason = WIN_BEE_EATEN;
 		init_roundover();
@@ -2493,7 +2500,7 @@ void game_loop(void)
 	if (sprite_collision())
 	{
 		// player 2 dies (enemy fire)
-		sfx_play(SFX_TEAM1_WIN, 0);
+		sfx_play_with_check(SFX_TEAM1_WIN, 0);
 		winner = ONETWO_WINNER;
 		win_reason = WIN_BEE_EATEN;
 		init_roundover();
@@ -2920,7 +2927,7 @@ void options_loop(void)
 			if (!start_held && (pad1_new & PAD_START || pad2_new & PAD_START || pad3_new & PAD_START || pad4_new & PAD_START))
 			{
 				start_held = 1;
-				sfx_play(SFX_START, 0);
+				sfx_play_with_check(SFX_START, 0);
 				init_game_loop();
 				break;
 			}
@@ -3100,7 +3107,7 @@ void start_round(void)
 	draw_player_3();
 	draw_player_4();
 	oam_meta_spr(116, 100, gamesprites_big3_data);
-	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+	sfx_play_with_check(SFX_TEAM1_DOT_COLLECT, 0);
 	ppu_wait_nmi();
 	delay(40);
 	oam_clear();
@@ -3112,7 +3119,7 @@ void start_round(void)
 	draw_player_4();
 	ppu_wait_nmi();
 	oam_meta_spr(116, 100, gamesprites_big2_data);
-	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+	sfx_play_with_check(SFX_TEAM1_DOT_COLLECT, 0);
 	delay(40);
 	oam_clear();
 	update_hud();
@@ -3123,7 +3130,7 @@ void start_round(void)
 	draw_player_4();
 	ppu_wait_nmi();
 	oam_meta_spr(116, 100, gamesprites_big1_data);
-	sfx_play(SFX_TEAM1_DOT_COLLECT, 0);
+	sfx_play_with_check(SFX_TEAM1_DOT_COLLECT, 0);
 	delay(40);
 	oam_clear();
 	update_hud();
@@ -3133,7 +3140,7 @@ void start_round(void)
 	draw_player_3();
 	draw_player_4();
 	ppu_wait_nmi();
-	sfx_play(SFX_START, 0);
+	sfx_play_with_check(SFX_START, 0);
 	delay(10);
 	ppu_wait_nmi();
 	}
@@ -3177,7 +3184,10 @@ void start_round(void)
 			song = SONG_HONEY;
 		}
 	}
-	music_play(song);
+	if (!demo_mode)
+	{
+		music_play(song);
+	}
 }
 
 void init_game_loop(void)
@@ -3273,8 +3283,8 @@ void load_bg_palette(void)
 void init_title_loop(void)
 {
 	oam_clear();
-	delay(30);
 	music_stop();
+	delay(30);
 	demo_mode = 0;
 	demo_title_timer = 0;
 	demo_button_pressed = 0;
@@ -3786,14 +3796,14 @@ void roundover_loop(void)
 			if (team1_wins >= 3)
 			{
 				// Team 1 wins the match
-				// sfx_play(SFX_TEAM1_MATCH_WIN, 0);
+				// sfx_play_with_check(SFX_TEAM1_MATCH_WIN, 0);
 				init_gameover_loop();
 				break;
 			}
 			else if (team2_wins >= 3)
 			{
 				// Team 2 wins the match
-				// sfx_play(SFX_TEAM2_MATCH_WIN, 0);
+				// sfx_play_with_check(SFX_TEAM2_MATCH_WIN, 0);
 				init_gameover_loop();
 				break;
 			}
@@ -3829,19 +3839,19 @@ void game_counters(void)
 			{
 				winner = ONETWO_WINNER;
 				win_reason = WIN_MOST_HONEY_COLLECTED;
-				sfx_play(SFX_TEAM1_WIN, 0);
+				sfx_play_with_check(SFX_TEAM1_WIN, 0);
 			}
 			else if (team2_score > team1_score)
 			{
 				winner = THREEFOUR_WINNER;
 				win_reason = WIN_MOST_HONEY_COLLECTED;
-				sfx_play(SFX_TEAM2_WIN, 0);
+				sfx_play_with_check(SFX_TEAM2_WIN, 0);
 			}
 			else
 			{
 				winner = TIE_WINNER;
 				win_reason = WIN_TIMEUP;
-				sfx_play(SFX_DRAW_GAME, 0);
+				sfx_play_with_check(SFX_DRAW_GAME, 0);
 			}
 			init_roundover();
 		}
