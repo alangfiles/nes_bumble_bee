@@ -17,6 +17,8 @@
 #define AI_TIMER_MASK 0x7f
 #define AI_BRANCH_CHECK_FRAMES 4
 #define AI_LOOK_AHEAD 4
+#define TITLE_DEMO_FRAMES 600
+#define DEMO_DURATION_FRAMES 600
 
 static unsigned char anim_tick_p1; 
 static unsigned char anim_tick_p2;
@@ -29,6 +31,10 @@ static unsigned char last_game_timer = 0xFF;
 static unsigned char four_score_present;
 static unsigned char controller1_slot;
 static unsigned char controller2_slot;
+static unsigned char demo_mode;
+static unsigned int demo_title_timer;
+static unsigned char demo_button_pressed;
+static unsigned int demo_frame_timer;
 
 
 void main(void)
@@ -2167,21 +2173,26 @@ void read_controllers(void)
 		}
 	}
 
+	if (demo_mode && (pad1 | pad2 | pad3 | pad4))
+	{
+		demo_button_pressed = 1;
+	}
+
 	if (game_mode == MODE_GAME)
 	{
-		if (use_ai_player_1)
+		if (demo_mode || use_ai_player_1)
 		{
 			player1_ai();
 		}
-		if (use_ai_player_2)
+		if (demo_mode || use_ai_player_2)
 		{
 			player2_ai();
 		}
-		if (use_ai_player_3)
+		if (demo_mode || use_ai_player_3)
 		{
 			player3_ai();
 		}
-		if (use_ai_player_4)
+		if (demo_mode || use_ai_player_4)
 		{
 			player4_ai();
 		}
@@ -2217,9 +2228,18 @@ void game_loop(void)
 
 	// 1. INCREMENT GLOBAL COUNTERS
 	game_counters();
+	if (game_mode != MODE_GAME)
+	{
+		return;
+	}
 
 	// 2.  READ CONTROLLER
 	read_controllers();
+	if (demo_button_pressed)
+	{
+		init_title_loop();
+		return;
+	}
 
 	// 3. PLAYER MOVEMENT
 
@@ -2495,6 +2515,13 @@ void title_loop(void)
 
 		// Read all controllers for title screen
 		read_controllers();
+
+		if (++demo_title_timer >= TITLE_DEMO_FRAMES)
+		{
+			demo_mode = 1;
+			init_game_loop();
+			break;
+		}
 
 		// Handle up movement for each player
 		if (pad1_new & PAD_UP)
@@ -2944,7 +2971,7 @@ void gameover_loop(void)
 void start_round(void)
 {
 
-	if (settings_map == MAP_RANDOM)
+	if (demo_mode || settings_map == MAP_RANDOM)
 	{
 		if (frame_counter % 3 == 0)
 		{
@@ -3058,6 +3085,13 @@ void start_round(void)
 	ppu_wait_nmi();
 	oam_clear();
 
+	if (demo_mode)
+	{
+		multi_vram_buffer_horz("PRESS BUTTON", 12, NTADR_A(10, 14));
+	}
+
+	if (!demo_mode)
+	{
 	draw_hud();
 	update_hud();
 
@@ -3102,6 +3136,7 @@ void start_round(void)
 	sfx_play(SFX_START, 0);
 	delay(10);
 	ppu_wait_nmi();
+	}
 
 	game_mode = MODE_GAME;
 
@@ -3239,6 +3274,11 @@ void init_title_loop(void)
 {
 	oam_clear();
 	delay(30);
+	music_stop();
+	demo_mode = 0;
+	demo_title_timer = 0;
+	demo_button_pressed = 0;
+	demo_frame_timer = 0;
 	game_mode = MODE_TITLE;
 	ppu_off(); // screen off
 	// load the title palettes
@@ -3386,6 +3426,12 @@ void init_options_loop(void)
 
 void init_roundover(void)
 {
+	if (demo_mode)
+	{
+		init_title_loop();
+		return;
+	}
+
 	// increment the win count for the winning team
 	// let's draw that last frame:
 
@@ -3764,6 +3810,11 @@ void game_counters(void)
 	game_frame_timer++;
 	// Update sprite rotation every frame
 	sprite_rotation++;
+	if (demo_mode && ++demo_frame_timer >= DEMO_DURATION_FRAMES)
+	{
+		init_title_loop();
+		return;
+	}
 
 	if (game_frame_timer >= tick_frequency)
 	{
