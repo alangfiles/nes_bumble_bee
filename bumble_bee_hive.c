@@ -13,6 +13,10 @@
 #include "bumble_bee_hive.h"
 
 #define SPRITE_HIT_TEMP() (temp_x < (temp_x2 + collision_box_size) && temp_x + collision_box_size > temp_x2 && temp_y < (temp_y2 + collision_box_size) && temp_y + collision_box_size > temp_y2)
+#define AI_TURN_RIGHT 0x80
+#define AI_TIMER_MASK 0x7f
+#define AI_BRANCH_CHECK_FRAMES 4
+#define AI_LOOK_AHEAD 4
 
 static unsigned char anim_tick_p1; 
 static unsigned char anim_tick_p2;
@@ -87,10 +91,12 @@ void main(void)
 
 	win count / medals
 	timer for game (40 seconds?)
+
 	ready, fight! logo. (or 3,2,1 blitz )
 
 	character sprites are a little too big hitboxes?
 	Big dots worth more points
+
 	Power up to swap places with your partner.
 
 	*/
@@ -1896,19 +1902,141 @@ static void ai_dir_to_pad(void)
 	}
 }
 
+static char ai_direction_is_blocked(void)
+{
+	// Use the same two leading-edge points as the player's collision routines.
+	if (ai_dir_work == DIR_UP)
+	{
+		temp_x2 = temp_x + 2;
+		temp_y2 = temp_y - AI_LOOK_AHEAD;
+		if (quack_tile_solid())
+		{
+			return 1;
+		}
+		temp_x2 = temp_x + HERO_WIDTH - 2;
+	}
+	else if (ai_dir_work == DIR_DOWN)
+	{
+		temp_x2 = temp_x + 2;
+		temp_y2 = temp_y + HERO_HEIGHT + AI_LOOK_AHEAD;
+		if (quack_tile_solid())
+		{
+			return 1;
+		}
+		temp_x2 = temp_x + HERO_WIDTH - 2;
+	}
+	else if (ai_dir_work == DIR_LEFT)
+	{
+		temp_x2 = temp_x - AI_LOOK_AHEAD;
+		temp_y2 = temp_y + 2;
+		if (quack_tile_solid())
+		{
+			return 1;
+		}
+		temp_y2 = temp_y + HERO_HEIGHT - 2;
+	}
+	else
+	{
+		temp_x2 = temp_x + HERO_WIDTH + AI_LOOK_AHEAD;
+		temp_y2 = temp_y + 2;
+		if (quack_tile_solid())
+		{
+			return 1;
+		}
+		temp_y2 = temp_y + HERO_HEIGHT - 2;
+	}
+	return quack_tile_solid();
+}
+
+static void ai_turn_from_wall(void)
+{
+	if (ai_timer_work & AI_TURN_RIGHT)
+	{
+		if (ai_dir_work < DIR_LEFT)
+			ai_dir_work = DIR_RIGHT - ai_dir_work;
+		else
+			ai_dir_work -= DIR_LEFT;
+	}
+	else
+	{
+		if (ai_dir_work < DIR_LEFT)
+			ai_dir_work += DIR_LEFT;
+		else
+			ai_dir_work = DIR_RIGHT - ai_dir_work;
+	}
+}
+
 static void ai_update(void)
 {
-	if (ai_collision_work)
+	// Check often enough to catch narrow branch openings while traveling through a corridor.
+	if (!ai_collision_work)
 	{
-		ai_timer_work = 0;
-		// pick a new direction on collision
-		temp = ai_dir_work;
-		do
+		temp = ai_timer_work & AI_TIMER_MASK;
+		if (++temp < AI_BRANCH_CHECK_FRAMES)
 		{
-			ai_dir_work = rand8() & 0x03;
-		} while (ai_dir_work == temp);
-		ai_collision_work = 0;
+			ai_timer_work = (ai_timer_work & AI_TURN_RIGHT) | temp;
+			return;
+		}
+		ai_timer_work &= AI_TURN_RIGHT;
+		if (rand8() & 0x01)
+		{
+			return;
+		}
+
+		temp3 = ai_dir_work;
+		if (rand8() & 0x01)
+		{
+			if (temp3 == DIR_UP || temp3 == DIR_DOWN)
+			{
+				ai_dir_work = DIR_LEFT;
+			}
+			else
+			{
+				ai_dir_work = DIR_UP;
+			}
+		}
+		else
+		{
+			if (temp3 == DIR_UP || temp3 == DIR_DOWN)
+			{
+				ai_dir_work = DIR_RIGHT;
+			}
+			else
+			{
+				ai_dir_work = DIR_DOWN;
+			}
+		}
+		if (!ai_direction_is_blocked())
+		{
+			return;
+		}
+		ai_dir_work = temp3;
+		return;
 	}
+
+	ai_timer_work &= AI_TURN_RIGHT;
+	// Prefer the selected side, then forward, then the other side, then reverse.
+	temp3 = ai_dir_work;
+	ai_turn_from_wall();
+	if (!ai_direction_is_blocked())
+	{
+		return;
+	}
+	ai_dir_work = temp3;
+	if (!ai_direction_is_blocked())
+	{
+		return;
+	}
+	ai_timer_work ^= AI_TURN_RIGHT;
+	ai_turn_from_wall();
+	ai_timer_work ^= AI_TURN_RIGHT;
+	if (!ai_direction_is_blocked())
+	{
+		return;
+	}
+	ai_dir_work = temp3 ^ 0x01;
+	// A dead end reverses the crawler and changes its wall side for the next junction.
+	ai_timer_work ^= AI_TURN_RIGHT;
 }
 
 void player1_ai(void)
@@ -1916,6 +2044,8 @@ void player1_ai(void)
 	ai_timer_work = ai_timer_p1;
 	ai_dir_work = ai_dir_p1;
 	ai_collision_work = BoxGuy1.collision;
+	temp_x = BoxGuy1.x >> 8;
+	temp_y = BoxGuy1.y >> 8;
 	ai_update();
 	ai_timer_p1 = ai_timer_work;
 	ai_dir_p1 = ai_dir_work;
@@ -1928,6 +2058,8 @@ void player2_ai(void)
 	ai_timer_work = ai_timer_p2;
 	ai_dir_work = ai_dir_p2;
 	ai_collision_work = BoxGuy2.collision;
+	temp_x = BoxGuy2.x >> 8;
+	temp_y = BoxGuy2.y >> 8;
 	ai_update();
 	ai_timer_p2 = ai_timer_work;
 	ai_dir_p2 = ai_dir_work;
@@ -1940,6 +2072,8 @@ void player3_ai(void)
 	ai_timer_work = ai_timer_p3;
 	ai_dir_work = ai_dir_p3;
 	ai_collision_work = BoxGuy3.collision;
+	temp_x = BoxGuy3.x >> 8;
+	temp_y = BoxGuy3.y >> 8;
 	ai_update();
 	ai_timer_p3 = ai_timer_work;
 	ai_dir_p3 = ai_dir_work;
@@ -1952,6 +2086,8 @@ void player4_ai(void)
 	ai_timer_work = ai_timer_p4;
 	ai_dir_work = ai_dir_p4;
 	ai_collision_work = BoxGuy4.collision;
+	temp_x = BoxGuy4.x >> 8;
+	temp_y = BoxGuy4.y >> 8;
 	ai_update();
 	ai_timer_p4 = ai_timer_work;
 	ai_dir_p4 = ai_dir_work;
@@ -3550,9 +3686,9 @@ void init_system(void)
 	use_ai_player_2 = 1;
 	use_ai_player_3 = 1;
 	use_ai_player_4 = 1;
-	ai_timer_p1 = 0;
+	ai_timer_p1 = AI_TURN_RIGHT;
 	ai_timer_p2 = 0;
-	ai_timer_p3 = 0;
+	ai_timer_p3 = AI_TURN_RIGHT;
 	ai_timer_p4 = 0;
 	ai_dir_p1 = DIR_UP;
 	ai_dir_p2 = DIR_UP;

@@ -12,7 +12,7 @@ unsigned char tick_frequency;
 #define QUACK_COOLDOWN 5
 #define HITBOX_DEBUG 0
 
-#define AI_DIRECTION_CHANGE_FRAMES 10
+#define AI_DIRECTION_CHANGE_FRAMES 8
 
 
 // Speed options
