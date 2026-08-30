@@ -514,7 +514,7 @@ void draw_player_2(void)
 	}
 
 	// Update animation frame every 10 frames, but only if player is moving
-	if (BoxGuy2.moving)
+	if (BoxGuy2.moving || winner == ONETWO_WINNER)
 	{
 		if (++anim_tick_p2 >= 10)
 		{
@@ -776,7 +776,7 @@ void draw_player_4(void)
 	}
 
 	// Update animation frame every 10 frames, but only if player is moving
-	if (BoxGuy4.moving)
+	if (BoxGuy4.moving || winner == THREEFOUR_WINNER)
 	{
 		if (++anim_tick_p4 >= 10)
 		{
