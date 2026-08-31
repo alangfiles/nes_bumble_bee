@@ -2653,11 +2653,14 @@ static void intro_draw_bigbee(unsigned char animate)
 	{
 		oam_meta_spr(112 + frame - 32, 144, gamesprites_bigbeeright0_data);
 		if (frame < 88)
-			oam_meta_spr(176, 144, gamesprites_smallduckright0_data);
+		{
+			oam_spr(176, 143, 0x0c, 2 | OAM_FLIP_H);
+			oam_spr(176, 151, 0x1c, 2 | OAM_FLIP_H);
+		}
 		else
 		{
-			oam_spr(176, 144, 0x1c, OAM_FLIP_H | OAM_FLIP_V);
-			oam_spr(176, 152, 0x0c, OAM_FLIP_H | OAM_FLIP_V);
+			oam_spr(176, 144, 0x1c, 2 | OAM_FLIP_H | OAM_FLIP_V);
+			oam_spr(176, 152, 0x0c, 2 | OAM_FLIP_H | OAM_FLIP_V);
 		}
 	}
 }
@@ -2691,6 +2694,12 @@ void intro_loop(void)
 	while (1)
 	{
 		ppu_wait_nmi();
+		read_controllers();
+		if (pad1 | pad2 | pad3 | pad4)
+		{
+			init_title_loop();
+			break;
+		}
 		oam_clear();
 		draw_intro_scene();
 		if (++intro_timer >= (intro_stage == 5 ? INTRO_HOLD_FRAMES : INTRO_STAGE_FRAMES))
