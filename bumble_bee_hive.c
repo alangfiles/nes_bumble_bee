@@ -2588,10 +2588,21 @@ void title_loop(void)
 
 static void intro_draw_bee_honey(unsigned char animate)
 {
-	unsigned char frame = intro_timer;
+	unsigned char frame = intro_timer - (intro_timer >> 3);
+	unsigned char anim_frame = intro_timer >> 3;
+	while (anim_frame >= 3)
+		anim_frame -= 3;
 	if (!animate || frame > 104)
+	{
 		frame = 104;
-	oam_meta_spr(72 + frame, 64, gamesprites_smallbeeright0_data);
+		anim_frame = 0;
+	}
+	if (anim_frame == 0)
+		oam_meta_spr(72 + frame, 64, gamesprites_smallbeeright0_data);
+	else if (anim_frame == 1)
+		oam_meta_spr(72 + frame, 64, gamesprites_smallbeeright1_data);
+	else
+		oam_meta_spr(72 + frame, 64, gamesprites_smallbeeright2_data);
 	if (frame == 24)
 		one_vram_buffer(0x00, NTADR_A(13, 8));
 	if (frame == 40)
@@ -2616,16 +2627,41 @@ static void intro_begin_bee_honey(void)
 
 static void intro_draw_duck_eats_bee(unsigned char y, unsigned char blue_bee, unsigned char animate)
 {
-	unsigned char frame = intro_timer;
+	unsigned char frame = (intro_timer >> 1) - (intro_timer >> 5);
+	unsigned char anim_frame = intro_timer >> 3;
+	while (anim_frame >= 3)
+		anim_frame -= 3;
 	if (!animate || frame > 56)
+	{
 		frame = 56;
-	oam_meta_spr(80 + frame, y, gamesprites_smallduck2right0_data);
+		anim_frame = 0;
+	}
+	if (anim_frame == 0)
+		oam_meta_spr(80 + frame, y, gamesprites_smallduck2right0_data);
+	else if (anim_frame == 1)
+		oam_meta_spr(80 + frame, y, gamesprites_smallduck2right1_data);
+	else
+		oam_meta_spr(80 + frame, y, gamesprites_smallduck2right2_data);
 	if (frame < 56)
 	{
 		if (blue_bee)
-			oam_meta_spr(144, y, gamesprites_smallbee2left0_data);
+		{
+			if (anim_frame == 0)
+				oam_meta_spr(144, y, gamesprites_smallbee2left0_data);
+			else if (anim_frame == 1)
+				oam_meta_spr(144, y, gamesprites_smallbee2left1_data);
+			else
+				oam_meta_spr(144, y, gamesprites_smallbee2left2_data);
+		}
 		else
-			oam_meta_spr(144, y, gamesprites_smallbeeleft0_data);
+		{
+			if (anim_frame == 0)
+				oam_meta_spr(144, y, gamesprites_smallbeeleft0_data);
+			else if (anim_frame == 1)
+				oam_meta_spr(144, y, gamesprites_smallbeeleft1_data);
+			else
+				oam_meta_spr(144, y, gamesprites_smallbeeleft2_data);
+		}
 	}
 	else if (blue_bee)
 	{
@@ -2641,17 +2677,33 @@ static void intro_draw_duck_eats_bee(unsigned char y, unsigned char blue_bee, un
 
 static void intro_draw_bigbee(unsigned char animate)
 {
-	unsigned char frame = intro_timer;
+	unsigned char frame = intro_timer - (intro_timer >> 2);
+	unsigned char anim_frame = intro_timer >> 3;
+	while (anim_frame >= 3)
+		anim_frame -= 3;
 	if (!animate || frame > 88)
+	{
 		frame = 88;
+		anim_frame = 0;
+	}
 	if (frame < 32)
 	{
-		oam_meta_spr(80 + frame, 144, gamesprites_smallbeeright0_data);
+		if (anim_frame == 0)
+			oam_meta_spr(80 + frame, 144, gamesprites_smallbeeright0_data);
+		else if (anim_frame == 1)
+			oam_meta_spr(80 + frame, 144, gamesprites_smallbeeright1_data);
+		else
+			oam_meta_spr(80 + frame, 144, gamesprites_smallbeeright2_data);
 		oam_meta_spr(112, 144, gamesprites_powerup_data);
 	}
 	else
 	{
-		oam_meta_spr(112 + frame - 32, 144, gamesprites_bigbeeright0_data);
+		if (anim_frame == 0)
+			oam_meta_spr(112 + frame - 32, 144, gamesprites_bigbeeright0_data);
+		else if (anim_frame == 1)
+			oam_meta_spr(112 + frame - 32, 144, gamesprites_bigbeeright1_data);
+		else
+			oam_meta_spr(112 + frame - 32, 144, gamesprites_bigbeeright2_data);
 		if (frame < 88)
 		{
 			oam_spr(176, 143, 0x0c, 2 | OAM_FLIP_H);
