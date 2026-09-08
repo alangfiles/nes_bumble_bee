@@ -10,3 +10,5 @@ int __fastcall__ pad_poll_4score_1_3(void);
 int __fastcall__ pad_poll_4score_2_4(void);
 // returns pad2 and pad4 as a 16 bit integer
 // pad2 is the high byte, pad4 is the low byte
+
+char __fastcall__ four_score_detect(void);

@@ -2,6 +2,47 @@
 
 .export _pad_poll_4score_1_3
 .export _pad_poll_4score_2_4
+.export _four_score_detect
+
+_four_score_detect:
+    lda #1
+    sta $4016
+    lda #0
+    sta $4016
+
+    ldx #16
+@skip_buttons:
+    lda $4016
+    lda $4017
+    dex
+    bne @skip_buttons
+
+    ldx #8
+    lda #0
+@read_signature:
+    lda $4016
+    lsr a
+    rol PAD1_STATE
+    lda $4017
+    lsr a
+    rol PAD2_STATE
+    dex
+    bne @read_signature
+
+    lda PAD1_STATE
+    cmp #$08
+    bne @not_four_score
+    lda PAD2_STATE
+    cmp #$04
+    bne @not_four_score
+    lda #1
+    ldx #0
+    rts
+
+@not_four_score:
+    ldx #0
+    txa
+    rts
 
 _pad_poll_4score_1_3:
 

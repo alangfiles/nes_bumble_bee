@@ -3960,8 +3960,8 @@ void init_system(void)
 	bee1_bigbee_timer = 0;
 	bee3_bigbee_timer = 0;
 
-	// Default to Four Score input.
-	four_score_present = 1;
+	// Read the Four Score serial signature after its two controller bytes.
+	four_score_present = four_score_detect();
 	controller1_slot = 1;
 	controller2_slot = 2;
 

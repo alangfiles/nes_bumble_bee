@@ -36,6 +36,7 @@
 	.import		_set_scroll_y
 	.import		_pad_poll_4score_1_3
 	.import		_pad_poll_4score_2_4
+	.import		_four_score_detect
 	.export		_gamesprites_smallbeeleft0_data
 	.export		_gamesprites_smallbeeleft1_data
 	.export		_gamesprites_smallbeeleft2_data
@@ -15147,13 +15148,14 @@ L2C63:	jsr     decsp3
 ;
 	sta     _bee3_bigbee_timer
 ;
-; four_score_present = 1;
+; four_score_present = four_score_detect();
 ;
-	lda     #$01
+	jsr     _four_score_detect
 	sta     _four_score_present
 ;
 ; controller1_slot = 1;
 ;
+	lda     #$01
 	sta     _controller1_slot
 ;
 ; controller2_slot = 2;
