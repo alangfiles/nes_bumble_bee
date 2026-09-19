@@ -13,7 +13,7 @@
 #include "bumble_bee_hive.h"
 
 #define SPRITE_HIT_TEMP() (temp_x < (temp_x2 + collision_box_size) && temp_x + collision_box_size > temp_x2 && temp_y < (temp_y2 + collision_box_size) && temp_y + collision_box_size > temp_y2)
-#define AI_TURN_RIGHT 0x80
+#define AI_TURN_RIGHT 0x80 
 #define AI_TIMER_MASK 0x7f
 #define AI_BRANCH_CHECK_FRAMES 4
 #define AI_LOOK_AHEAD 4
@@ -3493,7 +3493,7 @@ void init_game_loop(void)
 void load_bg_palette(void) 
 {
 	if (map == MAP_OUTDOORS)
-	{
+	{ 
 		pal_bg(palette_outdoors_bg);
 	}
 	else if (map == MAP_COMBS)

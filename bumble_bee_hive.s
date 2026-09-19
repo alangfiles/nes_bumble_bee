@@ -2726,14 +2726,14 @@ _vines:
 	.byte	$C0
 	.byte	$A0
 	.byte	$A1
-	.byte	$C1
 	.byte	$C4
 	.byte	$A5
+	.byte	$A5
 	.byte	$C0
-	.byte	$E1
 	.byte	$A0
 	.byte	$A1
 	.byte	$C4
+	.byte	$A5
 	.byte	$A5
 	.byte	$D3
 	.byte	$D4
@@ -2758,15 +2758,15 @@ _vines:
 	.byte	$D4
 	.byte	$B0
 	.byte	$B1
-	.byte	$00
 	.byte	$E0
 	.byte	$A5
+	.byte	$A5
 	.byte	$D0
-	.byte	$00
 	.byte	$B0
 	.byte	$B1
 	.byte	$D3
 	.byte	$C4
+	.byte	$A5
 	.byte	$A5
 	.byte	$A5
 	.byte	$A5
@@ -2790,15 +2790,15 @@ _vines:
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$00
 	.byte	$D0
+	.byte	$A5
 	.byte	$A5
 	.byte	$F0
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$00
 	.byte	$D3
+	.byte	$C1
 	.byte	$E2
 	.byte	$C1
 	.byte	$C4
@@ -2822,8 +2822,8 @@ _vines:
 	.byte	$E1
 	.byte	$E2
 	.byte	$C1
-	.byte	$C1
 	.byte	$D4
+	.byte	$A5
 	.byte	$A5
 	.byte	$D3
 	.byte	$C2
@@ -2886,10 +2886,10 @@ _vines:
 	.byte	$E2
 	.byte	$C5
 	.byte	$E1
-	.byte	$C1
-	.byte	$C1
-	.byte	$C1
-	.byte	$C1
+	.byte	$D1
+	.byte	$A5
+	.byte	$A5
+	.byte	$D2
 	.byte	$C1
 	.byte	$C5
 	.byte	$C1
@@ -2942,7 +2942,7 @@ _vines:
 	.byte	$C0
 	.byte	$C1
 	.byte	$E2
-	.byte	$C1
+	.byte	$C2
 	.byte	$C1
 	.byte	$D4
 	.byte	$A5
@@ -3080,7 +3080,7 @@ _vines:
 	.byte	$EF
 	.byte	$B6
 	.byte	$B6
-	.byte	$B6
+	.byte	$BA
 	.byte	$B6
 	.byte	$EE
 	.byte	$EF
@@ -3110,9 +3110,9 @@ _vines:
 	.byte	$A5
 	.byte	$FE
 	.byte	$FF
+	.byte	$B9
 	.byte	$B6
-	.byte	$B6
-	.byte	$B6
+	.byte	$B9
 	.byte	$B6
 	.byte	$FE
 	.byte	$FF
@@ -3144,7 +3144,7 @@ _vines:
 	.byte	$A7
 	.byte	$A7
 	.byte	$B6
-	.byte	$B6
+	.byte	$B9
 	.byte	$A7
 	.byte	$A7
 	.byte	$A5
@@ -3269,7 +3269,7 @@ _vines:
 	.byte	$A5
 	.byte	$F0
 	.byte	$D3
-	.byte	$C1
+	.byte	$C2
 	.byte	$C4
 	.byte	$A5
 	.byte	$A5
@@ -3302,10 +3302,10 @@ _vines:
 	.byte	$F0
 	.byte	$00
 	.byte	$00
-	.byte	$D3
-	.byte	$C1
-	.byte	$C1
-	.byte	$D4
+	.byte	$F0
+	.byte	$A5
+	.byte	$A5
+	.byte	$F0
 	.byte	$00
 	.byte	$00
 	.byte	$F0
@@ -3334,11 +3334,11 @@ _vines:
 	.byte	$F1
 	.byte	$E1
 	.byte	$C1
-	.byte	$C2
-	.byte	$C1
-	.byte	$C1
-	.byte	$C1
-	.byte	$C1
+	.byte	$D4
+	.byte	$A5
+	.byte	$A5
+	.byte	$D3
+	.byte	$F2
 	.byte	$C1
 	.byte	$F1
 	.byte	$C1
