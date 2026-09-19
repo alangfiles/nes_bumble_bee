@@ -4,12 +4,12 @@ file	id=0,name="crt0.s",size=4612,mtime=0x69890086,mod=0
 file	id=1,name="/usr/local/Cellar/cc65/2.19/share/cc65/asminc/zeropage.inc",size=721,mtime=0x5ED2ADF3,mod=0
 file	id=2,name="LIB/neslib.s",size=14968,mtime=0x652D713B,mod=0
 file	id=3,name="LIB/nesdoug.s",size=12025,mtime=0x67B0D8AD,mod=0
-file	id=4,name="LIB/nesfourscore.s",size=2979,mtime=0x6AA03C8F,mod=0
+file	id=4,name="LIB/nesfourscore.s",size=2979,mtime=0x6AAF0EE3,mod=0
 file	id=5,name="MUSIC/famitone5.s",size=44440,mtime=0x689934D3,mod=0
 file	id=6,name="MUSIC/HoneyHeist.s",size=9041,mtime=0x6988FE00,mod=0
 file	id=7,name="MUSIC/HoneyHeistFX.s",size=8181,mtime=0x689930C4,mod=0
-file	id=8,name="bumble_bee_hive.chr",size=8192,mtime=0x6987E386,mod=0
-file	id=9,name="bumble_bee_hive.s",size=304768,mtime=0x6AA03C7B,mod=1
+file	id=8,name="bumble_bee_hive.chr",size=8192,mtime=0x6AAF1085,mod=0
+file	id=9,name="bumble_bee_hive.s",size=304770,mtime=0x6AAF12AE,mod=1
 file	id=10,name="/usr/local/Cellar/cc65/2.19/share/cc65/asminc/longbranch.mac",size=2632,mtime=0x5ED2ADF3,mod=1
 file	id=11,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/cpu.mac",size=843,mtime=0x5ED2ADF3,mod=11+18+20+24
 file	id=12,name="/private/tmp/cc65-20211029-72602-uqb2uc/cc65-2.19/asminc/zeropage.inc",size=721,mtime=0x5ED2ADF3,mod=28

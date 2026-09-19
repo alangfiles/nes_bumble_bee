@@ -338,11 +338,11 @@ void draw_player_1(void)
 	temp_x = BoxGuy1.x >> 8;
 	temp_y = BoxGuy1.y >> 8;
 
-	if (HITBOX_DEBUG)
-	{
-		oam_meta_spr(temp_x, temp_y, gamesprites_box1_data);
-		return;
-	}
+	// if (HITBOX_DEBUG)
+	// {
+	// 	oam_meta_spr(temp_x, temp_y, gamesprites_box1_data);
+	// 	return;
+	// }
 
 	// if the game is over and you didn't win, don't animate
 	if (winner == THREEFOUR_WINNER)
@@ -505,11 +505,11 @@ void draw_player_2(void)
 	temp_x = BoxGuy2.x >> 8;
 	temp_y = BoxGuy2.y >> 8;
 
-	if (HITBOX_DEBUG)
-	{
-		oam_meta_spr(temp_x, temp_y, gamesprites_box2_data);
-		return;
-	}
+	// if (HITBOX_DEBUG)
+	// {
+	// 	oam_meta_spr(temp_x, temp_y, gamesprites_box2_data);
+	// 	return;
+	// }
 
 	// if the other team one, just draw the first frame.
 	if (winner == THREEFOUR_WINNER)
@@ -598,11 +598,11 @@ void draw_player_2(void)
 void draw_player_3(void)
 {
 
-	if (HITBOX_DEBUG)
-	{
-		oam_meta_spr(temp_x, temp_y, gamesprites_box3_data);
-		return;
-	}
+	// if (HITBOX_DEBUG)
+	// {
+	// 	oam_meta_spr(temp_x, temp_y, gamesprites_box3_data);
+	// 	return;
+	// }
 	temp_x = BoxGuy3.x >> 8;
 	temp_y = BoxGuy3.y >> 8;
 
@@ -767,11 +767,11 @@ void draw_player_4(void)
 	temp_x = BoxGuy4.x >> 8;
 	temp_y = BoxGuy4.y >> 8;
 
-	if (HITBOX_DEBUG)
-	{
-		oam_meta_spr(temp_x, temp_y, gamesprites_box4_data);
-		return;
-	}
+	// if (HITBOX_DEBUG)
+	// {
+	// 	oam_meta_spr(temp_x, temp_y, gamesprites_box4_data);
+	// 	return;
+	// }
 
 	// if the other team one, just draw the first frame.
 	if (winner == ONETWO_WINNER)
@@ -2622,7 +2622,7 @@ static void intro_begin_bee_honey(void)
 	one_vram_buffer(0xa5, NTADR_A(17, 8));
 	one_vram_buffer(0xa5, NTADR_A(19, 8));
 	one_vram_buffer(0xa5, NTADR_A(21, 8));
-	multi_vram_buffer_horz("BEES COLLECT HONEY", 18, NTADR_A(7, 6));
+	multi_vram_buffer_horz("BEES@COLLECT@HONEY", 18, NTADR_A(7, 6));
 }
 
 static void intro_draw_duck_eats_bee(unsigned char y, unsigned char blue_bee, unsigned char animate)
@@ -2734,11 +2734,11 @@ static void intro_add_rule(void)
 	if (intro_stage == 1)
 		intro_begin_bee_honey();
 	else if (intro_stage == 2)
-		multi_vram_buffer_horz("DUCKS EAT BEES", 14, NTADR_A(9, 11));
+		multi_vram_buffer_horz("DUCKS@EAT@BEES", 14, NTADR_A(9, 11));
 	else if (intro_stage == 3)
-		multi_vram_buffer_horz("BIG BEES EAT DUCKS", 18, NTADR_A(7, 16));
+		multi_vram_buffer_horz("BIG@BEES@EAT@DUCKS", 18, NTADR_A(7, 16));
 	else if (intro_stage == 4)
-		multi_vram_buffer_horz("DONT EAT YOUR PARTNER!", 22, NTADR_A(5, 21));
+		multi_vram_buffer_horz("DONT@EAT@YOUR@PARTNER=", 22, NTADR_A(5, 21));
 }
 
 void intro_loop(void)
@@ -2778,7 +2778,7 @@ void init_intro_loop(void)
 	intro_stage = 0;
 	intro_timer = 0;
 	game_mode = MODE_INTRO;
-	multi_vram_buffer_horz("HOW TO PLAY", 11, NTADR_A(10, 2));
+	multi_vram_buffer_horz("HOW@TO@PLAY", 11, NTADR_A(10, 2));
 	ppu_on_all();
 }
 
@@ -3299,7 +3299,7 @@ void start_round(void)
 
 	if (demo_mode)
 	{
-		multi_vram_buffer_horz("PRESS BUTTON", 12, NTADR_A(10, 14));
+		multi_vram_buffer_horz("PRESS@BUTTON", 12, NTADR_A(10, 14));
 	}
 
 	if (!demo_mode)
@@ -3547,7 +3547,7 @@ void update_options_screen(void)
 	// Show current speed selection
 	if (settings_speed == GAME_SLOW)
 	{
-		multi_vram_buffer_horz("SLOW   ", 7, NTADR_A(11, 10));
+		multi_vram_buffer_horz("SLOW@@@", 7, NTADR_A(11, 10));
 	}
 	else if (settings_speed == GAME_REGULAR)
 	{
@@ -3555,13 +3555,13 @@ void update_options_screen(void)
 	}
 	else if (settings_speed == GAME_FAST)
 	{
-		multi_vram_buffer_horz("FAST   ", 7, NTADR_A(11, 10));
+		multi_vram_buffer_horz("FAST@@@", 7, NTADR_A(11, 10));
 	}
 
 
 	if (settings_map == MAP_RANDOM)
 	{
-		multi_vram_buffer_horz("RANDOM  ", 8, NTADR_A(11, 14));
+		multi_vram_buffer_horz("RANDOM@@", 8, NTADR_A(11, 14));
 	}
 	else if (settings_map == MAP_OUTDOORS)
 	{
@@ -3569,27 +3569,27 @@ void update_options_screen(void)
 	}
 	else if (settings_map == MAP_COMBS)
 	{
-		multi_vram_buffer_horz("COMBS   ", 8, NTADR_A(11, 14));
+		multi_vram_buffer_horz("COMBS@@@", 8, NTADR_A(11, 14));
 	}
 	else if (settings_map == MAP_VINES)
 	{
-		multi_vram_buffer_horz("VINES   ", 8, NTADR_A(11, 14));
+		multi_vram_buffer_horz("VINES@@@", 8, NTADR_A(11, 14));
 	}
 
 	
 	if (settings_song == SONG_BEE)
 	{
-		multi_vram_buffer_horz("BEE   ", 6, NTADR_A(11, 18));
+		multi_vram_buffer_horz("BEE@@@", 6, NTADR_A(11, 18));
 		song = SONG_BEE;
 	}
 	else if (settings_song == SONG_LAKE)
 	{
-		multi_vram_buffer_horz("LAKE  ", 6, NTADR_A(11, 18));
+		multi_vram_buffer_horz("LAKE@@", 6, NTADR_A(11, 18));
 		song = SONG_LAKE;
 	}
 	else if (settings_song == SONG_HONEY)
 	{
-		multi_vram_buffer_horz("HONEY ", 6, NTADR_A(11, 18));
+		multi_vram_buffer_horz("HONEY@", 6, NTADR_A(11, 18));
 		song = SONG_HONEY;
 	} else if (settings_song == SONG_RANDOM)
 	{
@@ -3627,7 +3627,7 @@ void init_options_loop(void)
 	multi_vram_buffer_horz("SPEED:", 6, NTADR_A(8, 8));
 	multi_vram_buffer_horz("MAP:", 4, NTADR_A(8, 12));
 	multi_vram_buffer_horz("MUSIC:", 6, NTADR_A(8, 16));
-	multi_vram_buffer_horz("PRESS BUTTON TO JOIN", 20, NTADR_A(6, 20));
+	multi_vram_buffer_horz("PRESS@BUTTON@TO@JOIN", 20, NTADR_A(6, 20));
 	update_options_screen();
 
 	// Initialize start button variables for options
@@ -3659,7 +3659,7 @@ void init_roundover(void)
 		team1_wins++;
 	}
 	else if (winner == THREEFOUR_WINNER)
-	{
+	{ 
 		team2_wins++;
 	}
 
@@ -3737,34 +3737,34 @@ void init_roundover(void)
 	// 	multi_vram_buffer_horz("TEAM 2 WINS!", 12, NTADR_A(9, 12));
 	// }
 
-	multi_vram_buffer_horz("                      ", 22, NTADR_A(5, 3));
+	multi_vram_buffer_horz("@@@@@@@@@@@@@@@@@@@@@@", 22, NTADR_A(5, 3));
 	if (win_reason == WIN_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED 100 HONEY", 19, NTADR_A(6, 3));
+		multi_vram_buffer_horz("COLLECTED@100@HONEY", 19, NTADR_A(6, 3));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("FRIENDLY BEE EATEN", 18, NTADR_A(7, 3));
+		multi_vram_buffer_horz("FRIENDLY@BEE@EATEN", 18, NTADR_A(7, 3));
 	}
 	else if (win_reason == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("FRIENDLY DUCK EATEN", 19, NTADR_A(6, 3));
+		multi_vram_buffer_horz("FRIENDLY@DUCK@EATEN", 19, NTADR_A(6, 3));
 	}
 	else if (win_reason == WIN_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(8, 3));
+		multi_vram_buffer_horz("ENEMY@BEE@EATEN", 15, NTADR_A(8, 3));
 	}
 	else if (win_reason == WIN_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("BIGBEE ATE DUCK!", 16, NTADR_A(8, 3));
+		multi_vram_buffer_horz("BIGBEE@ATE@DUCK=", 16, NTADR_A(8, 3));
 	}
 	else if (win_reason == WIN_MOST_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(6, 3));
+		multi_vram_buffer_horz("COLLECTED@MORE@HONEY", 20, NTADR_A(6, 3));
 	}
 	else
 	{
-		multi_vram_buffer_horz("DRAW GAME!", 10, NTADR_A(11, 3));
+		multi_vram_buffer_horz("DRAW@GAME=", 10, NTADR_A(11, 3));
 	}
 }
 
@@ -3781,27 +3781,27 @@ void display_round_summary(void)
 	// display the reason
 	if ((temp_round == WIN_HONEY_COLLECTED))
 	{
-		multi_vram_buffer_horz("100 HONEY COLLECTED", 19, NTADR_A(7, temp_y + 1));
+		multi_vram_buffer_horz("100@HONEY@COLLECTED", 19, NTADR_A(7, temp_y + 1));
 	}
 	else if (temp_round == WIN_FRIENDLY_FIRE_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY ATE THEIR BEE", 19, NTADR_A(7, temp_y + 1));
+		multi_vram_buffer_horz("ENEMY@ATE@THEIR@BEE", 19, NTADR_A(7, temp_y + 1));
 	}
 	else if (temp_round == WIN_FRIENDLY_FIRE_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY ATE THEIR DUCK", 20, NTADR_A(7, temp_y + 1));
+		multi_vram_buffer_horz("ENEMY@ATE@THEIR@DUCK", 20, NTADR_A(7, temp_y + 1));
 	}
 	else if (temp_round == WIN_BEE_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY BEE EATEN", 15, NTADR_A(7, temp_y + 1));
+		multi_vram_buffer_horz("ENEMY@BEE@EATEN", 15, NTADR_A(7, temp_y + 1));
 	}
 	else if (temp_round == WIN_DUCK_EATEN)
 	{
-		multi_vram_buffer_horz("ENEMY DUCK EATEN", 16, NTADR_A(7, temp_y + 1));
+		multi_vram_buffer_horz("ENEMY@DUCK@EATEN", 16, NTADR_A(7, temp_y + 1));
 	}
 	else if (temp_round == WIN_MOST_HONEY_COLLECTED)
 	{
-		multi_vram_buffer_horz("COLLECTED MORE HONEY", 20, NTADR_A(7, temp_y + 1));
+		multi_vram_buffer_horz("COLLECTED@MORE@HONEY", 20, NTADR_A(7, temp_y + 1));
 	}
 
 	ppu_wait_nmi();
@@ -3822,12 +3822,12 @@ void init_gameover_loop(void)
 	// say who won
 	if (team1_wins >= 3)
 	{
-		multi_vram_buffer_horz("RED TEAM WINS", 13, NTADR_A(9, 4));
+		multi_vram_buffer_horz("RED@TEAM@WINS", 13, NTADR_A(9, 4));
 		winner = ONETWO_WINNER;
 	}
 	else if (team2_wins >= 3)
 	{
-		multi_vram_buffer_horz("BLUE TEAM WINS", 14, NTADR_A(9, 4));
+		multi_vram_buffer_horz("BLUE@TEAM@WINS", 14, NTADR_A(9, 4));
 		winner = THREEFOUR_WINNER;
 	}
 
@@ -3868,19 +3868,19 @@ void init_gameover_loop(void)
 	// Summary of the rounds:
 
 	temp_y = 8;
-	multi_vram_buffer_horz("ROUND 1:", 9, NTADR_A(6, temp_y));
+	multi_vram_buffer_horz("ROUND@1:", 9, NTADR_A(6, temp_y));
 	temp_winner = round_1_winner;
 	temp_round = round_1;
 	display_round_summary();
 
 	temp_y = 11;
-	multi_vram_buffer_horz("ROUND 2:", 9, NTADR_A(6, temp_y));
+	multi_vram_buffer_horz("ROUND@2:", 9, NTADR_A(6, temp_y));
 	temp_winner = round_2_winner;
 	temp_round = round_2;
 	display_round_summary();
 
 	temp_y = 14;
-	multi_vram_buffer_horz("ROUND 3:", 9, NTADR_A(6, temp_y));
+	multi_vram_buffer_horz("ROUND@3:", 9, NTADR_A(6, temp_y));
 	temp_winner = round_3_winner;
 	temp_round = round_3;
 	display_round_summary();
@@ -3888,7 +3888,7 @@ void init_gameover_loop(void)
 	if (round_4 != 0)
 	{
 		temp_y = 17;
-		multi_vram_buffer_horz("ROUND 4:", 9, NTADR_A(6, temp_y));
+		multi_vram_buffer_horz("ROUND@4:", 9, NTADR_A(6, temp_y));
 		temp_winner = round_4_winner;
 		temp_round = round_4;
 		display_round_summary();
@@ -3897,13 +3897,13 @@ void init_gameover_loop(void)
 	if (round_5 != 0)
 	{
 		temp_y = 20;
-		multi_vram_buffer_horz("ROUND 5:", 9, NTADR_A(6, temp_y));
+		multi_vram_buffer_horz("ROUND@5:", 9, NTADR_A(6, temp_y));
 		temp_winner = round_5_winner;
 		temp_round = round_5;
 		display_round_summary();
 	}
 
-	multi_vram_buffer_horz("PRESS START", 11, NTADR_A(10, 24));
+	multi_vram_buffer_horz("PRESS@START", 11, NTADR_A(10, 24));
 
 	ppu_on_all(); // turn on screen
 	delay(10);
@@ -3953,7 +3953,7 @@ void init_system(void)
 	ai_timer_p4 = 0;
 	ai_dir_p1 = DIR_UP;
 	ai_dir_p2 = DIR_UP;
-	ai_dir_p3 = DIR_UP;
+	ai_dir_p3 = DIR_UP;  
 	ai_dir_p4 = DIR_UP;
 
 	// Initialize bigbee transformation timers
