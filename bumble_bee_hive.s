@@ -6712,9 +6712,9 @@ _palette_outdoors_bg:
 	.byte	$2A
 	.byte	$1B
 	.byte	$0F
-	.byte	$11
-	.byte	$21
 	.byte	$30
+	.byte	$21
+	.byte	$11
 _palette_vineswoflowers_bg:
 	.byte	$0F
 	.byte	$30

@@ -3490,7 +3490,7 @@ void init_game_loop(void)
 	start_round();
 }
 
-void load_bg_palette(void)
+void load_bg_palette(void) 
 {
 	if (map == MAP_OUTDOORS)
 	{
