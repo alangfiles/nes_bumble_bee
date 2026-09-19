@@ -268,10 +268,17 @@ unsigned char quack4_cooldown; // Cooldown timer for duck 4's qu
  unsigned char stun_p4;
 
 #define BOUNCE_DURATION 10
+#define BUMP_DURATION 10
 unsigned char bounce_p1;
 unsigned char bounce_p2;
 unsigned char bounce_p3;
 unsigned char bounce_p4;
+unsigned char bee_bump_timer;
+unsigned char bee_bump_x;
+unsigned char bee_bump_y;
+unsigned char duck_bump_timer;
+unsigned char duck_bump_x;
+unsigned char duck_bump_y;
 unsigned char bounce_dir_p1;
 unsigned char bounce_dir_p2;
 unsigned char bounce_dir_p3;

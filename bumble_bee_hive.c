@@ -188,6 +188,12 @@ void draw_sprites(void)
 	// clear all sprites from sprite buffer
 	oam_clear();
 
+	//draw bumps first because then they'll go away if too many things are on the line?
+	if (bee_bump_timer > 0)
+		oam_meta_spr(bee_bump_x, bee_bump_y, gamesprites_bump_data);
+	if (duck_bump_timer > 0)
+		oam_meta_spr(duck_bump_x, duck_bump_y, gamesprites_bump_data);
+
 	// too many on a line potential, need to rotate through them.
 
 	// draw powerups
@@ -2279,6 +2285,9 @@ void game_loop(void)
 	temp_y2 = BoxGuy3.y >> 8;
 	if (sprite_collision() && bounce_p1 == 0 && bounce_p3 == 0) // 1 and 3, both seekers
 	{
+		bee_bump_timer = BUMP_DURATION;
+		bee_bump_x = ((BoxGuy1.x >> 8) + (BoxGuy3.x >> 8)) >> 1;
+		bee_bump_y = ((BoxGuy1.y >> 8) + (BoxGuy3.y >> 8)) >> 1;
 		bounce_p1 = BOUNCE_DURATION;
 		bounce_p3 = BOUNCE_DURATION;
 		bounce_dir_p1 = BoxGuy1.direction;
@@ -2311,6 +2320,9 @@ void game_loop(void)
 	temp_y2 = BoxGuy4.y >> 8;
 	if (sprite_collision() && bounce_p2 == 0 && bounce_p4 == 0) // player 2 blocks player 4 (chasers)
 	{
+		duck_bump_timer = BUMP_DURATION;
+		duck_bump_x = ((BoxGuy2.x >> 8) + (BoxGuy4.x >> 8)) >> 1;
+		duck_bump_y = ((BoxGuy2.y >> 8) + (BoxGuy4.y >> 8)) >> 1;
 		bounce_p2 = BOUNCE_DURATION;
 		bounce_p4 = BOUNCE_DURATION;
 		bounce_dir_p2 = BoxGuy2.direction;
@@ -2333,6 +2345,9 @@ void game_loop(void)
 	temp_y2 = GenericBoxGuy.y >> 8;
 	if (sprite_collision() && bounce_p1 == 0 && bounce_p3 == 0) // 1 blocks 3 (seekers)
 	{
+		bee_bump_timer = BUMP_DURATION;
+		bee_bump_x = ((BoxGuy1.x >> 8) + (BoxGuy3.x >> 8)) >> 1;
+		bee_bump_y = ((BoxGuy1.y >> 8) + (BoxGuy3.y >> 8)) >> 1;
 		bounce_p1 = BOUNCE_DURATION;
 		bounce_p3 = BOUNCE_DURATION;
 		bounce_dir_p1 = BoxGuy1.direction;
@@ -2365,6 +2380,9 @@ void game_loop(void)
 	temp_y2 = GenericBoxGuy.y >> 8;
 	if (sprite_collision() && bounce_p2 == 0 && bounce_p4 == 0) // 2 blocks 4 (seekers)
 	{
+		duck_bump_timer = BUMP_DURATION;
+		duck_bump_x = ((BoxGuy2.x >> 8) + (BoxGuy4.x >> 8)) >> 1;
+		duck_bump_y = ((BoxGuy2.y >> 8) + (BoxGuy4.y >> 8)) >> 1;
 		bounce_p2 = BOUNCE_DURATION;
 		bounce_p4 = BOUNCE_DURATION;
 		bounce_dir_p2 = BoxGuy2.direction;
@@ -3283,6 +3301,8 @@ void start_round(void)
 	bounce_p2 = 0;
 	bounce_p3 = 0;
 	bounce_p4 = 0;
+	bee_bump_timer = 0;
+	duck_bump_timer = 0;
 
 	// Reset quacks
 	quack2.moving = 0;
@@ -3311,6 +3331,7 @@ void start_round(void)
 	draw_player_2();
 	draw_player_3();
 	draw_player_4();
+
 	oam_meta_spr(116, 100, gamesprites_big3_data);
 	sfx_play_with_check(SFX_TEAM1_DOT_COLLECT, 0);
 	ppu_wait_nmi();
@@ -4025,6 +4046,10 @@ void game_counters(void)
 	game_frame_timer++;
 	// Update sprite rotation every frame
 	sprite_rotation++;
+	if (bee_bump_timer > 0)
+		bee_bump_timer--;
+	if (duck_bump_timer > 0)
+		duck_bump_timer--;
 	if (demo_mode && ++demo_frame_timer >= DEMO_DURATION_FRAMES)
 	{
 		init_title_loop();

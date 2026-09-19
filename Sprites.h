@@ -567,6 +567,11 @@ const unsigned char gamesprites_powerup_data[]={
 	0x80
 };
 
+const unsigned char gamesprites_bump_data[]={
+	  0,  0,0x25,0,
+	0x80
+};
+
 const unsigned char gamesprites_win_icon_honey[] = {
 	0,  0,0x60,0,
 	0x80
