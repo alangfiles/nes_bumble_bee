@@ -231,6 +231,7 @@ unsigned char start_held; // Whether start is currently held
 #include "MAPS/combs.h"
 #include "MAPS/vines.h"
 #include "MAPS/outdoors.h"
+#include "MAPS/summer.h"
 #include "MAPS/settings.h"
 #include "MAPS/title.h"
 
@@ -302,6 +303,8 @@ const unsigned char VINES_FLOWER_X[4] = {16, 224, 16, 224};
 const unsigned char VINES_FLOWER_Y[4] = {32, 32, 208, 208};
 const unsigned char OUTDOORS_FLOWER_X[4] = {32, 208, 16, 224};
 const unsigned char OUTDOORS_FLOWER_Y[4] = {112, 112, 208, 208};
+const unsigned char SUMMER_FLOWER_X[4] = {16, 224, 0, 0};
+const unsigned char SUMMER_FLOWER_Y[4] = {32, 208, 0, 0};
 
 enum
 {
@@ -346,6 +349,7 @@ enum{
 	MAP_COMBS,
 	MAP_OUTDOORS,
 	MAP_VINES,
+	MAP_SUMMER,
 	MAP_RANDOM
 };
 
@@ -375,6 +379,18 @@ const unsigned char palette_vineswoflowers_bg[16]={
 	0x0f,0x11,0x21,0x30 //0x0f,0x30,0x15,0x00 
 	};
 
+const unsigned char palette_summer_bg[16]={
+	0x0f,0x30,0x17,0x27,
+	0x0f,0x15,0x30,0x11,
+	0x0f,0x30,0x2a,0x1b,
+	0x0f,0x30,0x21,0x11
+};
+
+const unsigned char palette_intro_bg[]={
+	0x0f,0x30,0x27,0x07, 0x0f,0x0f,0x0f,0x0f,
+	0x0f,0x0f,0x0f,0x0f, 0x0f,0x0f,0x0f,0x0f
+};
+
 const unsigned char palette_sp[]={ 
 	0x0f,0x16,0x30,0x38,
 	0x0f,0x28,0x07,0x30,
@@ -388,25 +404,10 @@ const unsigned char palette_title_bg[]={ 0x0f,0x30,0x27,0x07,0x0f,0x07,0x2a,0x1b
 // Settings Palettes: 
 const unsigned char palette_options_bg[]={ 0x0f,0x30,0x27,0x07,0x0f,0x24,0x2a,0x1b,0x0f,0x30,0x2a,0x1b,0x0f,0x27,0x2a,0x1b };
 
-const unsigned char palette_intro_bg[]={
-	0x0f,0x30,0x27,0x07, 0x0f,0x0f,0x0f,0x0f,
-	0x0f,0x0f,0x0f,0x0f, 0x0f,0x0f,0x0f,0x0f
-};
 
 
 
 
-// 5 bytes per metatile definition, tile TL, TR, BL, BR, palette 0-3
-// T means top, B means bottom, L left,R right
-// 51 maximum # of metatiles = 255 bytes
-
-const unsigned char metatiles1[]={
-	2, 2, 2, 2,  3,
-	4, 4, 4, 4,  1,
-	9, 9, 9, 9,  2,
-	5, 6, 8, 7,  1,
-	5, 6, 8, 7,  0
-};
 
 // data is exactly 240 bytes, 16 * 15
 // doubles as the collision map data

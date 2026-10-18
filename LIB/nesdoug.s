@@ -4,8 +4,8 @@
 .export _set_vram_buffer, _multi_vram_buffer_horz, _multi_vram_buffer_vert, _one_vram_buffer
 .export _get_pad_new, _get_frame_count, _set_music_speed
 .export _check_collision, _pal_fade_to, _set_scroll_x, _set_scroll_y, _add_scroll_y, _sub_scroll_y
-.export  _get_ppu_addr, _get_at_addr, _set_data_pointer, _set_mt_pointer, _buffer_4_mt, _buffer_1_mt
-.export _color_emphasis, _xy_split, _gray_line, _seed_rng, _get_ppu_byte
+;.export removed: _get_ppu_addr, _get_at_addr, _set_data_pointer, _set_mt_pointer, _buffer_4_mt, _buffer_1_mt
+.export _color_emphasis, _xy_split, _gray_line, _seed_rng
 .export _clear_vram_buffer
 
 .segment "CODE"
@@ -352,6 +352,7 @@ _sub_scroll_y:
 	
 	
 	
+.if 0 ; unused (get_ppu_addr..buffer_1_mt) removed to save ROM
 ;int __fastcall__ get_ppu_addr(char nt, char x, char y);	
 _get_ppu_addr:	
 	and #$f8 ;y bits
@@ -692,6 +693,7 @@ _buffer_1_mt:
 	
 	
 	
+.endif
 ;void __fastcall__ color_emphasis(char color);	
 _color_emphasis:
 	;a = bits 1110 0000
@@ -807,6 +809,7 @@ _seed_rng:
 	sta <RAND_SEED
 	rts
 	
+.if 0
 	;int __fastcall__ get_ppu_byte:(char nt, char x, char y);
 _get_ppu_byte:
     jsr _get_ppu_addr  ; Calculate address in A/X
@@ -820,3 +823,5 @@ _get_ppu_byte:
 
 	
 	
+
+.endif

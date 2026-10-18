@@ -7,7 +7,7 @@
  */
 
 #include "LIB/neslib.h"
-#include "LIB/nesdoug.h"
+#include "LIB/nesdoug.h"x
 #include "LIB/nesfourscore.h"
 #include "Sprites.h" // holds our metasprite data
 #include "bumble_bee_hive.h"
@@ -165,17 +165,17 @@ void load_room(void)
 	// this will just load the nam
 	ppu_off();
 	vram_adr(NAMETABLE_A);
-	for (largeindex = 0; largeindex < 1024; ++largeindex)
+	if (game_mode == MODE_TITLE)
 	{
-		if (game_mode == MODE_TITLE)
-		{
-			vram_put(title[largeindex]);
-		}
-		else if (game_mode == MODE_OPTIONS)
-		{
-			vram_put(settings[largeindex]);
-		}
-		else
+		vram_unrle(title);
+	}
+	else if (game_mode == MODE_OPTIONS)
+	{
+		vram_unrle(settings);
+	}
+	else
+	{
+		for (largeindex = 0; largeindex < 1024; ++largeindex)
 		{
 			vram_put(map_ptr[largeindex]);
 		}
@@ -211,6 +211,10 @@ void draw_sprites(void)
 		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[0], OUTDOORS_FLOWER_Y[0], gamesprites_powerup_data);
 		}
+		else if (map == MAP_SUMMER)
+		{
+			oam_meta_spr(SUMMER_FLOWER_X[0], SUMMER_FLOWER_Y[0], gamesprites_powerup_data);
+		}
 	}
 
 	if (powerup2 == 1)
@@ -226,6 +230,10 @@ void draw_sprites(void)
 		else if (map == MAP_OUTDOORS)
 		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[1], OUTDOORS_FLOWER_Y[1], gamesprites_powerup_data);
+		}
+		else if (map == MAP_SUMMER)
+		{
+			oam_meta_spr(SUMMER_FLOWER_X[1], SUMMER_FLOWER_Y[1], gamesprites_powerup_data);
 		}
 	}
 
@@ -243,6 +251,10 @@ void draw_sprites(void)
 		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[2], OUTDOORS_FLOWER_Y[2], gamesprites_powerup_data);
 		}
+		else if (map == MAP_SUMMER)
+		{
+			oam_meta_spr(SUMMER_FLOWER_X[2], SUMMER_FLOWER_Y[2], gamesprites_powerup_data);
+		}
 	}
 
 	if (powerup4 == 1)
@@ -258,6 +270,10 @@ void draw_sprites(void)
 		else if (map == MAP_OUTDOORS)
 		{
 			oam_meta_spr(OUTDOORS_FLOWER_X[3], OUTDOORS_FLOWER_Y[3], gamesprites_powerup_data);
+		}
+		else if (map == MAP_SUMMER)
+		{
+			oam_meta_spr(SUMMER_FLOWER_X[3], SUMMER_FLOWER_Y[3], gamesprites_powerup_data);
 		}
 	}
 
@@ -1186,6 +1202,11 @@ void check_powerup(void)
 			temp_x2 = OUTDOORS_FLOWER_X[0];
 			temp_y2 = OUTDOORS_FLOWER_Y[0];
 		}
+		else if (map == MAP_SUMMER)
+		{
+			temp_x2 = SUMMER_FLOWER_X[0];
+			temp_y2 = SUMMER_FLOWER_Y[0];
+		}
 
 		if (check_powerup_collision())
 		{
@@ -1218,6 +1239,11 @@ void check_powerup(void)
 		{
 			temp_x2 = OUTDOORS_FLOWER_X[1];
 			temp_y2 = OUTDOORS_FLOWER_Y[1];
+		}
+		else if (map == MAP_SUMMER)
+		{
+			temp_x2 = SUMMER_FLOWER_X[1];
+			temp_y2 = SUMMER_FLOWER_Y[1];
 		}
 
 		if (check_powerup_collision())
@@ -1252,6 +1278,11 @@ void check_powerup(void)
 			temp_x2 = OUTDOORS_FLOWER_X[2];
 			temp_y2 = OUTDOORS_FLOWER_Y[2];
 		}
+		else if (map == MAP_SUMMER)
+		{
+			temp_x2 = SUMMER_FLOWER_X[2];
+			temp_y2 = SUMMER_FLOWER_Y[2];
+		}
 
 		if (check_powerup_collision())
 		{
@@ -1285,6 +1316,11 @@ void check_powerup(void)
 		{
 			temp_x2 = OUTDOORS_FLOWER_X[3];
 			temp_y2 = OUTDOORS_FLOWER_Y[3];
+		}
+		else if (map == MAP_SUMMER)
+		{
+			temp_x2 = SUMMER_FLOWER_X[3];
+			temp_y2 = SUMMER_FLOWER_Y[3];
 		}
 
 		if (check_powerup_collision())
@@ -3203,15 +3239,20 @@ void start_round(void)
 
 	if (demo_mode || settings_map == MAP_RANDOM)
 	{
-		if (frame_counter % 3 == 0)
+		if (frame_counter % 4 == 0)
 		{
 			map_ptr = combs;
 			map = MAP_COMBS;
 		}
-		else if (frame_counter % 3 == 1)
+		else if (frame_counter % 4 == 1)
 		{
 			map_ptr = vines;
 			map = MAP_VINES;
+		}
+		else if (frame_counter % 4 == 2)
+		{
+			map_ptr = summer;
+			map = MAP_SUMMER;
 		}
 		else
 		{
@@ -3263,6 +3304,17 @@ void start_round(void)
 		BoxGuy4.x = 0xD800;
 		BoxGuy4.y = 0xD800;
 	}
+	else if (map == MAP_SUMMER)
+	{
+		BoxGuy1.x = 0x4800;
+		BoxGuy1.y = 0xB000;
+		BoxGuy2.x = 0x1800;
+		BoxGuy2.y = 0x2000;
+		BoxGuy3.x = 0xB000;
+		BoxGuy3.y = 0x5000;
+		BoxGuy4.x = 0xE000;
+		BoxGuy4.y = 0xC000;
+	}
 
 	// todo: not removing this yet as these might be useful
 	//   else if (map_positions == START_POS_MIDDLE) {
@@ -3281,8 +3333,9 @@ void start_round(void)
 	team2_score = 0;
 	powerup1 = 1;
 	powerup2 = 1;
-	powerup3 = 1;
-	powerup4 = 1;
+	// summer only has 2 flowers
+	powerup3 = (map != MAP_SUMMER);
+	powerup4 = (map != MAP_SUMMER);
 	game_timer = GAME_LENGTH;
 	win_reason = WIN_HONEY_COLLECTED; // default
 	winner = UNDEFINED_WINNER;
@@ -3469,6 +3522,11 @@ void init_game_loop(void)
 		map_ptr = outdoors;
 		map = MAP_OUTDOORS;
 	}
+	else if (settings_map == MAP_SUMMER)
+	{
+		map_ptr = summer;
+		map = MAP_SUMMER;
+	}
 
 	if (settings_speed == GAME_SLOW)
 	{
@@ -3503,6 +3561,10 @@ void load_bg_palette(void)
 	else if (map == MAP_VINES)
 	{
 		pal_bg(palette_vineswoflowers_bg);
+	}
+	else if (map == MAP_SUMMER)
+	{
+		pal_bg(palette_summer_bg);
 	}
 }
 
@@ -3595,6 +3657,10 @@ void update_options_screen(void)
 	else if (settings_map == MAP_VINES)
 	{
 		multi_vram_buffer_horz("VINES@@@", 8, NTADR_A(11, 14));
+	}
+	else if (settings_map == MAP_SUMMER)
+	{
+		multi_vram_buffer_horz("SUMMER@@", 8, NTADR_A(11, 14));
 	}
 
 	
