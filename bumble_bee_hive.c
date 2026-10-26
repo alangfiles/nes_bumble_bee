@@ -2579,6 +2579,8 @@ void game_loop(void)
 
 void title_loop(void)
 {
+	four_score_present = four_score_detect();
+
 	while (1)
 	{
 		frame_counter++;
@@ -3740,7 +3742,6 @@ void init_roundover(void)
 	// debug_extras(); // draws the timer at 0
 
 	game_mode = MODE_ROUNDOVER;
-	music_stop();
 	if (winner == ONETWO_WINNER)
 	{
 		team1_wins++;
@@ -4047,8 +4048,7 @@ void init_system(void)
 	bee1_bigbee_timer = 0;
 	bee3_bigbee_timer = 0;
 
-	// Read the Four Score serial signature after its two controller bytes.
-	four_score_present = 1; //four_score_detect();
+	four_score_present = 0;
 	controller1_slot = 1;
 	controller2_slot = 2;
 
@@ -4069,6 +4069,8 @@ void clear_background(void)
 
 void roundover_loop(void)
 {
+	ppu_wait_nmi();
+	music_stop();
 
 	while (1)
 	{
